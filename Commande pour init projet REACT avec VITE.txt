@@ -1,0 +1,1 @@
+./React-modele-vite/bin/install.sh
