@@ -1,7 +1,11 @@
 import { Outlet } from 'react-router-dom';
 
 function Root() {
-  return <Outlet />;
+  return (
+    <div className="app">
+      <Outlet />
+    </div>
+  );
 }
 
 export default Root;
