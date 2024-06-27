@@ -88,7 +88,7 @@ Voici les programmes/logiciels/ressources que vous nous avons utilisé pour dév
 
 ## Auteurs
 
-Listez le(s) auteur(s) du projet ici !
+Liste des auteurs du projet:
 
 - **O'clock** _alias_ [@Oclock](https://oclock.io/)
 - **Robert Sébastien** _alias_ [@sebdev43](https://github.com/Sebdev43)
