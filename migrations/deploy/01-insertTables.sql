@@ -12,7 +12,7 @@ CREATE TABLE "users" (
     "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "nickname" TEXT NOT NULL UNIQUE,
     "localisation" TEXT,
-    "email" email TEXT UNIQUE NOT NULL,
+    "email" email UNIQUE NOT NULL,
     "password" TEXT NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
@@ -24,7 +24,7 @@ CREATE TABLE "hikes" (
 	"description" TEXT NOT NULL,
 	"picture" TEXT[] NOT NULL,
 	"difficulty" TEXT NOT NULL,
-	"time" INTERVAL,
+	"time" INT,
 	"distance" NUMERIC NOT NULL,
 	"localisation" TEXT NOT NULL,
 	"details" TEXT NOT NULL,
@@ -33,10 +33,10 @@ CREATE TABLE "hikes" (
     "updated_at" TIMESTAMPTZ
 );
 
-"users_has_hikes" (
+CREATE TABLE "users_has_hikes" (
     "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "users_id" INTEGER REFERENCE "users" ("id"),
-    "hikes_id" INTEGER REFERENCE "hikes" ("id"),
+    "users_id" INTEGER REFERENCES "users"("id"),
+    "hikes_id" INTEGER REFERENCES "hikes"("id"),
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );
