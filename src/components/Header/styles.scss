@@ -1,0 +1,23 @@
+.header {
+  align-items: center;
+  background-color: rgba(139, 144, 131, 0.697);
+
+  &-top {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-button {
+      position: fixed;
+      right: 22%;
+      padding: 0.5rem 1rem;
+      background-color: rgba(0, 0, 0, 0.497);
+      color: white;
+      text-decoration: none;
+      border: none;
+      border-radius: 7px;
+    }
+  }
+}

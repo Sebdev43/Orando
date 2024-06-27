@@ -15,7 +15,7 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 
-// Pages
+// Import des pages
 import Root from './pages/Root';
 import NotFound from './pages/NotFound/NotFound';
 import Home from './pages/Home/Home';
@@ -32,7 +32,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-// Rooter
+// Rooter d'url : simuler le comportement d'un navigateur
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />} errorElement={<NotFound />}>

@@ -16,9 +16,3 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 export default store;
-
-// 5b - on importe les hooks originaux de react-redux
-import { useSelector, useDispatch } from 'react-redux';
-// 5c - on re exporte ces hooks surchargés avec les types de notre store
-export const useAppSelector = useSelector.withTypes<RootState>();
-export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
