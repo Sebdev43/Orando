@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom/client';
 
 import './styles/index.scss';
 
+// 4 - rendre le store accessible
+import { Provider } from 'react-redux';
+// 4a - récupérer le store créé
+import store from './store/store';
+
 import {
   Route,
   RouterProvider,
@@ -49,6 +54,9 @@ const router = createBrowserRouter(
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    {/* 4b - wrapper notre app dans le Provider en lui fournissant le store */}
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
