@@ -1,18 +1,18 @@
-#OS X
+OS X
 /.DS_Store*
 /Icon?
 /._*
 
-#Windows
+Windows
 /Thumbs.db
 /ehthumbs.db
 /Desktop.ini
 
-#Linux
+Linux
 /.directory
 /*~
 
-#npm
+npm
 node_modules
 package-lock.json
 .gz
