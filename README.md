@@ -56,7 +56,7 @@ Ce qu'il est requis pour commencer avec notre projet...
     mv sqitch.examples.conf sqitch.conf
    ```
 
-4. Initialisez la base de données:
+4. Initialisez la base de données dans le terminal:
 
    ```bash
    createdb orando
