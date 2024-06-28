@@ -9,7 +9,7 @@
 
     &-button {
       position: fixed;
-      right: 14rem;
+      left: 62%;
       top: 2rem;
       padding: 0.5rem 1rem;
       background-color: rgba(0, 0, 0, 0.497);
@@ -17,6 +17,17 @@
       text-decoration: none;
       border: none;
       border-radius: 7px;
+
+      &:hover:not(&--active) {
+        color: rgba(0, 0, 0, 0.497);
+      }
+
+      &--active {
+        color: rgba(0, 0, 0, 0.497);
+        border: 1px solid;
+        border-radius: 3px;
+        padding: 1rem;
+      }
     }
 
     &-logo {
