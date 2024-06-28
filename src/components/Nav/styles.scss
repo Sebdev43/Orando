@@ -1,13 +1,10 @@
 .menu {
+  width: 50%;
+  margin: auto;
   border-radius: 7px;
   background-color: rgba(47, 47, 47, 0.432);
-  padding: 1.5rem;
-
+  padding: 1.2rem;
   text-align: center;
-
-  @media (max-width: 700px) {
-    width: auto;
-  }
 
   &-link {
     color: black;
@@ -16,6 +13,7 @@
     font-size: larger;
     font-weight: 500;
     margin: 1.2rem;
+
     &:hover:not(&--active) {
       color: rgba(0, 0, 0, 0.497);
     }
@@ -24,7 +22,7 @@
       color: rgba(0, 0, 0, 0.497);
       border: 1px solid;
       border-radius: 3px;
-      padding: 1rem 4rem;
+      padding: 1rem;
     }
   }
 }
