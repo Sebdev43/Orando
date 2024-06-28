@@ -1,10 +1,12 @@
 import { Outlet } from 'react-router-dom';
-import Nav from '../components/Nav/Nav';
+
+import './Root.scss';
+import Header from '../components/Header/Header';
 
 function Root() {
   return (
     <div className="app">
-      <Nav />
+      <Header />
       <Outlet />
     </div>
   );

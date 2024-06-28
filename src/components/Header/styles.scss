@@ -1,0 +1,27 @@
+.header {
+  align-items: center;
+
+  &-top {
+    margin: 1rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-button {
+      position: fixed;
+      right: 14rem;
+      top: 2rem;
+      padding: 0.5rem 1rem;
+      background-color: rgba(0, 0, 0, 0.497);
+      color: white;
+      text-decoration: none;
+      border: none;
+      border-radius: 7px;
+    }
+
+    &-logo {
+      width: 150px;
+      margin: auto;
+    }
+  }
+}

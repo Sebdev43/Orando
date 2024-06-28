@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom/client';
 
 import './styles/index.scss';
 
+// 4 - rendre le store accessible
+import { Provider } from 'react-redux';
+// 4a - récupérer le store créé
+import store from './store/store';
+
 import {
   Route,
   RouterProvider,
@@ -10,7 +15,7 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 
-// Pages
+// Import des pages
 import Root from './pages/Root';
 import NotFound from './pages/NotFound/NotFound';
 import Home from './pages/Home/Home';
@@ -27,7 +32,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-// Rooter
+// Rooter d'url : simuler le comportement d'un navigateur
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />} errorElement={<NotFound />}>
@@ -49,6 +54,9 @@ const router = createBrowserRouter(
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    {/* 4b - wrapper notre app dans le Provider en lui fournissant le store */}
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
