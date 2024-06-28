@@ -1208,7 +1208,7 @@ C''est un point haut et découvert du circuit. Vaste panorama sur les Monts d''O
 
 (7) Poursuivre sur le chemin de gauche en lisière de bois pour parvenir à la voie communale bitumée des Pérouzes.
 
-(8) La suivre à gauche. Ne pas prendre le premier chemin balisé à gauche, rester sur la route, puis tourner franchement à droite au point coté 407, voie sans issue, direction Chainfray. Dans le virage, virer dans le chemin à gauche. Il descend à l'Est d'un petit étang. Ignorer le chemin à gauche qui y mène, continuer tout droit. La descente s''accentue pour se terminer au ruisseau Rolland.
+(8) La suivre à gauche. Ne pas prendre le premier chemin balisé à gauche, rester sur la route, puis tourner franchement à droite au point coté 407, voie sans issue, direction Chainfray. Dans le virage, virer dans le chemin à gauche. Il descend à l''Est d''un petit étang. Ignorer le chemin à gauche qui y mène, continuer tout droit. La descente s''accentue pour se terminer au ruisseau Rolland.
 
 (9) Le traverser à gué et prendre à gauche le sentier qui suit la rive droite du cours d''eau.
 Traverser plus loin, au prix d''une courte montée un peu raide, de l''autre côté. Revenir rive droite un peu après. Cette double traversée permet d''éviter les obstacles d''arbres couchés sur le chemin.
