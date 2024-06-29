@@ -4,7 +4,8 @@ import swaggerUi from 'swagger-ui-express';
 //* Configuration de Swagger
 
 const swaggerOptions = {
-    openapi: "3.0.0",
+  definition: {  
+  openapi: "3.0.0",
     info: {
       title: "API de O'rando",
       version: "1.0.0",
@@ -13,13 +14,12 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: "http://localhost:3000",
+        url: "http://localhost:4000",
       },
     ],
+  },
     apis: [
       "./app/routers/*.js",
-      "./app/controllers/*.js",
-      ".app/datamappers/*.js",
     ], //chemin vers les fichiers contenant les annotations swagger
   };
 
