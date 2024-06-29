@@ -1,12 +1,19 @@
 import * as hikesDataMapper from '../dataMappers/hikesDataMapper.js';
 
-// Méthode pour récupérer toutes les randonnées
+// Méthode pour récupérer toutes les randonnées avec pagination, tri et odre
 
 export const getAllHikes = async (req, res, next) => {
     try {
-        const hikes = await hikesDataMapper.getAllHikes();
-        // Stocker les randonnées dans res.locals pour que le middleware puisse les transformer
+        // Récupere les paramètres de la requête
+        const { page=1, order = 'asc', orderBy = 'id' } = req.query;
+
+        // Appel le dataMapper avec les paramètres de pagination, tri et ordre
+        const hikes = await hikesDataMapper.getAllHikes(page, order, orderBy);
+
+        // Stocker les randonnées dans res.locals pour que le middleware puisse les transformer si on l'utilise
         res.locals.hikes = hikes;
+
+        //Appel le middleware si on l'utilise
         next();
         
     } catch (err) {
