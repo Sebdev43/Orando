@@ -2,6 +2,7 @@ import express from "express";
 const router = express.Router();
 
 import { getAllHikes } from "../controllers/hikesController.js";
+import { gpsCoordinate } from "../middlewares/wkxMiddleware.js";
 
 /**
  * @swagger
@@ -47,7 +48,7 @@ import { getAllHikes } from "../controllers/hikesController.js";
  *                   details:
  *                     type: string
  *                   gps_coordinate:
- *                     type: string
+ *                     type: object
  *                   created_at:
  *                     type: string
  *                     format: date-time
@@ -56,6 +57,9 @@ import { getAllHikes } from "../controllers/hikesController.js";
  *                     format: date-time
  */
 
-router.get("/", getAllHikes);
+//Ici on peut ajouter le middelware gpsCoordinate si on veut tranfomer le geojson en json mais il vaut mieux ne pas s'en servir car le temp de réponse est fortement allongé.
+router.get("/", getAllHikes, (req, res) => {
+    res.status(200).json(res.locals.hikes);
+});
 
 export default router;
