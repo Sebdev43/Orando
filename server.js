@@ -1,6 +1,9 @@
 /* Point d'entrée de l'appliaction*/
 
 //* Importation des modules
+import { config } from 'dotenv';
+config();
+
 import express from "express";
 import { initializeRoutes, initializeSwagger } from "./app/index.app.js";
 
