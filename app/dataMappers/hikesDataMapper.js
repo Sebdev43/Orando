@@ -42,3 +42,41 @@ export const getAllHikes = async (page, order, orderBy) => {
   // Retourne les résultats
   return result.rows;
 };
+/**
+ * Récupérer une randonnée par son ID
+ * @param {number} id - ID de la randonnée
+ * @returns {Object} - Détails de la randonnée
+ */
+// Récupere une randonnée par son id avec gps_coordinate en GeoJSON
+export const getHikeById = async (id) => {
+  const result = await pool.query(
+    `
+        SELECT
+             id, title, description, picture, difficulty, time, distance, localisation, details, 
+            ST_AsGeoJSON(gps_coordinate) as gps_coordinate, created_at, updated_at 
+        FROM hikes 
+        WHERE id = $1
+        `,
+    [id]
+  );
+  return result.rows[0];
+};
+
+/**
+ * Récupérer 3 randonnées de manière aléatoire
+ * @returns {Array} - Liste des 3 randonnées aléatoires
+ */
+
+export const getRandomHikes = async () => {
+    const query = `
+    SELECT 
+        id, title, description, picture, difficulty, time, distance, localisation, details, 
+        ST_AsGeoJSON(gps_coordinate) as gps_coordinate, created_at, updated_at 
+    FROM hikes
+    ORDER BY RANDOM()
+    LIMIT 3
+`;
+    const result = await pool.query(query);
+
+    return result.rows;
+};

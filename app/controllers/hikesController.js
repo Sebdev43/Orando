@@ -22,4 +22,35 @@ export const getAllHikes = async (req, res, next) => {
     }
 };
 
+// Méthode pour récupérer une randonnée par son id
+
+export const getHikeById = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        const hike = await hikesDataMapper.getHikeById(id);
+        if (!hike) {
+            return res.status(404).json({ error: 'Randonnée non trouvée'});
+        }
+        res.locals.hike = hike;
+        next();
+
+    } catch (err) {
+        console.error('Erreur lors de la récupération de la randonnée', err);
+        res.status(500).json({ error: 'Erreur lors de la récupération de la randonnée'});
+    }
+};
+
+// Méthode pour récupérer 3 randonnées de mainère aléatoire
+
+export const getRandomHikes = async (req, res, next) => {
+    try {
+        const hikes = await hikesDataMapper.getRandomHikes();
+        res.locals.hikes = hikes;
+        next();
+    } catch (err) {
+        console.error('Erreur lors de la récupération des randonnées aléatoires', err);
+        res.status(500).json({ error: 'Erreur lors de la récupération des randonnées aléatoires'});
+    }
+};
 
