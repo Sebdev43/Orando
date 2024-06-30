@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+import bcrypt from 'bcrypt';
 
 import { createUser as createUserDatamapper } from '../datamappers/userDatamappers';
 
