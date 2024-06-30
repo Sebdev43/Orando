@@ -10,7 +10,7 @@ const pool = new Pool({
     port: process.env.PGPORT
 });
 
-export default client;
+export default pool;
 pool.connect((error) => {
     if (error) {
         console.error("Une erreur à lieu à la connexion avec notre BDD :",error.message);
