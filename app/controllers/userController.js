@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 
-import { createUser as createUserDatamapper } from '../datamappers/userDatamappers';
+import { createUser as createUserDatamapper } from '../dataMappers/userDatamappers';
 
 export const createUser = async (req, res) => {
     const { nickname, localisation, email, password } = req.body;
