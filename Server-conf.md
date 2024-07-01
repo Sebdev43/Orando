@@ -4,14 +4,14 @@ Le projet orando sera deployé sur un machine ayant 4 cores et 8g de ram et 300g
 
 ## Configuration de l'environnement sécurisé pour ssh
 
-1.  Installation de opsenssh
+1. Installation de opsenssh
 
     ```bash
     sudo apt update
     sudo apt install ssh
     ```
 
-2.  Ajout de la clé publique ssh
+2. Ajout de la clé publique ssh
 
     ```bash
     nano ~/.ssh/authorized_keys
@@ -25,7 +25,7 @@ Le projet orando sera deployé sur un machine ayant 4 cores et 8g de ram et 300g
     chmod 600 ~/.ssh/authorized_keys
     ```
 
-3.  Maintenant sécurisons le tout
+3. Maintenant sécurisons le tout
 
     Modifion la façon d'accéder en ssh
 
@@ -129,7 +129,7 @@ Le projet orando sera deployé sur un machine ayant 4 cores et 8g de ram et 300g
 
     ```
 
-## Installation de nginx 
+## Installation de nginx  
 
 1. Etape 1 installation :
 

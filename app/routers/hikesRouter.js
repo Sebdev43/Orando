@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 
 import { getAllHikes, getHikeById, getRandomHikes } from "../controllers/hikesController.js";
-import { gpsCoordinate } from "../middlewares/wkxMiddleware.js";
+
 
 /**
  * @swagger
@@ -56,10 +56,7 @@ import { gpsCoordinate } from "../middlewares/wkxMiddleware.js";
  *                     type: string
  *                     format: date-time
  */
-router.get('/random', getRandomHikes, (req, res) => {
-    // Envoyer la réponse avec les randonnées transformées
-    res.status(200).json(res.locals.hikes);
-});
+router.get('/random', getRandomHikes);
 
 /**
  * Route pour récupérer la liste des randonnées avec pagination, tri et ordre
@@ -130,9 +127,7 @@ router.get('/random', getRandomHikes, (req, res) => {
  */
 
 //Ici on peut ajouter le middelware gpsCoordinate si on veut tranfomer le geojson en json mais il vaut mieux ne pas s'en servir car le temp de réponse est fortement allongé.
-router.get("/", getAllHikes, (req, res) => {
-    res.status(200).json(res.locals.hikes);
-});
+router.get("/", getAllHikes); 
 
 /**
  * @swagger
@@ -187,9 +182,7 @@ router.get("/", getAllHikes, (req, res) => {
  *         description: Randonnée non trouvée
  */
 
-router.get("/:id", getHikeById, (req, res) => {
-    res.status(200).json(res.locals.hike);
-});
+router.get("/:id", getHikeById);
 
 
 export default router;

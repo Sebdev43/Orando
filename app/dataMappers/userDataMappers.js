@@ -5,7 +5,7 @@ export const createUser = async (nickname, localisation, email, password) => {
     try {
         const query = 'INSERT INTO users (nickname, localisation, email, password) VALUES ($1, $2, $3, $4) RETURNING *';
         const values = [nickname, localisation, email, password];
-        const result = await client.query(query, values);
+        const result = await pool.query(query, values);
         return result.rows[0];
     } catch (error) {
         throw error;

@@ -1,12 +1,12 @@
 import bcrypt from 'bcrypt';
 
-import { createUser as createUserDatamapper } from '../dataMappers/userDatamappers';
+import * as userDataMappers from '../dataMappers/userDataMappers.js';
 
 export const createUser = async (req, res) => {
     const { nickname, localisation, email, password } = req.body;
 
     try {
-        const user = await createUserDatamapper(nickname, localisation, email, password);
+        const user = await userDataMappers.createUser(nickname, localisation, email, password);
         res.status(201).json(user)
     } catch (error) {
         console.error("Erreur lors de la création de l'utilisateur :", err.stack);

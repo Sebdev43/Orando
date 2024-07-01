@@ -63,8 +63,8 @@ export const getHikeById = async (id) => {
 };
 
 /**
- * Récupérer 3 randonnées de manière aléatoire
- * @returns {Array} - Liste des 3 randonnées aléatoires
+ * Récupérer 4 randonnées de manière aléatoire
+ * @returns {Array} - Liste des 4 randonnées aléatoires
  */
 
 export const getRandomHikes = async () => {
@@ -74,7 +74,7 @@ export const getRandomHikes = async () => {
         ST_AsGeoJSON(gps_coordinate) as gps_coordinate, created_at, updated_at 
     FROM hikes
     ORDER BY RANDOM()
-    LIMIT 3
+    LIMIT 4
 `;
     const result = await pool.query(query);
 
