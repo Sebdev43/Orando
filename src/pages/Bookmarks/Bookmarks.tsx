@@ -1,5 +1,5 @@
 function Bookmarks() {
-  return <h1>Hello World from Bookmarks !</h1>;
+  return <h1>LA PAGE DES FAVORIS</h1>;
 }
 
 export default Bookmarks;

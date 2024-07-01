@@ -1,27 +1,35 @@
 import './styles.scss';
 
+import { NavLink, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+// import react component from MUI
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
-import { NavLink, useLocation } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 import FollowTheSignsSharpIcon from '@mui/icons-material/FollowTheSignsSharp';
 import GrainIcon from '@mui/icons-material/Grain';
-import { useState, useEffect } from 'react';
 
+// Component name
 export default function IconBreadcrumbs() {
+  // Get the URL location with useLocation()
   const location = useLocation();
+
+  // Set the state for the previous location which is gonna change
   const [previousLocation, setPreviousLocation] = useState(location);
 
+  // Set the state when the URL location changes
   useEffect(() => {
     if (previousLocation.pathname !== location.pathname) {
       setPreviousLocation(location);
     }
   }, [location, previousLocation]);
 
+  // Generate the final breadcrumbs
   const generateBreadcrumbs = () => {
     const pathnames = location.pathname.split('/').filter((x) => x);
-    console.log(pathnames);
+
     return (
       <Breadcrumbs aria-label="breadcrumb">
         <NavLink
@@ -78,6 +86,7 @@ export default function IconBreadcrumbs() {
     );
   };
 
+  // Return the breadcrumbs component
   return (
     <div role="presentation">
       <Breadcrumbs aria-label="breadcrumb">{generateBreadcrumbs()}</Breadcrumbs>

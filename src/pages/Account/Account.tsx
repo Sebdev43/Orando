@@ -1,5 +1,5 @@
 function Account() {
-  return <h1>Hello World from Account !</h1>;
+  return <h1>PAGE DU COMPTE PERSO</h1>;
 }
 
 export default Account;
