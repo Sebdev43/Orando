@@ -1,13 +1,18 @@
 import pg from 'pg'; 
+//* Importation des modules
+import { config } from 'dotenv';
+config();
+
 //On import toutes les fonctions de PG pour utiliser pool
 const { Pool } = pg;
 // Connect to PostgreSQL database
 const pool = new Pool({
     host: process.env.PGHOST,
     user: process.env.PGUSER,
-    //password: process.env.PGPASSWORD,
+    password: process.env.PGPASSWORD,
     database: process.env.PGDATABASE,
     port: process.env.PGPORT
+    //connectionString: "postgres://postgres:js4life@localhost/orando",
 });
 
 export default pool;
