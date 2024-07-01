@@ -1,15 +1,14 @@
 import express from "express";
 const router = express.Router();
-
 import { getAllHikes, getHikeById, getRandomHikes } from "../controllers/hikesController.js";
-
 
 /**
  * @swagger
  * tags:
- * name: Hikes
- * description: Gestion des randonnées
+ *   - name: Hikes
+ *     description: Gestion des randonnées
  */
+
 /**
  * Route pour récupérer 4 randonnées de manière aléatoire
  * @swagger
@@ -59,7 +58,7 @@ import { getAllHikes, getHikeById, getRandomHikes } from "../controllers/hikesCo
 router.get('/random', getRandomHikes);
 
 /**
- * Route pour récupérer la liste des randonnées avec pagination, tri par date de création
+ * Route pour récupérer la liste des randonnées avec pagination et tri par date de création
  * @swagger
  * /hikes:
  *   get:
@@ -111,10 +110,10 @@ router.get('/random', getRandomHikes);
  *                     type: string
  *                     format: date-time
  */
-
-router.get("/", getAllHikes); 
+router.get("/", getAllHikes);
 
 /**
+ * Route pour récupérer une randonnée par son ID
  * @swagger
  * /hikes/{id}:
  *   get:
@@ -166,8 +165,6 @@ router.get("/", getAllHikes);
  *       404:
  *         description: Randonnée non trouvée
  */
-
 router.get("/:id", getHikeById);
-
 
 export default router;
