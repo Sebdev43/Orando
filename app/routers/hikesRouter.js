@@ -11,15 +11,15 @@ import { getAllHikes, getHikeById, getRandomHikes } from "../controllers/hikesCo
  * description: Gestion des randonnées
  */
 /**
- * Route pour récupérer 3 randonnées de manière aléatoire
+ * Route pour récupérer 4 randonnées de manière aléatoire
  * @swagger
  * /hikes/random:
  *   get:
- *     summary: Récupérer 3 randonnées de manière aléatoire
+ *     summary: Récupérer 4 randonnées de manière aléatoire
  *     tags: [Hikes]
  *     responses:
  *       200:
- *         description: 3 randonnées aléatoires
+ *         description: 4 randonnées aléatoires
  *         content:
  *           application/json:
  *             schema:
@@ -59,7 +59,7 @@ import { getAllHikes, getHikeById, getRandomHikes } from "../controllers/hikesCo
 router.get('/random', getRandomHikes);
 
 /**
- * Route pour récupérer la liste des randonnées avec pagination, tri et ordre
+ * Route pour récupérer la liste des randonnées avec pagination, tri par date de création
  * @swagger
  * /hikes:
  *   get:
@@ -72,20 +72,6 @@ router.get('/random', getRandomHikes);
  *           type: integer
  *           default: 1
  *         description: Le numéro de la page
- *       - in: query
- *         name: order
- *         schema:
- *           type: string
- *           enum: [asc, desc]
- *           default: asc
- *         description: L'ordre de tri (ascendant ou descendant)
- *       - in: query
- *         name: orderBy
- *         schema:
- *           type: string
- *           enum: [id, title, distance, difficulty, time, localisation, created_at]
- *           default: id
- *         description: Le champ par lequel trier les résultats
  *     responses:
  *       200:
  *         description: La liste des randonnées
@@ -126,7 +112,6 @@ router.get('/random', getRandomHikes);
  *                     format: date-time
  */
 
-//Ici on peut ajouter le middelware gpsCoordinate si on veut tranfomer le geojson en json mais il vaut mieux ne pas s'en servir car le temp de réponse est fortement allongé.
 router.get("/", getAllHikes); 
 
 /**

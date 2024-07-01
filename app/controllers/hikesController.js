@@ -5,10 +5,10 @@ import * as hikesDataMapper from '../dataMappers/hikesDataMapper.js';
 export const getAllHikes = async (req, res) => {
     try {
         // Récupere les paramètres de la requête
-        const { page=1, order = 'asc', orderBy = 'id' } = req.query;
+        const { page=1 } = req.query;
 
         // Appel le dataMapper avec les paramètres de pagination, tri et ordre
-        const hikes = await hikesDataMapper.getAllHikes(page, order, orderBy);
+        const hikes = await hikesDataMapper.getAllHikes(page);
 
         res.status(200).json(hikes);
         
@@ -42,7 +42,7 @@ export const getRandomHikes = async (req, res) => {
     try {
         const hikes = await hikesDataMapper.getRandomHikes();
         res.status(200).json(hikes);
-        
+
     } catch (err) {
         console.error('Erreur lors de la récupération des randonnées aléatoires', err);
         res.status(500).json({ error: 'Erreur lors de la récupération des randonnées aléatoires'});
