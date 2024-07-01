@@ -14,13 +14,13 @@ import './CardComponent.scss';
 
 function CardComponent(hike: Hike) {
   return (
-    <NavLink to={`/randonnees/${hike.slug}`}>
+    <NavLink to={`/randonnees/${hike.slug}`} className="no-decoration">
       <Card variant="outlined" sx={{ width: 340 }}>
         <CardOverflow>
           {/* Image */}
           <AspectRatio ratio="1">
             <img
-              src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318"
+              src={hike.pictures[1]}
               srcSet="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318&dpr=2 2x"
               loading="lazy"
               alt=""

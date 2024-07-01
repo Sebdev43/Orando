@@ -5,6 +5,7 @@ import { breadcrumbsReducer } from './reducers/breadcrumbsReducer';
 
 const store = configureStore({
   reducer: {
+    websiteLogo: () => './src/assets/logo_fond_blanc.png',
     breadcrumbs: breadcrumbsReducer,
     hikesList: hikesListReducer,
   },
