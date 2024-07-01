@@ -24,7 +24,7 @@ function Footer() {
           className="footer-nav-links"
           to="/politiques-de-confidentialite"
         >
-          Politique de confidentialite
+          Politique de confidentialité
         </NavLink>
       </section>
       <span className="footer-copyright">© 2024 o'rando </span>

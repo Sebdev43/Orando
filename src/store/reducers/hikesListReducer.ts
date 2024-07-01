@@ -5,7 +5,6 @@ export type HikesList = {
   list: Hike[];
 };
 
-// 3a - on définit l'initialState + typage
 const initialState: HikesList = {
   list: [
     {
@@ -55,12 +54,11 @@ const initialState: HikesList = {
   ],
 };
 
-// ordre pour ajouter un message à la liste
 export const displayHikes = createAction<string>('LIST/DISPLAY_HIKES');
 
-// 3b - on crée le reducer
+//TODO Il va falloir utiliser l'apiThunk pour charger la liste de randonnées dans le state
+
 export const hikesListReducer = createReducer(initialState, (builder) => {
-  // nouvel ordre
   builder.addCase(displayHikes, (state, action) => {
     console.log(state.list);
   });

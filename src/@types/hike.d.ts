@@ -1,3 +1,7 @@
+export type Location = {
+  pathname: string;
+};
+
 export interface Hike {
   id: number;
   title: string;
