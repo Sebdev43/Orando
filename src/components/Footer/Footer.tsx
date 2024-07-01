@@ -4,30 +4,30 @@ import './styles.scss';
 function Footer() {
   return (
     <div className="footer">
-      <section className="footer-nav">
-        <NavLink className="footer-nav-links" to="/">
+      <section className="footer__nav">
+        <NavLink className="footer__nav-links" to="/">
           Accueil
         </NavLink>
-        <NavLink className="footer-nav-links" to="/randonnees">
+        <NavLink className="footer__nav-links" to="/randonnees">
           Voir les Randos
         </NavLink>
-        <NavLink className="footer-nav-links" to="/favoris">
+        <NavLink className="footer__nav-links" to="/favoris">
           Favoris
         </NavLink>
-        <NavLink className="footer-nav-links" to="/mon-compte">
+        <NavLink className="footer__nav-links" to="/mon-compte">
           Mon compte
         </NavLink>
-        <NavLink className="footer-nav-links" to="/mentions-legales">
+        <NavLink className="footer__nav-links" to="/mentions-legales">
           Mentions légales
         </NavLink>
         <NavLink
-          className="footer-nav-links"
+          className="footer__nav-links"
           to="/politiques-de-confidentialite"
         >
-          Politique de confidentialité
+          Politiques de confidentialité
         </NavLink>
       </section>
-      <span className="footer-copyright">© 2024 o'rando </span>
+      <span className="footer__copyright">© 2024 o'rando </span>
     </div>
   );
 }
