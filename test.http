@@ -1,1 +1,14 @@
 # test
+
+//Ancienne version de routes pour récupérer toutes les randonnées
+http://localhost:4000/hikes
+
+//Nouvelle version de routes pour récupérer toutes les randonnées avec pagination, tri et ordre
+
+
+http://localhost:4000/hikes?page=1&order=asc&orderBy=difficulty
+
+
+
+http://localhost:4000/hikes/random
+
