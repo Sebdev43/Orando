@@ -4,6 +4,7 @@ export type Location = {
 
 export interface Hike {
   id: number;
+  slug: string;
   title: string;
   pictures: url;
   details: string;

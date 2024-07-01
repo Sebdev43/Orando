@@ -9,12 +9,13 @@ const initialState: HikesList = {
   list: [
     {
       id: 1,
-      title: 'un titre',
+      slug: 'la-randonnee-du-rhone',
+      title: 'La Randonnée du Rhône',
       pictures: 'www.photo.com',
-      details: 'une super randonnée qui est géniale',
+      details: 'Une agréable rando qui mérite le (dé)tour',
       distance: 5,
-      time: 90,
-      difficulty: 'easy',
+      time: 120,
+      difficulty: 'Facile',
       localisation: 'Bouches du Rhône',
       gps_coordinate: {
         type: 'LineString',
@@ -31,13 +32,15 @@ const initialState: HikesList = {
     },
     {
       id: 2,
-      title: 'un titre',
+      slug: 'encore-une-randonnee-en-montagne',
+      title: 'Encore une rondade en montagne',
       pictures: 'www.photo.com',
-      details: 'une super randonnée qui est géniale',
-      distance: 5,
-      time: 90,
-      difficulty: 'easy',
-      localisation: 'Bouches du Rhône',
+      details:
+        'Une super randonnée qui est géniale, avec des points de vue complètements dingos',
+      distance: 47,
+      time: 720,
+      difficulty: 'Difficile',
+      localisation: 'Auvergne',
       gps_coordinate: {
         type: 'LineString',
         coordinates: [

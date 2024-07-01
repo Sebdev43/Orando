@@ -1,10 +1,18 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Hike } from '../../@types/hike';
 
 import './Home.scss';
 import CardComponent from '../../components/CardComponent/CardComponent';
 
 function Home() {
+  const hikes = useSelector((state: any) => state.hikesList.list);
+
+  function renderHikes() {
+    return hikes.map((hike: Hike) => {
+      return <CardComponent key={hike.id} {...hike} />;
+    });
+  }
+
   return (
     <main className="home">
       <article>
@@ -28,12 +36,7 @@ function Home() {
         </p>
       </article>
       <h2 className="home__title-cards">Quelques randos ...</h2>
-      <article className="cards__content">
-        <CardComponent />
-        <CardComponent />
-        <CardComponent />
-        <CardComponent />
-      </article>
+      <article className="cards__content">{renderHikes()}</article>
     </main>
   );
 }
