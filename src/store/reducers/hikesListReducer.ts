@@ -54,12 +54,12 @@ const initialState: HikesList = {
   ],
 };
 
-export const displayHikes = createAction<string>('LIST/DISPLAY_HIKES');
+export const getAllHikes = createAction<string>('LIST/DISPLAY_HIKES');
 
 //TODO Il va falloir utiliser l'apiThunk pour charger la liste de randonnées dans le state
 
 export const hikesListReducer = createReducer(initialState, (builder) => {
-  builder.addCase(displayHikes, (state, action) => {
+  builder.addCase(getAllHikes, (state, action) => {
     console.log(state.list);
   });
 });

@@ -6,7 +6,14 @@ import IconBreadcrumbs from '../Breadcrumbs/Breadcrumbs';
 function Header() {
   return (
     <div className="header">
-      <NavLink className="header__top-button" to={'/connexion'}>
+      <NavLink
+        className={({ isActive }) =>
+          isActive
+            ? 'menu-link menu-link--active header__top-button'
+            : 'menu-link header__top-button'
+        }
+        to={'/connexion'}
+      >
         Se connecter
       </NavLink>
       <NavLink to={'/'}>

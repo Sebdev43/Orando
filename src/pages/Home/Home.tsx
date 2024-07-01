@@ -1,7 +1,8 @@
-import './Home.scss';
-
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+
+import './Home.scss';
+import CardComponent from '../../components/CardComponent/CardComponent';
 
 function Home() {
   return (
@@ -26,8 +27,12 @@ function Home() {
           mollit anim id est laborum.
         </p>
       </article>
+      <h2 className="home__title-cards">Quelques randos ...</h2>
       <article className="cards__content">
-        ICI SERONT PRESENTES LES CARDS
+        <CardComponent />
+        <CardComponent />
+        <CardComponent />
+        <CardComponent />
       </article>
     </main>
   );
