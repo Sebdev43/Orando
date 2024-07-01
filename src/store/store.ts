@@ -3,10 +3,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { hikesListReducer } from './reducers/hikesListReducer';
+import { breadcrumbsReducer } from './reducers/breadcrumbsReducer';
 
 // 2b - on déclare nos différents states avec leurs reducers
 const store = configureStore({
   reducer: {
+    breadcrumbs: breadcrumbsReducer,
     hikesList: hikesListReducer,
   },
 });

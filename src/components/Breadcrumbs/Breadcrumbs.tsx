@@ -1,30 +1,29 @@
 import './styles.scss';
+import { Location } from '../../@types/hike';
 
 import { NavLink, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useAppDispatch } from '../../hooks/redux';
+import { changeLocation } from '../../store/reducers/breadcrumbsReducer';
 
 // import react component from MUI
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import HomeIcon from '@mui/icons-material/Home';
-import WhatshotIcon from '@mui/icons-material/Whatshot';
 import FollowTheSignsSharpIcon from '@mui/icons-material/FollowTheSignsSharp';
-import GrainIcon from '@mui/icons-material/Grain';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 // Component name
 export default function IconBreadcrumbs() {
+  // Preparation to use the actions of the reducer
+  const dispatch = useAppDispatch();
   // Get the URL location with useLocation()
-  const location = useLocation();
-
-  // Set the state for the previous location which is gonna change
-  const [previousLocation, setPreviousLocation] = useState(location);
+  const location: Location = useLocation();
 
   // Set the state when the URL location changes
   useEffect(() => {
-    if (previousLocation.pathname !== location.pathname) {
-      setPreviousLocation(location);
-    }
-  }, [location, previousLocation]);
+    dispatch(changeLocation(location.pathname));
+  }, [location]);
 
   // Generate the final breadcrumbs
   const generateBreadcrumbs = () => {
@@ -41,12 +40,12 @@ export default function IconBreadcrumbs() {
             color: isActive ? 'grey' : 'inherit',
           })}
         >
-          <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+          <HomeIcon sx={{ mr: 0.5, mb: 0.5 }} fontSize="inherit" />
           Accueil
         </NavLink>
 
         {pathnames.map((value, index) => {
-          const to = `/${pathnames.slice(0, index + 1).join('/')}`;
+          const to = ``;
           const isLast = index === pathnames.length - 1;
 
           return isLast ? (
@@ -55,11 +54,10 @@ export default function IconBreadcrumbs() {
               sx={{ display: 'flex', alignItems: 'center' }}
               color="text.primary"
             >
-              {index === 1 ? (
-                <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-              ) : (
-                <FollowTheSignsSharpIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-              )}
+              <FollowTheSignsSharpIcon
+                sx={{ mr: 0.5, mb: 0.5 }}
+                fontSize="inherit"
+              />
               {value.charAt(0).toUpperCase() + value.slice(1)}
             </Typography>
           ) : (
@@ -70,14 +68,15 @@ export default function IconBreadcrumbs() {
                 display: 'flex',
                 alignItems: 'center',
                 textDecoration: isActive ? 'underline' : 'none',
-                color: isActive ? 'blue' : 'inherit',
+                color: isActive ? 'grey' : 'inherit',
               })}
             >
-              {index === 1 ? (
-                <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-              ) : (
-                <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-              )}
+              {/* Just an exemple to manage the icons about the positions on the index */}
+              {/* {index === 1 ? (
+                <ArrowRightIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+              ) : ( */}
+              <ArrowRightIcon sx={{ mr: 0.5, mb: 0.5 }} fontSize="inherit" />
+              {/* )} */}
               {value.charAt(0).toUpperCase() + value.slice(1)}
             </NavLink>
           );
