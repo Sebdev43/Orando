@@ -19,6 +19,7 @@ CREATE TABLE "users" (
 
 CREATE TABLE "hikes" (
     "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "slug" TEXT NOT NULL,
 	"title" TEXT NOT NULL,
 	"description" TEXT NOT NULL,
 	"picture" TEXT[] NOT NULL,
