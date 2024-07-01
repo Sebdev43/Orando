@@ -1,19 +1,14 @@
 .header {
   align-items: center;
 
-  &-top {
-    margin: 1rem auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+  &__top {
     &-button {
-      position: fixed;
-      left: 62%;
+      position: relative;
+      left: 90%;
       top: 2rem;
       padding: 0.5rem 1rem;
-      background-color: rgba(0, 0, 0, 0.497);
-      color: white;
+      background-color: rgba(47, 47, 47, 0.151);
+      color: #d87f18;
       text-decoration: none;
       border: none;
       border-radius: 7px;
@@ -31,7 +26,7 @@
     }
 
     &-logo {
-      width: 150px;
+      width: 200px;
       margin: auto;
     }
   }

@@ -6,14 +6,14 @@ import IconBreadcrumbs from '../Breadcrumbs/Breadcrumbs';
 function Header() {
   return (
     <div className="header">
-      <NavLink className="header-top-button" to={'/connexion'}>
+      <NavLink className="header__top-button" to={'/connexion'}>
         Se connecter
       </NavLink>
       <NavLink to={'/'}>
         <img
           src="./src/assets/logo_fond_blanc.png"
           alt="logo du site o'rando"
-          className="header-top-logo"
+          className="header__top-logo"
         />
       </NavLink>
 

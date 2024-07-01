@@ -10,11 +10,13 @@ function Root() {
   // la barre d'adresse, le logo ne s'affiche pas
 
   return (
-    <div className="app">
+    <>
       <Header />
-      <Outlet />
+      <div className="content">
+        <Outlet />
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }
 

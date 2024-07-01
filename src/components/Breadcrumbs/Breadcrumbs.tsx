@@ -1,4 +1,3 @@
-import './styles.scss';
 import { Location } from '../../@types/hike';
 
 import { NavLink, useLocation } from 'react-router-dom';
@@ -88,7 +87,9 @@ export default function IconBreadcrumbs() {
   // Return the breadcrumbs component
   return (
     <div role="presentation">
-      <Breadcrumbs aria-label="breadcrumb">{generateBreadcrumbs()}</Breadcrumbs>
+      <Breadcrumbs className="breadcrumbs" aria-label="breadcrumb">
+        {generateBreadcrumbs()}
+      </Breadcrumbs>
     </div>
   );
 }
