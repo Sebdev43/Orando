@@ -7,8 +7,8 @@ import { gpsCoordinate } from "../middlewares/wkxMiddleware.js";
 /**
  * @swagger
  * tags:
- * name: Hikes
- * description: Gestion des randonnées
+ *   - name: Hikes
+ *     description: Gestion des randonnées
  */
 /**
  * Route pour récupérer 3 randonnées de manière aléatoire
