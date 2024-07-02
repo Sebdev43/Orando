@@ -1,14 +1,15 @@
 import { createReducer, createAction } from '@reduxjs/toolkit';
 import { Hike } from '../../@types/hike';
 
-import datas from '../../data/hikes.json';
+import hikesByTen from '../../data/hikesByTen.json';
+import hikesTenToTwenty from '../../data/hikesTenToTwenty.json';
 
 export type HikesList = {
   list: Hike[];
 };
 
 const initialState: HikesList = {
-  list: datas,
+  list: hikesByTen,
 };
 
 export const getAllHikes = createAction<string>('LIST/DISPLAY_HIKES');

@@ -67,8 +67,8 @@ function CardComponent(hike: Hike) {
             zIndex: 2,
             borderRadius: '50%',
             right: '0.5rem',
-            bottom: 330,
-            transform: 'translateY(50%)',
+            bottom: '-3rem',
+            transform: 'translateY(120%)',
             color: 'red',
             '&:hover': { color: '#da7b29' },
           }}
