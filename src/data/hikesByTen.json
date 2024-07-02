@@ -5,9 +5,9 @@
     "title": "Abbatiale de Guîtres, promenade en Pays Gabay",
     "description": "Point de départ du parcours, l'Abbatiale de Guîtres (XIe et XVe siècles) est un monument imposant situé sur les chemins de Saint Jacques de Compostelle. Nous poursuivrons notre promenade à travers la douceur du Pays Gabay (prononcer gabaye) à la rencontre de trois rivières, l'Isle, la Dronne et le Lary.",
     "pictures": [
-      "src/assets/img/Abbatiale1.jpg",
-      "src/assets/img/Abbatiale2.jpg",
-      "src/assets/img/Abbatiale3.jpg"
+      "/img/Abbatiale1.jpg",
+      "/img/Abbatiale2.jpg",
+      "/img/Abbatiale3.jpg"
     ],
     "difficulty": "Facile",
     "time": 235,
@@ -23,11 +23,7 @@
     "slug": "autour_de_la_cite_de_sainte-suzanne",
     "title": "Autour de la Cité de Sainte-Suzanne",
     "description": "Venez découvrir les charmants petits sentiers situés au nord de Sainte-Suzanne. Le long de votre balade, vous pourrez visiter le camp des anglais (ou camp de Beugy), et aurez un beau point de vue sur le bocage Mayennais.",
-    "pictures": [
-      "src/assets/img/Lacite1.jpg",
-      "src/assets/img/Lacite2.jpg",
-      "src/assets/img/Lacite3.jpg"
-    ],
+    "pictures": ["/img/Lacite1.jpg", "/img/Lacite2.jpg", "/img/Lacite3.jpg"],
     "difficulty": "Facile",
     "time": 130,
     "distance": 7,
@@ -42,11 +38,7 @@
     "slug": "boucle_antique_de_paussac_saint-juste",
     "title": "Boucle antique de Paussac Saint-Juste",
     "description": "Quelques points intéressants dans le village : vous passerez devant la Tour Pigeonnier, la Pierre à Sacrifice ou Peyre d’Ermale ou Dermale. Plus loin, site d’escalade et village troglodytique des XIIe-XIIIe siècles. Ne pas rater le dolmen de Peyrelevade, époque néolithique, inscrit au titre des Monuments Historiques depuis 1960, et les sculptures visibles du portail d'une carrière.",
-    "pictures": [
-      "src/assets/img/Paussac1.jpg",
-      "src/assets/img/Paussac2.jpg",
-      "src/assets/img/Paussac3.jpg"
-    ],
+    "pictures": ["/img/Paussac1.jpg", "/img/Paussac2.jpg", "/img/Paussac3.jpg"],
     "difficulty": "Facile",
     "time": 195,
     "distance": 10,
@@ -62,9 +54,9 @@
     "title": "Boucle des Sept Fontaines à Montmin",
     "description": "Cette boucle parcourt le vallon suspendu de Montmin et vous fera découvrir le monument des Sept Fontaines (1642) un édifice chrétien bien particulier par sa conception.",
     "pictures": [
-      "src/assets/img/Fontaines1.jpg",
-      "src/assets/img/Fontaines2.jpg",
-      "src/assets/img/Fontaines3.jpg"
+      "/img/Fontaines1.jpg",
+      "/img/Fontaines2.jpg",
+      "/img/Fontaines3.jpg"
     ],
     "difficulty": "Facile",
     "time": 165,
@@ -81,9 +73,9 @@
     "title": "Circuit autour de l'Étang de Bellebouche",
     "description": "L'Étang de Bellebouche est l'un des plus anciens, l'un des plus grands et l'un des plus beaux plans d'eaux du Parc Naturel Régional de La Brenne. Une petite partie est réservée à des loisirs nautiques mais laisse une grande place à un site naturel que vous pourrez admirer tranquillement à l'aide de jumelles dans trois observatoires aux abords de l'étang.",
     "pictures": [
-      "src/assets/img/Bellebouche1.jpg",
-      "src/assets/img/Bellebouche2.jpg",
-      "src/assets/img/Bellebouche3.jpg"
+      "/img/Bellebouche1.jpg",
+      "/img/Bellebouche2.jpg",
+      "/img/Bellebouche3.jpg"
     ],
     "difficulty": "Facile",
     "time": 165,
@@ -99,11 +91,7 @@
     "slug": "ville-au-val_landemont_depuis_autreville-sur-moselle",
     "title": "Ville-au-Val, Landemont depuis Autreville-sur-Moselle",
     "description": "Randonnée au départ d'Autreville-sur-Moselle offrant de beaux points de vue sur la vallée de la Moselle, la vallée de la Natagne et la campagne environnante.",
-    "pictures": [
-      "src/assets/img/ville1.jpg",
-      "src/assets/img/ville2.jpg",
-      "src/assets/img/ville3.jpg"
-    ],
+    "pictures": ["/img/ville1.jpg", "/img/ville2.jpg", "/img/ville3.jpg"],
     "difficulty": "Moyenne",
     "time": 280,
     "distance": 12,
@@ -118,11 +106,7 @@
     "slug": "de_besse-et-saint-anastaise_au_lac_pavin",
     "title": "De Besse-et-Saint-Anastaise au Lac Pavin",
     "description": "Au départ de l’hôtel Le Clos à Besse-et-Saint-Anastaise, cette boucle permet de faire le tour du Lac Pavin en utilisant le sentier de découverte et le GR®30.",
-    "pictures": [
-      "src/assets/img/Besse1.jpg",
-      "src/assets/img/Besse2.jpg",
-      "src/assets/img/Besse3.jpg"
-    ],
+    "pictures": ["/img/Besse1.jpg", "/img/Besse2.jpg", "/img/Besse3.jpg"],
     "difficulty": "Moyenne",
     "time": 250,
     "distance": 12,
@@ -137,11 +121,7 @@
     "slug": "de_la_baie_d_yves_au_fort_de_fouras_par_le_sentier_cotier",
     "title": "De la Baie d'Yves au Fort de Fouras par le sentier côtier",
     "description": "L'essentiel du parcours s’effectue le long du sentier côtier entre la réserve naturelle de la Baie d'Yves et la commune de Fouras. Vous croiserez de nombreux pontons de pêche au carrelet sur votre route et pourrez visiter le Fort Vauban à l'estuaire de la Charente. Vous aurez sous les yeux un paysage totalement différent selon la marée.",
-    "pictures": [
-      "src/assets/img/Baie1.jpg",
-      "src/assets/img/Baie2.jpg",
-      "src/assets/img/Baie3.jpg"
-    ],
+    "pictures": ["/img/Baie1.jpg", "/img/Baie2.jpg", "/img/Baie3.jpg"],
     "difficulty": "Difficile",
     "time": 335,
     "distance": 19,
@@ -156,11 +136,7 @@
     "slug": "ferme-de-blin-vallee-de-la-druyes",
     "title": "Ferme de Blin - Vallée de la Druyes",
     "description": "Depuis l'ancien château médiéval, partir à la découverte d'un village construit en partie entre un ancien marais en partie asséché et la falaise. La vallée de la Druyes vous accueille dans un écrin de verdure qui tranche avec les pierres calcaires qui soutiennent l'édifice en ruine.\nDruyes-les-Belles-Fontaines est classé dans les villages \"Cités de caractères de Bourgogne - Franche-Comté\".",
-    "pictures": [
-      "src/assets/img/Blin1.jpg",
-      "src/assets/img/Blin2.jpg",
-      "src/assets/img/Blin3.jpg"
-    ],
+    "pictures": ["/img/Blin1.jpg", "/img/Blin2.jpg", "/img/Blin3.jpg"],
     "difficulty": "Moyenne",
     "time": 200,
     "distance": 10,
@@ -175,11 +151,7 @@
     "slug": "l_askar_puis_l_argandoita_en_passant_par_le_chene_millenaire",
     "title": "L'Askar puis l'Argandoita en passant par le chêne millénaire",
     "description": "Une belle randonnée qui nous permet de découvrir le magnifique village d'Urdax puis de nous élever à deux reprises pour admirer les sommets alentours d'où on aperçoit même l'océan.\nEnfin la rencontre du chêne millénaire ne peut pas laisser insensible.",
-    "pictures": [
-      "src/assets/img/laskar1.jpg",
-      "src/assets/img/laskar2.jpg",
-      "src/assets/img/laskar3.jpg"
-    ],
+    "pictures": ["/img/laskar1.jpg", "/img/laskar2.jpg", "/img/laskar3.jpg"],
     "difficulty": "Moyenne",
     "time": 210,
     "distance": 9,

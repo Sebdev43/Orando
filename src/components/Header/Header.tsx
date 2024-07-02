@@ -18,7 +18,7 @@ function Header() {
       </NavLink>
       <NavLink to={'/'}>
         <img
-          src="./src/assets/logo_fond_blanc.png"
+          src="/logo_fond_blanc.png"
           alt="logo du site o'rando"
           className="header__top-logo"
         />

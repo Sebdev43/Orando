@@ -4,11 +4,7 @@
     "slug": "la_crete_des_alpilles",
     "title": "La crête des Alpilles",
     "description": "Belle balade entre la crête sauvage et escarpée des Alpilles et la plaine de Romanin.",
-    "pictures": [
-      "src/assets/img/laCrete1.jpg",
-      "src/assets/img/laCrete2.jpg",
-      "src/assets/img/laCrete3.jpg"
-    ],
+    "pictures": ["/img/laCrete1.jpg", "/img/laCrete2.jpg", "/img/laCrete3.jpg"],
     "difficulty": "Moyenne",
     "time": 355,
     "distance": 15,
@@ -23,11 +19,7 @@
     "slug": "la_dent_du_chat_et_le_molard_noir",
     "title": "La Dent du Chat et le Molard Noir",
     "description": "Variante de la \"Dent du Chat\" avec un circuit qui passe par le Molard Noir et un départ au dessus de Caton, au lieu du traditionnel \"Col du Chat\".",
-    "pictures": [
-      "src/assets/img/laDent1jpg",
-      "src/assets/img/laDent2.jpg",
-      "src/assets/img/laDent3.jpg"
-    ],
+    "pictures": ["/img/laDent1jpg", "/img/laDent2.jpg", "/img/laDent3.jpg"],
     "difficulty": "Difficile",
     "time": 390,
     "distance": 45,
@@ -43,9 +35,9 @@
     "title": "Le hameau des Monts et les Gorges du Gorgonnet",
     "description": "Vous commencez par longer l'Isère au milieu des noyers. Puis vous vous élevez sur les contreforts du Vercors, pour, ensuite, revenir par la passerelle de la Gaffe et les gorges sauvages très encaissées du Gorgonnet.",
     "pictures": [
-      "src/assets/img/leHameau1.jpg",
-      "src/assets/img/leHameau2.jpg",
-      "src/assets/img/leHameau3.jpg"
+      "/img/leHameau1.jpg",
+      "/img/leHameau2.jpg",
+      "/img/leHameau3.jpg"
     ],
     "difficulty": "Moyenne",
     "time": 315,
@@ -62,9 +54,9 @@
     "title": "Le sentier du granite à la Roche d'Oëtre",
     "description": "S'il y avait un paradis de la randonnée, l'Espace Naturel Sensible de la Roche d'Oëtre et les gorges de la Rouvre seraient certainement bien positionnés ! Site classé et Espace Naturel Sensible du département de l'Orne, la Roche d'Oëtre, située au cœur des Montagnes de Normandie, est un site incontournable et un lieu de rendez-vous pour les amoureux et amateurs de nature sauvage et de randonnée.",
     "pictures": [
-      "src/assets/img/leSentier1.jpg",
-      "src/assets/img/leSentier2.jpg",
-      "src/assets/img/leSentier3.jpg"
+      "/img/leSentier1.jpg",
+      "/img/leSentier2.jpg",
+      "/img/leSentier3.jpg"
     ],
     "difficulty": "Moyenne",
     "time": 185,
@@ -80,11 +72,7 @@
     "slug": "le_val_de_loire_et_les_trois_viaducs",
     "title": "Le Val de Loire et les trois viaducs",
     "description": "Petite randonnée le long de la Loire et dans le val puis à flanc de colline, dans les vignes du Sancerrois sur la trace de l'ancienne voie ferrée reliant Cosne-sur-Loire à Bourges.\nBeaux points de vue sur le fleuve, les communes de Saint-Satur et Ménétréol, la ville de Sancerre, les vignes et le canal latéral.\nÀ faire plutôt au printemps ou à l'automne.",
-    "pictures": [
-      "src/assets/img/leVal1.jpg",
-      "src/assets/img/leVal2.jpg",
-      "src/assets/img/leVal3.jpg"
-    ],
+    "pictures": ["/img/leVal1.jpg", "/img/leVal2.jpg", "/img/leVal3.jpg"],
     "difficulty": "Moyenne",
     "time": 235,
     "distance": 13,
@@ -100,9 +88,9 @@
     "title": "Les Caisses et les crêtes au-dessus de Mouriès",
     "description": "Jolie randonnée dans cette partie des Alpilles qui permet de découvrir les falaises blanches des \"Caisses de Jean Jean\", les \"Caisses de Servanne\", les crêtes du Castellas et ses points de vue, et aussi de longer le Golf de Servanne à Mouriès. Randonnée sans difficulté mais quelques passages sur petites routes goudronnées.",
     "pictures": [
-      "src/assets/img/lesCaisses1.jpg",
-      "src/assets/img/lesCaisses2.jpg",
-      "src/assets/img/lesCaisses3.jpg"
+      "/img/lesCaisses1.jpg",
+      "/img/lesCaisses2.jpg",
+      "/img/lesCaisses3.jpg"
     ],
     "difficulty": "Moyenne",
     "time": 230,
@@ -119,9 +107,9 @@
     "title": "Les Suquets de Penne",
     "description": "Du village-rocher de Penne, le circuit promènera le randonneur jusqu'au belvédère des Suquets.\nPaysages de campagne et forêts se partagent dans les multiples facettes du décor de falaises calcaires.\nDe fortes montées et descentes feront la joie des sportifs.\nLa fin du parcours se déroulera, tranquillement, le long de l'Aveyron avant un dernier, court, rampaillou au pied du village.",
     "pictures": [
-      "src/assets/img/lesSuquets1.jpg",
-      "src/assets/img/lesSuquets2.jpg",
-      "src/assets/img/lesSuquets3.jpg"
+      "/img/lesSuquets1.jpg",
+      "/img/lesSuquets2.jpg",
+      "/img/lesSuquets3.jpg"
     ],
     "difficulty": "Moyenne",
     "time": 205,
@@ -137,11 +125,7 @@
     "slug": "saute-ruisseaux_pres_de_loire-sur-rhone",
     "title": "Saute-ruisseaux près de Loire-sur-Rhône",
     "description": "Marche ombragée en bordures de ruisseaux dans un ravin rhodanien. Un espace de nature d'un calme surprenant vu sa proximité des centres urbains.",
-    "pictures": [
-      "src/assets/img/saute1.jpg",
-      "src/assets/img/saute2.jpg",
-      "src/assets/img/saute3.jpg"
-    ],
+    "pictures": ["/img/saute1.jpg", "/img/saute2.jpg", "/img/saute3.jpg"],
     "difficulty": "Moyenne",
     "time": 245,
     "distance": 11,
@@ -156,11 +140,7 @@
     "slug": "tour_de_l_aiguille",
     "title": "Tour de l'Aiguille",
     "description": "Cette randonnée aux portes de l'Estérel vers les Pointes de l'Esquillon et de l'Aiguille propose un programme varié : début dans les mimosas, passage par le mémorial Notre-Dame-d'Afrique puis à proximité du Palais Bulles (de Pierre Cardin). Point de vue sur le littoral au-dessus de la Pointe de l'Esquillon, remontée au milieu des eucalyptus avant de redescendre face au Golfe de la Napoule à la Pointe de l'Aiguille et de revenir à Théoule par la plage du même nom.",
-    "pictures": [
-      "src/assets/img/tour1.jpg",
-      "src/assets/img/tour2.jpg",
-      "src/assets/img/tour3.jpg"
-    ],
+    "pictures": ["/img/tour1.jpg", "/img/tour2.jpg", "/img/tour3.jpg"],
     "difficulty": "Moyenne",
     "time": 205,
     "distance": 9,
