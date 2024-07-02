@@ -1,4 +1,5 @@
 import { Location } from '../../@types/hike';
+import './Breadcrumbs.scss';
 
 import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
