@@ -1,5 +1,6 @@
 //import bcrypt from 'bcrypt';
 
+
 import * as userDataMappers from '../dataMappers/userDataMappers.js';
 
 export const createUser = async (req, res) => {
@@ -24,6 +25,7 @@ export const updateUser = async (req, res) => {
     const { nickname, localisation, email, password } = req.body;
 
     try {
+
         const user = await userDataMappers.updateUser(id, nickname, localisation, email, password);
         res.status(200).json(user);
     } catch (error) {

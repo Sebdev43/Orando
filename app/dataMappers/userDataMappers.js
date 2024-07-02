@@ -1,3 +1,4 @@
+
 import pool from "../config/clientPg.js";
 
 export const createUser = async (nickname, localisation, email, password) => {

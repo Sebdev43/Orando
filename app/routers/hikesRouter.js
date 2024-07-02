@@ -1,8 +1,6 @@
 import express from "express";
 const router = express.Router();
-
 import { getAllHikes, getHikeById, getRandomHikes } from "../controllers/hikesController.js";
-import { gpsCoordinate } from "../middlewares/wkxMiddleware.js";
 
 /**
  * @swagger
@@ -10,16 +8,17 @@ import { gpsCoordinate } from "../middlewares/wkxMiddleware.js";
  *   - name: Hikes
  *     description: Gestion des randonnées
  */
+
 /**
- * Route pour récupérer 3 randonnées de manière aléatoire
+ * Route pour récupérer 4 randonnées de manière aléatoire
  * @swagger
  * /hikes/random:
  *   get:
- *     summary: Récupérer 3 randonnées de manière aléatoire
+ *     summary: Récupérer 4 randonnées de manière aléatoire
  *     tags: [Hikes]
  *     responses:
  *       200:
- *         description: 3 randonnées aléatoires
+ *         description: 4 randonnées aléatoires
  *         content:
  *           application/json:
  *             schema:
@@ -56,13 +55,10 @@ import { gpsCoordinate } from "../middlewares/wkxMiddleware.js";
  *                     type: string
  *                     format: date-time
  */
-router.get('/random', getRandomHikes, (req, res) => {
-    // Envoyer la réponse avec les randonnées transformées
-    res.status(200).json(res.locals.hikes);
-});
+router.get('/random', getRandomHikes);
 
 /**
- * Route pour récupérer la liste des randonnées avec pagination, tri et ordre
+ * Route pour récupérer la liste des randonnées avec pagination et tri par date de création
  * @swagger
  * /hikes:
  *   get:
@@ -75,20 +71,6 @@ router.get('/random', getRandomHikes, (req, res) => {
  *           type: integer
  *           default: 1
  *         description: Le numéro de la page
- *       - in: query
- *         name: order
- *         schema:
- *           type: string
- *           enum: [asc, desc]
- *           default: asc
- *         description: L'ordre de tri (ascendant ou descendant)
- *       - in: query
- *         name: orderBy
- *         schema:
- *           type: string
- *           enum: [id, title, distance, difficulty, time, localisation, created_at]
- *           default: id
- *         description: Le champ par lequel trier les résultats
  *     responses:
  *       200:
  *         description: La liste des randonnées
@@ -128,13 +110,10 @@ router.get('/random', getRandomHikes, (req, res) => {
  *                     type: string
  *                     format: date-time
  */
-
-//Ici on peut ajouter le middelware gpsCoordinate si on veut tranfomer le geojson en json mais il vaut mieux ne pas s'en servir car le temp de réponse est fortement allongé.
-router.get("/", getAllHikes, (req, res) => {
-    res.status(200).json(res.locals.hikes);
-});
+router.get("/", getAllHikes);
 
 /**
+ * Route pour récupérer une randonnée par son ID
  * @swagger
  * /hikes/{id}:
  *   get:
@@ -186,10 +165,6 @@ router.get("/", getAllHikes, (req, res) => {
  *       404:
  *         description: Randonnée non trouvée
  */
-
-router.get("/:id", getHikeById, (req, res) => {
-    res.status(200).json(res.locals.hike);
-});
-
+router.get("/:id", getHikeById);
 
 export default router;
