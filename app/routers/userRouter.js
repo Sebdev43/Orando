@@ -75,16 +75,23 @@ router.post("/", createUser);
 
 /**
  * @swagger
- * /users:
+ * /users/{id}:
  *   patch:
- *     summary: Modifier un nouvel utilisateur
+ *     summary: Modifier un utilisateur
  *     description: Cette endpoint permet de modifier un utilisateur.
  *     tags: [Users]
+ *     parameters:
+ *         -in: path
+ *         name: id
+ *         schema:
+ *          type: integer
+ *         required: true
+ *         description: Id de l'utilisateur
  *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
+ *         required: true
+ *         content:
+ *           application/json:
+ *            schema:
  *             type: object
  *             properties:
  *              nickname:

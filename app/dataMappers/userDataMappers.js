@@ -28,9 +28,10 @@ export const createUser = async (nickname, localisation, email, password) => {
 
 export const updateUser = async (id, nickname, localisation, email, password) => {
     const query =
-      `UPDATE users SET nickname = $1, localisation = $2, email = $3, password = $4, updated_at = NOW() WHERE id = $5 RETURNING id, nockname, localisation, email,
-      password, created_at, updated_at`;
-    const values = [nickname, localisation, email, password, id];
+      `UPDATE users SET nickname = $2, localisation = $3, email = $4, password = $5, updated_at = NOW() 
+      WHERE id = $1
+      RETURNING id, nickname, localisation, email, password, created_at, updated_at`;
+    const values = [id, nickname, localisation, email, password];
     const result = await pool.query(query, values);
     return result.rows[0];
 };

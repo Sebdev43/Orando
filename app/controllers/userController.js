@@ -21,11 +21,14 @@ export const updateUser = async (req, res) => {
     try {
         const { id } = req.params;
         const { nickname, localisation, email, password } = req.body;
+
         if (!nickname || !localisation || !email || !password) {
             return res.status(400).json({ error : "Il manque des informations pour modifier l'utilisateur !"});
         }
+
         const user = await userDataMappers.updateUser(id, nickname, localisation, email, password);
-        res.status(200).json(user);
+        
+        return res.status(200).json(user);
     } catch (error) {
         console.error("Erreur lors de la modification de l'utilisateur :", error.stack);
         res.status(500).json({ error : "Problème dans la modification des information "});
