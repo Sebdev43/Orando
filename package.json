@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Api rest qui permet de gérer des utlisateur et des parcours de randonnée",
     "type": "module",
-    "main": "sever.js",
+    "main": "server.js",
     "directories": {
         "doc": "doc"
     },
