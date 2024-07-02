@@ -6,6 +6,8 @@ import {
   getBookmark
 } from "../controllers/bookmarksController.js";
 
+import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
+
 /**
  * @swagger
  * tags:
@@ -20,6 +22,8 @@ import {
  *   post:
  *     summary: Ajouter une randonnée dans les favoris d'un utilisateur
  *     tags: [Bookmarks]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -56,7 +60,7 @@ import {
  *       500:
  *         description: Erreur lors de l'ajout de la randonnée dans les favoris
  */
-router.post("/", addBookmark);
+router.post("/", authenticateJWT, addBookmark);
 
 /**
  * Route pour supprimer une randonnée des favoris d'un utilisateur
@@ -65,6 +69,8 @@ router.post("/", addBookmark);
  *    delete:
  *     summary: Supprimer une randonnée des favoris d'un utilisateur
  *     tags: [Bookmarks]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -91,7 +97,7 @@ router.post("/", addBookmark);
  *      500:
  *        description: Erreur lors de la suppression de la randonnée des favoris
  */
-router.delete("/", removeBookmark);
+router.delete("/", authenticateJWT, removeBookmark);
 
 /**
  * Route pour récupérer la liste des randonnées favorites d'un utilisateur
@@ -100,6 +106,8 @@ router.delete("/", removeBookmark);
  *   get:
  *     summary: Récupérer la liste des randonnées favorites
  *     tags: [Bookmarks]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: userId
@@ -150,6 +158,6 @@ router.delete("/", removeBookmark);
  *       500:
  *         description: Erreur lors de la récupération des randonnées favorites
  */
-router.get("/:userId", getBookmark);
+router.get("/:userId", authenticateJWT, getBookmark);
 
 export default router;
