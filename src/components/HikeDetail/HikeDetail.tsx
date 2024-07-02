@@ -1,10 +1,13 @@
 import { Hike } from '../../@types/hike';
-
 import './HikeDetail.scss';
+
+// Components
+import Map from '../Map/Map';
+
+// libs
 import { Button } from '@mui/material';
 
 function HikeDetail(hike: Hike) {
-  // A transférer dans un composant
   function renderPictures() {
     let index = 0;
     return hike.pictures.map((picture: string) => {
@@ -38,7 +41,7 @@ function HikeDetail(hike: Hike) {
         <span className="hike__description">{hike.description}</span>
       </header>
       <main>
-        <section aria-label="Photos de la randonnée">
+        <section aria-label="Photos qui présentent divers points de vue de la randonnée">
           {renderPictures()}
         </section>
         <section className="hike__tags">
@@ -52,10 +55,14 @@ function HikeDetail(hike: Hike) {
         <p>{hike.details}</p>
       </section>
 
-      <section className="hike__map">{/* plugin LeafLet ici */}</section>
+      <section className="hike__map">
+        <Map />
+      </section>
 
       <footer className="hike__footer">
         {/* Prévoir un logo pour représenter les favoris et le positionner */}
+        {/* prévoir de sortir cette logique dans un composant "mettre en favoris" */}
+        {/* pour pouvoir coller le composant sur OneHike sous le composant HikeDetail */}
         <Button
           aria-label="Ajouter aux favoris"
           size="small"

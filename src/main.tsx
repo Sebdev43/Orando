@@ -18,7 +18,7 @@ import Root from './pages/Root';
 import NotFound from './pages/NotFound/NotFound';
 import Home from './pages/Home/Home';
 import Hikes from './pages/Hikes/Hikes';
-import HikePage from './pages/HikePage/HikePage';
+import OneHike from './pages/OneHike/OneHike';
 import Bookmarks from './pages/Bookmarks/Bookmarks';
 import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
@@ -36,7 +36,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<Root />} errorElement={<NotFound />}>
       <Route index element={<Home />} />
       <Route path="/randonnees" element={<Hikes />} />
-      <Route path="/randonnees/:slug" element={<HikePage />} />
+      <Route path="/randonnees/:slug" element={<OneHike />} />
       <Route path="/favoris" element={<Bookmarks />} />
       <Route path="/inscription" element={<SignUp />} />
       <Route path="/connexion" element={<Login />} />

@@ -4,13 +4,26 @@ import { Hike } from '../../@types/hike';
 
 import './Home.scss';
 import CardComponent from '../../components/CardComponent/CardComponent';
+import Skeleton from '@mui/joy/Skeleton/Skeleton';
+import Box from '@mui/joy/Box/Box';
 
 function Home() {
   const hikes = useSelector((state: any) => state.hikesList.list);
 
+  // TODO : faire le chargement dans le store
+  const loading = true;
+
   function renderHikes() {
     return hikes.map((hike: Hike) => {
-      return <CardComponent key={hike.id} {...hike} />;
+      return loading ? (
+        <CardComponent key={hike.id} {...hike} />
+      ) : (
+        <Box>
+          <Skeleton variant="rectangular" width={360} height={360} />
+          <Skeleton variant="text" sx={{ fontSize: '2rem', width: '360' }} />
+          <Skeleton variant="rectangular" width={360} height={80} />
+        </Box>
+      );
     });
   }
 

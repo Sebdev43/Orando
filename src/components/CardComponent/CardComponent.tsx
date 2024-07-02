@@ -1,6 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import { Hike } from '../../@types/hike';
 
+// utils
+import { RenderDifficulty } from '../../utils/renderTagDifficultyStyle';
+
 // Import des dépendances MUI en lien avec les composants appelés
 import AspectRatio from '@mui/joy/AspectRatio';
 import Card from '@mui/joy/Card';
@@ -15,33 +18,6 @@ import Favorite from '@mui/icons-material/Favorite';
 import './CardComponent.scss';
 
 function CardComponent(hike: Hike) {
-  // Put some color depends of the difficulty
-  // Attraper les couleurs qui coincident avec la difficulté
-  function renderDificulty() {
-    switch (hike.difficulty) {
-      case 'Facile':
-        return (
-          <Typography color="success" level="body-sm">
-            {hike.difficulty}
-          </Typography>
-        );
-      case 'Moyenne':
-        return (
-          <Typography color="warning" level="body-sm">
-            {hike.difficulty}
-          </Typography>
-        );
-      case 'Difficile':
-        return (
-          <Typography color="danger" level="body-sm">
-            {hike.difficulty}
-          </Typography>
-        );
-      default:
-        return <Typography level="body-sm">{hike.difficulty}</Typography>;
-    }
-  }
-
   function actionToBookmarks(id: number) {
     console.log(id);
   }
@@ -54,7 +30,7 @@ function CardComponent(hike: Hike) {
           <img src={hike.pictures[1]} loading="lazy" alt="" />
         </AspectRatio>
         {/* Booksmarks button */}
-        {/* ligne 64 : la fonction qui va déclencher la logique liée à l'add/del d'un favoris  */}
+        {/* ligne 64 : la fonction qui va déclencher la logique liée à l'add/del d'un favori  */}
         <IconButton
           onClick={() => actionToBookmarks(hike.id)}
           aria-label="Like minimal photography"
@@ -92,7 +68,7 @@ function CardComponent(hike: Hike) {
 
           {/* ligne 98 à 99 : j'appelle la fonction que j'ai déclaré précedemment pour gérer l'afficahge des couleurs fonction de la difficulté  */}
           <Divider orientation="vertical" />
-          {renderDificulty()}
+          {RenderDifficulty(hike)}
         </CardContent>
       </CardOverflow>
     </Card>

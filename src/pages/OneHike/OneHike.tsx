@@ -1,9 +1,13 @@
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Hike } from '../../@types/hike';
 import { useAppSelector } from '../../hooks/redux';
+
+import './OneHike.scss';
+
+// Components
 import HikeDetail from '../../components/HikeDetail/HikeDetail';
 
-function HikePage() {
+function OneHike() {
   const { slug } = useParams();
 
   const hikes = useAppSelector((state: any) => state.hikesList.list);
@@ -16,4 +20,4 @@ function HikePage() {
   );
 }
 
-export default HikePage;
+export default OneHike;
