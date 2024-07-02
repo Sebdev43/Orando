@@ -2,6 +2,7 @@
 
 import usersRouter from './routers/userRouter.js';
 import hikesRouter from './routers/hikesRouter.js';
+import bookmarksRouter from './routers/bookmarksRouter.js';
 
 import { swaggerMiddleware } from './middlewares/swaggerMiddleware.js';
 
@@ -14,6 +15,7 @@ export function initializeSwagger(app){
 export function initializeRoutes(app){
     app.use('/users', usersRouter);
     app.use('/hikes', hikesRouter);
+    app.use('/bookmarks', bookmarksRouter);
 }
 
 
