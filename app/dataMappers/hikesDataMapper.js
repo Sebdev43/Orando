@@ -13,7 +13,7 @@ export const getAllHikes = async (page) => {
   // Construition de la requête SQL avec les paramètres de pagination et trié par date de sortie
   const query = `
         SELECT 
-            id, slug, title, description, picture, difficulty, time, distance, localisation, details, 
+            id, slug, title, description, pictures, difficulty, time, distance, localisation, details, 
             ST_AsGeoJSON(gps_coordinate) as gps_coordinate, created_at, updated_at 
         FROM hikes
         ORDER BY created_at DESC
@@ -36,7 +36,7 @@ export const getHikeById = async (id) => {
   const result = await pool.query(
     `
         SELECT
-             id, slug, title, description, picture, difficulty, time, distance, localisation, details, 
+             id, slug, title, description, pictures, difficulty, time, distance, localisation, details, 
             ST_AsGeoJSON(gps_coordinate) as gps_coordinate, created_at, updated_at 
         FROM hikes 
         WHERE id = $1
@@ -54,7 +54,7 @@ export const getHikeById = async (id) => {
 export const getRandomHikes = async () => {
     const query = `
     SELECT 
-        id, slug, title, description, picture, difficulty, time, distance, localisation, details, 
+        id, slug, title, description, pictures, difficulty, time, distance, localisation, details, 
         ST_AsGeoJSON(gps_coordinate) as gps_coordinate, created_at, updated_at 
     FROM hikes
     ORDER BY RANDOM()

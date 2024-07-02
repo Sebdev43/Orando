@@ -1,10 +1,13 @@
+-- Deploy orando:02-sendSeeding to pg
+
 BEGIN;
 
 INSERT INTO
     hikes (
+        slug,
         title,
         description,
-        picture,
+        pictures,
         difficulty,
         time,
         distance,
@@ -13,9 +16,10 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
+    'abbatiale_de_guitres',
     'Abbatiale de Guîtres, promenade en Pays Gabay',
     'Point de départ du parcours, l''Abbatiale de Guîtres (XIe et XVe siècles) est un monument imposant situé sur les chemins de Saint Jacques de Compostelle. Nous poursuivrons notre promenade à travers la douceur du Pays Gabay (prononcer gabaye) à la rencontre de trois rivières, l''Isle, la Dronne et le Lary.',
-    ARRAY['/photo/Abbatiale1.jpg','/photo/Abbatiale2.jpg','/photo/Abbatiale3.jpg'],
+    ARRAY['src/assets/img/Abbatiale1.jpg','src/assets/img/Abbatiale2.jpg','src/assets/img/Abbatiale3.jpg'],
     'Facile',
     235,
     12.95,
@@ -67,9 +71,10 @@ Pas d''équipement particulier.',
 
 INSERT INTO
     hikes (
+        slug,
         title,
         description,
-        picture,
+        pictures,
         difficulty,
         time,
         distance,
@@ -78,9 +83,10 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
+        'autour_de_la_cite_de_sainte-suzanne',
         'Autour de la Cité de Sainte-Suzanne',
         'Venez découvrir les charmants petits sentiers situés au nord de Sainte-Suzanne. Le long de votre balade, vous pourrez visiter le camp des anglais (ou camp de Beugy), et aurez un beau point de vue sur le bocage Mayennais.',
-        ARRAY['/photo/Lacite1.jpg','/photo/Lacite2.jpg','/photo/Lacite3.jpg'],
+        ARRAY['src/assets/img/Lacite1.jpg','src/assets/img/Lacite2.jpg','src/assets/img/Lacite3.jpg'],
         'Facile',
         130,
         6.86,
@@ -132,9 +138,10 @@ Pas d''équipement particulier.',
 
 INSERT INTO
     hikes (
+        slug,
         title,
         description,
-        picture,
+        pictures,
         difficulty,
         time,
         distance,
@@ -143,9 +150,10 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
+        'boucle_antique_de_paussac_saint-juste',
         'Boucle antique de Paussac Saint-Juste',
         'Quelques points intéressants dans le village : vous passerez devant la Tour Pigeonnier, la Pierre à Sacrifice ou Peyre d’Ermale ou Dermale. Plus loin, site d’escalade et village troglodytique des XIIe-XIIIe siècles. Ne pas rater le dolmen de Peyrelevade, époque néolithique, inscrit au titre des Monuments Historiques depuis 1960, et les sculptures visibles du portail d''une carrière.',
-        ARRAY['/photo/Paussac1.jpg','/photo/Paussac2.jpg','/photo/Paussac3.jpg'],
+        ARRAY['src/assets/img/Paussac1.jpg','src/assets/img/Paussac2.jpg','src/assets/img/Paussac3.jpg'],
         'Facile',
         195,
         10.29,
@@ -197,9 +205,10 @@ Pas d''équipement particulier.',
 
 INSERT INTO
     hikes (
+        slug,
         title,
         description,
-        picture,
+        pictures,
         difficulty,
         time,
         distance,
@@ -208,9 +217,10 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
+        'boucle_des_sept_fontaines_a_montmin',
         'Boucle des Sept Fontaines à Montmin',
         'Cette boucle parcourt le vallon suspendu de Montmin et vous fera découvrir le monument des Sept Fontaines (1642) un édifice chrétien bien particulier par sa conception.',
-       ARRAY['/photo/Fontaines1.jpg','/photo/Fontaines2.jpg','/photo/Fontaines3.jpg'],
+       ARRAY['src/assets/img/Fontaines1.jpg','src/assets/img/Fontaines2.jpg','src/assets/img/Fontaines3.jpg'],
         ' Facile',
         165,
         7.09,
@@ -247,9 +257,10 @@ Informations pratiques',
 
 INSERT INTO
     hikes (
+        slug,
         title,
         description,
-        picture,
+        pictures,
         difficulty,
         time,
         distance,
@@ -258,9 +269,10 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
+        'circuit_autour_de_l_etang_de_bellebouche',
         'Circuit autour de l''Étang de Bellebouche',
         'L''Étang de Bellebouche est l''un des plus anciens, l''un des plus grands et l''un des plus beaux plans d''eaux du Parc Naturel Régional de La Brenne. Une petite partie est réservée à des loisirs nautiques mais laisse une grande place à un site naturel que vous pourrez admirer tranquillement à l''aide de jumelles dans trois observatoires aux abords de l''étang.',
-        ARRAY['/photo/Bellebouche1.jpg','/photo/Bellebouche2.jpg','/photo/Bellebouche3.jpg'],
+        ARRAY['src/assets/img/Bellebouche1.jpg','src/assets/img/Bellebouche2.jpg','src/assets/img/Bellebouche3.jpg'],
         ' Facile',
         165,
         9.75,
@@ -316,9 +328,10 @@ Chiens interdits de juin à septembre, autorisés en laisse le reste de l''anné
 
 INSERT INTO
     hikes (
+        slug,
         title,
         description,
-        picture,
+        pictures,
         difficulty,
         time,
         distance,
@@ -327,9 +340,10 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
+        'de_besse-et-saint-anastaise_au_lac_pavin',
         'De Besse-et-Saint-Anastaise au Lac Pavin',
         'Au départ de l’hôtel Le Clos à Besse-et-Saint-Anastaise, cette boucle permet de faire le tour du Lac Pavin en utilisant le sentier de découverte et le GR®30.',
-        ARRAY['/photo/Besse1.jpg','/photo/Besse2.jpg','/photo/Besse3.jpg'],
+        ARRAY['src/assets/img/Besse1.jpg','src/assets/img/Besse2.jpg','src/assets/img/Besse3.jpg'],
         'Moyenne',
         250,
         11.87,
@@ -383,9 +397,10 @@ Au lac, restaurant, café.',
 
 INSERT INTO
     hikes (
+        slug,
         title,
         description,
-        picture,
+        pictures,
         difficulty,
         time,
         distance,
@@ -394,9 +409,10 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
+        'de_la_baie_d_yves_au_fort_de_fouras_par_le_sentier_cotier',
         'De la Baie d''Yves au Fort de Fouras par le sentier côtier',
         'L''essentiel du parcours s’effectue le long du sentier côtier entre la réserve naturelle de la Baie d''Yves et la commune de Fouras. Vous croiserez de nombreux pontons de pêche au carrelet sur votre route et pourrez visiter le Fort Vauban à l''estuaire de la Charente. Vous aurez sous les yeux un paysage totalement différent selon la marée.',
-        ARRAY['/photo/Baie1.jpg','/photo/Baie2.jpg','/photo/Baie3.jpg'],
+        ARRAY['src/assets/img/Baie1.jpg','src/assets/img/Baie2.jpg','src/assets/img/Baie3.jpg'],
         'Moyenne',
         335,
         19.36,
@@ -444,9 +460,10 @@ En cas de pluie, il est possible, pour éviter de marcher dans la boue très pr�
 
 INSERT INTO
     hikes (
+        slug,
         title,
         description,
-        picture,
+        pictures,
         difficulty,
         time,
         distance,
@@ -455,10 +472,11 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
+        'ferme-de-blin-vallee-de-la-druyes',
         'Ferme de Blin - Vallée de la Druyes',
         'Depuis l''ancien château médiéval, partir à la découverte d''un village construit en partie entre un ancien marais en partie asséché et la falaise. La vallée de la Druyes vous accueille dans un écrin de verdure qui tranche avec les pierres calcaires qui soutiennent l''édifice en ruine.
 Druyes-les-Belles-Fontaines est classé dans les villages "Cités de caractères de Bourgogne - Franche-Comté".',
-        ARRAY['/photo/Blin1.jpg','/photo/Blin2.jpg','/photo/Blin3.jpg'],
+        ARRAY['src/assets/img/Blin1.jpg','src/assets/img/Blin2.jpg','src/assets/img/Blin3.jpg'],
         'Moyenne',
         200,
        10.46,
@@ -533,9 +551,10 @@ Druyes-les-Belles-Fontaines a obtenu en 2017 le label Cité de Caractère de Bou
 
 INSERT INTO
     hikes (
+        slug,
         title,
         description,
-        picture,
+        pictures,
         difficulty,
         time,
         distance,
@@ -544,10 +563,11 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
+        'l_askar_puis_l_argandoita_en_passant_par_le_chene_millenaire',
         'L''Askar puis l''Argandoita en passant par le chêne millénaire',
         'Une belle randonnée qui nous permet de découvrir le magnifique village d''Urdax puis de nous élever à deux reprises pour admirer les sommets alentours d''où on aperçoit même l''océan.
 Enfin la rencontre du chêne millénaire ne peut pas laisser insensible.',
-        ARRAY['/photo/laskar1.jpg','/photo/laskar2.jpg','/photo/laskar3.jpg'],
+        ARRAY['src/assets/img/laskar1.jpg','src/assets/img/laskar2.jpg','src/assets/img/laskar3.jpg'],
         'Moyenne',
         210,
         8.64,
@@ -621,9 +641,10 @@ Il faut attendre le dernier 1/4h pour trouver de l''eau potable à profusion.
 
 INSERT INTO
     hikes (
+        slug,
         title,
         description,
-        picture,
+        pictures,
         difficulty,
         time,
         distance,
@@ -632,13 +653,14 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
+        'la_crete_des_alpilles',
         'La crête des Alpilles',
         'Belle balade entre la crête sauvage et escarpée des Alpilles et la plaine de Romanin.',
-        ARRAY['/photo/laCrete1.jpg','/photo/laCrete2.jpg','/photo/laCrete3.jpg'],
+        ARRAY['src/assets/img/laCrete1.jpg','src/assets/img/laCrete2.jpg','src/assets/img/laCrete3.jpg'],
         'Moyenne',
         355,
         15.48,
-        'Bouches-du-Rhône',
+        'Bouche-du-Rhône',
         'Départ depuis le parking des Antiques de Glanum à Saint-Rémy-de-Provence.
 Attention, Parking payant de 10h à 18h : 4€ (Mai 2018).
 
@@ -701,9 +723,10 @@ Cette portion est bien balisée mais moins sauvage.
 
 INSERT INTO
     hikes (
+        slug,
         title,
         description,
-        picture,
+        pictures,
         difficulty,
         time,
         distance,
@@ -712,9 +735,10 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
+        'la_dent_du_chat_et_le_molard_noir',
         'La Dent du Chat et le Molard Noir',
         'Variante de la "Dent du Chat" avec un circuit qui passe par le Molard Noir et un départ au dessus de Caton, au lieu du traditionnel "Col du Chat".',
-        ARRAY['/photo/laDent1jpg','/photo/laDent2.jpg','/photo/laDent3.jpg'],
+        ARRAY['src/assets/img/laDent1jpg','src/assets/img/laDent2.jpg','src/assets/img/laDent3.jpg'],
         'Difficile',
         390,
         13.04,
@@ -765,9 +789,10 @@ Le premier tronçon jusqu''au parking des Côtes, d''une heure environ, peut êt
 
 INSERT INTO
     hikes (
+        slug,
         title,
         description,
-        picture,
+        pictures,
         difficulty,
         time,
         distance,
@@ -776,9 +801,10 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
+        'le_hameau_des_monts_et_les_gorges_du_gorgonnet',
         'Le hameau des Monts et les Gorges du Gorgonnet',
         'Vous commencez par longer l''Isère au milieu des noyers. Puis vous vous élevez sur les contreforts du Vercors, pour, ensuite, revenir par la passerelle de la Gaffe et les gorges sauvages très encaissées du Gorgonnet.',
-        ARRAY['/photo/leHameau1.jpg','/photo/leHameau2.jpg','/photo/leHameau3.jpg'],
+        ARRAY['src/assets/img/leHameau1.jpg','src/assets/img/leHameau2.jpg','src/assets/img/leHameau3.jpg'],
         'Moyenne',
         315,
         13.50,
@@ -867,9 +893,10 @@ Commerces et services sont présents à Vinay (au Nord Ouest).
 
 INSERT INTO
     hikes (
+        slug,
         title,
         description,
-        picture,
+        pictures,
         difficulty,
         time,
         distance,
@@ -878,9 +905,10 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
+        'le_sentier_du_granite_a_la_roche_d_oetre', 
         'Le sentier du granite à la Roche d''Oëtre',
         'S''il y avait un paradis de la randonnée, l''Espace Naturel Sensible de la Roche d''Oëtre et les gorges de la Rouvre seraient certainement bien positionnés ! Site classé et Espace Naturel Sensible du département de l''Orne, la Roche d''Oëtre, située au cœur des Montagnes de Normandie, est un site incontournable et un lieu de rendez-vous pour les amoureux et amateurs de nature sauvage et de randonnée.',
-        ARRAY['/photo/leSentier1.jpg','/photo/leSentier2.jpg','/photo/leSentier3.jpg'],
+        ARRAY['src/assets/img/leSentier1.jpg','src/assets/img/leSentier2.jpg','src/assets/img/leSentier3.jpg'],
         'Moyenne',
         185,
         8.83,
@@ -935,9 +963,10 @@ Les sentiers empruntent parfois des propriétés privées et des milieux naturel
 
 INSERT INTO
     hikes (
+        slug,
         title,
         description,
-        picture,
+        pictures,
         difficulty,
         time,
         distance,
@@ -946,11 +975,12 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
+        'le_val_de_loire_et_les_trois_viaducs',
         'Le Val de Loire et les trois viaducs',
         'Petite randonnée le long de la Loire et dans le val puis à flanc de colline, dans les vignes du Sancerrois sur la trace de l''ancienne voie ferrée reliant Cosne-sur-Loire à Bourges.
 Beaux points de vue sur le fleuve, les communes de Saint-Satur et Ménétréol, la ville de Sancerre, les vignes et le canal latéral.
 À faire plutôt au printemps ou à l''automne.',
-        ARRAY['/photo/leVal1.jpg','/photo/leVal2.jpg','/photo/leVal3.jpg'],
+        ARRAY['src/assets/img/leVal1.jpg','src/assets/img/leVal2.jpg','src/assets/img/leVal3.jpg'],
         'Moyenne',
         235,
         13.02,
@@ -1005,9 +1035,10 @@ Les balisages GR® et PR® sont la propriété intellectuelle de la Fédération
 
 INSERT INTO
     hikes (
+        slug,
         title,
         description,
-        picture,
+        pictures,
         difficulty,
         time,
         distance,
@@ -1016,9 +1047,10 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
+        'les-caisses-et-les-cretes-au-dessus-de-mouries',
         'Les Caisses et les crêtes au-dessus de Mouriès',
         'Jolie randonnée dans cette partie des Alpilles qui permet de découvrir les falaises blanches des "Caisses de Jean Jean", les "Caisses de Servanne", les crêtes du Castellas et ses points de vue, et aussi de longer le Golf de Servanne à Mouriès. Randonnée sans difficulté mais quelques passages sur petites routes goudronnées.',
-        ARRAY['/photo/lesCaisses1.jpg','/photo/lesCaisses2.jpg','/photo/lesCaisses3.jpg'],
+        ARRAY['src/assets/img/lesCaisses1.jpg','src/assets/img/lesCaisses2.jpg','src/assets/img/lesCaisses3.jpg'],
         'Moyenne',
         230,
         11.80,
@@ -1080,9 +1112,10 @@ Point d''eau à la source de l''Olivier sur la partie qui longe le golf.
 
 INSERT INTO
     hikes (
+        slug,
         title,
         description,
-        picture,
+        pictures,
         difficulty,
         time,
         distance,
@@ -1091,12 +1124,13 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
+        'les-suquets-de-penne',
         'Les Suquets de Penne',
         'Du village-rocher de Penne, le circuit promènera le randonneur jusqu''au belvédère des Suquets.
 Paysages de campagne et forêts se partagent dans les multiples facettes du décor de falaises calcaires.
 De fortes montées et descentes feront la joie des sportifs.
 La fin du parcours se déroulera, tranquillement, le long de l''Aveyron avant un dernier, court, rampaillou au pied du village.',
-        ARRAY['/photo/lesSuquets1.jpg','/photo/lesSuquets2.jpg','/photo/lesSuquets3.jpg'],
+        ARRAY['src/assets/img/lesSuquets1.jpg','src/assets/img/lesSuquets2.jpg','src/assets/img/lesSuquets3.jpg'],
         'Moyenne',
         205,
         9.22,
@@ -1169,9 +1203,10 @@ Fontaine au point (5), eau non potable mais rafraîchissante en saison estivale.
 
 INSERT INTO
     hikes (
+        slug,
         title,
         description,
-        picture,
+        pictures,
         difficulty,
         time,
         distance,
@@ -1180,9 +1215,10 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
+        'saute-ruisseaux_pres_de_loire-sur-rhone',       
         'Saute-ruisseaux près de Loire-sur-Rhône',
         'Marche ombragée en bordures de ruisseaux dans un ravin rhodanien. Un espace de nature d''un calme surprenant vu sa proximité des centres urbains.',
-        ARRAY['/photo/saute1.jpg','/photo/saute2.jpg','/photo/saute3.jpg'],
+        ARRAY['src/assets/img/saute1.jpg','src/assets/img/saute2.jpg','src/assets/img/saute3.jpg'],
         'Moyenne',
         245,
         11.19,
@@ -1269,9 +1305,10 @@ En partant en milieu de matinée, possibilité de pique-niquer entre les points 
 
 INSERT INTO
     hikes (
+        slug,
         title,
         description,
-        picture,
+        pictures,
         difficulty,
         time,
         distance,
@@ -1280,9 +1317,10 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
+        'tour_de_l_aiguille',
         'Tour de l''Aiguille',
         'Cette randonnée aux portes de l''Estérel vers les Pointes de l''Esquillon et de l''Aiguille propose un programme varié : début dans les mimosas, passage par le mémorial Notre-Dame-d''Afrique puis à proximité du Palais Bulles (de Pierre Cardin). Point de vue sur le littoral au-dessus de la Pointe de l''Esquillon, remontée au milieu des eucalyptus avant de redescendre face au Golfe de la Napoule à la Pointe de l''Aiguille et de revenir à Théoule par la plage du même nom.',
-        ARRAY['/photo/tour1.jpg','/photo/tour2.jpg','/photo/tour3.jpg'],
+        ARRAY['src/assets/img/tour1.jpg','src/assets/img/tour2.jpg','src/assets/img/tour3.jpg'],
         'Moyenne',
         205,
         8.82,
@@ -1363,9 +1401,10 @@ En février/mars, les mimosas sont en fleurs (attention pour les personnes sensi
 
 INSERT INTO
     hikes (
+        slug,
         title,
         description,
-        picture,
+        pictures,
         difficulty,
         time,
         distance,
@@ -1374,9 +1413,10 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
+        'ville-au-val_landemont_depuis_autreville-sur-moselle',
         'Ville-au-Val, Landemont depuis Autreville-sur-Moselle',
         'Randonnée au départ d''Autreville-sur-Moselle offrant de beaux points de vue sur la vallée de la Moselle, la vallée de la Natagne et la campagne environnante.',
-        ARRAY['/photo/ville1.jpg','/photo/ville2.jpg','/photo/ville3.jpg'],
+        ARRAY['src/assets/img/ville1.jpg','src/assets/img/ville2.jpg','src/assets/img/ville3.jpg'],
         'Moyenne',
         280,
         11.86,
@@ -1447,6 +1487,7 @@ Point de repos idéal près de la statue de la Vierge de la Consolation qui domi
         )
     );
 
+
 INSERT INTO users (nickname, localisation, email, password)
 VALUES 
     ('User1', 'Location1', 'user1@example.com', 'password1'),
@@ -1456,5 +1497,5 @@ INSERT INTO users_has_hikes (users_id, hikes_id)
 VALUES 
     (1, 1),
     (2, 2);
-
+    
 COMMIT;
