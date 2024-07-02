@@ -1,6 +1,3 @@
-//import bcrypt from 'bcrypt';
-
-
 import * as userDataMappers from '../dataMappers/userDataMappers.js';
 
 export const createUser = async (req, res) => {
