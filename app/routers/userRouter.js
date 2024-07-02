@@ -1,7 +1,6 @@
 import express from "express";
 const router = express.Router();
-
-import { createUser, updateUser } from "../controllers/userController.js";
+import { createUser, updateUser, getUserById } from "../controllers/userController.js";
 
 /**
  * @swagger
@@ -143,5 +142,7 @@ router.post("/", createUser);
  *         
  */
 router.patch("/:id", updateUser);
+
+router.get("/:id", getUserById);
 
 export default router;

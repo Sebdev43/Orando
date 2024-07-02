@@ -26,3 +26,6 @@ Content-Type: application/json
   "email": "skylou@hotmail.fr",
   "password": "Newskylarpass"
 }
+
+### Test pour obtenir l'email d'un utilisateur
+Get http://localhost:4000/users/2

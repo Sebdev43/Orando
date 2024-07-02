@@ -35,3 +35,10 @@ export const updateUser = async (id, nickname, localisation, email, password) =>
     const result = await pool.query(query, values);
     return result.rows[0];
 };
+
+export const getUserById = async (id) => {
+  const query = `SELECT * FROM users WHERE id =$1`;
+    const values = [id];
+    const result = await pool.query(query, values);
+    return result.rows[0];
+};

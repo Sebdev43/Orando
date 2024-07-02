@@ -34,3 +34,19 @@ export const updateUser = async (req, res) => {
         res.status(500).json({ error : "Problème dans la modification des information "});
     }
 };
+
+export const getUserById = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const user = await userDataMappers.getUserById(id);
+
+        if(!user){
+            return res.status(404).json({ error: "Utilisateur non trouvé avec cet ID"});
+        } else {
+            return res.status(200).json(user);
+        }
+    } catch (error) {
+        console.error("Erreur lors de la récupération de l'utilisateur :", error.stack);
+        res.status(500).json({ error: "Problème lors de la récupération de l'utilisateur"});
+    }
+};
