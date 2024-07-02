@@ -28,6 +28,8 @@ import { getAllHikes, getHikeById, getRandomHikes } from "../controllers/hikesCo
  *                 properties:
  *                   id:
  *                     type: integer
+ *                   slug:
+ *                     type: string   
  *                   title:
  *                     type: string
  *                   description:
@@ -83,6 +85,8 @@ router.get('/random', getRandomHikes);
  *                 properties:
  *                   id:
  *                     type: integer
+ *                   slug:
+ *                     type: string
  *                   title:
  *                     type: string
  *                   description:
@@ -136,6 +140,8 @@ router.get("/", getAllHikes);
  *               properties:
  *                 id:
  *                   type: integer
+ *                 slug:
+ *                   type: string  
  *                 title:
  *                   type: string
  *                 description:
