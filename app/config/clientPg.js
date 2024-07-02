@@ -1,7 +1,7 @@
 import pg from 'pg'; 
 //* Importation des modules
-import { config } from 'dotenv';
-config();
+// import { config } from 'dotenv';
+// config();
 
 //On import toutes les fonctions de PG pour utiliser pool
 const { Pool } = pg;

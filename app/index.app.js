@@ -1,5 +1,4 @@
 //* Importation des modules
-
 import usersRouter from './routers/userRouter.js';
 import hikesRouter from './routers/hikesRouter.js';
 import bookmarksRouter from './routers/bookmarksRouter.js';
