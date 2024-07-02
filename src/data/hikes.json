@@ -9,7 +9,7 @@
       "src/assets/img/laskar2.jpg",
       "src/assets/img/laskar3.jpg"
     ],
-    "difficulty": " Facile",
+    "difficulty": "Facile",
     "time": 165,
     "distance": 7.09,
     "localisation": "Haute-Savoie",
@@ -47,7 +47,7 @@
       "src/assets/img/home.jpg",
       "src/assets/img/home.jpg"
     ],
-    "difficulty": " Facile",
+    "difficulty": "Facile",
     "time": 165,
     "distance": 9.75,
     "localisation": "Indre ",
