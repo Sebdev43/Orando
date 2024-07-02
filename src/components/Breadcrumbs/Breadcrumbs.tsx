@@ -58,7 +58,8 @@ export default function IconBreadcrumbs() {
                 sx={{ mr: 0.5, mb: 0.5 }}
                 fontSize="inherit"
               />
-              {value.charAt(0).toUpperCase() + value.slice(1)}
+              {value.charAt(0).toUpperCase() +
+                value.slice(1).replace(/_/g, ' ')}
             </Typography>
           ) : (
             <NavLink
@@ -77,7 +78,8 @@ export default function IconBreadcrumbs() {
               ) : ( */}
               <ArrowRightIcon sx={{ mr: 0.5, mb: 0.5 }} fontSize="inherit" />
               {/* )} */}
-              {value.charAt(0).toUpperCase() + value.slice(1)}
+              {value.charAt(0).toUpperCase() +
+                value.slice(1).replace(/_/g, ' ')}
             </NavLink>
           );
         })}

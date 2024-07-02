@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { Hike } from '../../@types/hike';
 
+// Import des dépendances MUI en lien avec les composants appelés
 import AspectRatio from '@mui/joy/AspectRatio';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
@@ -15,6 +16,7 @@ import './CardComponent.scss';
 
 function CardComponent(hike: Hike) {
   // Put some color depends of the difficulty
+  // Attraper les couleurs qui coincident avec la difficulté
   function renderDificulty() {
     switch (hike.difficulty) {
       case 'Facile':
@@ -47,7 +49,7 @@ function CardComponent(hike: Hike) {
   return (
     <Card variant="outlined" sx={{ width: 360, height: 500 }}>
       <CardOverflow>
-        {/* Image */}
+        {/* Photo */}
         <AspectRatio ratio="1">
           <img
             src={hike.pictures[1]}
@@ -57,6 +59,7 @@ function CardComponent(hike: Hike) {
           />
         </AspectRatio>
         {/* Booksmarks button */}
+        {/* ligne 64 : la fonction qui va déclencher la logique liée à l'add/del d'un favoris  */}
         <IconButton
           onClick={() => actionToBookmarks(hike.id)}
           aria-label="Like minimal photography"
@@ -91,6 +94,8 @@ function CardComponent(hike: Hike) {
           <Typography level="body-sm">{hike.localisation}</Typography>
           <Divider orientation="vertical" />
           <Typography level="body-sm">{hike.distance} km</Typography>
+
+          {/* ligne 98 à 99 : j'appelle la fonction que j'ai déclaré précedemment pour gérer l'afficahge des couleurs fonction de la difficulté  */}
           <Divider orientation="vertical" />
           {renderDificulty()}
         </CardContent>

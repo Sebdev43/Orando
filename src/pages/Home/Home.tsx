@@ -59,7 +59,8 @@ function Home() {
           le respect de l'environnement et l'éthique de la randonnée
           responsable.
           <br />
-          <br />À travers des articles et des guides, nous sensibilisons nos
+          <br />
+          À travers des articles et des guides, nous sensibilisons nos
           utilisateurs à l'importance de préserver les écosystèmes et de
           respecter les règles en vigueur dans les espaces naturels. O'Rando,
           c'est aussi une invitation à la convivialité et à l'échange. Rejoignez
