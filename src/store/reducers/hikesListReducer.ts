@@ -2,7 +2,6 @@ import { createReducer, createAction } from '@reduxjs/toolkit';
 import { Hike } from '../../@types/hike';
 
 import hikesByTen from '../../data/hikesByTen.json';
-import hikesTenToTwenty from '../../data/hikesTenToTwenty.json';
 
 export type HikesList = {
   list: Hike[];
@@ -11,8 +10,6 @@ export type HikesList = {
 const initialState: HikesList = {
   list: hikesByTen,
 };
-
-export const getHikesFromApi = createAction<string>('LIST/DISPLAY_HIKES');
 
 //TODO Il va falloir utiliser l'apiThunk pour charger la liste de randonnées dans le state, depuis notre API
 // // créer un asyncThunk pour récupérer les recipes
@@ -32,6 +29,8 @@ export const getHikesFromApi = createAction<string>('LIST/DISPLAY_HIKES');
 //     state.loading = false;
 //   })
 // });
+
+export const getHikesFromApi = createAction<string>('LIST/DISPLAY_HIKES');
 
 export const hikesListReducer = createReducer(initialState, (builder) => {
   builder.addCase(getHikesFromApi, (state, action) => {

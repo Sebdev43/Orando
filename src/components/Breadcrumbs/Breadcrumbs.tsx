@@ -6,6 +6,9 @@ import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/redux';
 import { changeLocation } from '../../store/reducers/breadcrumbsReducer';
 
+// utils
+import formatBreadcrumbs from '../../utils/regEx';
+
 // import react component from MUI
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
@@ -58,8 +61,9 @@ export default function IconBreadcrumbs() {
                 sx={{ mr: 0.5, mb: 0.5 }}
                 fontSize="inherit"
               />
-              {value.charAt(0).toUpperCase() +
-                value.slice(1).replace(/_/g, ' ')}
+              {formatBreadcrumbs(value)}
+              {/* {value.charAt(0).toUpperCase() +
+                value.slice(1).replace(/-/g, ' ')} */}
             </Typography>
           ) : (
             <NavLink
@@ -78,8 +82,9 @@ export default function IconBreadcrumbs() {
               ) : ( */}
               <ArrowRightIcon sx={{ mr: 0.5, mb: 0.5 }} fontSize="inherit" />
               {/* )} */}
-              {value.charAt(0).toUpperCase() +
-                value.slice(1).replace(/_/g, ' ')}
+              {formatBreadcrumbs(value)}
+              {/* {value.charAt(0).toUpperCase() +
+                value.slice(1).replace(/-/g, ' ')} */}
             </NavLink>
           );
         })}

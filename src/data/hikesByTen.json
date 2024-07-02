@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "slug": "abbatiale_de_guitres",
+    "slug": "abbatiale-de-guitres",
     "title": "Abbatiale de Guîtres, promenade en Pays Gabay",
     "description": "Point de départ du parcours, l'Abbatiale de Guîtres (XIe et XVe siècles) est un monument imposant situé sur les chemins de Saint Jacques de Compostelle. Nous poursuivrons notre promenade à travers la douceur du Pays Gabay (prononcer gabaye) à la rencontre de trois rivières, l'Isle, la Dronne et le Lary.",
     "pictures": [
@@ -20,7 +20,7 @@
   },
   {
     "id": 2,
-    "slug": "autour_de_la_cite_de_sainte-suzanne",
+    "slug": "autour-de-la-cite-de-sainte-suzanne",
     "title": "Autour de la Cité de Sainte-Suzanne",
     "description": "Venez découvrir les charmants petits sentiers situés au nord de Sainte-Suzanne. Le long de votre balade, vous pourrez visiter le camp des anglais (ou camp de Beugy), et aurez un beau point de vue sur le bocage Mayennais.",
     "pictures": ["/img/Lacite1.jpg", "/img/Lacite2.jpg", "/img/Lacite3.jpg"],
@@ -35,7 +35,7 @@
   },
   {
     "id": 3,
-    "slug": "boucle_antique_de_paussac_saint-juste",
+    "slug": "boucle-antique-de-paussac-saint-juste",
     "title": "Boucle antique de Paussac Saint-Juste",
     "description": "Quelques points intéressants dans le village : vous passerez devant la Tour Pigeonnier, la Pierre à Sacrifice ou Peyre d’Ermale ou Dermale. Plus loin, site d’escalade et village troglodytique des XIIe-XIIIe siècles. Ne pas rater le dolmen de Peyrelevade, époque néolithique, inscrit au titre des Monuments Historiques depuis 1960, et les sculptures visibles du portail d'une carrière.",
     "pictures": ["/img/Paussac1.jpg", "/img/Paussac2.jpg", "/img/Paussac3.jpg"],
@@ -50,7 +50,7 @@
   },
   {
     "id": 4,
-    "slug": "boucle_des_sept_fontaines_a_montmin",
+    "slug": "boucle-des-sept-fontaines-a-montmin",
     "title": "Boucle des Sept Fontaines à Montmin",
     "description": "Cette boucle parcourt le vallon suspendu de Montmin et vous fera découvrir le monument des Sept Fontaines (1642) un édifice chrétien bien particulier par sa conception.",
     "pictures": [
@@ -69,7 +69,7 @@
   },
   {
     "id": 5,
-    "slug": "circuit_autour_de_l_etang_de_bellebouche",
+    "slug": "circuit-autour-de-l-etang-de-bellebouche",
     "title": "Circuit autour de l'Étang de Bellebouche",
     "description": "L'Étang de Bellebouche est l'un des plus anciens, l'un des plus grands et l'un des plus beaux plans d'eaux du Parc Naturel Régional de La Brenne. Une petite partie est réservée à des loisirs nautiques mais laisse une grande place à un site naturel que vous pourrez admirer tranquillement à l'aide de jumelles dans trois observatoires aux abords de l'étang.",
     "pictures": [
@@ -88,7 +88,7 @@
   },
   {
     "id": 19,
-    "slug": "ville-au-val_landemont_depuis_autreville-sur-moselle",
+    "slug": "ville-au-val-landemont-depuis-autreville-sur-moselle",
     "title": "Ville-au-Val, Landemont depuis Autreville-sur-Moselle",
     "description": "Randonnée au départ d'Autreville-sur-Moselle offrant de beaux points de vue sur la vallée de la Moselle, la vallée de la Natagne et la campagne environnante.",
     "pictures": ["/img/ville1.jpg", "/img/ville2.jpg", "/img/ville3.jpg"],
@@ -103,7 +103,7 @@
   },
   {
     "id": 6,
-    "slug": "de_besse-et-saint-anastaise_au_lac_pavin",
+    "slug": "de-besse-et-saint-anastaise-au-lac-pavin",
     "title": "De Besse-et-Saint-Anastaise au Lac Pavin",
     "description": "Au départ de l’hôtel Le Clos à Besse-et-Saint-Anastaise, cette boucle permet de faire le tour du Lac Pavin en utilisant le sentier de découverte et le GR®30.",
     "pictures": ["/img/Besse1.jpg", "/img/Besse2.jpg", "/img/Besse3.jpg"],
@@ -118,7 +118,7 @@
   },
   {
     "id": 7,
-    "slug": "de_la_baie_d_yves_au_fort_de_fouras_par_le_sentier_cotier",
+    "slug": "de-la-baie-d-yves-au-fort-de-fouras-par-le-sentier-cotier",
     "title": "De la Baie d'Yves au Fort de Fouras par le sentier côtier",
     "description": "L'essentiel du parcours s’effectue le long du sentier côtier entre la réserve naturelle de la Baie d'Yves et la commune de Fouras. Vous croiserez de nombreux pontons de pêche au carrelet sur votre route et pourrez visiter le Fort Vauban à l'estuaire de la Charente. Vous aurez sous les yeux un paysage totalement différent selon la marée.",
     "pictures": ["/img/Baie1.jpg", "/img/Baie2.jpg", "/img/Baie3.jpg"],
@@ -148,7 +148,7 @@
   },
   {
     "id": 9,
-    "slug": "l_askar_puis_l_argandoita_en_passant_par_le_chene_millenaire",
+    "slug": "l-askar-puis-l-argandoita-en-passant-par-le-chene-millenaire",
     "title": "L'Askar puis l'Argandoita en passant par le chêne millénaire",
     "description": "Une belle randonnée qui nous permet de découvrir le magnifique village d'Urdax puis de nous élever à deux reprises pour admirer les sommets alentours d'où on aperçoit même l'océan.\nEnfin la rencontre du chêne millénaire ne peut pas laisser insensible.",
     "pictures": ["/img/laskar1.jpg", "/img/laskar2.jpg", "/img/laskar3.jpg"],

@@ -8,12 +8,14 @@ import Map from '../Map/Map';
 import { Button } from '@mui/material';
 
 function HikeDetail(hike: Hike) {
+  //
+  // A fonction to show the pictures of the hike
   function renderPictures() {
     let index = 0;
-    return hike.pictures.map((picture: string) => {
+    return hike.pictures.map((picture: string, index) => {
       index++;
       return (
-        <figure key={hike.id} className={`hike__picture-${index}`}>
+        <figure key={index} className={`hike__picture-${index}`}>
           <img src={picture} alt={`Une photo de ${hike.title}`} />
           <figcaption hidden={true}>{hike.description}</figcaption>
           <meta property="og:title" content={hike.title} />
