@@ -1,6 +1,4 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
-
 import { Provider } from 'react-redux';
 import store from './store/store';
 
@@ -25,6 +23,7 @@ import Login from './pages/Login/Login';
 import Account from './pages/Account/Account';
 import Imprints from './pages/Imprints/Imprints';
 import ConfidentialityPolicies from './pages/ConfidentialityPolicies/ConfidentialityPolicies';
+import React from 'react';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
