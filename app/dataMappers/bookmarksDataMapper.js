@@ -33,3 +33,23 @@ export const removeBookmark = async (userId, hikeId) => {
   const result = await pool.query(query, values);
   return result.rowCount > 0;
 };
+
+/**
+ * Route pour récupérer la liste des randonnées favorites d'un utilisateur
+ * @param {number} userId - ID de l'utilisateur
+ * @returns {Array} - Liste des randonnées favorites
+ */
+
+export const getBookmark = async (userId) => {
+  const query = `
+        SELECT 
+            hikes.id, hikes.slug, hikes.title, hikes.description, hikes.pictures, hikes.difficulty, hikes.time, hikes.distance, hikes.localisation, hikes.details, 
+            ST_AsGeoJSON(hikes.gps_coordinate) as gps_coordinate, hikes.created_at, hikes.updated_at
+        FROM hikes
+        JOIN users_has_hikes ON hikes.id = users_has_hikes.hikes_id
+        WHERE users_has_hikes.users_id = $1;
+    `;
+    const values = [userId];
+    const result = await pool.query(query, values);
+    return result.rows;
+};

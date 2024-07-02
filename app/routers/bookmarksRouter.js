@@ -3,6 +3,7 @@ const router = express.Router();
 import {
   addBookmark,
   removeBookmark,
+  getBookmark
 } from "../controllers/bookmarksController.js";
 
 /**
@@ -91,5 +92,64 @@ router.post("/", addBookmark);
  *        description: Erreur lors de la suppression de la randonnée des favoris
  */
 router.delete("/", removeBookmark);
+
+/**
+ * Route pour récupérer la liste des randonnées favorites d'un utilisateur
+ * @swagger
+ * /bookmarks/{userId}:
+ *   get:
+ *     summary: Récupérer la liste des randonnées favorites
+ *     tags: [Bookmarks]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: ID de l'utilisateur
+ *     responses:
+ *       200:
+ *         description: La liste des randonnées favorites
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                   slug:
+ *                     type: string
+ *                   title:
+ *                     type: string
+ *                   description:
+ *                     type: string
+ *                   picture:
+ *                     type: array
+ *                     items:
+ *                       type: string
+ *                   difficulty:
+ *                     type: string
+ *                   time:
+ *                     type: integer
+ *                   distance:
+ *                     type: number
+ *                   localisation:
+ *                     type: string
+ *                   details:
+ *                     type: string
+ *                   gps_coordinate:
+ *                     type: object
+ *                   created_at:
+ *                     type: string
+ *                     format: date-time
+ *                   updated_at:
+ *                     type: string
+ *                     format: date-time
+ *       500:
+ *         description: Erreur lors de la récupération des randonnées favorites
+ */
+router.get("/:userId", getBookmark);
 
 export default router;

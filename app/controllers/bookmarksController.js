@@ -36,3 +36,15 @@ export const removeBookmark = async (req, res) => {
         res.status(500).json({ error: 'Erreur lors de la suppression de la randonnée des favoris' });
     }
 };
+
+
+export const getBookmark = async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const bookmarks = await bookmarksDataMapper.getBookmark(userId);
+        res.status(200).json(bookmarks);
+    } catch (err) {
+        console.error('Erreur lors de la récupération des randonnées mise en favori', err);
+        res.status(500).json({ error: 'Erreur lors de la récupération des randonnées mise en favoris' });
+    }
+};
