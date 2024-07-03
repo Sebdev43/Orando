@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { getAllHikes, getHikeById, getRandomHikes } from "../controllers/hikesController.js";
+import { getAllHikes, getAllHikesPages, getHikeById, getRandomHikes } from "../controllers/hikesController.js";
 
 /**
  * @swagger
@@ -66,6 +66,55 @@ router.get('/random', getRandomHikes);
  *   get:
  *     summary: Récupérer la liste des randonnées
  *     tags: [Hikes]
+ *     responses:
+ *       200:
+ *         description: La liste des randonnées
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                   slug:
+ *                     type: string
+ *                   title:
+ *                     type: string
+ *                   description:
+ *                     type: string
+ *                   pictures:
+ *                     type: array
+ *                     items:
+ *                       type: string
+ *                   difficulty:
+ *                     type: string
+ *                   time:
+ *                     type: integer
+ *                   distance:
+ *                     type: number
+ *                   localisation:
+ *                     type: string
+ *                   details:
+ *                     type: string
+ *                   gps_coordinate:
+ *                     type: object
+ *                   created_at:
+ *                     type: string
+ *                     format: date-time
+ *                   updated_at:
+ *                     type: string
+ *                     format: date-time
+ */
+router.get("/", getAllHikes);
+/**
+ * Route pour récupérer la liste des randonnées avec pagination et tri par date de création
+ * @swagger
+ * /hikes/pages:
+ *   get:
+ *     summary: Récupérer la liste des randonnées
+ *     tags: [Hikes]
  *     parameters:
  *       - in: query
  *         name: page
@@ -114,7 +163,7 @@ router.get('/random', getRandomHikes);
  *                     type: string
  *                     format: date-time
  */
-router.get("/", getAllHikes);
+router.get("/pages", getAllHikesPages);
 
 /**
  * Route pour récupérer une randonnée par son ID

@@ -21,11 +21,11 @@ initializeSwagger(app);
 
 initializeRoutes(app);
 
+if (process.env.NODE_ENV !== 'test') {
+  // Démarrage du serveur uniquement si ce n'est pas en mode test
+  app.listen(port, () => {
+    console.log(`Serveur en cours d'exécution sur http://localhost:${port}`);
+  });
+}
 
-
-// Démarrage du serveur
-
-app.listen(port, () => {
-  console.log(`Serveur en cours d'exécution sur http://localhost:${port}`);
-});
-
+export default app;

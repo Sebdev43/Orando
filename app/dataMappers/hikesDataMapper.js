@@ -1,5 +1,20 @@
 import pool from "../config/clientPg.js";
 
+export const getAllHikes = async () => {
+  
+  const query = `
+        SELECT 
+            id, slug, title, description, pictures, difficulty, time, distance, localisation, details, 
+            ST_AsGeoJSON(gps_coordinate) as gps_coordinate, created_at, updated_at 
+        FROM hikes
+    `;
+
+  // Exécution de la requête SQL
+  const result = await pool.query(query);
+
+  // Retourne les résultats
+  return result.rows;
+};
 // Nombre de randonnées par page
 const ITEMS_PER_PAGE = 10;
 /**
@@ -7,7 +22,7 @@ const ITEMS_PER_PAGE = 10;
  * @param {number} page - Numéro de la page
  * @returns {Array} - Liste des randonnées
  */
-export const getAllHikes = async (page) => {
+export const getAllHikesPages = async (page) => {
   const offset = (page - 1) * ITEMS_PER_PAGE;
 
   // Construition de la requête SQL avec les paramètres de pagination et trié par date de sortie
