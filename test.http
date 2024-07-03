@@ -63,6 +63,7 @@ Content-Type: application/json
   "email": "Seblovers2@hotmail.fr",
   "password": "lapinouProject2@"
 }
+
 ### Use the obtained JWT to add a bookmark
 POST http://localhost:4000/bookmarks
 Content-Type: application/json
