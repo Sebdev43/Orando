@@ -27,7 +27,7 @@ function Footer() {
           Politiques de confidentialité
         </NavLink>
       </section>
-      <span className="footer__copyright">© 2024 o'rando </span>
+      <span className="footer__copyright">© 2024 O'Rando </span>
     </div>
   );
 }
