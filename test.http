@@ -39,8 +39,8 @@ Content-Type: application/json
 
 {
   "id": 1,
-  "nickname": "SkylarzLaStreat2",
-  "localisation": "En bas de chez toi3",
-  "email": "skyloupi2lou@hotmail.fr",
-  "password": "Newskylarpass2"
+  "nickname": "Coucou Seb",
+  "localisation": "En bas de chez toi Seb ",
+  "email": "Seblovers@hotmail.fr",
+  "password": "lapinouProject"
 }
