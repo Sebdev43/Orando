@@ -1,6 +1,4 @@
--- Deploy orando:02-sendSeeding to pg
 
-BEGIN;
 
 INSERT INTO
     hikes (
@@ -1498,4 +1496,3 @@ VALUES
     (1, 1),
     (2, 2);
     
-COMMIT;

@@ -1,16 +1,19 @@
 # test
 
-//Ancienne version de routes pour récupérer toutes les randonnées
-http://localhost:4000/hikes
+### requete get pour récupérer toutes les randonnées par page de 10 randonnées
 
-//Nouvelle version de routes pour récupérer toutes les randonnées avec pagination, tri et ordre
+GET http://localhost:4000/hikes?page=1
+Accept: application/json
 
+### requete get pour récupérer 4 randonnées de maniere aléatoire
 
-http://localhost:4000/hikes?page=1&order=asc&orderBy=difficulty
+GET http://localhost:4000/hikes/random
+Accept: application/json
 
+### requete get pour récuperer les randonnée d'un utilisateurs mise en favoris
 
-
-http://localhost:4000/hikes/random
+GET http://localhost:4000/bookmarks/1
+Accept: application/json
 
 
 
