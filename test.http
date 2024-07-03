@@ -31,16 +31,17 @@ Content-Type: application/json
 }
 
 ### Test pour obtenir l'email d'un utilisateur
-Get http://localhost:4000/users/1
+Get http://localhost:4000/users/8
 
-### Test pour crée un utilisateur avec bcrypt (password)
+
+### Test pour crée un utilisateur avec scrypt (password)
 POST http://localhost:4000/users
 Content-Type: application/json
 
 {
   "id": 1,
-  "nickname": "SkylarzLaStreat2",
-  "localisation": "En bas de chez toi3",
-  "email": "skyloupi2lou@hotmail.fr",
-  "password": "Newskylarpass2"
+  "nickname": "Coucou Seb2",
+  "localisation": "En bas de chez toi Seb2 ",
+  "email": "Seblovers2@hotmail.fr",
+  "password": "lapinouProject2"
 }

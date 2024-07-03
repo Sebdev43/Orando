@@ -2,11 +2,11 @@ import * as userDataMappers from '../dataMappers/userDataMappers.js';
 
 export const createUser = async (req, res) => {
     try {
-        const { nickname, localisation, email, password } = req.body;
-        if (!nickname || !localisation || !email || !password) {
+        const { nickname, localisation, email, hashedPassword } = req.body;
+        if (!nickname || !localisation || !email || !hashedPassword) {
             return res.status(400).json({ error : "Il manque des informations pour créer un utilisateur !"});            
         }
-        const user = await userDataMappers.createUser(nickname, localisation, email, password);
+        const user = await userDataMappers.createUser(nickname, localisation, email, hashedPassword);
         res.status(201).json(user);
     } catch (error) {
         console.error("Erreur lors de la création de l'utilisateur :", error.stack);
