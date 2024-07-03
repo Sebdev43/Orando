@@ -47,6 +47,17 @@ export const getUserById = async (id) => {
     return result.rows[0];
 };
 
+export const deleteUser = async (id) => {
+  try {
+    const query = `DELETE FROM users WHERE id = $1`;
+    const result = await pool.query(query, [id]);
+    return result.rowCount > 0;
+  } catch (error) {
+    console.error("Erreur lors de la suppresion de l'utilisateur :", error);
+    throw error;
+  }
+};
+
 
 // à faire le login qui vérifie les identifiants renseigner sur le sujet si c'est bon un booleun true or false et obtiens le jwt . Sécurité qui doit etre au top pour éviter les injections etc dans la BD
 // Un delete user pour la suppréssion d'un compte
