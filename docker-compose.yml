@@ -8,7 +8,7 @@ services:
     environment:
       - NODE_ENV=development
       - PGHOST=db
-      - PGPORT=5432
+      - PGPORT=5433
       - PGUSER=postgres
       - PGPASSWORD=postgres
       - PGDATABASE=orando
@@ -20,14 +20,14 @@ services:
   db:
     image: postgis/postgis:13-3.1
     ports:
-      - '5433:5432'  
+      - '5433:5433'  
     environment:
       - POSTGRES_DB=orando
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./sqitch/deploy:/docker-entrypoint-initdb.d  
+      - ./data:/docker-entrypoint-initdb.d  
 
 volumes:
   pgdata:
