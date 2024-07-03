@@ -1,6 +1,16 @@
 import express from "express";
-import { createUser, updateUser, getUserById } from "../controllers/userController.js";
+import {
+  createUser,
+  updateUser,
+  getUserById,
+} from "../controllers/userController.js";
 import { hashPasswordMiddleware } from "../middlewares/scryptMiddleware.js";
+import {
+  emailValidator,
+  nicknameValidator,
+  passwordValidator,
+} from "../validators/userValidators.js";
+import { validateRequest } from "../middlewares/validateReqMiddleware.js";
 
 const router = express.Router();
 
@@ -31,7 +41,7 @@ const router = express.Router();
  *              email:
  *                type: string
  *              password:
- *                type: string 
+ *                type: string
  *     responses:
  *       '201':
  *         description: Utilisateur créé avec succès
@@ -70,9 +80,15 @@ const router = express.Router();
  *         description: Erreur lors de la création de l'utilisateur
  *       '500':
  *         description: Erreur interne avec le serveur
- *         
+ *
  */
-router.post("/", hashPasswordMiddleware, createUser);
+router.post(
+  "/",
+  [emailValidator, passwordValidator, nicknameValidator],
+  validateRequest,
+  hashPasswordMiddleware,
+  createUser
+);
 
 /**
  * @swagger
@@ -102,7 +118,7 @@ router.post("/", hashPasswordMiddleware, createUser);
  *              email:
  *                type: string
  *              password:
- *                type: string 
+ *                type: string
  *     responses:
  *       '201':
  *         description: Les données utilisateur on été modifié avec succès
@@ -141,9 +157,15 @@ router.post("/", hashPasswordMiddleware, createUser);
  *         description: Erreur lors de la création de l'utilisateur
  *       '500':
  *         description: Erreur interne avec le serveur
- *         
+ *
  */
-router.patch("/:id", updateUser);
+router.patch(
+  "/:id",
+  [emailValidator, passwordValidator, nicknameValidator],
+  validateRequest,
+  passwordValidator,
+  updateUser
+);
 
 router.get("/:id", getUserById);
 
