@@ -4,7 +4,7 @@ export const hashPasswordMiddleware = async (req, res, next) => {
     const { password } = req.body;
     // Vérifie si le mot de passe est renseigné
     if (!password) {
-        return res.status(400).json({ error : 'Password is required'});
+        return res.status(400).json({ error : "Besoin d'un mot de passe"});
     }
 
     try {
@@ -16,7 +16,7 @@ export const hashPasswordMiddleware = async (req, res, next) => {
         const r = 8; // facteur de blocage
         const p = 1; // Parallélisme : sert à ajuster le nombre de processus simultanées à exécuter
         const keylen = 32; // longueur de la clé dérivée en octets
-
+        
         // hachage du mot de passe
         const hashedPassword = await new Promise((resolve, reject) => {
             crypto.scrypt(password, salt, keylen, { N, r, p},(err, derivedKey) => {

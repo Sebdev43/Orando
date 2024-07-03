@@ -1,6 +1,6 @@
 import express from "express";
 import { createUser, updateUser, getUserById } from "../controllers/userController.js";
-import { hashPasswordMiddleware } from "../middlewares/scrypt.js";
+import { hashPasswordMiddleware } from "../middlewares/scryptMiddleware.js";
 
 const router = express.Router();
 
