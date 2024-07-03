@@ -1,6 +1,8 @@
 import express from "express";
-const router = express.Router();
 import { createUser, updateUser, getUserById } from "../controllers/userController.js";
+import { hashPasswordMiddleware } from "../middlewares/scrypt.js";
+
+const router = express.Router();
 
 /**
  * @swagger
@@ -70,7 +72,7 @@ import { createUser, updateUser, getUserById } from "../controllers/userControll
  *         description: Erreur interne avec le serveur
  *         
  */
-router.post("/", createUser);
+router.post("/", hashPasswordMiddleware, createUser);
 
 /**
  * @swagger

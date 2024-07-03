@@ -1,5 +1,4 @@
 import pool from "../config/clientPg.js";
-import bcrypt from 'bcrypt';
 
 /**
  * Création d'un compte utilisateur
@@ -10,11 +9,9 @@ import bcrypt from 'bcrypt';
  * @returns {Object} - Détails de la relation création d'utilisateur
  */
 
-export const createUser = async (nickname, localisation, email, password) => {
-  // Hash du mot de passe avec bcrypt
-  const hashedPassword = await bcrypt.hash(password, 10); // 10 est le nombre de salage
-
-  const query = `INSERT INTO users(nickname, localisation, email, password)
+export const createUser = async (nickname, localisation, email, hashedPassword) => {
+ 
+  const query = `INSERT INTO users (nickname, localisation, email, password)
    VALUES ($1, $2, $3, $4) 
    RETURNING id, nickname, localisation, email, password, created_at, updated_at`;
 

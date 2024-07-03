@@ -33,7 +33,7 @@ Content-Type: application/json
 ### Test pour obtenir l'email d'un utilisateur
 Get http://localhost:4000/users/1
 
-### Test pour crée un utilisateur avec bcrypt (password)
+### Test pour crée un utilisateur avec scrypt (password)
 POST http://localhost:4000/users
 Content-Type: application/json
 
