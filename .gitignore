@@ -21,7 +21,7 @@ package-lock.json
 logs/
 **/.log
 */.log.*
-
+*.log
 #vscode
 .vs_code/
 
@@ -31,3 +31,6 @@ sqitch.conf
 
 #test
 coverage/
+
+# Ignore access log file
+access.log

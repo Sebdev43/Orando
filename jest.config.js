@@ -6,7 +6,10 @@ export default {
     coverageDirectory: 'coverage',
     coverageReporters: ['json', 'lcov', 'text', 'clover'],
     transform: {
-        '^.+\\.js$': 'babel-jest',
+      '^.+\\.js$': 'babel-jest',
+    },
+    moduleNameMapper: {
+      '^(\\.{1,2}/.*)\\.js$': '$1',
     },
   };
   
