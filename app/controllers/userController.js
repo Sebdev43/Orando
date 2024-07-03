@@ -47,3 +47,18 @@ export const getUserById = async (req, res) => {
         res.status(500).json({ error: "Problème lors de la récupération de l'utilisateur"});
     }
 };
+
+export const deleteUser = async (req,res) => {
+    const userId =req.params.id;
+
+    try {
+        const success = await userDataMappers.deleteUser(userId);
+        if (success) {
+            res.status(200).json({ message: "L'utilisateur à été supprimé avec succès"});
+        } else {
+            res.status(400).json({ message: "L'utilisateur n'a pas été supprimé"});
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Erreur lors de la suppression de l'utilisateur"});
+    }
+};

@@ -47,6 +47,17 @@ export const getUserById = async (id) => {
     return result.rows[0];
 };
 
+export const deleteUser = async (id) => {
+  try {
+    const query = `DELETE FROM users WHERE id = $1`;
+    const result = await pool.query(query, [id]);
+    return result.rowCount > 0;
+  } catch (error) {
+    console.error("Erreur lors de la suppresion de l'utilisateur :", error);
+    throw error;
+  }
+};
+
 export const getUserByEmail = async (email) => {
   const query = `SELECT * FROM users WHERE email =$1`;
     const values = [email];
