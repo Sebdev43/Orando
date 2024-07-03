@@ -1,9 +1,9 @@
-import app from '../../server.js';
+import app from '../../server.mjs';
 
 let server;
 
 export const startServer = () => {
-  const port = 4001; 
+  const port = 4001;
   return new Promise((resolve) => {
     server = app.listen(port, () => {
       console.log(`Test server running on http://localhost:${port}`);

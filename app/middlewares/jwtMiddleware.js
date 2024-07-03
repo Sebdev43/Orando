@@ -8,14 +8,12 @@ export const authenticateJWT = (req, res, next) => {
 
         try {
             const user = verifyToken(token);
-            req.user = decoded;
+            req.user = user;
             next();
         } catch (error) {
-            res.status(403).send("Invalid token");
+            res.status(403).json({ error: 'Token invalide' });
         }
     } else {
-        res.status(401).json({ error: 'Token manquant'});
+        res.status(401).json({ error: 'Token manquant' });
     }
 };
-
-

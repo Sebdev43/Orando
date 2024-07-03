@@ -66,7 +66,7 @@ router.post("/", authenticateJWT, addBookmark);
  * Route pour supprimer une randonnée des favoris d'un utilisateur
  * @swagger
  * /bookmarks:
- *    delete:
+ *   delete:
  *     summary: Supprimer une randonnée des favoris d'un utilisateur
  *     tags: [Bookmarks]
  *     security:
@@ -82,20 +82,20 @@ router.post("/", authenticateJWT, addBookmark);
  *                 type: integer
  *               hikeId:
  *                 type: integer
- *    responses:
- *      204:
- *        description: Randonnée supprimée des favoris
- *        content:
- *          application/json:
- *            schema:
- *              type: object
- *              properties:
- *                message:
- *                  type: string
- *      404:
- *        description: Randonnée non trouvée dans les favoris
- *      500:
- *        description: Erreur lors de la suppression de la randonnée des favoris
+ *     responses:
+ *       204:
+ *         description: Randonnée supprimée des favoris
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       404:
+ *         description: Randonnée non trouvée dans les favoris
+ *       500:
+ *         description: Erreur lors de la suppression de la randonnée des favoris
  */
 router.delete("/", authenticateJWT, removeBookmark);
 
@@ -133,7 +133,7 @@ router.delete("/", authenticateJWT, removeBookmark);
  *                     type: string
  *                   description:
  *                     type: string
- *                   picture:
+ *                   pictures:
  *                     type: array
  *                     items:
  *                       type: string
