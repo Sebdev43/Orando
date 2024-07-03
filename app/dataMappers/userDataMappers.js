@@ -51,7 +51,7 @@ export const getUserByEmail = async (email) => {
   const query = `SELECT * FROM users WHERE email =$1`;
     const values = [email];
     const result = await pool.query(query, values);
-    result.rows[0];
+    return result.rows[0];
 };
 
 // à faire le login qui vérifie les identifiants renseigner sur le sujet si c'est bon un booleun true or false et obtiens le jwt . Sécurité qui doit etre au top pour éviter les injections etc dans la BD

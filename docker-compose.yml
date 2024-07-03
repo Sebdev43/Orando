@@ -13,6 +13,7 @@ services:
       - PGPASSWORD=postgres
       - PGDATABASE=orando
       - JWT_SECRET=un randonneur aimant la randonnée part sur les sentiers en quête de nature et de belle rencontre
+      - JWT_REFRESH_SECRET=un refresh token cest quand même drolemement pratique pour renouveler un jwt
     volumes:
       - .:/usr/src/app
     command: npm start

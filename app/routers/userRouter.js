@@ -10,6 +10,7 @@ import {
   nicknameValidator,
   passwordValidator,
 } from "../validators/userValidators.js";
+
 import { validateRequest } from "../middlewares/validateReqMiddleware.js";
 
 const router = express.Router();
