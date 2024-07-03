@@ -14,16 +14,15 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
-    'abbatiale_de_guitres',
+    'abbatiale-de-guitres',
     'Abbatiale de Guîtres, promenade en Pays Gabay',
     'Point de départ du parcours, l''Abbatiale de Guîtres (XIe et XVe siècles) est un monument imposant situé sur les chemins de Saint Jacques de Compostelle. Nous poursuivrons notre promenade à travers la douceur du Pays Gabay (prononcer gabaye) à la rencontre de trois rivières, l''Isle, la Dronne et le Lary.',
-    ARRAY['src/assets/img/Abbatiale1.jpg','src/assets/img/Abbatiale2.jpg','src/assets/img/Abbatiale3.jpg'],
+    ARRAY['public/img/Abbatiale1.jpg','public/img/Abbatiale2.jpg','public/img/Abbatiale3.jpg'],
     'Facile',
     235,
     12.95,
     'Gironde',
-    'Description de la randonnée
-Se garer sur le parking de l''abbatiale.
+    'Se garer sur le parking de l''abbatiale.
 
 (D) Prendre le petit escalier qui descend sur le port (côté route). Prendre en face la rue du Lary jusqu''au chemin des graves.
 
@@ -81,16 +80,15 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
-        'autour_de_la_cite_de_sainte-suzanne',
+        'autour-de-la-cite-de-sainte-suzanne',
         'Autour de la Cité de Sainte-Suzanne',
         'Venez découvrir les charmants petits sentiers situés au nord de Sainte-Suzanne. Le long de votre balade, vous pourrez visiter le camp des anglais (ou camp de Beugy), et aurez un beau point de vue sur le bocage Mayennais.',
-        ARRAY['src/assets/img/Lacite1.jpg','src/assets/img/Lacite2.jpg','src/assets/img/Lacite3.jpg'],
+        ARRAY['public/img/Lacite1.jpg','public/img/Lacite2.jpg','public/img/Lacite3.jpg'],
         'Facile',
         130,
         6.86,
-        'Mayenne',
-        'Description de la randonnée
-Se garer sur le parking de l''abbatiale.
+        'Moyenne',
+        'Se garer sur le parking de l''abbatiale.
 
 (D) Prendre le petit escalier qui descend sur le port (coté route). Prendre en face la rue du Lary jusqu''au chemin des graves.
 
@@ -148,16 +146,15 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
-        'boucle_antique_de_paussac_saint-juste',
+        'boucle-antique-de-paussac-saint-juste',
         'Boucle antique de Paussac Saint-Juste',
         'Quelques points intéressants dans le village : vous passerez devant la Tour Pigeonnier, la Pierre à Sacrifice ou Peyre d’Ermale ou Dermale. Plus loin, site d’escalade et village troglodytique des XIIe-XIIIe siècles. Ne pas rater le dolmen de Peyrelevade, époque néolithique, inscrit au titre des Monuments Historiques depuis 1960, et les sculptures visibles du portail d''une carrière.',
-        ARRAY['src/assets/img/Paussac1.jpg','src/assets/img/Paussac2.jpg','src/assets/img/Paussac3.jpg'],
+        ARRAY['public/img/Paussac1.jpg','public/img/Paussac2.jpg','public/img/Paussac3.jpg'],
         'Facile',
         195,
         10.29,
         'Dordogne',
-        'Description de la randonnée
-Se garer sur le parking de l''abbatiale.
+        'Se garer sur le parking de l''abbatiale.
 
 (D) Prendre le petit escalier qui descend sur le port (coté route). Prendre en face la rue du Lary jusqu''au chemin des graves.
 
@@ -215,16 +212,15 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
-        'boucle_des_sept_fontaines_a_montmin',
+        'boucle-des-sept-fontaines-a-montmin',
         'Boucle des Sept Fontaines à Montmin',
         'Cette boucle parcourt le vallon suspendu de Montmin et vous fera découvrir le monument des Sept Fontaines (1642) un édifice chrétien bien particulier par sa conception.',
-       ARRAY['src/assets/img/Fontaines1.jpg','src/assets/img/Fontaines2.jpg','src/assets/img/Fontaines3.jpg'],
-        ' Facile',
+       ARRAY['public/img/Fontaines1.jpg','public/img/Fontaines2.jpg','public/img/Fontaines3.jpg'],
+        'Facile',
         165,
         7.09,
         'Haute-Savoie',
-        'Description de la randonnée
-Pour aller à Montmin depuis Annecy, il vous faudra franchir le Col de la Forclaz (point de vue sur le Lac d''Annecy). Sur la route du col, un autre point vue remarquable sur la Baie de Talloires au hameau de Saint-Germain.
+        'Pour aller à Montmin depuis Annecy, il vous faudra franchir le Col de la Forclaz (point de vue sur le Lac d''Annecy). Sur la route du col, un autre point vue remarquable sur la Baie de Talloires au hameau de Saint-Germain.
 
 Départ au parking de l’église de Montmin.
 
@@ -267,16 +263,15 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
-        'circuit_autour_de_l_etang_de_bellebouche',
+        'circuit-autour-de-l-etang-de-bellebouche',
         'Circuit autour de l''Étang de Bellebouche',
         'L''Étang de Bellebouche est l''un des plus anciens, l''un des plus grands et l''un des plus beaux plans d''eaux du Parc Naturel Régional de La Brenne. Une petite partie est réservée à des loisirs nautiques mais laisse une grande place à un site naturel que vous pourrez admirer tranquillement à l''aide de jumelles dans trois observatoires aux abords de l''étang.',
-        ARRAY['src/assets/img/Bellebouche1.jpg','src/assets/img/Bellebouche2.jpg','src/assets/img/Bellebouche3.jpg'],
-        ' Facile',
+        ARRAY['public/img/Bellebouche1.jpg','public/img/Bellebouche2.jpg','public/img/Bellebouche3.jpg'],
+        'Facile',
         165,
         9.75,
-        'Indre ',
-        'Description de la randonnée
-Le départ est au bout du parking de la base nautique situé entre un camping et un village de vacances nature, à gauche de l''entrée.
+        'Indre',
+        'Le départ est au bout du parking de la base nautique situé entre un camping et un village de vacances nature, à gauche de l''entrée.
 
 (D/A) Prendre le chemin en terre blanc le plus au Sud et suivre le balisage Rouge et Jaune du GR® de Pays de la Brenne ou le balisage Bleu. Continuer sur ce chemin, entre pairies à gauche et l''étang à droite, pendant environ 1km jusqu''au parcours de santé.
 
@@ -338,16 +333,15 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
-        'de_besse-et-saint-anastaise_au_lac_pavin',
+        'de-besse-et-saint-anastaise-au-lac-pavin',
         'De Besse-et-Saint-Anastaise au Lac Pavin',
         'Au départ de l’hôtel Le Clos à Besse-et-Saint-Anastaise, cette boucle permet de faire le tour du Lac Pavin en utilisant le sentier de découverte et le GR®30.',
-        ARRAY['src/assets/img/Besse1.jpg','src/assets/img/Besse2.jpg','src/assets/img/Besse3.jpg'],
+        ARRAY['public/img/Besse1.jpg','public/img/Besse2.jpg','public/img/Besse3.jpg'],
         'Moyenne',
         250,
         11.87,
-        'Puy-de-Dôme ',
-        'Description de la randonnée
-(D/A) A la sortie de l’hôtel, aller à droite puis tout de suite à gauche pour traverser la rivière.
+        'Puy-de-Dôme',
+        '(D/A) A la sortie de l’hôtel, aller à droite puis tout de suite à gauche pour traverser la rivière.
 
 (1) Tout de suite après, prendre à droite le Sentier découverte. Suivre ce sentier qui va longer le ruisseau. Passage en sous bois et découverte de la source Goyon (fontaine minérale, eau très ferrugineuse). Au détour du Chemin de découverte, on peut voir quelques cascades et le ruisseau courir entre les rochers, très joli parcours.
 
@@ -407,16 +401,15 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
-        'de_la_baie_d_yves_au_fort_de_fouras_par_le_sentier_cotier',
+        'de-la-baie-d-yves-au-fort-de-fouras-par-le-sentier-cotier',
         'De la Baie d''Yves au Fort de Fouras par le sentier côtier',
         'L''essentiel du parcours s’effectue le long du sentier côtier entre la réserve naturelle de la Baie d''Yves et la commune de Fouras. Vous croiserez de nombreux pontons de pêche au carrelet sur votre route et pourrez visiter le Fort Vauban à l''estuaire de la Charente. Vous aurez sous les yeux un paysage totalement différent selon la marée.',
-        ARRAY['src/assets/img/Baie1.jpg','src/assets/img/Baie2.jpg','src/assets/img/Baie3.jpg'],
+        ARRAY['public/img/Baie1.jpg','public/img/Baie2.jpg','public/img/Baie3.jpg'],
         'Moyenne',
         335,
         19.36,
         'Charente-Maritime',
-        'Description de la randonnée
-Départ du parking de la Baie d''Yves sur la RD137 dans le sens La Rochelle-Rochefort. Une fois sur l''aire de repos, se garer une centaine de mètres plus loin sur un parking en terre situé sur la droite.
+        'Départ du parking de la Baie d''Yves sur la RD137 dans le sens La Rochelle-Rochefort. Une fois sur l''aire de repos, se garer une centaine de mètres plus loin sur un parking en terre situé sur la droite.
 
 (D/A) Pour rejoindre le parcours, aller au fond de ce parking en terre et emprunter le chemin de gauche pour rejoindre l''océan.
 
@@ -474,13 +467,12 @@ VALUES (
         'Ferme de Blin - Vallée de la Druyes',
         'Depuis l''ancien château médiéval, partir à la découverte d''un village construit en partie entre un ancien marais en partie asséché et la falaise. La vallée de la Druyes vous accueille dans un écrin de verdure qui tranche avec les pierres calcaires qui soutiennent l''édifice en ruine.
 Druyes-les-Belles-Fontaines est classé dans les villages "Cités de caractères de Bourgogne - Franche-Comté".',
-        ARRAY['src/assets/img/Blin1.jpg','src/assets/img/Blin2.jpg','src/assets/img/Blin3.jpg'],
+        ARRAY['public/img/Blin1.jpg','public/img/Blin2.jpg','public/img/Blin3.jpg'],
         'Moyenne',
         200,
        10.46,
         'Yonne',
-        'Description de la randonnée
-Le départ se fait depuis le parking du château (la Ville).
+        'Le départ se fait depuis le parking du château (la Ville).
 
 (D/A) S''engager dans la rue qui mène au château en passant sous la porte de la Ville. Passer à droite du château, descendre le chemin qui aboutit sur une petite voie. Continuer à descendre pour arriver sur la Place Jean Bertin. Virer à gauche, puis à droite pour passer sur le pont qui franchit la Druyes. Longer la rue jusqu''à l''église.
 
@@ -561,11 +553,11 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
-        'l_askar_puis_l_argandoita_en_passant_par_le_chene_millenaire',
+        'l-askar-puis-l-argandoita-en-passant-par-le-chene-millenaire',
         'L''Askar puis l''Argandoita en passant par le chêne millénaire',
         'Une belle randonnée qui nous permet de découvrir le magnifique village d''Urdax puis de nous élever à deux reprises pour admirer les sommets alentours d''où on aperçoit même l''océan.
 Enfin la rencontre du chêne millénaire ne peut pas laisser insensible.',
-        ARRAY['src/assets/img/laskar1.jpg','src/assets/img/laskar2.jpg','src/assets/img/laskar3.jpg'],
+        ARRAY['public/img/laskar1.jpg','public/img/laskar2.jpg','public/img/laskar3.jpg'],
         'Moyenne',
         210,
         8.64,
@@ -651,10 +643,10 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
-        'la_crete_des_alpilles',
+        'la-crete-des-alpilles',
         'La crête des Alpilles',
         'Belle balade entre la crête sauvage et escarpée des Alpilles et la plaine de Romanin.',
-        ARRAY['src/assets/img/laCrete1.jpg','src/assets/img/laCrete2.jpg','src/assets/img/laCrete3.jpg'],
+        ARRAY['public/img/laCrete1.jpg','public/img/laCrete2.jpg','public/img/laCrete3.jpg'],
         'Moyenne',
         355,
         15.48,
@@ -733,10 +725,10 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
-        'la_dent_du_chat_et_le_molard_noir',
+        'la-dent-du-chat-et-le-molard-noir',
         'La Dent du Chat et le Molard Noir',
         'Variante de la "Dent du Chat" avec un circuit qui passe par le Molard Noir et un départ au dessus de Caton, au lieu du traditionnel "Col du Chat".',
-        ARRAY['src/assets/img/laDent1jpg','src/assets/img/laDent2.jpg','src/assets/img/laDent3.jpg'],
+        ARRAY['public/img/laDent1jpg','public/img/laDent2.jpg','public/img/laDent3.jpg'],
         'Difficile',
         390,
         13.04,
@@ -799,10 +791,10 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
-        'le_hameau_des_monts_et_les_gorges_du_gorgonnet',
+        'le-hameau-des-monts-et-les-gorges-du-gorgonnet',
         'Le hameau des Monts et les Gorges du Gorgonnet',
         'Vous commencez par longer l''Isère au milieu des noyers. Puis vous vous élevez sur les contreforts du Vercors, pour, ensuite, revenir par la passerelle de la Gaffe et les gorges sauvages très encaissées du Gorgonnet.',
-        ARRAY['src/assets/img/leHameau1.jpg','src/assets/img/leHameau2.jpg','src/assets/img/leHameau3.jpg'],
+        ARRAY['public/img/leHameau1.jpg','public/img/leHameau2.jpg','public/img/leHameau3.jpg'],
         'Moyenne',
         315,
         13.50,
@@ -903,10 +895,10 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
-        'le_sentier_du_granite_a_la_roche_d_oetre', 
+        'le-sentier-du-granite-a-la-roche-d-oetre', 
         'Le sentier du granite à la Roche d''Oëtre',
         'S''il y avait un paradis de la randonnée, l''Espace Naturel Sensible de la Roche d''Oëtre et les gorges de la Rouvre seraient certainement bien positionnés ! Site classé et Espace Naturel Sensible du département de l''Orne, la Roche d''Oëtre, située au cœur des Montagnes de Normandie, est un site incontournable et un lieu de rendez-vous pour les amoureux et amateurs de nature sauvage et de randonnée.',
-        ARRAY['src/assets/img/leSentier1.jpg','src/assets/img/leSentier2.jpg','src/assets/img/leSentier3.jpg'],
+        ARRAY['public/img/leSentier1.jpg','public/img/leSentier2.jpg','public/img/leSentier3.jpg'],
         'Moyenne',
         185,
         8.83,
@@ -973,12 +965,12 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
-        'le_val_de_loire_et_les_trois_viaducs',
+        'le-val-de-loire-et-les-trois-viaducs',
         'Le Val de Loire et les trois viaducs',
         'Petite randonnée le long de la Loire et dans le val puis à flanc de colline, dans les vignes du Sancerrois sur la trace de l''ancienne voie ferrée reliant Cosne-sur-Loire à Bourges.
 Beaux points de vue sur le fleuve, les communes de Saint-Satur et Ménétréol, la ville de Sancerre, les vignes et le canal latéral.
 À faire plutôt au printemps ou à l''automne.',
-        ARRAY['src/assets/img/leVal1.jpg','src/assets/img/leVal2.jpg','src/assets/img/leVal3.jpg'],
+        ARRAY['public/img/leVal1.jpg','public/img/leVal2.jpg','public/img/leVal3.jpg'],
         'Moyenne',
         235,
         13.02,
@@ -1048,14 +1040,12 @@ VALUES (
         'les-caisses-et-les-cretes-au-dessus-de-mouries',
         'Les Caisses et les crêtes au-dessus de Mouriès',
         'Jolie randonnée dans cette partie des Alpilles qui permet de découvrir les falaises blanches des "Caisses de Jean Jean", les "Caisses de Servanne", les crêtes du Castellas et ses points de vue, et aussi de longer le Golf de Servanne à Mouriès. Randonnée sans difficulté mais quelques passages sur petites routes goudronnées.',
-        ARRAY['src/assets/img/lesCaisses1.jpg','src/assets/img/lesCaisses2.jpg','src/assets/img/lesCaisses3.jpg'],
+        ARRAY['public/img/lesCaisses1.jpg','public/img/lesCaisses2.jpg','public/img/lesCaisses3.jpg'],
         'Moyenne',
         230,
         11.80,
         'Bouche-du-Rhône',
-        '
-
-Départ du parking du Castellas (parking du Pin de la Fée) sur la D24 route de Eygalières, 2 km environ au Nord de Mouriès.
+        'Départ du parking du Castellas (parking du Pin de la Fée) sur la D24 route de Eygalières, 2 km environ au Nord de Mouriès.
 
 (D/A) Du parking, prendre à gauche la route d''Eygalières (D24) et longer cette route goudronnée sur 500 m.
 
@@ -1128,14 +1118,12 @@ VALUES (
 Paysages de campagne et forêts se partagent dans les multiples facettes du décor de falaises calcaires.
 De fortes montées et descentes feront la joie des sportifs.
 La fin du parcours se déroulera, tranquillement, le long de l''Aveyron avant un dernier, court, rampaillou au pied du village.',
-        ARRAY['src/assets/img/lesSuquets1.jpg','src/assets/img/lesSuquets2.jpg','src/assets/img/lesSuquets3.jpg'],
+        ARRAY['public/img/lesSuquets1.jpg','public/img/lesSuquets2.jpg','public/img/lesSuquets3.jpg'],
         'Moyenne',
         205,
         9.22,
         'Tarn',
-        '
-
-Se garer sur le Parking de la Salle des Fêtes.
+        'Se garer sur le Parking de la Salle des Fêtes.
 
 Le circuit sera balisé en Jaune. Par tronçons intermittents, le PR® se superposera avec le GRP® Cordes-Penne-Coustous, balisé Rouge Jaune et avec le GR®46, balisé Rouge Blanc.
 
@@ -1213,17 +1201,15 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
-        'saute-ruisseaux_pres_de_loire-sur-rhone',       
+        'saute-ruisseaux-pres-de-loire-sur-rhone',       
         'Saute-ruisseaux près de Loire-sur-Rhône',
         'Marche ombragée en bordures de ruisseaux dans un ravin rhodanien. Un espace de nature d''un calme surprenant vu sa proximité des centres urbains.',
-        ARRAY['src/assets/img/saute1.jpg','src/assets/img/saute2.jpg','src/assets/img/saute3.jpg'],
+        ARRAY['public/img/saute1.jpg','public/img/saute2.jpg','public/img/saute3.jpg'],
         'Moyenne',
         245,
         11.19,
         'Rhône',
-        '
-
-Stationner sur le parking de la piscine de Loire-sur-Rhône.
+        'Stationner sur le parking de la piscine de Loire-sur-Rhône.
 Trois sentiers communaux sont fléchés. La randonnée suit le sentier n°2.
 
 (D/A) Prendre la Montée des Pérouzes et rejoindre le quartier du Savot.
@@ -1315,10 +1301,10 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
-        'tour_de_l_aiguille',
+        'tour-de-l-aiguille',
         'Tour de l''Aiguille',
         'Cette randonnée aux portes de l''Estérel vers les Pointes de l''Esquillon et de l''Aiguille propose un programme varié : début dans les mimosas, passage par le mémorial Notre-Dame-d''Afrique puis à proximité du Palais Bulles (de Pierre Cardin). Point de vue sur le littoral au-dessus de la Pointe de l''Esquillon, remontée au milieu des eucalyptus avant de redescendre face au Golfe de la Napoule à la Pointe de l''Aiguille et de revenir à Théoule par la plage du même nom.',
-        ARRAY['src/assets/img/tour1.jpg','src/assets/img/tour2.jpg','src/assets/img/tour3.jpg'],
+        ARRAY['public/img/tour1.jpg','public/img/tour2.jpg','public/img/tour3.jpg'],
         'Moyenne',
         205,
         8.82,
@@ -1411,17 +1397,15 @@ INSERT INTO
         gps_coordinate
     )
 VALUES (
-        'ville-au-val_landemont_depuis_autreville-sur-moselle',
+        'ville-au-val-landemont-depuis-autreville-sur-moselle',
         'Ville-au-Val, Landemont depuis Autreville-sur-Moselle',
         'Randonnée au départ d''Autreville-sur-Moselle offrant de beaux points de vue sur la vallée de la Moselle, la vallée de la Natagne et la campagne environnante.',
-        ARRAY['src/assets/img/ville1.jpg','src/assets/img/ville2.jpg','src/assets/img/ville3.jpg'],
+        ARRAY['public/img/ville1.jpg','public/img/ville2.jpg','public/img/ville3.jpg'],
         'Moyenne',
         280,
         11.86,
         'Meurthe-et-Moselle',
-        '
-
-Au départ d''Autreville-sur-Moselle, on peut partir d''un parking en haut du village vers la salle polyvalente (c''est le choix représenté sur le tracé) ou, si quelques dizaines de mètres de dénivelé supplémentaires ne vous font pas peur, du parking en bord de Moselle.
+        'Au départ d''Autreville-sur-Moselle, on peut partir d''un parking en haut du village vers la salle polyvalente (c''est le choix représenté sur le tracé) ou, si quelques dizaines de mètres de dénivelé supplémentaires ne vous font pas peur, du parking en bord de Moselle.
 
 (D/A) Monter la Rue du Plante puis la Rue du Sorbier dans le prolongement en direction de la forêt.
 

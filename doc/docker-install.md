@@ -65,7 +65,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 ```
 
-## Quelleques commandes qui vont bien
+## Quelques commandes qui vont bien
 
 Docker
 
