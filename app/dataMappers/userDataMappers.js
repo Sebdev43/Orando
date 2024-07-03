@@ -40,12 +40,22 @@ export const updateUser = async (id, nickname, localisation, email, password) =>
     return result.rows[0];
 };
 
+/**
+ * Obtenir un compte utilisateur
+ * @param {id} id - ID de l'utilisateur
+ */
+
 export const getUserById = async (id) => {
   const query = `SELECT * FROM users WHERE id =$1`;
     const values = [id];
     const result = await pool.query(query, values);
     return result.rows[0];
 };
+
+/**
+ * Obtenir un compte utilisateur
+ * @param {id} id - ID de l'utilisateur
+ */
 
 export const deleteUser = async (id) => {
   try {
@@ -57,6 +67,11 @@ export const deleteUser = async (id) => {
     throw error;
   }
 };
+
+/**
+ * Obtenir un compte utilisateur
+ * @param {TEXT} email - Email de l'utilisateur
+ */
 
 export const getUserByEmail = async (email) => {
   const query = `SELECT * FROM users WHERE email =$1`;
