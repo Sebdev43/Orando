@@ -12,7 +12,7 @@ CREATE TABLE "users" (
     "nickname" TEXT NOT NULL UNIQUE,
     "localisation" TEXT,
     "email" email UNIQUE NOT NULL,
-    "password" TEXT NOT NULL,
+    "password" TEXT NOT NULL UNIQUE,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );

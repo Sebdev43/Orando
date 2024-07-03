@@ -52,4 +52,31 @@ Content-Type: application/json
 
 {
   "id": 1
+  "password": "lapinouProject2@"
+}
+
+### Login and get JWT token
+POST http://localhost:4000/auth/jwt
+Content-Type: application/json
+
+{
+  "email": "Seblovers2@hotmail.fr",
+  "password": "lapinouProject2@"
+}
+### Use the obtained JWT to add a bookmark
+POST http://localhost:4000/bookmarks
+Content-Type: application/json
+Authorization: Bearer your_jwt_token_here
+
+{
+  "userId": 4,
+  "hikeId": 1
+}
+
+### Refresh the JWT token
+POST http://localhost:4000/auth/refresh-token
+Content-Type: application/json
+
+{
+  "refreshToken": "your_refresh_token_here"
 }

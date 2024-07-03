@@ -16,7 +16,7 @@ export function initializeRoutes(app){
     app.use('/users', usersRouter);
     app.use('/hikes', hikesRouter);
     app.use('/bookmarks', bookmarksRouter);
-    //app.use('/auth', authRouter);
+    app.use('/auth', authRouter);
 }
 
 
