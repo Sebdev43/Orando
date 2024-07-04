@@ -6,6 +6,7 @@
 
 ```bash
     sudo apt update
+    # Ne pas faire cette ligne si vous êtes sur le vm O'clock 
     sudo apt upgrade
 ```
 
@@ -119,4 +120,10 @@ sudo docker-compose up --build
 
 ```bash
 sudo docker-compose down
+```
+
+4. Nettoyer la ram :
+
+```bash
+sudo docker-compose down -v
 ```

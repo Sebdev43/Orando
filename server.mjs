@@ -4,8 +4,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import morgan from 'morgan';
 import xss from 'xss-clean';
-import csrf from 'csurf';
-import cookieParser from 'cookie-parser';
+import cors from 'cors';
 import { createWriteStream } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -33,8 +32,7 @@ const accessLogStream = createWriteStream(join(__dirname, 'access.log'), { flags
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Middleware pour parser les cookies
-app.use(cookieParser());
+
 
 // Middleware de sécurité
 
@@ -44,10 +42,12 @@ app.use(limiter);
 app.use(morgan('combined', { stream: accessLogStream }));
 app.use(xss());
 
-// Middleware CSRF
-//const csrfProtection = csrf({ cookie: true });
 
-//app.use(csrfProtection);
+app.use(cors({
+  origin: '*',
+  methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
+  credentials: true, // Permet à l'appelant d'accéder à l'API avec un cookie de session
+}))
 
 // Initialiser Swagger
 initializeSwagger(app);
