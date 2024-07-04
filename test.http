@@ -10,12 +10,6 @@ Accept: application/json
 GET http://localhost:4000/hikes/random
 Accept: application/json
 
-### requete get pour récuperer les randonnée d'un utilisateurs mise en favoris
-
-GET http://localhost:4000/bookmarks/1
-Accept: application/json
-
-
 
 ### Test de la requete update users
 
@@ -31,7 +25,7 @@ Content-Type: application/json
 }
 
 ### Test pour obtenir l'email d'un utilisateur
-Get http://localhost:4000/users/8
+Get http://localhost:4000/users/4
 
 
 ### Test pour crée un utilisateur avec scrypt (password)

@@ -4,7 +4,7 @@ import { hashPasswordMiddleware } from "../middlewares/scryptMiddleware.js";
 import { emailValidator, nicknameValidator, passwordValidator} from "../validators/userValidators.js";
 
 import { validateRequest } from "../middlewares/validateReqMiddleware.js";
-
+import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
 const router = express.Router();
 
 /**
