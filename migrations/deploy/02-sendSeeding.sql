@@ -730,7 +730,7 @@ VALUES (
         'la-dent-du-chat-et-le-molard-noir',
         'La Dent du Chat et le Molard Noir',
         'Variante de la "Dent du Chat" avec un circuit qui passe par le Molard Noir et un départ au dessus de Caton, au lieu du traditionnel "Col du Chat".',
-        ARRAY['public/img/laDent1jpg','public/img/laDent2.jpg','public/img/laDent3.jpg'],
+        ARRAY['public/img/laDent1.jpg','public/img/laDent2.jpg','public/img/laDent3.jpg'],
         'Difficile',
         390,
         13.04,
