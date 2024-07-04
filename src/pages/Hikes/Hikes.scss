@@ -1,0 +1,18 @@
+.hikes {
+  display: flex;
+
+  &__filters {
+    width: 400px;
+    display: flex;
+    // flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    padding: 1.5rem 0;
+  }
+}

@@ -4,6 +4,8 @@ import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import { useNavigate } from 'react-router-dom';
 
+import './Nav.scss';
+
 export default function NavTel() {
   const navigate = useNavigate();
 

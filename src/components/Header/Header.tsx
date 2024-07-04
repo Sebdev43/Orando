@@ -8,7 +8,7 @@ import IconBreadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import NavTel from '../Nav/NavTel';
 
 function Header() {
-  const isMobile = useMediaQuery('(max-width:600px)');
+  const isMobile = useMediaQuery('(max-width:840px)');
 
   return (
     <div className="header">

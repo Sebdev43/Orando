@@ -1,5 +1,5 @@
 function formatBreadcrumbs(string) {
-  // Step 1: Remove hyphens between words and replace with a space
+  // Remove hyphens between words and replace with a space
   const noHyphens =
     string.charAt(0).toUpperCase() + string.slice(1).replace(/-/g, ' ');
 

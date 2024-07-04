@@ -3,6 +3,7 @@ import { Hike } from '../../@types/hike';
 
 import './Hikes.scss';
 import CardComponent from '../../components/CardComponent/CardComponent';
+import HikesFilters from '../../components/HikesFilters/HikesFilters';
 
 function Hikes() {
   const hikes = useSelector((state: any) => state.hikesList.list);
@@ -14,10 +15,15 @@ function Hikes() {
   };
 
   return (
-    <div className="hikes">
+    <>
       <h1>Hello World from Hikes !</h1>
-      <ul>{hikesRender(hikes)}</ul>
-    </div>
+      <div className="hikes">
+        <section className="hikes__filters">
+          <HikesFilters />
+        </section>
+        <section className="hikes__list">{hikesRender(hikes)}</section>
+      </div>
+    </>
   );
 }
 

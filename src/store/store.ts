@@ -2,9 +2,11 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { hikesListReducer } from './reducers/hikesListReducer';
 import { breadcrumbsReducer } from './reducers/breadcrumbsReducer';
+import { menuReducer } from './reducers/menuReducer';
 
 const store = configureStore({
   reducer: {
+    menu: menuReducer,
     breadcrumbs: breadcrumbsReducer,
     hikesList: hikesListReducer,
   },
