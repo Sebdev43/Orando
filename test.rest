@@ -1,0 +1,7 @@
+### Test GET request
+GET http://localhost:4000/hikes/random
+Accept: application/json
+
+### Test GET request with query parameters
+GET http://localhost:4000/hikes/random
+Accept: application/json
