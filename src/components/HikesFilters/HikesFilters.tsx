@@ -54,7 +54,7 @@ export default function HikesFilters() {
   };
 
   // 1er select : récupérer toutes les localisations
-  const hikes = useSelector((state: any) => state.hikesList.list);
+  const hikes = useSelector((state: any) => state.hikes.list);
 
   // 2e select : récupérer toutes les difficultés
   // 3e select : récupérer tous les temps de marche

@@ -8,7 +8,7 @@ import Skeleton from '@mui/joy/Skeleton/Skeleton';
 import Box from '@mui/joy/Box/Box';
 
 function Home() {
-  const hikes = useSelector((state: any) => state.hikesList.list);
+  const hikes = useSelector((state: any) => state.hikes.randomList);
 
   // TODO : faire le chargement dans le store
   const loading = true;

@@ -6,7 +6,7 @@ import CardComponent from '../../components/CardComponent/CardComponent';
 import HikesFilters from '../../components/HikesFilters/HikesFilters';
 
 function Hikes() {
-  const hikes = useSelector((state: any) => state.hikesList.list);
+  const hikes = useSelector((state: any) => state.hikes.list);
 
   const hikesRender = (hikes: Hike[]) => {
     return hikes.map((hike: Hike) => {

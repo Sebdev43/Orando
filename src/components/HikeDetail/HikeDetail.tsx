@@ -12,7 +12,7 @@ function HikeDetail(hike: Hike) {
   // A fonction to show the pictures of the hike
   //TODO : Problème à régler ici : les images ne sont pas chargeées !
   function renderPictures() {
-    return hike.pictures.map((picture: string, index) => {
+    return hike.pictures.map((picture: string, index: number) => {
       index++;
       return (
         <figure key={index} className={`hike__picture-${index}`}>

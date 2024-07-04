@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../hooks/redux';
-import { loadHikes } from '../store/reducers/hikesListReducer';
+import { loadrandomHikes, loadHikes } from '../store/reducers/hikesListReducer';
 
 import ScrollToTop from '../utils/ScrollToTop';
 import Header from '../components/Header/Header';
@@ -13,6 +13,7 @@ function Root() {
 
   // on récupère les recette dès que le composant Root est monté
   useEffect(() => {
+    dispatch(loadrandomHikes());
     dispatch(loadHikes());
   }, []);
 

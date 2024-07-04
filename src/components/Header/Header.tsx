@@ -1,6 +1,7 @@
 import Nav from '../Nav/Nav';
 import { NavLink } from 'react-router-dom';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useSelector } from 'react-redux';
 import './Header.scss';
 
 // Components
@@ -8,7 +9,11 @@ import IconBreadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import NavTel from '../Nav/NavTel';
 
 function Header() {
-  const isMobile = useMediaQuery('(max-width:840px)');
+  const widthMediaScreen = useSelector(
+    (state: any) => state.websiteSettings.widthMediaScreen
+  );
+
+  const isMobile = useMediaQuery(`(max-width:${widthMediaScreen}px)`);
 
   return (
     <div className="header">

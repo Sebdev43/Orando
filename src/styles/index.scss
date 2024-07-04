@@ -24,9 +24,22 @@ body {
   background-color: rgb(255, 255, 255);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 840px) {
+  body {
+    background-image: none;
+  }
   #root {
     width: 100%;
-    // margin: auto;
+  }
+  .header {
+    display: flex;
+  }
+  .header__top-logo {
+    display: flex;
+    margin-left: 0px;
+    padding-top: 1.5rem;
+  }
+  .breadcrumbs {
+    display: none;
   }
 }

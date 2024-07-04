@@ -10,7 +10,7 @@ import HikeDetail from '../../components/HikeDetail/HikeDetail';
 function OneHike() {
   const { slug } = useParams();
 
-  const hikes = useAppSelector((state: any) => state.hikesList.list);
+  const hikes = useAppSelector((state: any) => state.hikes.list);
   const hike = hikes.find((hike: Hike) => hike.slug === slug);
 
   return (
