@@ -15,6 +15,7 @@ import { initializeRoutes, initializeSwagger } from './app/index.app.js';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
+
 const port = process.env.PORT || 3000;
 
 const limiter = rateLimit({
@@ -28,6 +29,7 @@ const limiter = rateLimit({
 const accessLogStream = createWriteStream(join(__dirname, 'access.log'), { flags: 'a' });
 
 // Middleware pour parser le JSON
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -35,14 +37,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Middleware de sécurité
+
 app.use(helmet());
+
 app.use(limiter);
 app.use(morgan('combined', { stream: accessLogStream }));
 app.use(xss());
 
 // Middleware CSRF
-const csrfProtection = csrf({ cookie: true });
-app.use(csrfProtection);
+//const csrfProtection = csrf({ cookie: true });
+
+//app.use(csrfProtection);
 
 // Initialiser Swagger
 initializeSwagger(app);
