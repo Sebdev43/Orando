@@ -32,7 +32,6 @@ export const loadrandomHikes = createAsyncThunk(
   async () => {
     try {
       const { data } = await axios.get(`http://localhost:4000/hikes/random`);
-      console.log(data);
       return data;
     } catch {
       throw new Error('Pas de randonnées "random" trouvées');

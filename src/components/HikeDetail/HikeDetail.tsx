@@ -31,12 +31,19 @@ function HikeDetail(hike: Hike) {
     });
   }
 
-  function fonctionAddFavorite() {
-    console.log('Ajouté aux favoris !');
-  }
-
   return (
     <>
+      {/* Prévoir un logo pour représenter les favoris et le positionner */}
+      {/* prévoir de sortir cette logique dans un composant "mettre en favoris" */}
+      {/* pour pouvoir coller le composant ou on souhaite */}
+      <Button
+        aria-label="Ajouter aux favoris"
+        size="small"
+        variant="contained"
+        color="warning"
+      >
+        Ajouter aux favoris
+      </Button>
       <header className="hike__header">
         <h1>{hike.title}</h1>
         <h2>Description :</h2>
@@ -61,20 +68,7 @@ function HikeDetail(hike: Hike) {
         <Map />
       </section>
 
-      <footer className="hike__footer">
-        {/* Prévoir un logo pour représenter les favoris et le positionner */}
-        {/* prévoir de sortir cette logique dans un composant "mettre en favoris" */}
-        {/* pour pouvoir coller le composant sur OneHike sous le composant HikeDetail */}
-        <Button
-          aria-label="Ajouter aux favoris"
-          size="small"
-          variant="contained"
-          color="warning"
-          onClick={() => fonctionAddFavorite()}
-        >
-          Ajouter aux favoris
-        </Button>
-      </footer>
+      <footer className="hike__footer"></footer>
     </>
   );
 }
