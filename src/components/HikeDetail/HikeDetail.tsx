@@ -8,34 +8,36 @@ import Map from '../Map/Map';
 import { Button } from '@mui/material';
 
 function HikeDetail(hike: Hike) {
-  //
-  // A fonction to show the pictures of the hike
-  //TODO : Problème à régler ici : les images ne sont pas chargeées !
   function renderPictures() {
-    return hike.pictures.map((picture: string, index: number) => {
-      index++;
-      return (
-        <figure key={index} className={`hike__picture-${index}`}>
-          <img src={picture} alt={`Une photo de ${hike.title}`} />
-          <figcaption hidden={true}>{hike.description}</figcaption>
-          <meta property="og:title" content={hike.title} />
-          <meta property="og:type" content="photo" />
-          <meta
-            property="og:description"
-            content={hike.description}
-            hidden={true}
-          />
-          <meta property="og:site_name" content="O'Rando" />
-        </figure>
-      );
-    });
+    /* On ajoute le "?" sur "hike.pictures?" pour prévoir le cas ou les photos ne peuvent pas être
+     chargées immediatement. Ainsi l'action sera effectuée quand les photos auront été chargées */
+    try {
+      return hike.pictures?.map((picture: string, index: number) => {
+        index++;
+        return (
+          <figure key={index} className={`hike__picture-${index}`}>
+            <img src={picture} alt={`Une photo de ${hike.title}`} />
+            <figcaption hidden={true}>{hike.description}</figcaption>
+            <meta property="og:title" content={hike.title} />
+            <meta property="og:type" content="photo" />
+            <meta
+              property="og:description"
+              content={hike.description}
+              hidden={true}
+            />
+            <meta property="og:site_name" content="O'Rando" />
+          </figure>
+        );
+      });
+    } catch {
+      throw new Error('Pas de photos trouvées');
+    }
   }
 
   return (
     <>
-      {/* Prévoir un logo pour représenter les favoris et le positionner */}
-      {/* prévoir de sortir cette logique dans un composant "mettre en favoris" */}
-      {/* pour pouvoir coller le composant ou on souhaite */}
+      {/* Prévoir un logo pour représenter les favoris et le positionner prévoir de sortir cette logique 
+      dans un composant "mettre en favoris" pour pouvoir coller le composant ou on souhaite par la suite*/}
       <Button
         aria-label="Ajouter aux favoris"
         size="small"

@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../hooks/redux';
 import { loadrandomHikes, loadHikes } from '../store/reducers/hikesListReducer';
@@ -15,7 +15,7 @@ function Root() {
   useEffect(() => {
     dispatch(loadrandomHikes());
     dispatch(loadHikes());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="container__background">
