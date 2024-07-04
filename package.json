@@ -22,6 +22,7 @@
     "Grain": "link:@mui/icons-material/Grain",
     "Home": "link:@mui/icons-material/Home",
     "Whatshot": "link:@mui/icons-material/Whatshot",
+    "axios": "^1.7.2",
     "material-ui-popup-state": "^5.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

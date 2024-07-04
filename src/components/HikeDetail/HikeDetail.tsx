@@ -10,8 +10,8 @@ import { Button } from '@mui/material';
 function HikeDetail(hike: Hike) {
   //
   // A fonction to show the pictures of the hike
+  //TODO : Problème à régler ici : les images ne sont pas chargeées !
   function renderPictures() {
-    let index = 0;
     return hike.pictures.map((picture: string, index) => {
       index++;
       return (

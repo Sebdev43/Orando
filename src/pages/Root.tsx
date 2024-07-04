@@ -1,13 +1,20 @@
 import { Outlet } from 'react-router-dom';
-import './Root.scss';
+import { useEffect } from 'react';
+import { useAppDispatch } from '../hooks/redux';
+import { loadHikes } from '../store/reducers/hikesListReducer';
+
 import ScrollToTop from '../utils/ScrollToTop';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
+import './Root.scss';
 
 function Root() {
-  //TODO Voir pour prévoir de faire un useEffect ici pour charger le logo dans le Header
-  // car lorsqu'on ne passe pas par la page d'accueil en tapant un URL directement dans
-  // la barre d'adresse, le logo ne s'affiche pas
+  const dispatch: any = useAppDispatch();
+
+  // on récupère les recette dès que le composant Root est monté
+  useEffect(() => {
+    dispatch(loadHikes());
+  }, []);
 
   return (
     <div className="container__background">

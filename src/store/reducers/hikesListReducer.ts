@@ -1,39 +1,53 @@
-import { createReducer, createAction } from '@reduxjs/toolkit';
+import {
+  createReducer,
+  createAction,
+  createAsyncThunk,
+} from '@reduxjs/toolkit';
+import axios from 'axios';
+
+//  le typage TS pour une randonnée = Hike
+// Une liste s'exprime par un tableau (en général)
+// ligne 14, le tableau des randonnées est doonc un [tableau] de type "Hike" = Hike[]
 import { Hike } from '../../@types/hike';
 
-import hikesByTen from '../../data/hikesByTen.json';
+//  datas locales si panne de DB
+import hikes from '../../data/hikesByTen.json';
 
 export type HikesList = {
   list: Hike[];
+  loading: boolean;
+  error: string | undefined | null;
 };
 
 const initialState: HikesList = {
-  list: hikesByTen,
+  list: [],
+  loading: false,
+  error: null,
 };
 
-//TODO Il va falloir utiliser l'apiThunk pour charger la liste de randonnées dans le state, depuis notre API
-// // créer un asyncThunk pour récupérer les recipes
-// // dispatch(loadRecipes())
-// export const loadRecipes = createAsyncThunk("recipes/loadRecipes", async () => {
-//   const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/recipes`);
-//   return data;
-// })
-// const recipesReducer = createReducer(initialState, (builder) => {
-//   builder.addCase(loadRecipes.pending, (state) => {
-//     state.loading = true;
-//   }).addCase(loadRecipes.rejected, (state, action) => {
-//     state.error = action.error.message;
-//     state.loading = false;
-//   }).addCase(loadRecipes.fulfilled, (state, action) => {
-//     state.list = action.payload;
-//     state.loading = false;
-//   })
-// });
-
-export const getHikesFromApi = createAction<string>('LIST/DISPLAY_HIKES');
+// En asynchrone, on utilise la méthode "createasyncThunk" pour récupérer les données d'une API
+export const loadHikes = createAsyncThunk('HIKES/LOAD_HIKES', async () => {
+  try {
+    const { data } = await axios.get(`http://localhost:4000/hikes/random`);
+    console.log(data);
+    return data;
+  } catch {
+    throw new Error('Pas de randonnées "random" trouvées');
+  }
+});
 
 export const hikesListReducer = createReducer(initialState, (builder) => {
-  builder.addCase(getHikesFromApi, (state, action) => {
-    console.log(state.list);
-  });
+  builder
+    .addCase(loadHikes.pending, (state) => {
+      state.loading = true;
+    })
+    .addCase(loadHikes.rejected, (state, action) => {
+      state.error = action.error.message;
+      state.loading = false;
+      // Gestion des erreurs
+    })
+    .addCase(loadHikes.fulfilled, (state, action) => {
+      state.list = action.payload;
+      state.loading = false;
+    });
 });

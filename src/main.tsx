@@ -29,7 +29,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-// Rooter d'url : simuler le comportement d'un navigateur
+// Rooter d'url : simuler en avec REACT, le comportement d'un navigateur pour la gestion d'URL
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />} errorElement={<NotFound />}>
@@ -49,6 +49,7 @@ const router = createBrowserRouter(
   )
 );
 
+// Réconciliation du DOM react sur le DOM html
 root.render(
   <React.StrictMode>
     <Provider store={store}>
