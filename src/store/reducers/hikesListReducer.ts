@@ -52,18 +52,18 @@ export const hikesListReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(loadrandomHikes.pending, (state) => {
       state.loadingRandomsHikes = true;
-      console.log('Je suis random et je charge', Date().toString());
+      // console.log('Je suis random et je charge', Date().toString());
     })
     .addCase(loadrandomHikes.rejected, (state, action) => {
       state.error = action.error.message;
       state.loadingRandomsHikes = false;
       // Gestion des erreurs
-      console.log("Je suis random et j'ai rencontré un pbm");
+      // console.log("Je suis random et j'ai rencontré un pbm");
     })
     .addCase(loadrandomHikes.fulfilled, (state, action) => {
       state.randomList = action.payload;
       state.loadingRandomsHikes = false;
-      console.log("Je suis random et j'ai finis de charger les données");
+      // console.log("Je suis random et j'ai finis de charger les données");
     })
     .addCase(loadHikes.pending, (state) => {
       state.loadingAllHikes = true;

@@ -6,14 +6,13 @@ import './Home.scss';
 import CardComponent from '../../components/CardComponent/CardComponent';
 import Skeleton from '@mui/joy/Skeleton/Skeleton';
 import Box from '@mui/joy/Box/Box';
-import { useEffect } from 'react';
-import { render } from 'react-dom';
 
 function Home() {
   const hikes = useSelector((state: any) => state.hikes.randomList);
 
   // TODO : faire le chargement dans le store
   const loading = true;
+
   // const loading = useSelector((state: any) => state.hikes.loadingRandomsHikes);
   // console.log('je suis loading sur HOME et je suis :', loading);
 
