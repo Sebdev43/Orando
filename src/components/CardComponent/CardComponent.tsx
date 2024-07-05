@@ -66,7 +66,7 @@ function CardComponent(hike: Hike) {
           <Divider orientation="vertical" />
           <Typography level="body-sm">{hike.distance} km</Typography>
 
-          {/* ligne 98 à 99 : j'appelle la fonction que j'ai déclaré précedemment pour gérer l'afficahge des couleurs fonction de la difficulté  */}
+          {/*j'appelle la fonction que j'ai déclaré précedemment pour gérer l'afficahge des couleurs fonction de la difficulté  */}
           <Divider orientation="vertical" />
           {RenderDifficulty(hike)}
         </CardContent>

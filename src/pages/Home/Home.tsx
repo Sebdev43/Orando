@@ -6,19 +6,23 @@ import './Home.scss';
 import CardComponent from '../../components/CardComponent/CardComponent';
 import Skeleton from '@mui/joy/Skeleton/Skeleton';
 import Box from '@mui/joy/Box/Box';
+import { useEffect } from 'react';
+import { render } from 'react-dom';
 
 function Home() {
   const hikes = useSelector((state: any) => state.hikes.randomList);
 
   // TODO : faire le chargement dans le store
   const loading = true;
+  // const loading = useSelector((state: any) => state.hikes.loadingRandomsHikes);
+  // console.log('je suis loading sur HOME et je suis :', loading);
 
   function renderHikes() {
-    return hikes.map((hike: Hike) => {
+    return hikes.map((hike: Hike, index: number) => {
       return loading ? (
-        <CardComponent key={hike.id} {...hike} />
+        <CardComponent key={index} {...hike} />
       ) : (
-        <Box>
+        <Box key={index}>
           <Skeleton variant="rectangular" width={360} height={360} />
           <Skeleton variant="text" sx={{ fontSize: '2rem', width: '360' }} />
           <Skeleton variant="rectangular" width={360} height={80} />

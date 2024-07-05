@@ -13,16 +13,16 @@ import { Hike } from '../../@types/hike';
 //  le typage TS pour tout l'état (le state hikes du store.tsx)
 export type HikesList = {
   randomList: Hike[];
-  loadingRandoms: boolean;
+  loadingRandomsHikes: boolean;
   list: Hike[];
-  loadingAll: boolean;
+  loadingAllHikes: boolean;
   error: string | undefined | null;
 };
 const initialState: HikesList = {
   randomList: [],
-  loadingRandoms: false,
+  loadingRandomsHikes: false,
   list: [],
-  loadingAll: false,
+  loadingAllHikes: false,
   error: null,
 };
 
@@ -31,7 +31,7 @@ export const loadrandomHikes = createAsyncThunk(
   'HIKES/LOAD_RANDOM_HIKES',
   async () => {
     try {
-      const { data } = await axios.get(`http://localhost:4000/hikes/random`);
+      const { data } = await axios.get(`/api/hikes/random`);
       return data;
     } catch {
       throw new Error('Pas de randonnées "random" trouvées');
@@ -41,7 +41,7 @@ export const loadrandomHikes = createAsyncThunk(
 
 export const loadHikes = createAsyncThunk('HIKES/LOAD_HIKES', async () => {
   try {
-    const { data } = await axios.get(`http://localhost:4000/hikes`);
+    const { data } = await axios.get(`/api/hikes`);
     return data;
   } catch {
     throw new Error('Pas de randonnées trouvées');
@@ -51,27 +51,30 @@ export const loadHikes = createAsyncThunk('HIKES/LOAD_HIKES', async () => {
 export const hikesListReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(loadrandomHikes.pending, (state) => {
-      state.loadingRandoms = true;
+      state.loadingRandomsHikes = true;
+      console.log('Je suis random et je charge', Date().toString());
     })
     .addCase(loadrandomHikes.rejected, (state, action) => {
       state.error = action.error.message;
-      state.loadingRandoms = false;
+      state.loadingRandomsHikes = false;
       // Gestion des erreurs
+      console.log("Je suis random et j'ai rencontré un pbm");
     })
     .addCase(loadrandomHikes.fulfilled, (state, action) => {
       state.randomList = action.payload;
-      state.loadingRandoms = false;
+      state.loadingRandomsHikes = false;
+      console.log("Je suis random et j'ai finis de charger les données");
     })
     .addCase(loadHikes.pending, (state) => {
-      state.loadingAll = true;
+      state.loadingAllHikes = true;
     })
     .addCase(loadHikes.rejected, (state, action) => {
       state.error = action.error.message;
-      state.loadingAll = false;
+      state.loadingAllHikes = false;
       // Gestion des erreurs
     })
     .addCase(loadHikes.fulfilled, (state, action) => {
       state.list = action.payload;
-      state.loadingAll = false;
+      state.loadingAllHikes = false;
     });
 });
