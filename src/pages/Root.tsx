@@ -11,7 +11,7 @@ import './Root.scss';
 function Root() {
   const dispatch: any = useAppDispatch();
 
-  // on récupère les recette dès que le composant Root est monté
+  // on récupère les randos dès que le composant Root est monté
   useEffect(() => {
     dispatch(loadrandomHikes());
     dispatch(loadHikes());
