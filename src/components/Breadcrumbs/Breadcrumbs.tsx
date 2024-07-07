@@ -48,8 +48,10 @@ export default function IconBreadcrumbs() {
         </NavLink>
 
         {pathnames.map((value, index) => {
-          const to = ``;
+          const to = `/${pathnames.slice(0, index + 1).join('/')}`;
           const isLast = index === pathnames.length - 1;
+
+          console.table(pathnames);
 
           return isLast ? (
             <Typography
