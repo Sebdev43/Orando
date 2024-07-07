@@ -3,33 +3,17 @@ import { NavLink } from 'react-router-dom';
 import { Hike } from '../../@types/hike';
 
 import './Home.scss';
-import CardComponent from '../../components/CardComponent/CardComponent';
-import Skeleton from '@mui/joy/Skeleton/Skeleton';
-import Box from '@mui/joy/Box/Box';
+// utils
+import renderHikes from '../../utils/skeletonLoader';
 
+// The component (and Page) Home
 function Home() {
+  //
+  // What we need to use in renderHikes() to render the hikes
   const hikes = useSelector((state: any) => state.hikes.randomList);
+  const loading = useSelector((state: any) => state.hikes.loadingRandomsHikes);
 
-  // TODO : faire le chargement dans le store
-  const loading = true;
-
-  // const loading = useSelector((state: any) => state.hikes.loadingRandomsHikes);
-  // console.log('je suis loading sur HOME et je suis :', loading);
-
-  function renderHikes() {
-    return hikes.map((hike: Hike, index: number) => {
-      return loading ? (
-        <CardComponent key={index} {...hike} />
-      ) : (
-        <Box key={index}>
-          <Skeleton variant="rectangular" width={360} height={360} />
-          <Skeleton variant="text" sx={{ fontSize: '2rem', width: '360' }} />
-          <Skeleton variant="rectangular" width={360} height={80} />
-        </Box>
-      );
-    });
-  }
-
+  // The content of Home component
   return (
     <main className="home">
       <article>
@@ -97,10 +81,18 @@ function Home() {
           <br />
         </article>
       </article>
+
+      <h2 className="home__title-cards">
+        Une collection de 4 randonnées au hasard :
+      </h2>
+      <article className="cards__content">
+        {renderHikes(loading, hikes)}
+      </article>
       <NavLink to="/randonnees" className="no-decoration">
-        <h2 className="home__title-cards">Voir les Randonnées ...</h2>
+        <h2 className="home__title-cards">
+          Voir toutes les randonnées par ici
+        </h2>
       </NavLink>
-      <article className="cards__content">{renderHikes()}</article>
     </main>
   );
 }
