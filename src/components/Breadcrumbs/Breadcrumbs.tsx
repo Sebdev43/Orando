@@ -51,8 +51,6 @@ export default function IconBreadcrumbs() {
           const to = `/${pathnames.slice(0, index + 1).join('/')}`;
           const isLast = index === pathnames.length - 1;
 
-          console.table(pathnames);
-
           return isLast ? (
             <Typography
               key={to}
