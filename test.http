@@ -12,29 +12,23 @@ Accept: application/json
 ### Test pour obtenir l'email d'un utilisateur
 Get http://localhost:4000/users/4
 
-### Login and get JWT token
-POST http://localhost:4000/auth/jwt
+### Test pour crée un utilisateur avec scrypt (password)
+POST http://localhost:4000/users
 Content-Type: application/json
 
 {
-  "email": "Skyliloulet14@hotmail.fr",
-  "password": "Larockeusedu14/"
+  "id": 1,
+  "nickname": "Coucou Seb2",
+  "localisation": "En bas de chez toi Seb2 ",
+  "email": "Seblovers2@hotmail.fr",
+  "password": "lapinouProject2"
 }
 
-### Use the obtained JWT to add a bookmark
-POST http://localhost:4000/bookmarks
-Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNlYmxvdmVyczJAaG90bWFpbC5mciIsImlhdCI6MTcyMDQyNTU1MCwiZXhwIjoxNzIwNDI5MTUwfQ.zMgOxQKHtKZbUaLAv22XNz-SRY5v4ZOUOKkUTy-Aris
-
-{
-  "userId": 4,
-  "hikeId": 1
-}
-
-### Refresh the JWT token
-POST http://localhost:4000/auth/refresh-token
+### Test pour supprimé un utilisateur
+DELETE http://localhost:4000/users/8
 Content-Type: application/json
 
 {
-  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImVtYWlsIjoiU2VibG92ZXJzMkBob3RtYWlsLmZyIiwiaWF0IjoxNzIwNDI1NTM2LCJleHAiOjE3MjEwMzAzMzZ9.-huaNjb7tIaXo22dIJF6nsDok0kLxNKY1qP-rltMHHE"
+  "id": 1,
+  "password": "lapinouProject2@"
 }

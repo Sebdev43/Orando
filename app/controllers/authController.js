@@ -1,4 +1,5 @@
-import { generateToken, verifyToken, generateRefreshToken, verifyRefreshToken } from "../utils/jwtUtils.js";
+import { generateToken } from "../utils/jwtUtils.js";
+
 import * as userDataMappers from "../dataMappers/userDataMappers.js";
 import { verifyPassword } from "../utils/passwordUtils.js";
 
@@ -22,19 +23,21 @@ export const login = async (req, res) => {
     res.status(200).json({ token });
 };
 
-// export const refreshToken = async (req, res) => {
-//     const { refreshToken } = req.body;
 
-//     if (!refreshToken) {
-//         return res.status(401).json({ error: 'Refresh token manquant' });
-//     }
+/*export const refreshToken = async (req, res) => {
+    const { refreshToken } = req.body;
 
-//     try {
-//         const user = verifyRefreshToken(refreshToken);
-//         const newToken = generateToken(user);
-//         const newRefreshToken = generateRefreshToken(user);
-//         res.status(200).json({ token: newToken, refreshToken: newRefreshToken });
-//     } catch (error) {
-//         res.status(403).json({ error: 'Refresh token invalide' });
-//     }
-// };
+    if (!refreshToken) {
+        return res.status(401).json({ error: 'Refresh token manquant' });
+    }
+
+    try {
+        const user = verifyRefreshToken(refreshToken);
+        const newToken = generateToken(user);
+        const newRefreshToken = generateRefreshToken(user);
+        res.status(200).json({ token: newToken, refreshToken: newRefreshToken });
+    } catch (error) {
+        res.status(403).json({ error: 'Refresh token invalide' });
+    }
+};*/
+
