@@ -1,0 +1,46 @@
+### 1. Inscription, Crée d'un utilisateur (scrypt)
+POST http://localhost:4000/users
+Content-Type: application/json
+
+{
+  "id": 1,
+  "nickname": "Skylarzou1444",
+  "localisation": "Ici et la bas mais pas trop quand même",
+  "email": "Skyliloulet1444@hotmail.fr",
+  "password": "Larockeusedu1444@"
+}
+
+### 2. Connexion d'un utilisateur
+POST http://localhost:400/auth/jwt
+Content-Type: application/json
+
+{
+  "email": "Skyliloulet1444@hotmail.fr",
+  "password": "Larockeusedu1444@"
+}
+
+### 3. Accès à un Profil protégé
+# Remplacer <Token> par le token obtenu lors de la connexion
+GET http:localhost:4000/users
+Authorization : bearer <TOKEN>
+
+### 4. Modifier un utilisateur
+PATCH http://localhost:4000/users/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "nickname": "skylilou",
+  "localisation": "En bas de chez moi",
+  "email": "skylou@hotmail.fr"
+}
+
+### 5. Suppression d'un utilisateur
+DELETE http://localhost:4000/users/8
+Content-Type: application/json
+
+{
+  "id": 1,
+  "password": "lapinouProject2@"
+
+}

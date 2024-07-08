@@ -113,7 +113,7 @@ router.post("/",[emailValidator, passwordValidator, nicknameValidator],
    *       '500':
    *         description: Internal server error
    */
-  router.patch("/:id",[emailValidator, passwordValidator, nicknameValidator], validateRequest, passwordValidator, updateUser);
+  router.patch("/:id",[emailValidator, passwordValidator, nicknameValidator], authenticateJWT, validateRequest, passwordValidator, updateUser);
   
   /**
    * @swagger

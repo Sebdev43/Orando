@@ -1,5 +1,6 @@
 import express from "express";
-import { login, refreshToken } from "../controllers/authController.js";
+import { login } from "../controllers/authController.js";
+import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
 
 const router = express.Router();
 
@@ -71,6 +72,6 @@ router.post("/jwt", login);
  *       403:
  *         description: Refresh token invalide
  */
-router.post("/refresh-token", refreshToken);
+// router.post("/refresh-token", refreshToken);
 
 export default router;
