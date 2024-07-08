@@ -11,7 +11,7 @@ import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 
-export default function HikesFilters() {
+function HikeFilters() {
   const dispatch = useAppDispatch();
   const currentLocation = useAppSelector(
     (state) => state.hikesFilters.localisation
@@ -22,7 +22,7 @@ export default function HikesFilters() {
 
   // on reprend les données du store pour les randonnées
   const hikes = useAppSelector((state) => state.hikes.list);
-  // 1er select : récupérer toutes les localisations dans un tableau
+  // 1er select : récupérer toutes les localisations
   const locations = [...new Set(hikes.map((hike) => hike.localisation))];
   // 2e select : récupérer toutes les difficultés
   const difficulties = [...new Set(hikes.map((hike) => hike.difficulty))];
@@ -81,3 +81,5 @@ export default function HikesFilters() {
     </>
   );
 }
+
+export default HikeFilters;
