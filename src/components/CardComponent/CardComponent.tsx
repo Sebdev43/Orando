@@ -1,8 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import { Hike } from '../../@types/hike';
+import './CardComponent.scss';
+
+// components
+import { RenderDifficulty } from '../RenderTagDifficulty/RenderTagDifficultyStyle';
 
 // utils
-import { RenderDifficulty } from '../../utils/renderTagDifficultyStyle';
+import { formatHikeTime } from '../../utils/regEx';
 
 // Import des dépendances MUI en lien avec les composants appelés
 import AspectRatio from '@mui/joy/AspectRatio';
@@ -14,9 +18,6 @@ import Typography from '@mui/joy/Typography';
 import IconButton from '@mui/joy/IconButton';
 import Favorite from '@mui/icons-material/Favorite';
 // import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
-
-import './CardComponent.scss';
-import { formatHikeTime } from '../../utils/regEx';
 
 function CardComponent(hike: Hike) {
   function actionToBookmarks(id: number) {

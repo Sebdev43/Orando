@@ -1,8 +1,11 @@
 import { useSelector } from 'react-redux';
-
+import { Hike } from '../../@types/hike';
 import './Hikes.scss';
+
+// components
 import HikesFilters from '../../components/HikesFilters/HikesFilters';
-import renderHikes from '../../utils/skeletonLoader';
+import SkeletonLoader from '../../components/SkeletonLoader/SkeletonLoader';
+import CardComponent from '../../components/CardComponent/CardComponent';
 
 function Hikes() {
   const loading = useSelector((state: any) => state.hikes.loadingAllHikes);
@@ -17,7 +20,15 @@ function Hikes() {
         </section>
         {/* j'utilise la fonction renderHikes depuis utils/skeletonLoader 
         pour afficher le loarder(skeleton) jusqu'à ce que les randos soient chargées*/}
-        <section className="hikes__list">{renderHikes(loading, hikes)}</section>
+        <section className="hikes__list">
+          {loading ? (
+            <SkeletonLoader {...loading} />
+          ) : (
+            hikes.map((hike: Hike, index: number) => (
+              <CardComponent key={index} {...hike} />
+            ))
+          )}
+        </section>
       </div>
     </>
   );

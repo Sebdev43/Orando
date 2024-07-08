@@ -2,11 +2,12 @@ import { Outlet, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../hooks/redux';
 import { loadrandomHikes, loadHikes } from '../store/reducers/hikesListReducer';
+import './Root.scss';
 
-import ScrollToTop from '../utils/ScrollToTop';
+// components
+import ScrollToTop from '../components/ScollToTop/ScrollToTop';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
-import './Root.scss';
 
 function Root() {
   const dispatch: any = useAppDispatch();

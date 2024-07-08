@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { Hike } from '../@types/hike';
+import { Hike } from '../../@types/hike';
 
 // Put some color depends of the difficulty
 // Attraper les couleurs qui coincident avec la difficulté

@@ -1,8 +1,10 @@
 import { useSelector } from 'react-redux';
-
+import { Hike } from '../../@types/hike';
 import './Home.scss';
-// utils
-import renderHikes from '../../utils/skeletonLoader';
+
+// components
+import SkeletonLoader from '../../components/SkeletonLoader/SkeletonLoader';
+import CardComponent from '../../components/CardComponent/CardComponent';
 
 // The component (and Page) Home
 function Home() {
@@ -84,10 +86,23 @@ function Home() {
         Une collection de 4 randonnées tirées au hasard :
       </h2>
       <article className="cards__content">
-        {renderHikes(loading, hikes)}
+        {loading ? (
+          <SkeletonLoader {...loading} />
+        ) : (
+          hikes.map((hike: Hike, index: number) => (
+            <CardComponent key={index} {...hike} />
+          ))
+        )}
       </article>
     </main>
   );
 }
 
 export default Home;
+
+// hikes.map((hike: Hike, index: number) => (
+//   <CardComponent key={index} {...hike} />
+// ));
+// {hikes.map((hike: Hike, index: number) => (
+//   <CardComponent key={index} {...hike} />
+// ))}
