@@ -10,6 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 function HikeFilters() {
   const dispatch = useAppDispatch();
@@ -29,31 +30,6 @@ function HikeFilters() {
 
   return (
     <>
-      <div className="hikes__filter-localisation">
-        <Box sx={{ width: 250, mt: 3 }}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Département</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={currentLocation}
-              label="Département"
-              onChange={(event) =>
-                dispatch(changeLocalisation(event.target.value))
-              }
-            >
-              <MenuItem value={''}>Aucun</MenuItem>
-
-              {locations?.map((location, index) => (
-                <MenuItem key={index} value={location as string}>
-                  {location as string}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Box>
-      </div>
-
       <div className="hikes__filter-difficulty">
         <Box sx={{ width: 250, mt: 3 }}>
           <FormControl fullWidth>
@@ -67,11 +43,41 @@ function HikeFilters() {
                 dispatch(changeDifficulty(event.target.value))
               }
             >
-              <MenuItem value={''}>Aucune</MenuItem>
+              <MenuItem value={''}>
+                <ArrowRightIcon />
+                TOUTES
+              </MenuItem>
 
               {difficulties?.map((location, index) => (
                 <MenuItem key={index} value={location}>
                   {location}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
+      </div>
+      <div className="hikes__filter-localisation">
+        <Box sx={{ width: 250, mt: 3 }}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Département</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={currentLocation}
+              label="Département"
+              onChange={(event) =>
+                dispatch(changeLocalisation(event.target.value))
+              }
+            >
+              <MenuItem value={''}>
+                <ArrowRightIcon />
+                TOUS
+              </MenuItem>
+
+              {locations?.map((location, index) => (
+                <MenuItem key={index} value={location as string}>
+                  {location as string}
                 </MenuItem>
               ))}
             </Select>

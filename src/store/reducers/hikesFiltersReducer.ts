@@ -3,13 +3,13 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 export type HikesFiltersProps = {
   difficulty: string;
   localisation: string;
-  time: number;
+  time: number | null;
 };
 
 const initialState: HikesFiltersProps = {
   difficulty: '',
   localisation: '',
-  time: 0,
+  time: null,
 };
 
 // actions

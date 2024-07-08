@@ -19,12 +19,15 @@ function Hikes() {
     (state) => state.hikesFilters.localisation
   );
 
-  // je filtre les hikes par difficulté et par localisation
-  const filteredHikes = hikes.filter(
-    (hike: Hike) =>
-      hike.difficulty === currentDifficulty &&
-      hike.localisation === currentLocation
-  );
+  // je filtre les randonnées par difficulté et par localisation
+  const filteredHikes = hikes.filter((hike: Hike) => {
+    const difficultyMatches: boolean =
+      currentDifficulty === '' || hike.difficulty === currentDifficulty;
+    const locationMatches: boolean =
+      currentLocation === '' || hike.localisation === currentLocation;
+
+    return difficultyMatches && locationMatches;
+  });
 
   return (
     <>
@@ -33,7 +36,6 @@ function Hikes() {
         <section className="hikes__filters">
           <HikeFilters />
         </section>
-        {/* je voudrais afficher toutes les hikes quand les filtres sont vide ou 'aucun' */}
         <section className="hikes__list">
           {loading ? (
             <SkeletonLoader {...loading} />
