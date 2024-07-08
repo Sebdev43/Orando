@@ -10,7 +10,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { initializeRoutes, initializeSwagger } from './app/index.app.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+//const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -44,14 +44,14 @@ const limiter = rateLimit({
   legacyHeaders: false,
 });
 
-const accessLogStream = createWriteStream(join(__dirname, 'access.log'), { flags: 'a' });
+//const accessLogStream = createWriteStream(join(__dirname, 'access.log'), { flags: 'a' });
 
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(limiter);
-app.use(morgan('combined', { stream: accessLogStream }));
+//app.use(morgan('combined', { stream: accessLogStream }));
 app.use(xss());
 
 initializeSwagger(app);
