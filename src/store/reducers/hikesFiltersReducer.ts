@@ -1,25 +1,36 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
 
-export type HikesFilters = {
-  difficulty: string[];
-  distance: string[];
-  time: number[];
+export type HikesFiltersProps = {
+  difficulty: string;
+  localisation: string;
+  time: number;
 };
 
-const initialState: HikesFilters = {
-  difficulty: [],
-  distance: [],
-  time: [],
+const initialState: HikesFiltersProps = {
+  difficulty: '',
+  localisation: '',
+  time: 0,
 };
 
+// actions
 export const changeDifficulty = createAction<string>(
   'HIKES_FILTERS/CHANGE_DIFFICULTY'
 );
-export const changeDistance = createAction<string>(
-  'HIKES_FILTERS/CHANGE_DISTANCE'
+export const changeLocalisation = createAction<string>(
+  'HIKES_FILTERS/CHANGE_LOCALISATION'
 );
 export const changeTime = createAction<number>('HIKES_FILTERS/CHANGE_TIME');
 
+// reducer
 export const hikesFiltersReducer = createReducer(initialState, (builder) => {
-  builder;
+  builder
+    .addCase(changeLocalisation, (state, action) => {
+      state.localisation = action.payload;
+    })
+    .addCase(changeDifficulty, (state, action) => {
+      state.difficulty = action.payload;
+    })
+    .addCase(changeTime, (state, action) => {
+      state.time = action.payload;
+    });
 });

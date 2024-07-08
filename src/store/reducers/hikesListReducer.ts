@@ -1,8 +1,4 @@
-import {
-  createReducer,
-  createAction,
-  createAsyncThunk,
-} from '@reduxjs/toolkit';
+import { createReducer, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 //  le typage TS pour une randonnée = Hike

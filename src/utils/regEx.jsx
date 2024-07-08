@@ -12,6 +12,6 @@ export function formatBreadcrumbs(string) {
 export function formatHikeTime(time) {
   const hours = Math.floor(time / 60);
   const minutes = time % 60;
-  const formattedTime = `${hours}h et ${minutes} mn environ`;
+  const formattedTime = `${hours} h ${minutes} min`;
   return formattedTime;
 }

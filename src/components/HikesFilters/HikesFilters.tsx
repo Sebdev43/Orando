@@ -1,161 +1,117 @@
-import * as React from 'react';
-import { Theme, useTheme } from '@mui/material/styles';
-import OutlinedInput from '@mui/material/OutlinedInput';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import {
+  changeDifficulty,
+  changeLocalisation,
+  changeTime,
+} from '../../store/reducers/hikesFiltersReducer';
+
+// utils
+import { formatHikeTime } from '../../utils/regEx';
+
+// components from MUI
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { useSelector } from 'react-redux';
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-];
-
-function getStyles(name: string, personName: readonly string[], theme: Theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
+import Select from '@mui/material/Select';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
 
 export default function HikesFilters() {
-  const theme = useTheme();
-  const [personName, setPersonName] = React.useState<string[]>([]);
+  const dispatch = useAppDispatch();
+  const currentLocation = useAppSelector(
+    (state) => state.hikesFilters.localisation
+  );
+  const currentDifficulty = useAppSelector(
+    (state) => state.hikesFilters.difficulty
+  );
+  const currentTime = useAppSelector((state) => state.hikesFilters.time);
 
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value
-    );
-  };
-
-  // 1er select : récupérer toutes les localisations
-  const hikes = useSelector((state: any) => state.hikes.list);
-
+  // on reprend les données du store pour les randonnées
+  const hikes = useAppSelector((state) => state.hikes.list);
+  // 1er select : récupérer toutes les localisations dans un tableau
+  const locations = [...new Set(hikes.map((hike) => hike.localisation))];
   // 2e select : récupérer toutes les difficultés
+  const difficulties = [...new Set(hikes.map((hike) => hike.difficulty))];
   // 3e select : récupérer tous les temps de marche
+  const times = [...new Set(hikes.map((hike) => hike.time))];
 
   return (
-    <div>
-      <FormControl sx={{ m: 1, width: 300, mt: 3 }}>
-        <Select
-          multiple
-          displayEmpty
-          value={personName}
-          onChange={handleChange}
-          input={<OutlinedInput />}
-          renderValue={(selected) => {
-            if (selected.length === 0) {
-              return <em>Placeholder</em>;
-            }
-
-            return selected.join(', ');
-          }}
-          MenuProps={MenuProps}
-          inputProps={{ 'aria-label': 'Without label' }}
-        >
-          <MenuItem disabled value="">
-            <em>Placeholder</em>
-          </MenuItem>
-          {names.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
+    <>
+      <div className="hikes__filter-localisation">
+        <Box sx={{ width: 250, mt: 3 }}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Département</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={currentLocation}
+              label="Département"
+              onChange={(event) =>
+                dispatch(changeLocalisation(event.target.value))
+              }
             >
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+              <MenuItem value={''}>Aucun</MenuItem>
 
-      {/* <FormControl sx={{ m: 1, width: 300, mt: 3 }}>
-        <Select
-          multiple
-          displayEmpty
-          value={personName}
-          onChange={handleChange}
-          input={<OutlinedInput />}
-          renderValue={(selected) => {
-            if (selected.length === 0) {
-              return <em>Placeholder</em>;
-            }
+              {locations?.map((location, index) => (
+                <MenuItem key={index} value={location as string}>
+                  {location as string}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
+      </div>
 
-            return selected.join(', ');
-          }}
-          MenuProps={MenuProps}
-          inputProps={{ 'aria-label': 'Without label' }}
-        >
-          <MenuItem disabled value="">
-            <em>Placeholder</em>
-          </MenuItem>
-          {names.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
+      <div className="hikes__filter-difficulty">
+        <Box sx={{ width: 250, mt: 3 }}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Difficulté</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={currentDifficulty}
+              label="Difficulté"
+              onChange={(event) =>
+                dispatch(changeDifficulty(event.target.value))
+              }
             >
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+              <MenuItem value={''}>Aucune</MenuItem>
 
-      <FormControl sx={{ m: 1, width: 300, mt: 3 }}>
-        <Select
-          multiple
-          displayEmpty
-          value={personName}
-          onChange={handleChange}
-          input={<OutlinedInput />}
-          renderValue={(selected) => {
-            if (selected.length === 0) {
-              return <em>Placeholder</em>;
-            }
+              {difficulties?.map((location, index) => (
+                <MenuItem key={index} value={location}>
+                  {location}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
+      </div>
 
-            return selected.join(', ');
-          }}
-          MenuProps={MenuProps}
-          inputProps={{ 'aria-label': 'Without label' }}
-        >
-          <MenuItem disabled value="">
-            <em>Placeholder</em>
-          </MenuItem>
-          {names.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
+      <div className="hikes__filter-time">
+        <Box sx={{ width: 250, mt: 3 }}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">
+              Temps de marche approximatif
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={currentTime}
+              label="Temps de marche approximatif"
+              onChange={(event) =>
+                dispatch(changeTime(event.target.value as number))
+              }
             >
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl> */}
-    </div>
+              <MenuItem value={''}>Aucun</MenuItem>
+
+              {times?.map((time, index) => (
+                <MenuItem key={index} value={time}>
+                  {formatHikeTime(time)}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
+      </div>
+    </>
   );
 }
