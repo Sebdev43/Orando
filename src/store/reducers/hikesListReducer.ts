@@ -10,7 +10,7 @@ import { Hike } from '../../@types/hike';
 export type HikesList = {
   randomList: Hike[];
   loadingRandomsHikes: boolean;
-  list: Hike[];
+  hikesList: Hike[];
   loadingAllHikes: boolean;
   error: string | undefined | null;
 };
@@ -19,7 +19,7 @@ export type HikesList = {
 const initialState: HikesList = {
   randomList: [],
   loadingRandomsHikes: false,
-  list: [],
+  hikesList: [],
   loadingAllHikes: false,
   error: null,
 };
@@ -69,7 +69,7 @@ export const hikesListReducer = createReducer(initialState, (builder) => {
       // Gestion des erreurs
     })
     .addCase(loadHikes.fulfilled, (state, action) => {
-      state.list = action.payload;
+      state.hikesList = action.payload;
       state.loadingAllHikes = false;
     });
 });

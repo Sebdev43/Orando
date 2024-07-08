@@ -10,7 +10,7 @@ import HikeDetail from '../../components/HikeDetail/HikeDetail';
 function OneHike() {
   const { slug } = useParams();
 
-  const hikes = useAppSelector((state: any) => state.hikes.list);
+  const hikes = useAppSelector((state) => state.hikes.hikesList);
   if (!hikes) {
     return <Navigate to="/error" replace />;
   }
@@ -18,7 +18,7 @@ function OneHike() {
 
   return (
     <div className="hike">
-      <HikeDetail {...hike} />
+      <HikeDetail {...hike!} />
     </div>
   );
 }

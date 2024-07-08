@@ -12,7 +12,7 @@ function HikeDetail(hike: Hike) {
     /* On ajoute le "?" sur "hike.pictures?" pour prévoir le cas ou les photos ne peuvent pas être
      chargées immediatement. Ainsi l'action sera effectuée quand les photos auront été chargées */
     try {
-      return hike.pictures?.map((picture: string, index: number) => {
+      return hike.pictures?.map((picture, index) => {
         index++;
         return (
           <figure key={index} className={`hike__picture-${index}`}>

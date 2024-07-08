@@ -1,3 +1,6 @@
+import { Hike } from '../../@types/hike';
+
+// imports MUI
 import Skeleton from '@mui/joy/Skeleton/Skeleton';
 import Box from '@mui/joy/Box/Box';
 

@@ -80,11 +80,11 @@ export default function IconBreadcrumbs() {
               {/* {index === 1 ? (
                 <ArrowRightIcon sx={{ mr: 0.5 }} fontSize="inherit" />
               ) : ( */}
-              <ArrowRightIcon sx={{ mr: 0.5, mb: 0.5 }} fontSize="inherit" />
-              {/* )} */}
-              {formatBreadcrumbs(value)}
               {/* {value.charAt(0).toUpperCase() +
                 value.slice(1).replace(/-/g, ' ')} */}
+              {/* )} */}
+              <ArrowRightIcon sx={{ mr: 0.5, mb: 0.5 }} fontSize="inherit" />
+              {formatBreadcrumbs(value)}
             </NavLink>
           );
         })}

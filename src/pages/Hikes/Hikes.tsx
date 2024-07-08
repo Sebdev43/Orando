@@ -1,16 +1,16 @@
-import { useSelector } from 'react-redux';
 import { Hike } from '../../@types/hike';
+import { useAppSelector } from '../../hooks/redux';
 import './Hikes.scss';
 
 // components
 import HikeFilters from '../../components/HikesFilters/HikeFilters';
 import SkeletonLoader from '../../components/SkeletonLoader/SkeletonLoader';
 import CardComponent from '../../components/CardComponent/CardComponent';
-import { useAppSelector } from '../../hooks/redux';
 
 function Hikes() {
-  const loading = useSelector((state: any) => state.hikes.loadingAllHikes);
-  const hikes = useSelector((state: any) => state.hikes.list);
+  const loading = useAppSelector((state) => state.hikes.loadingAllHikes);
+  const hikes = useAppSelector((state) => state.hikes.hikesList);
+  const testNumber = 10;
 
   const currentDifficulty = useAppSelector(
     (state) => state.hikesFilters.difficulty
@@ -38,7 +38,7 @@ function Hikes() {
         </section>
         <section className="hikes__list">
           {loading ? (
-            <SkeletonLoader {...loading} />
+            <SkeletonLoader />
           ) : (
             filteredHikes.map((hike: Hike, index: number) => (
               <CardComponent key={index} {...hike} />

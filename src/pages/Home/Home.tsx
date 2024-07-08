@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../hooks/redux';
 import { Hike } from '../../@types/hike';
 import './Home.scss';
 
@@ -10,8 +10,8 @@ import CardComponent from '../../components/CardComponent/CardComponent';
 function Home() {
   //
   // What we need to use in renderHikes() to render the hikes
-  const hikes = useSelector((state: any) => state.hikes.randomList);
-  const loading = useSelector((state: any) => state.hikes.loadingRandomsHikes);
+  const hikes = useAppSelector((state) => state.hikes.randomList);
+  const loading = useAppSelector((state) => state.hikes.loadingRandomsHikes);
 
   // The content of Home component
   return (
@@ -87,7 +87,7 @@ function Home() {
       </h2>
       <article className="cards__content">
         {loading ? (
-          <SkeletonLoader {...loading} />
+          <SkeletonLoader />
         ) : (
           hikes.map((hike: Hike, index: number) => (
             <CardComponent key={index} {...hike} />
@@ -99,10 +99,3 @@ function Home() {
 }
 
 export default Home;
-
-// hikes.map((hike: Hike, index: number) => (
-//   <CardComponent key={index} {...hike} />
-// ));
-// {hikes.map((hike: Hike, index: number) => (
-//   <CardComponent key={index} {...hike} />
-// ))}

@@ -22,7 +22,7 @@ function HikeFilters() {
   );
 
   // on reprend les données du store pour les randonnées
-  const hikes = useAppSelector((state) => state.hikes.list);
+  const hikes = useAppSelector((state) => state.hikes.hikesList);
   // 1er select : récupérer toutes les localisations
   const locations = [...new Set(hikes.map((hike) => hike.localisation))];
   // 2e select : récupérer toutes les difficultés
