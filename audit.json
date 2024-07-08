@@ -1,0 +1,21 @@
+{
+    "keepSettings": {
+        "type": 1,
+        "amount": 7
+    },
+    "auditFilename": "audit.json",
+    "hashType": "md5",
+    "extension": "",
+    "files": [
+        {
+            "date": 1720441010063,
+            "name": "/home/seb43/projet-8-o-rando-back/log/access-2024-07-08.log.0",
+            "hash": "ad0e07cabc4999821ef97f746eeb97c4"
+        },
+        {
+            "date": 1720441011846,
+            "name": "/home/seb43/projet-8-o-rando-back/log/access-2024-07-08.log.43",
+            "hash": "091d02e01ca5abe4be461f9bd84184d0"
+        }
+    ]
+}

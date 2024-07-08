@@ -85,21 +85,28 @@ L'application est configurée pour faire confiance aux proxys inverses, ce qui e
 app.set("trust proxy", 1);
 ```
 
-## 7. Journalisation des Requêtes avec `morgan`
+## 7. Journalisation des Requêtes avec `morgan` et Rotation des Fichiers
 
-[Morgan](https://github.com/expressjs/morgan) est utilisé pour journaliser les requêtes HTTP. Cela permet de surveiller et d'analyser les requêtes entrantes pour détecter des comportements suspects ou malveillants.
+[Morgan](https://github.com/expressjs/morgan) est utilisé pour journaliser les requêtes HTTP. Cela permet de surveiller et d'analyser les requêtes entrantes pour détecter des comportements suspects ou malveillants.Les journaux sont automatiquement tournés chaque jour, compressés et conservés pendant 7 jours.
 
 ```javascript
-import { createWriteStream } from "fs";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
+import morgan from 'morgan';
+import rfs from 'rotating-file-stream';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const accessLogStream = createWriteStream(join(__dirname, "access.log"), {
-  flags: "a",
+
+const accessLogStream = rfs.createStream('access.log', {
+  interval: '1d', // Rotation quotidienne
+  path: join(__dirname, 'log'),
+  maxFiles: 7, // Conserver les logs des 7 derniers jours
+  compress: 'gzip' // Compresser les fichiers de log
 });
 
-app.use(morgan("combined", { stream: accessLogStream }));
+const logger = morgan('combined', { stream: accessLogStream });
+
+export default logger;
 ```
 
 ## 8. Gestion des Erreurs
