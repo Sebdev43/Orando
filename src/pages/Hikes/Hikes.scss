@@ -1,14 +1,18 @@
 .hikes {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 
   &__filters {
-    width: 400px;
-    margin-bottom: 1.5rem;
+    width: 18%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin-right: 1.5rem;
   }
 
   &__list {
+    width: 80%;
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;

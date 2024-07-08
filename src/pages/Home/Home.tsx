@@ -12,13 +12,16 @@ function Home() {
   // What we need to use in renderHikes() to render the hikes
   const hikes = useAppSelector((state) => state.hikes.randomList);
   const loading = useAppSelector((state) => state.hikes.loadingRandomsHikes);
+  const skeletonNumber = useAppSelector(
+    (state) => state.hikes.SkeletonNumberOfCards
+  );
 
   // The content of Home component
   return (
     <main className="home">
       <article>
         <img className="home__banner" />
-        <h1 className="home__title">Bienvenue sur O'Rando !</h1>
+        <h1 className="page_title">Bienvenue sur O'Rando !</h1>
         <article className="home__text-presentation">
           Bienvenue sur O'Rando, votre guide incontournable pour découvrir les
           plus beaux sentiers de randonnée à travers notre magnifique pays. Que
@@ -82,12 +85,10 @@ function Home() {
         </article>
       </article>
 
-      <h2 className="home__title-cards">
-        Une collection de 4 randonnées tirées au hasard :
-      </h2>
+      <h2 className="home__title-cards">Quelques randonnées :</h2>
       <article className="cards__content">
         {loading ? (
-          <SkeletonLoader />
+          <SkeletonLoader skeletonNumber={4} />
         ) : (
           hikes.map((hike: Hike, index: number) => (
             <CardComponent key={index} {...hike} />

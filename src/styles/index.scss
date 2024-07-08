@@ -24,6 +24,12 @@ body {
   background-color: rgb(255, 255, 255);
 }
 
+.page_title {
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+  font-size: 3rem;
+}
+
 @media screen and (max-width: 840px) {
   body {
     background-image: none;

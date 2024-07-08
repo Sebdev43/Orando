@@ -31,14 +31,14 @@ function Hikes() {
 
   return (
     <>
-      <h1>Hello World from Hikes !</h1>
+      <h1 className="page_title">Toutes les randonnées du catalogue </h1>
       <div className="hikes">
         <section className="hikes__filters">
           <HikeFilters />
         </section>
         <section className="hikes__list">
           {loading ? (
-            <SkeletonLoader />
+            <SkeletonLoader skeletonNumber={20} />
           ) : (
             filteredHikes.map((hike: Hike, index: number) => (
               <CardComponent key={index} {...hike} />

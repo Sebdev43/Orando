@@ -3,6 +3,7 @@ import {
   changeDifficulty,
   changeLocalisation,
 } from '../../store/reducers/hikesFiltersReducer';
+import './HikeFilters.scss';
 
 // components from MUI
 import MenuItem from '@mui/material/MenuItem';
@@ -30,8 +31,8 @@ function HikeFilters() {
 
   return (
     <>
-      <div className="hikes__filter-difficulty">
-        <Box sx={{ width: 250, mt: 3 }}>
+      <div className="hikes__filter">
+        <Box sx={{ width: 200, mt: 3 }}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Difficulté</InputLabel>
             <Select
@@ -57,8 +58,8 @@ function HikeFilters() {
           </FormControl>
         </Box>
       </div>
-      <div className="hikes__filter-localisation">
-        <Box sx={{ width: 250, mt: 3 }}>
+      <div className="hikes__filter">
+        <Box sx={{ width: 200, mt: 3 }}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Département</InputLabel>
             <Select

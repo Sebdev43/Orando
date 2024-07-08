@@ -47,7 +47,7 @@ function HikeDetail(hike: Hike) {
         Ajouter aux favoris
       </Button>
       <header className="hike__header">
-        <h1>{hike.title}</h1>
+        <h1 className="page_title">{hike.title}</h1>
         <h2>Description :</h2>
         <span className="hike__description">{hike.description}</span>
       </header>

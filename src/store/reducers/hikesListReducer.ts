@@ -13,6 +13,7 @@ export type HikesList = {
   hikesList: Hike[];
   loadingAllHikes: boolean;
   error: string | undefined | null;
+  SkeletonNumberOfCards: number;
 };
 
 // les propriétés par défaut du state hikes (le state du store.tsx)
@@ -22,6 +23,7 @@ const initialState: HikesList = {
   hikesList: [],
   loadingAllHikes: false,
   error: null,
+  SkeletonNumberOfCards: 10,
 };
 
 // En asynchrone, on utilise la méthode "createasyncThunk" pour récupérer les données d'une API
