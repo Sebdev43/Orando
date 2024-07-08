@@ -1,65 +1,77 @@
 import 'dotenv/config';
 import express from 'express';
+import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import morgan from 'morgan';
 import xss from 'xss-clean';
-import cors from 'cors';
 import { createWriteStream } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { initializeRoutes, initializeSwagger } from './app/index.app.js';
 
-// Déterminer le répertoire actuel pour ESM
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
+const port = process.env.PORT || 4000;
 
-const port = process.env.PORT || 3000;
+const whitelist = [
+  'http://o-rando.com',
+  'http://www.o-rando.com',
+  'https://o-rando.com',
+  'https://www.o-rando.com',
+  'http://localhost:5173',
+  'https://localhost:5173'
+];
 
-// Limite de taux
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: 'GET, POST, PATCH, DELETE, OPTIONS',
+  allowedHeaders: 'Authorization, Content-Type, X-Customer-Software, X-My-Custom,Accept, Accept-Language',
+  credentials: true,
+};
+
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limite chaque IP à 100 requêtes par windowMs
-  standardHeaders: true, // Retourne les informations de limite de taux dans les en-têtes `RateLimit-*`
-  legacyHeaders: false, // Désactive les en-têtes `X-RateLimit-*`
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
 });
 
-// Créer un flux de write stream (en mode 'append') pour 'access.log'
 const accessLogStream = createWriteStream(join(__dirname, 'access.log'), { flags: 'a' });
 
-// Middleware pour parser le JSON
-app.set('trust proxy', 1); // Faire confiance au premier proxy
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Middleware de sécurité
-app.use(helmet());
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use(limiter);
 app.use(morgan('combined', { stream: accessLogStream }));
 app.use(xss());
 
-// Middleware CORS
-app.use(cors({
-  origin: '*',
-  methods: 'GET, PATCH, POST, DELETE',
-  credentials: true, // Permet à l'appelant d'accéder à l'API avec un cookie de session
-}));
-
-// Initialiser Swagger
 initializeSwagger(app);
-
-// Initialisation des routes
 initializeRoutes(app);
 
-// Middleware de gestion des erreurs
+app.set('trust proxy', 1);
+
+app.use((req, res, next) => {
+  if (req.headers['x-forwarded-proto'] !== 'https') {
+    return res.redirect(`https://${req.headers.host}${req.url}`);
+  }
+  next();
+});
+
 app.use((err, req, res, next) => {
-  console.error(err.stack); // Log l'erreur dans la console.
-  res.status(500).json({ error: 'Erreur interne du serveur' }); // Envoie une réponse avec un statut 500 pour les erreurs internes.
+  console.error(err.stack);
+  res.status(500).json({ error: 'Erreur interne du serveur' });
 });
 
 if (process.env.NODE_ENV !== 'test') {
-  // Démarrage du serveur uniquement si ce n'est pas en mode test
   app.listen(port, () => {
     console.log(`Serveur en cours d'exécution sur http://localhost:${port}`);
   });

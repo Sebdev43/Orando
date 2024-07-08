@@ -61,7 +61,7 @@ Content-Type: application/json
 ### Use the obtained JWT to add a bookmark
 POST http://localhost:4000/bookmarks
 Content-Type: application/json
-Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNlYmxvdmVyczJAaG90bWFpbC5mciIsImlhdCI6MTcyMDA4NDU3MywiZXhwIjoxNzIwMDg4MTczfQ.GYIH9OhOTnZmAKbgYx0j3a98gmzp3YATOwAK4hKkbs8`
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNlYmxvdmVyczJAaG90bWFpbC5mciIsImlhdCI6MTcyMDQyNTU1MCwiZXhwIjoxNzIwNDI5MTUwfQ.zMgOxQKHtKZbUaLAv22XNz-SRY5v4ZOUOKkUTy-Aris
 
 {
   "userId": 4,
@@ -73,5 +73,5 @@ POST http://localhost:4000/auth/refresh-token
 Content-Type: application/json
 
 {
-  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImVtYWlsIjoiU2VibG92ZXJzMkBob3RtYWlsLmZyIiwiaWF0IjoxNzIwMDg0NTU0LCJleHAiOjE3MjA2ODkzNTR9.phGkJY84r0mmvbLphRvCr77PQ43w4L86R3cH7TU5hm4"
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImVtYWlsIjoiU2VibG92ZXJzMkBob3RtYWlsLmZyIiwiaWF0IjoxNzIwNDI1NTM2LCJleHAiOjE3MjEwMzAzMzZ9.-huaNjb7tIaXo22dIJF6nsDok0kLxNKY1qP-rltMHHE"
 }
