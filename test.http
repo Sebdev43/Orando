@@ -45,7 +45,7 @@ DELETE http://localhost:4000/users/8
 Content-Type: application/json
 
 {
-  "id": 1
+  "id": 1,
   "password": "lapinouProject2@"
 }
 
@@ -61,7 +61,7 @@ Content-Type: application/json
 ### Use the obtained JWT to add a bookmark
 POST http://localhost:4000/bookmarks
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNlYmxvdmVyczJAaG90bWFpbC5mciIsImlhdCI6MTcyMDQyNTU1MCwiZXhwIjoxNzIwNDI5MTUwfQ.zMgOxQKHtKZbUaLAv22XNz-SRY5v4ZOUOKkUTy-Aris
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNlYmxvdmVyczJAaG90bWFpbC5mciIsImlhdCI6MTcyMDQyOTcxOSwiZXhwIjoxNzIwNDMzMzE5fQ.IzyB0lDkQZd5g7e040yOwRJ0XVfZ0LCCZGwo45w0PWA
 
 {
   "userId": 4,
