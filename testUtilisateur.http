@@ -1,17 +1,17 @@
 ### 1. Inscription, Crée d'un utilisateur (scrypt)
-POST http://localhost:4000/users
+POST http://localhost:4000/accounts/signup
 Content-Type: application/json
 
 {
   "id": 1,
-  "nickname": "Skylarzou1444",
+  "nickname": "Skylarzou1519",
   "localisation": "Ici et la bas mais pas trop quand même",
-  "email": "Skyliloulet1444@hotmail.fr",
-  "password": "Larockeusedu1444@"
+  "email": "Skyliloulet1519@hotmail.fr",
+  "password": "Larockeusedu1519@"
 }
 
 ### 2. Connexion d'un utilisateur
-POST http://localhost:4000/auth/jwt
+POST http://localhost:4000/accounts/jwt
 Content-Type: application/json
 
 {

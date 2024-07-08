@@ -1,4 +1,5 @@
 import * as userDataMappers from '../dataMappers/userDataMappers.js';
+import { generateToken } from '../utils/jwtUtils.js';
 
 export const createUser = async (req, res) => {
     try {
@@ -7,7 +8,9 @@ export const createUser = async (req, res) => {
             return res.status(400).json({ error : "Il manque des informations pour créer un utilisateur !"});            
         }
         const user = await userDataMappers.createUser(nickname, localisation, email, hashedPassword);
+        
         res.status(201).json(user);
+        
     } catch (error) {
         console.error("Erreur lors de la création de l'utilisateur :", error.stack);
         res.status(500).json({ error : "Erreur interne dans la création de l'utilisateur !"});
