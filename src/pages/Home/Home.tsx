@@ -1,6 +1,4 @@
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { Hike } from '../../@types/hike';
 
 import './Home.scss';
 // utils
@@ -83,16 +81,11 @@ function Home() {
       </article>
 
       <h2 className="home__title-cards">
-        Une collection de 4 randonnées au hasard :
+        Une collection de 4 randonnées tirées au hasard :
       </h2>
       <article className="cards__content">
         {renderHikes(loading, hikes)}
       </article>
-      <NavLink to="/randonnees" className="no-decoration">
-        <h2 className="home__title-cards">
-          Voir toutes les randonnées par ici
-        </h2>
-      </NavLink>
     </main>
   );
 }

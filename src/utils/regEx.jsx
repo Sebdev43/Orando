@@ -1,4 +1,4 @@
-function formatBreadcrumbs(string) {
+export function formatBreadcrumbs(string) {
   // Remove hyphens between words and replace with a space
   const noHyphens =
     string.charAt(0).toUpperCase() + string.slice(1).replace(/-/g, ' ');
@@ -9,4 +9,9 @@ function formatBreadcrumbs(string) {
   return formattedText;
 }
 
-export default formatBreadcrumbs;
+export function formatHikeTime(time) {
+  const hours = Math.floor(time / 60);
+  const minutes = time % 60;
+  const formattedTime = `${hours}h et ${minutes} mn environ`;
+  return formattedTime;
+}

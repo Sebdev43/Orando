@@ -93,7 +93,7 @@ export default function HikesFilters() {
         </Select>
       </FormControl>
 
-      <FormControl sx={{ m: 1, width: 300, mt: 3 }}>
+      {/* <FormControl sx={{ m: 1, width: 300, mt: 3 }}>
         <Select
           multiple
           displayEmpty
@@ -155,7 +155,7 @@ export default function HikesFilters() {
             </MenuItem>
           ))}
         </Select>
-      </FormControl>
+      </FormControl> */}
     </div>
   );
 }

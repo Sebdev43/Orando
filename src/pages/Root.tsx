@@ -19,7 +19,7 @@ function Root() {
 
   return (
     <div className="container__background">
-      {/* <ScrollToTop /> */}
+      <ScrollToTop />
       <Header />
       <div className="content">
         <Outlet />

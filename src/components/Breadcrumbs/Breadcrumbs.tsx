@@ -7,7 +7,7 @@ import { useAppDispatch } from '../../hooks/redux';
 import { changeLocation } from '../../store/reducers/breadcrumbsReducer';
 
 // utils
-import formatBreadcrumbs from '../../utils/regEx';
+import { formatBreadcrumbs } from '../../utils/regEx';
 
 // import react component from MUI
 import Typography from '@mui/material/Typography';

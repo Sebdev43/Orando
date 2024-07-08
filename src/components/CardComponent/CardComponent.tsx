@@ -16,6 +16,7 @@ import Favorite from '@mui/icons-material/Favorite';
 // import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 
 import './CardComponent.scss';
+import { formatHikeTime } from '../../utils/regEx';
 
 function CardComponent(hike: Hike) {
   function actionToBookmarks(id: number) {
@@ -23,7 +24,7 @@ function CardComponent(hike: Hike) {
   }
 
   return (
-    <Card variant="outlined" sx={{ width: 360, height: 500 }}>
+    <Card className="card" variant="outlined" sx={{ width: 480, height: 700 }}>
       <CardOverflow>
         {/* Photo */}
         <AspectRatio ratio="1">
@@ -41,7 +42,7 @@ function CardComponent(hike: Hike) {
             zIndex: 2,
             borderRadius: '50%',
             right: '0.5rem',
-            bottom: '-3rem',
+            bottom: '-5.5rem',
             transform: 'translateY(120%)',
             color: 'red',
             '&:hover': { color: '#da7b29' },
@@ -64,11 +65,13 @@ function CardComponent(hike: Hike) {
         <CardContent orientation="horizontal">
           <Typography level="body-sm">{hike.localisation}</Typography>
           <Divider orientation="vertical" />
-          <Typography level="body-sm">{hike.distance} km</Typography>
-
+          <Typography level="body-sm">
+            Temps de marche : <br />
+            {formatHikeTime(hike.time)}
+          </Typography>
           {/*j'appelle la fonction que j'ai déclaré précedemment pour gérer l'afficahge des couleurs fonction de la difficulté  */}
           <Divider orientation="vertical" />
-          {RenderDifficulty(hike)}
+          Difficulté {RenderDifficulty(hike)}
         </CardContent>
       </CardOverflow>
     </Card>
