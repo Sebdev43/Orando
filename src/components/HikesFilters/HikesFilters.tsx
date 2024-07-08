@@ -2,11 +2,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
   changeDifficulty,
   changeLocalisation,
-  changeTime,
 } from '../../store/reducers/hikesFiltersReducer';
-
-// utils
-import { formatHikeTime } from '../../utils/regEx';
 
 // components from MUI
 import MenuItem from '@mui/material/MenuItem';
@@ -23,7 +19,6 @@ export default function HikesFilters() {
   const currentDifficulty = useAppSelector(
     (state) => state.hikesFilters.difficulty
   );
-  const currentTime = useAppSelector((state) => state.hikesFilters.time);
 
   // on reprend les données du store pour les randonnées
   const hikes = useAppSelector((state) => state.hikes.list);
@@ -31,8 +26,6 @@ export default function HikesFilters() {
   const locations = [...new Set(hikes.map((hike) => hike.localisation))];
   // 2e select : récupérer toutes les difficultés
   const difficulties = [...new Set(hikes.map((hike) => hike.difficulty))];
-  // 3e select : récupérer tous les temps de marche
-  const times = [...new Set(hikes.map((hike) => hike.time))];
 
   return (
     <>
@@ -79,33 +72,6 @@ export default function HikesFilters() {
               {difficulties?.map((location, index) => (
                 <MenuItem key={index} value={location}>
                   {location}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Box>
-      </div>
-
-      <div className="hikes__filter-time">
-        <Box sx={{ width: 250, mt: 3 }}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">
-              Temps de marche approximatif
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={currentTime}
-              label="Temps de marche approximatif"
-              onChange={(event) =>
-                dispatch(changeTime(event.target.value as number))
-              }
-            >
-              <MenuItem value={''}>Aucun</MenuItem>
-
-              {times?.map((time, index) => (
-                <MenuItem key={index} value={time}>
-                  {formatHikeTime(time)}
                 </MenuItem>
               ))}
             </Select>
