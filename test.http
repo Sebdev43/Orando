@@ -1,32 +1,16 @@
 # test
 
 ### requete get pour récupérer toutes les randonnées par page de 10 randonnées
-
 GET http://localhost:4000/hikes?page=1
 Accept: application/json
 
 ### requete get pour récupérer 4 randonnées de maniere aléatoire
-
 GET http://localhost:4000/hikes/random
 Accept: application/json
 
 
-### Test de la requete update users
-
-PATCH http://localhost:4000/users/1
-Content-Type: application/json
-
-{
-  "id": 1,
-  "nickname": "skylilou",
-  "localisation": "En bas de chez moi",
-  "email": "skylou@hotmail.fr",
-  "password": "Newskylarpass"
-}
-
 ### Test pour obtenir l'email d'un utilisateur
 Get http://localhost:4000/users/4
-
 
 ### Test pour crée un utilisateur avec scrypt (password)
 POST http://localhost:4000/users
@@ -47,31 +31,4 @@ Content-Type: application/json
 {
   "id": 1,
   "password": "lapinouProject2@"
-}
-
-### Login and get JWT token
-POST http://localhost:4000/auth/jwt
-Content-Type: application/json
-
-{
-  "email": "Seblovers2@hotmail.fr",
-  "password": "lapinouProject2@"
-}
-
-### Use the obtained JWT to add a bookmark
-POST http://localhost:4000/bookmarks
-Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNlYmxvdmVyczJAaG90bWFpbC5mciIsImlhdCI6MTcyMDQyOTcxOSwiZXhwIjoxNzIwNDMzMzE5fQ.IzyB0lDkQZd5g7e040yOwRJ0XVfZ0LCCZGwo45w0PWA
-
-{
-  "userId": 4,
-  "hikeId": 1
-}
-
-### Refresh the JWT token
-POST http://localhost:4000/auth/refresh-token
-Content-Type: application/json
-
-{
-  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImVtYWlsIjoiU2VibG92ZXJzMkBob3RtYWlsLmZyIiwiaWF0IjoxNzIwNDI1NTM2LCJleHAiOjE3MjEwMzAzMzZ9.-huaNjb7tIaXo22dIJF6nsDok0kLxNKY1qP-rltMHHE"
 }

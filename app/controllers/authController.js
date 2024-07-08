@@ -1,4 +1,5 @@
 import { generateToken } from "../utils/jwtUtils.js";
+
 import * as userDataMappers from "../dataMappers/userDataMappers.js";
 import { verifyPassword } from "../utils/passwordUtils.js";
 
@@ -22,6 +23,7 @@ export const login = async (req, res) => {
     res.status(200).json({ token });
 };
 
+
 /*export const refreshToken = async (req, res) => {
     const { refreshToken } = req.body;
 
@@ -38,3 +40,4 @@ export const login = async (req, res) => {
         res.status(403).json({ error: 'Refresh token invalide' });
     }
 };*/
+

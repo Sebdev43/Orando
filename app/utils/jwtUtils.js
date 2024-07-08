@@ -23,10 +23,18 @@ export const generateRefreshToken = (user) => {
 
 // Fonction pour vérifier un JWT
 export const verifyToken = (token) => {
-    return jwt.verify(token, secretKey);
+    try {
+        return jwt.verify(token, secretKey);
+    } catch (error) {
+        throw new Error('Token invalide');
+    }
 };
 
 // Fonction pour vérifier un refresh token
 export const verifyRefreshToken = (token) => {
-    return jwt.verify(token, refreshSecretKey);
+    try {
+        return jwt.verify(token, refreshSecretKey);
+    } catch (error) {
+        throw new Error('Refresh token invalide');
+    }
 };
