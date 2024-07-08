@@ -1,4 +1,4 @@
-import { generateToken, generateRefreshToken, verifyRefreshToken } from "../utils/jwtUtils.js";
+import { generateToken } from "../utils/jwtUtils.js";
 import * as userDataMappers from "../dataMappers/userDataMappers.js";
 import { verifyPassword } from "../utils/passwordUtils.js";
 
@@ -17,12 +17,12 @@ export const login = async (req, res) => {
     }
 
     const token = generateToken(user);
-    const refreshToken = generateRefreshToken(user);
+    //const refreshToken = generateRefreshToken(user);
 
-    res.status(200).json({ token, refreshToken });
+    res.status(200).json({ token });
 };
 
-export const refreshToken = async (req, res) => {
+/*export const refreshToken = async (req, res) => {
     const { refreshToken } = req.body;
 
     if (!refreshToken) {
@@ -37,4 +37,4 @@ export const refreshToken = async (req, res) => {
     } catch (error) {
         res.status(403).json({ error: 'Refresh token invalide' });
     }
-};
+};*/
