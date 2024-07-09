@@ -10,7 +10,6 @@ import CardComponent from '../../components/CardComponent/CardComponent';
 function Hikes() {
   const loading = useAppSelector((state) => state.hikes.loadingAllHikes);
   const hikes = useAppSelector((state) => state.hikes.hikesList);
-  const testNumber = 10;
 
   const currentDifficulty = useAppSelector(
     (state) => state.hikesFilters.difficulty
