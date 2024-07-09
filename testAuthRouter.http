@@ -1,0 +1,31 @@
+
+
+### 1. Inscription, Crée d'un utilisateur (scrypt) et verication de son email
+POST http://localhost:4000/accounts/signup
+Content-Type: application/json
+
+{
+  "nickname": "toto",
+  "localisation": "charente",
+  "email": "sebastien43@duck.com",
+  "password": "Jenclaude42!"
+}
+
+### Test de la route de vérification de l'email
+
+GET http://localhost:4000/accounts/verify-email?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyLCJpYXQiOjE3MjA1MzQyODEsImV4cCI6MTcyMDUzNzg4MX0.xiGsov7iP5yaIljHVJ-JZFxK1rVQ1kqIZFN_U_NrV24
+
+
+
+### Test de la route de login
+
+POST http://localhost:4000/accounts/login
+Content-Type: application/json
+
+{
+    "email": "sebastien43@duck.com",
+    "password": "Jenclaude42!"
+}
+
+
+

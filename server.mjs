@@ -17,7 +17,9 @@ const whitelist = [
   'https://o-rando.com',
   'https://www.o-rando.com',
   'http://localhost:5173',
-  'https://localhost:5173'
+  'https://localhost:5173',
+  'http://localhost:4000',
+  'https://localhost:4000'
 ];
 
 const corsOptions = {

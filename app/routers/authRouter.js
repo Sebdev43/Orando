@@ -1,7 +1,7 @@
 import express from "express";
-import { login } from "../controllers/authController.js";
+import { login, verifyEmail, signup } from "../controllers/authController.js";
 import { validateRequest } from "../middlewares/validateReqMiddleware.js";
-import { createUser, deleteUser } from "../controllers/userController.js";
+import { deleteUser } from "../controllers/userController.js";
 import { hashPasswordMiddleware } from "../middlewares/scryptMiddleware.js";
 import { emailValidator, nicknameValidator, passwordValidator} from "../validators/userValidators.js";
 import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
@@ -47,11 +47,9 @@ router.post("/login", login);
  * @swagger
  * /accounts/signup:
  *   post:
- *     summary: Création d'un nouvel utilisateur
- *     description: Endpoint to create a new user
+ *     summary: Inscription d'un nouvel utilisateur
+ *     description: Permet à un utilisateur de s'inscrire en fournissant un email, un mot de passe, un surnom et une localisation.
  *     tags: [Accounts]
- *     security :
- *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -75,15 +73,13 @@ router.post("/login", login);
  *       '500':
  *         description: Internal server error
  */
-router.post("/signup",[emailValidator, passwordValidator, nicknameValidator],
-  validateRequest,
-  hashPasswordMiddleware,
-  createUser
+router.post("/signup",[emailValidator, passwordValidator, nicknameValidator, validateRequest, hashPasswordMiddleware],
+  signup
 );
 
  /**
    * @swagger
-   * /accounts/delete:
+   * /accounts/delete/{id}:
    *   delete:
    *     summary: Supprimer un utilisateur par son ID
    *     description: Delete user by their ID
@@ -105,7 +101,29 @@ router.post("/signup",[emailValidator, passwordValidator, nicknameValidator],
    *       '500':
    *         description: Internal server error
    */
- router.delete("/:id", authenticateJWT, deleteUser);
+ router.delete("/delete/:id", authenticateJWT, deleteUser);
+
+/**
+ * @swagger
+ * /accounts/verify-email:
+ *  get:
+ *   summary: Vérifier l'email de l'utilisateur
+ *   description: Vérifie l'email de l'utilisateur
+ *   tags: [Accounts]
+ *   parameters:
+ *     - in: query
+ *       name: token
+ *       schema:
+ *         type: string
+ *       required: true
+ *       description: Token de vérification de l'email
+ *   responses:
+ *     200:
+ *       description: Email vérifié avec succès
+ *     400:
+ *       description: Token invalide ou expiré
+ */
+router.get("/verify-email", verifyEmail);
 
 /**
  * Route pour rafraîchir le token JWT
