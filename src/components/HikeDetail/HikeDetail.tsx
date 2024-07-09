@@ -7,6 +7,11 @@ import Map from '../Map/Map';
 // libs
 import { Button } from '@mui/material';
 
+// utils
+import { formatHikeTime } from '../../utils/regEx';
+import { RenderDifficulty } from '../RenderTagDifficulty/RenderTagDifficultyStyle';
+
+// The actual component
 function HikeDetail(hike: Hike) {
   function renderPictures() {
     /* On ajoute le "?" sur "hike.pictures?" pour prévoir le cas ou les photos ne peuvent pas être
@@ -56,9 +61,11 @@ function HikeDetail(hike: Hike) {
           {renderPictures()}
         </section>
         <section className="hike__tags">
-          <span className="hike__tag-difficulty">{hike.difficulty}</span>
-          <span className="hike__tag-time">{hike.time}</span>
-          <span className="hike__tag-distance">{hike.distance}</span>
+          <span className="hike__tag-localisation">{hike.localisation}</span>
+          <span className="hike__tag-difficulty">{RenderDifficulty(hike)}</span>
+          <span className="hike__tag-time">{formatHikeTime(hike.time)}</span>
+          <br />
+          <span className="hike__tag-distance">{hike.distance} km</span>
         </section>
       </main>
       <section className="hike__details">
