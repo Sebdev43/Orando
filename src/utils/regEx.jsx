@@ -4,9 +4,7 @@ export function formatBreadcrumbs(string) {
     string.charAt(0).toUpperCase() + string.slice(1).replace(/-/g, ' ');
 
   // Add an apostrophe after 'L' or 'l' when it is followed by a space and a letter
-  const formattedText = noHyphens.replace(/\b([Ll])\s(\w)/g, "$1'$2");
-
-  return formattedText;
+  return noHyphens.replace(/\b([Ll])\s(\w)/g, "$1'$2");
 }
 
 export function formatHikeTime(time) {
