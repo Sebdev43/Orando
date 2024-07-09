@@ -16,19 +16,24 @@ import HomeIcon from '@mui/icons-material/Home';
 import FollowTheSignsSharpIcon from '@mui/icons-material/FollowTheSignsSharp';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
-// Component name
+// Component
 export default function IconBreadcrumbs() {
-  // Preparation to use the actions of the reducer
+  // On récupère la methode REACT qui va nous permettre d'appeler les méthodes d'actions
+  // qu'on a défini dans le reducer qui gère l'état (on verra un peu plus bas)
   const dispatch = useAppDispatch();
-  // Get the URL location with useLocation()
+  // On récupère l'adresse URL actuelle grâce à une méthode REACT
   const location: Location = useLocation();
 
-  // Set the state when the URL location changes
+  // Un effet qui appelle (dispatch) l'action (changeLocation)
+  // liée au state (breadcrumbsReducer) en lui passant en paramètre (location.pathname)
   useEffect(() => {
     dispatch(changeLocation(location.pathname));
   }, [location]);
 
-  // Generate the final breadcrumbs
+  // Grâce à tout ce qu'il y a au dessus (dans la partie logique du composant)
+  // je peux générer (toujours en logique, donc ici dans la même partie)
+  // la structure de mon composant, afin de pouvoir l'insérer pour de bon plus bas,
+  // dans la partie JSX (la partie qui rend l'affichage de la page internet)
   const generateBreadcrumbs = () => {
     const pathnames = location.pathname.split('/').filter((x) => x);
 
@@ -62,8 +67,6 @@ export default function IconBreadcrumbs() {
                 fontSize="inherit"
               />
               {formatBreadcrumbs(value)}
-              {/* {value.charAt(0).toUpperCase() +
-                value.slice(1).replace(/-/g, ' ')} */}
             </Typography>
           ) : (
             <NavLink
@@ -92,7 +95,7 @@ export default function IconBreadcrumbs() {
     );
   };
 
-  // Return the breadcrumbs component
+  // Cette partie rend l'affichage de la page, finale !
   return (
     <div role="presentation">
       <Breadcrumbs className="breadcrumbs" aria-label="breadcrumb">
