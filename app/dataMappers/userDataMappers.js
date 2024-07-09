@@ -80,7 +80,17 @@ export const getUserByEmail = async (email) => {
     return result.rows[0];
 };
 
-// à faire le login qui vérifie les identifiants renseigner sur le sujet si c'est bon un booleun true or false et obtiens le jwt . Sécurité qui doit etre au top pour éviter les injections etc dans la BD
-// Un delete user pour la suppréssion d'un compte
+
+export const verifyUserEmail = async (userId) => {
+  const query = `
+    UPDATE "users"
+    SET "email_verified" = true
+    WHERE id = $1
+    `;
+  const values = [userId];
+  await pool.query(query, values);
+
+};
+
 
 // Pour Bcrypt ( à voir avec scrypt comment ça fonctionne) lors de l'authentification d'un utilisateur, il faut comparer le mot de passe en clair avec le mot de passe haché enregistré dans la base de données. Pour cela, on utilise la méthode compare de Bcrypt. Cette méthode prend en paramètre le mot de passe en clair et le mot de passe haché et retourne un booléen. Si les deux mots de passe correspondent, la méthode retourne true, sinon elle retourne false. Voici un exemple d'utilisation de la méthode compare de Bcrypt :

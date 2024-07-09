@@ -1,5 +1,5 @@
 import express from "express";
-import { createUser, updateUser, getUserById, deleteUser} from "../controllers/userController.js";
+import { updateUser, getUserById, deleteUser} from "../controllers/userController.js";
 import { hashPasswordMiddleware } from "../middlewares/scryptMiddleware.js";
 import { emailValidator, nicknameValidator, passwordValidator} from "../validators/userValidators.js";
 
@@ -83,7 +83,7 @@ const router = express.Router();
    *       '500':
    *         description: Internal server error
    */
-  router.patch("/:id",[emailValidator, passwordValidator, nicknameValidator], authenticateJWT, validateRequest, passwordValidator, updateUser);
+  router.patch("/:id",[emailValidator, passwordValidator, nicknameValidator, authenticateJWT, validateRequest, passwordValidator], updateUser);
   
  
   

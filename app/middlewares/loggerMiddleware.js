@@ -14,7 +14,8 @@ const accessLogStream = fileStreamRotator.getStream({
   date_format: 'YYYY-MM-DD',
   size: '10M', // Taille maximale du fichier avant rotation
   max_logs: '7d', // Conserver les logs des 7 derniers jours
-  compress: 'gzip' // Compresser les fichiers de log
+  compress: 'gzip', // Compresser les fichiers de log
+  audit_file: false
 });
 
 // Middleware de journalisation

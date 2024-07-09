@@ -1,0 +1,10 @@
+-- Verify orando:03-mailVerify on pg
+
+BEGIN;
+
+SELECT COLUMN_NAME
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'users'
+AND COLUMN_NAME = 'email_verified';
+
+ROLLBACK;
