@@ -20,7 +20,7 @@ export const generateEmailToken = (userId) => {
 };
 
 export const sendVerificationEmail = (email, token) => {
-    const verificationUrl = `http://localhost:4000/accounts/verify-email?token=${token}`;
+    const verificationUrl = `https://o-rando.com/accounts/verify-email?token=${token}`;
     const mailOptions = {
         from: '"O-rando Support" <noreply.orando@gmail.com>',
         to: email,
