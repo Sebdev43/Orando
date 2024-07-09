@@ -26,6 +26,7 @@ CREATE TABLE "hikes" (
 	"localisation" TEXT NOT NULL,
 	"details" TEXT NOT NULL,
 	"gps_coordinate" GEOMETRY(LINESTRING, 4326),
+    "email_verified" BOOLEAN DEFAULT FALSE NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );

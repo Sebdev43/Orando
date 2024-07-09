@@ -80,6 +80,17 @@ export const getUserByEmail = async (email) => {
     return result.rows[0];
 };
 
+
+export const verifyUserEmail = async (userId) => {
+  const query = `
+    UPDATE "users"
+    SET "email_verified" = true
+    WHERE id = $1
+    `;
+  const values = [userId];
+  await pool.query(query, values);
+  
+};
 // à faire le login qui vérifie les identifiants renseigner sur le sujet si c'est bon un booleun true or false et obtiens le jwt . Sécurité qui doit etre au top pour éviter les injections etc dans la BD
 // Un delete user pour la suppréssion d'un compte
 
