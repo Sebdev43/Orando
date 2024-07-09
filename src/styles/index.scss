@@ -27,7 +27,7 @@ body {
 .page_title {
   margin-bottom: 1.5rem;
   margin-top: 1.5rem;
-  font-size: 3rem;
+  font-size: 1.5rem;
 }
 
 @media screen and (max-width: 840px) {
@@ -40,12 +40,10 @@ body {
   .header {
     display: flex;
   }
-  .header__top-logo {
-    display: flex;
-    margin-left: 0px;
-    padding-top: 1.5rem;
-  }
-  .breadcrumbs {
-    display: none;
-  }
+}
+.breadcrumbs {
+  display: none;
+}
+.container__background {
+  padding: 0;
 }

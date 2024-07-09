@@ -16,7 +16,7 @@ function Header() {
   const isMobile = useMediaQuery(`(max-width:${widthMediaScreen}px)`);
 
   return (
-    <div className="header">
+    <header className="header">
       {isMobile ? (
         ''
       ) : (
@@ -41,7 +41,7 @@ function Header() {
 
       {isMobile ? <NavTel /> : <Nav />}
       <IconBreadcrumbs />
-    </div>
+    </header>
   );
 }
 

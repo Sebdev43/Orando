@@ -3,7 +3,7 @@ import './styles.scss';
 
 function Footer() {
   return (
-    <div className="footer">
+    <footer className="footer">
       <section className="footer__nav">
         <NavLink className="footer__nav-links" to="/">
           Accueil
@@ -28,7 +28,7 @@ function Footer() {
         </NavLink>
       </section>
       <span className="footer__copyright">© 2024 O'Rando </span>
-    </div>
+    </footer>
   );
 }
 

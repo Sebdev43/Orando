@@ -18,6 +18,7 @@ export default function NavTel() {
       {(popupState) => (
         <>
           <Button
+            className="nav__button"
             sx={{
               backgroundColor: '#73bfb7a9',
               ':hover': {
@@ -26,7 +27,9 @@ export default function NavTel() {
               color: 'black',
               boxShadow: '2px 2px 4px #000000',
               borderRadius: '7px',
-              width: '150px',
+              width: '100px',
+              marginLeft: 'auto',
+              marginBottom: '100px',
             }}
             variant="contained"
             {...bindTrigger(popupState)}
