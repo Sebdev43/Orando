@@ -72,7 +72,7 @@ export default function IconBreadcrumbs() {
               style={({ isActive }) => ({
                 display: 'flex',
                 alignItems: 'center',
-                textDecoration: isActive ? 'underline' : 'none',
+                textDecoration: 'none',
                 color: isActive ? 'grey' : 'inherit',
               })}
             >
