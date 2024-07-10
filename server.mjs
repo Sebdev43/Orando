@@ -43,6 +43,8 @@ const limiter = rateLimit({
   legacyHeaders: false,
 });
 
+
+app.use(express.static('./public'));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

@@ -16,3 +16,4 @@ export function initializeRoutes(app) {
   app.use("/bookmarks", bookmarksRouter);
   app.use("/accounts", authRouter);
 }
+

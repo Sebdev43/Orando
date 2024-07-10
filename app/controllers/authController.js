@@ -103,13 +103,9 @@ export const verifyEmail = async (req, res, next) => {
   }
 };
 
+
 /*export const refreshToken = async (req, res) => {
     const { refreshToken } = req.body;
-
-    if (!refreshToken) {
-        return res.status(401).json({ error: 'Refresh token manquant' });
-    }
-
     try {
         const user = verifyRefreshToken(refreshToken);
         const newToken = generateToken(user);
@@ -119,3 +115,8 @@ export const verifyEmail = async (req, res, next) => {
         res.status(403).json({ error: 'Refresh token invalide' });
     }
 };*/
+  
+  export const getConnectionPage = (req, res) => {
+  res.sendFile('createAccount.html', { root: 'public'});
+    };
+
