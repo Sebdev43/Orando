@@ -14,12 +14,13 @@ function OneHike() {
   const hike = hikes.find((hike: Hike) => hike.slug === slug);
 
   if (!hike) {
+    console.log('va voir dans le fichier OneHike.tsx');
     return <Navigate to="/error" replace />;
   }
 
   return (
     <div className="hike">
-      <HikeDetail {...hike!} />
+      <HikeDetail {...hike} />
     </div>
   );
 }
