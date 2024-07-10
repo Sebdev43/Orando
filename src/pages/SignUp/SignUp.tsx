@@ -2,7 +2,7 @@
 import { NavLink } from 'react-router-dom';
 
 // components
-import FormRegister from '../../components/FormRegister/FormRegister';
+import FormRegister from '../../components/Forms/FormRegister/FormRegister';
 
 // Actual (page) component
 function SignUp() {
