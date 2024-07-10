@@ -26,7 +26,7 @@ function Header() {
               ? 'menu-link menu-link--active header__top-button'
               : 'menu-link header__top-button'
           }
-          to={'/connexion'}
+          to={'/inscription'}
         >
           Se connecter
         </NavLink>
