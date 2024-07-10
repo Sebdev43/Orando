@@ -13,6 +13,8 @@ import { RenderDifficulty } from '../RenderTagDifficulty/RenderTagDifficultyStyl
 
 // The actual component
 function HikeDetail(hike: Hike) {
+  const geoDatas = hike.gps_coordinate;
+
   function renderPictures() {
     /* On ajoute le "?" sur "hike.pictures?" pour prévoir le cas ou les photos ne peuvent pas être
      chargées immediatement. Ainsi l'action sera effectuée quand les photos auront été chargées */
@@ -74,7 +76,7 @@ function HikeDetail(hike: Hike) {
       </section>
 
       <section className="hike__map">
-        <Map />
+        <Map geoDatas={geoDatas} />
       </section>
 
       <footer className="hike__footer"></footer>

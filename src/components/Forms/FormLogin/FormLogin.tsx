@@ -1,14 +1,22 @@
 import { useForm } from 'react-hook-form';
+import { Errors } from '../../../@types/form';
 import './FormLogin.scss';
 
+export type FormData = {
+  email: string;
+  password: string;
+  errors?: Errors;
+};
+
+// The actual component
 export default function FormLogin() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormData>();
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: FormData) => {
     console.log(data);
 
     // TODO : envoyer les données au serveur via un dispatch sur le reducer user
@@ -22,27 +30,42 @@ export default function FormLogin() {
 
   return (
     <form className="form__login" onSubmit={handleSubmit(onSubmit)}>
-      <label>Adresse mail : </label>
+      <span className="error__email">{errors.email?.message as string}</span>
       <input
-        type="email"
-        placeholder="Email"
-        {...register('Email', {
-          required: true,
-          pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+        type="text"
+        placeholder="Adresse Email"
+        {...register('email', {
+          required: "L'email est obligatoire",
+          pattern: {
+            value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+            message: "L'email n'est pas valide",
+          },
         })}
       />
 
-      <label>Mot de passe : </label>
+      <span className="error__password">
+        {errors.password?.message as string}
+      </span>
+
       <input
-        type="password"
-        placeholder="Password"
-        {...register('Password', {
-          required: true,
-          max: 20,
-          min: 8,
-          maxLength: 20,
-          pattern:
-            /^(?! )(?!.* $)(?!.* {2})(?=.{1,20}$)(?=(?:[^a-zA-Z0-9]*[a-zA-Z0-9]){8})(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[\w\W]*$/i,
+        type="text"
+        placeholder="Mot de passe"
+        {...register('password', {
+          required: 'Vous devez choisir un mot de passe',
+          min: {
+            value: 8,
+            message: 'Le mot de passe doit avoir au moins 8 caractères',
+          },
+          maxLength: {
+            value: 20,
+            message: 'Le mot de passe doit avoir moins de 20 caractères',
+          },
+          pattern: {
+            value:
+              /^(?! )(?!.* $)(?!.* {2})(?=.{1,20}$)(?=(?:[^a-zA-Z0-9]*[a-zA-Z0-9]){8})(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[\w\W]*$/i,
+            message:
+              'Le mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre et un caractère speciaux',
+          },
         })}
       />
 

@@ -1,5 +1,4 @@
-// Components
-import { NavLink } from 'react-router-dom';
+import './SignUp.scss';
 
 // components
 import FormRegister from '../../components/Forms/FormRegister/FormRegister';
@@ -7,20 +6,9 @@ import FormRegister from '../../components/Forms/FormRegister/FormRegister';
 // Actual (page) component
 function SignUp() {
   return (
-    <div className="signUp__container">
-      <header>
-        <h1 className="page_title">Créez votre compte</h1>
-
-        <NavLink to="/connexion">
-          <h4>
-            Si vous possédez déjà un compte, connectez vous en cliquant sur ce
-            lien
-          </h4>
-        </NavLink>
-      </header>
-      <main>
-        <FormRegister />
-      </main>
+    <div className="signup__container">
+      <h1 className="page_title">Créez votre compte</h1>
+      <FormRegister />
     </div>
   );
 }

@@ -26,7 +26,8 @@ function Header() {
               ? 'menu-link menu-link--active header__top-button'
               : 'menu-link header__top-button'
           }
-          to={'/inscription'}
+          // TODO : changer le lien en fonction de l'état isLogin, vers le compte
+          to={'/connexion'}
         >
           Se connecter
         </NavLink>

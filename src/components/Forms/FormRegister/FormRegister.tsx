@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { Errors } from '../../../@types/hike';
+import { Errors } from '../../../@types/form';
 import './FormRegister.scss';
 
 export type FormData = {

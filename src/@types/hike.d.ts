@@ -1,3 +1,5 @@
+// import { Feature, FeatureCollection, Geometry } from 'geojson';
+
 export type Location = {
   pathname: string;
 };
@@ -18,20 +20,11 @@ export interface Hike {
   updated_at: string | null;
 }
 
-export type Errors = {
-  nickname?: Message;
-  localisation?: Message;
-  email?: Message;
-  password?: Message;
+export type GPS = {
+  type: string;
+  coordinates: COORD[];
 };
-export type Message = {
-  message: string;
-};
-// export type GPS = {
-//   type: string;
-//   coordinates: COORD[];
-// };
-// export type COORD = { [number: number] };
+export type COORD = { [number: number] };
 
 // /**
 //  * Typescript types for the GeoJSON RFC7946 specification. This is not fully RFC-compliant due to lack of support for
