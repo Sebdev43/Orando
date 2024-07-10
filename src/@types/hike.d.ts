@@ -18,6 +18,15 @@ export interface Hike {
   updated_at: string | null;
 }
 
+export type Errors = {
+  nickname?: Message;
+  localisation?: Message;
+  email?: Message;
+  password?: Message;
+};
+export type Message = {
+  message: string;
+};
 // export type GPS = {
 //   type: string;
 //   coordinates: COORD[];
