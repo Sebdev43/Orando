@@ -1,8 +1,5 @@
 import express from "express";
-import {
-  updateUser,
-  getUserById,
-} from "../controllers/userController.js";
+import { updateUser, getUserById } from "../controllers/userController.js";
 
 import {
   emailValidator,
