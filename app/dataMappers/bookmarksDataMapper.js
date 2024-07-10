@@ -11,6 +11,7 @@ export const addBookmark = async (userId, hikeId) => {
   const query = `
       INSERT INTO users_has_hikes (users_id, hikes_id)
       VALUES ($1, $2)
+      ON CONFLICT (users_id, hikes_id) DO NOTHING
       RETURNING id, users_id, hikes_id, created_at, updated_at;
   `;
   const values = [userId, hikeId];

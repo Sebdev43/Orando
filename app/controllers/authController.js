@@ -9,7 +9,7 @@ import {
 
 const secretKey = process.env.JWT_SECRET;
 
-export const login = async (req, res) => {
+export const login = async (req, res, next) => {
   const { email, password } = req.body;
   const user = await userDataMappers.getUserByEmail(email);
 
@@ -34,11 +34,11 @@ export const login = async (req, res) => {
   const token = generateToken(user);
   //const refreshToken = generateRefreshToken(user);
 
-  res.status(200).json({ token });
+  return res.status(200).json({ token });
 };
 
 //Fonction D'incription
-export const signup = async (req, res) => {
+export const signup = async (req, res, next) => {
   const { nickname, localisation, email, password } = req.body;
   try {
     if (!nickname || !localisation || !email || !password) {
@@ -68,7 +68,7 @@ export const signup = async (req, res) => {
 
     await sendVerificationEmail(user.email, emailToken);
 
-    res
+    return res
       .status(201)
       .json({
         message:
@@ -79,7 +79,7 @@ export const signup = async (req, res) => {
   }
 };
 
-export const verifyEmail = async (req, res) => {
+export const verifyEmail = async (req, res, next) => {
   try {
     const { token } = req.query;
     const decoded = jwt.verify(token, secretKey);
@@ -97,7 +97,7 @@ export const verifyEmail = async (req, res) => {
       throw error;
     }
     await userDataMappers.verifyUserEmail(userId);
-    res.status(200).json({ message: "Email vérifié avec succès." });
+    return res.status(200).json({ message: "Email vérifié avec succès." });
   } catch (error) {
     next(error);
   }

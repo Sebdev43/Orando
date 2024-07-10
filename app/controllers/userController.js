@@ -1,6 +1,6 @@
 import * as userDataMappers from "../dataMappers/userDataMappers.js";
 
-export const updateUser = async (req, res) => {
+export const updateUser = async (req, res, next) => {
   try {
     const userId = req.user.id;
     const { nickname, localisation, email, password } = req.body;
@@ -23,23 +23,21 @@ export const updateUser = async (req, res) => {
 
     //Filtrage des champs à renvoyer
     const filteredUser = {
-        nickname: user.nickname,
-        localisation: user.localisation,
-        email: user.email,
+      nickname: user.nickname,
+      localisation: user.localisation,
+      email: user.email,
     };
 
-    return res
-      .status(200)
-      .json({
-        message: "Utilisateur mis à jour avec succès",
-        filteredUser
-      });
+    return res.status(200).json({
+      message: "Utilisateur mis à jour avec succès",
+      filteredUser,
+    });
   } catch (error) {
     next(error);
   }
 };
 
-export const getUserById = async (req, res) => {
+export const getUserById = async (req, res, next) => {
   try {
     const userId = req.user.id;
     const user = await userDataMappers.getUserById(userId);
@@ -49,13 +47,12 @@ export const getUserById = async (req, res) => {
       error.statusCode = 404;
       throw error;
     } else {
-
       //Filtrage des champs à renvoyer
-    const filteredUser = {
+      const filteredUser = {
         nickname: user.nickname,
         localisation: user.localisation,
         email: user.email,
-    };
+      };
       return res.status(200).json(filteredUser);
     }
   } catch (error) {
@@ -63,13 +60,13 @@ export const getUserById = async (req, res) => {
   }
 };
 
-export const deleteUser = async (req, res) => {
+export const deleteUser = async (req, res, next) => {
   const userId = req.user.id;
 
   try {
     const success = await userDataMappers.deleteUser(userId);
     if (success) {
-      res
+      return res
         .status(200)
         .json({ message: "L'utilisateur à été supprimé avec succès" });
     } else {

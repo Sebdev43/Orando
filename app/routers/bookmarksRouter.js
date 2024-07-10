@@ -38,6 +38,8 @@ import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
  *         description: Randonnée ajoutée dans les favoris
  *       400:
  *         description: Erreur dans les paramètres de la requête
+ *       409:
+ *         description: Randonnée déjà ajoutée dans les favoris
  *       500:
  *         description: Erreur lors de l'ajout de la randonnée dans les favoris
  */
