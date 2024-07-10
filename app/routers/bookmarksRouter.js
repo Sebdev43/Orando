@@ -31,30 +31,11 @@ import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
  *           schema:
  *             type: object
  *             properties:
- *               userId:
- *                 type: integer
  *               hikeId:
  *                 type: integer
  *     responses:
  *       201:
  *         description: Randonnée ajoutée dans les favoris
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 id:
- *                   type: integer
- *                 user_id:
- *                   type: integer
- *                 hike_id:
- *                   type: integer
- *                 created_at:
- *                   type: string
- *                   format: date-time
- *                 updated_at:
- *                   type: string
- *                   format: date-time
  *       400:
  *         description: Erreur dans les paramètres de la requête
  *       500:
@@ -78,20 +59,11 @@ router.post("/", authenticateJWT, addBookmark);
  *           schema:
  *             type: object
  *             properties:
- *               userId:
- *                 type: integer
  *               hikeId:
  *                 type: integer
  *     responses:
  *       204:
  *         description: Randonnée supprimée des favoris
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
  *       404:
  *         description: Randonnée non trouvée dans les favoris
  *       500:
@@ -102,19 +74,12 @@ router.delete("/", authenticateJWT, removeBookmark);
 /**
  * Route pour récupérer la liste des randonnées favorites d'un utilisateur
  * @swagger
- * /bookmarks/{userId}:
+ * /bookmarks:
  *   get:
  *     summary: Récupérer la liste des randonnées favorites
  *     tags: [Bookmarks]
  *     security:
  *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: userId
- *         schema:
- *           type: integer
- *         required: true
- *         description: ID de l'utilisateur
  *     responses:
  *       200:
  *         description: La liste des randonnées favorites
@@ -158,6 +123,6 @@ router.delete("/", authenticateJWT, removeBookmark);
  *       500:
  *         description: Erreur lors de la récupération des randonnées favorites
  */
-router.get("/:userId", authenticateJWT, getBookmark);
+router.get("/", authenticateJWT, getBookmark);
 
 export default router;

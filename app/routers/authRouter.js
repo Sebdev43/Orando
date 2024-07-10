@@ -79,20 +79,13 @@ router.post("/signup",[emailValidator, passwordValidator, nicknameValidator, val
 
  /**
    * @swagger
-   * /accounts/delete/{id}:
+   * /accounts/delete:
    *   delete:
-   *     summary: Supprimer un utilisateur par son ID
-   *     description: Delete user by their ID
+   *     summary: Supprimer un utilisateur connecter
+   *     description: Delete user by their Token
    *     tags: [Accounts]
    *     security:
    *      - bearerAuth: []
-   *     parameters:
-   *       - name: id
-   *         in: path
-   *         required: true
-   *         description: ID of the user to delete
-   *         schema:
-   *           type: integer
    *     responses:
    *       '200':
    *         description: User deleted successfully
@@ -101,7 +94,7 @@ router.post("/signup",[emailValidator, passwordValidator, nicknameValidator, val
    *       '500':
    *         description: Internal server error
    */
- router.delete("/delete/:id", authenticateJWT, deleteUser);
+ router.delete("/delete", authenticateJWT, deleteUser);
 
 /**
  * @swagger

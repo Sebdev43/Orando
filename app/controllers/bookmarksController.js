@@ -4,10 +4,11 @@ import * as bookmarksDataMapper from '../dataMappers/bookmarksDataMapper.js';
 
 export const addBookmark = async (req, res) => {
     try {
-        // Récupère les paramètres de la requête
-        const { userId, hikeId } = req.body;
-        if (!userId || !hikeId) {
-            return res.status(400).json({ error: 'Les paramètres userId et hikeId sont requis.' });
+        
+        const userId = req.user.id;
+        const { hikeId } = req.body;
+        if (!hikeId) {
+            return res.status(400).json({ error: 'Les paramètre hikeId est requis.' });
         }
 
         // Appel le dataMapper avec les paramètres de la requête
@@ -24,7 +25,8 @@ export const addBookmark = async (req, res) => {
 
 export const removeBookmark = async (req, res) => {
     try {
-        const { userId, hikeId } = req.body;
+        const userId = req.user.id;
+        const { hikeId } = req.body;
         const success = await bookmarksDataMapper.removeBookmark(userId, hikeId);
         if (success) {
             res.status(204).json({ message: 'Randonnée supprimée des favoris' });
@@ -40,7 +42,7 @@ export const removeBookmark = async (req, res) => {
 
 export const getBookmark = async (req, res) => {
     try {
-        const userId = req.params.userId;
+        const userId = req.user.id;
         const bookmarks = await bookmarksDataMapper.getBookmark(userId);
         res.status(200).json(bookmarks);
     } catch (err) {
