@@ -1,4 +1,4 @@
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../hooks/redux';
 import { loadrandomHikes, loadHikes } from '../store/reducers/hikesListReducer';
@@ -11,7 +11,7 @@ import Footer from '../components/Footer/Footer';
 
 function Root() {
   const dispatch: any = useAppDispatch();
-
+  const currentUrl = useLocation();
   // on récupère les randos dès que le composant Root est monté
   useEffect(() => {
     dispatch(loadrandomHikes());
@@ -25,7 +25,12 @@ function Root() {
       <div className="content">
         <Outlet />
       </div>
-      <Footer />
+      {currentUrl.pathname !== '/connexion' &&
+      currentUrl.pathname !== '/inscription' ? (
+        <Footer />
+      ) : (
+        ''
+      )}
     </div>
   );
 }
