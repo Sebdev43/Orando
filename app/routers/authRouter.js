@@ -1,5 +1,5 @@
 import express from "express";
-import { login, verifyEmail, signup } from "../controllers/authController.js";
+import { login, verifyEmail, signup, getConnectionPage } from "../controllers/authController.js";
 import { validateRequest } from "../middlewares/validateReqMiddleware.js";
 import { deleteUser } from "../controllers/userController.js";
 import { hashPasswordMiddleware } from "../middlewares/scryptMiddleware.js";
@@ -160,5 +160,6 @@ router.get("/verify-email", verifyEmail);
  */
 //router.post("/refresh-token", refreshToken);
 
+router.get('/connection', getConnectionPage);
 
 export default router;
