@@ -1,52 +1,80 @@
-import * as userDataMappers from '../dataMappers/userDataMappers.js';
-import { generateToken } from '../utils/jwtUtils.js';
+import * as userDataMappers from "../dataMappers/userDataMappers.js";
 
+export const updateUser = async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const { nickname, localisation, email, password } = req.body;
 
-export const updateUser = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const { nickname, localisation, email, password } = req.body;
-
-        if (!nickname || !localisation || !email || !password) {
-            return res.status(400).json({ error : "Il manque des informations pour modifier l'utilisateur !"});
-        }
-
-        const user = await userDataMappers.updateUser(id, nickname, localisation, email, password);
-        
-        return res.status(200).json(user);
-    } catch (error) {
-        console.error("Erreur lors de la modification de l'utilisateur :", error.stack);
-        res.status(500).json({ error : "Problème dans la modification des information "});
+    if (!nickname || !localisation || !email || !password) {
+      const error = new Error(
+        "Il manque des informations pour modifier l'utilisateur !"
+      );
+      error.statusCode = 400;
+      throw error;
     }
+
+    const user = await userDataMappers.updateUser(
+      userId,
+      nickname,
+      localisation,
+      email,
+      password
+    );
+
+    //Filtrage des champs à renvoyer
+    const filteredUser = {
+      nickname: user.nickname,
+      localisation: user.localisation,
+      email: user.email,
+    };
+
+    return res.status(200).json({
+      message: "Utilisateur mis à jour avec succès",
+      filteredUser,
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
-export const getUserById = async (req, res) => {
-    try {
-        const {id} = req.params;
-        const user = await userDataMappers.getUserById(id);
+export const getUserById = async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const user = await userDataMappers.getUserById(userId);
 
-        if(!user){
-            return res.status(404).json({ error: "Utilisateur non trouvé avec cet ID"});
-        } else {
-            return res.status(200).json(user);
-        }
-    } catch (error) {
-        console.error("Erreur lors de la récupération de l'utilisateur :", error.stack);
-        res.status(500).json({ error: "Problème lors de la récupération de l'utilisateur"});
+    if (!user) {
+      const error = new Error("Utilisateur non trouvé");
+      error.statusCode = 404;
+      throw error;
+    } else {
+      //Filtrage des champs à renvoyer
+      const filteredUser = {
+        nickname: user.nickname,
+        localisation: user.localisation,
+        email: user.email,
+      };
+      return res.status(200).json(filteredUser);
     }
+  } catch (error) {
+    next(error);
+  }
 };
 
-export const deleteUser = async (req,res) => {
-    const userId =req.params.id;
+export const deleteUser = async (req, res, next) => {
+  const userId = req.user.id;
 
-    try {
-        const success = await userDataMappers.deleteUser(userId);
-        if (success) {
-            res.status(200).json({ message: "L'utilisateur à été supprimé avec succès"});
-        } else {
-            res.status(400).json({ message: "L'utilisateur n'a pas été supprimé"});
-        }
-    } catch (error) {
-        res.status(500).json({ error: "Erreur lors de la suppression de l'utilisateur"});
+  try {
+    const success = await userDataMappers.deleteUser(userId);
+    if (success) {
+      return res
+        .status(200)
+        .json({ message: "L'utilisateur à été supprimé avec succès" });
+    } else {
+      const error = new Error("L'utilisateur n'a pas pu être supprimé");
+      error.statusCode = 400;
+      throw error;
     }
+  } catch (error) {
+    next(error);
+  }
 };

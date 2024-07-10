@@ -5,3 +5,4 @@
 01-insertTables 2024-06-26T13:35:06Z Sebdev43 <sebastien.robert@oclock.school> # ajout des tables users hikes users_has_Hikes
 02-sendSeeding 2024-06-28T08:20:55Z Kevin <kevin.cannizzaro@oclock.school> # add seeding in DataBase
 03-mailVerify 2024-07-09T09:47:41Z Sebdev43 <sebastien.robert@oclock.school> # Ajout d'une table de type boolean
+04-Constraint 2024-07-10T09:33:49Z Sebdev43 <sebastien.robert@oclock.school> # Ajout d'une contrainte pour empecher un utilisateur d'avoir plusieur fois la meme randonnée en favoris

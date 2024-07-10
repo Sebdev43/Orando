@@ -11,6 +11,7 @@ export const addBookmark = async (userId, hikeId) => {
   const query = `
       INSERT INTO users_has_hikes (users_id, hikes_id)
       VALUES ($1, $2)
+      ON CONFLICT (users_id, hikes_id) DO NOTHING
       RETURNING id, users_id, hikes_id, created_at, updated_at;
   `;
   const values = [userId, hikeId];
@@ -21,7 +22,7 @@ export const addBookmark = async (userId, hikeId) => {
  * Spupprimer une randonnée des favoris d'un utilisateur
  * @param {number} userId - ID de l'utilisateur
  * @param {number} hikeId - ID de la randonnée
- * @returns {boolean} - Succès de la suppression  
+ * @returns {boolean} - Succès de la suppression
  */
 
 export const removeBookmark = async (userId, hikeId) => {
@@ -49,7 +50,7 @@ export const getBookmark = async (userId) => {
         JOIN users_has_hikes ON hikes.id = users_has_hikes.hikes_id
         WHERE users_has_hikes.users_id = $1;
     `;
-    const values = [userId];
-    const result = await pool.query(query, values);
-    return result.rows;
+  const values = [userId];
+  const result = await pool.query(query, values);
+  return result.rows;
 };
