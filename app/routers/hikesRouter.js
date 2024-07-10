@@ -1,6 +1,11 @@
 import express from "express";
 const router = express.Router();
-import { getAllHikes, getAllHikesPages, getHikeById, getRandomHikes } from "../controllers/hikesController.js";
+import {
+  getAllHikes,
+  getAllHikesPages,
+  getHikeById,
+  getRandomHikes,
+} from "../controllers/hikesController.js";
 
 /**
  * @swagger
@@ -29,7 +34,7 @@ import { getAllHikes, getAllHikesPages, getHikeById, getRandomHikes } from "../c
  *                   id:
  *                     type: integer
  *                   slug:
- *                     type: string   
+ *                     type: string
  *                   title:
  *                     type: string
  *                   description:
@@ -57,7 +62,7 @@ import { getAllHikes, getAllHikesPages, getHikeById, getRandomHikes } from "../c
  *                     type: string
  *                     format: date-time
  */
-router.get('/random', getRandomHikes);
+router.get("/random", getRandomHikes);
 
 /**
  * Route pour récupérer la liste des randonnées avec pagination et tri par date de création
@@ -190,7 +195,7 @@ router.get("/pages", getAllHikesPages);
  *                 id:
  *                   type: integer
  *                 slug:
- *                   type: string  
+ *                   type: string
  *                 title:
  *                   type: string
  *                 description:

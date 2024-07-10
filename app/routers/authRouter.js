@@ -3,7 +3,11 @@ import { login, verifyEmail, signup, getConnectionPage } from "../controllers/au
 import { validateRequest } from "../middlewares/validateReqMiddleware.js";
 import { deleteUser } from "../controllers/userController.js";
 import { hashPasswordMiddleware } from "../middlewares/scryptMiddleware.js";
-import { emailValidator, nicknameValidator, passwordValidator} from "../validators/userValidators.js";
+import {
+  emailValidator,
+  nicknameValidator,
+  passwordValidator,
+} from "../validators/userValidators.js";
 import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
 
 const router = express.Router();
@@ -73,35 +77,36 @@ router.post("/login", login);
  *       '500':
  *         description: Internal server error
  */
-router.post("/signup",[emailValidator, passwordValidator, nicknameValidator, validateRequest, hashPasswordMiddleware],
+router.post(
+  "/signup",
+  [
+    emailValidator,
+    passwordValidator,
+    nicknameValidator,
+    validateRequest,
+    hashPasswordMiddleware,
+  ],
   signup
 );
 
- /**
-   * @swagger
-   * /accounts/delete/{id}:
-   *   delete:
-   *     summary: Supprimer un utilisateur par son ID
-   *     description: Delete user by their ID
-   *     tags: [Accounts]
-   *     security:
-   *      - bearerAuth: []
-   *     parameters:
-   *       - name: id
-   *         in: path
-   *         required: true
-   *         description: ID of the user to delete
-   *         schema:
-   *           type: integer
-   *     responses:
-   *       '200':
-   *         description: User deleted successfully
-   *       '404':
-   *         description: User not found
-   *       '500':
-   *         description: Internal server error
-   */
- router.delete("/delete/:id", authenticateJWT, deleteUser);
+/**
+ * @swagger
+ * /accounts/delete:
+ *   delete:
+ *     summary: Supprimer un utilisateur connecter
+ *     description: Delete user by their Token
+ *     tags: [Accounts]
+ *     security:
+ *      - bearerAuth: []
+ *     responses:
+ *       '200':
+ *         description: User deleted successfully
+ *       '404':
+ *         description: User not found
+ *       '500':
+ *         description: Internal server error
+ */
+router.delete("/delete", authenticateJWT, deleteUser);
 
 /**
  * @swagger
@@ -127,7 +132,7 @@ router.get("/verify-email", verifyEmail);
 
 /**
  * Route pour rafraîchir le token JWT
- * 
+ *
  * /auth/refresh-token:
  *   post:
  *     summary: Rafraîchir le token JWT
@@ -160,6 +165,8 @@ router.get("/verify-email", verifyEmail);
  */
 //router.post("/refresh-token", refreshToken);
 
+
 router.get('/connection', getConnectionPage);
+
 
 export default router;

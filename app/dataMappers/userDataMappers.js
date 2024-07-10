@@ -91,6 +91,3 @@ export const verifyUserEmail = async (userId) => {
   await pool.query(query, values);
 
 };
-
-
-// Pour Bcrypt ( à voir avec scrypt comment ça fonctionne) lors de l'authentification d'un utilisateur, il faut comparer le mot de passe en clair avec le mot de passe haché enregistré dans la base de données. Pour cela, on utilise la méthode compare de Bcrypt. Cette méthode prend en paramètre le mot de passe en clair et le mot de passe haché et retourne un booléen. Si les deux mots de passe correspondent, la méthode retourne true, sinon elle retourne false. Voici un exemple d'utilisation de la méthode compare de Bcrypt :

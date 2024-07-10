@@ -1,7 +1,6 @@
 import pool from "../config/clientPg.js";
 
 export const getAllHikes = async () => {
-  
   const query = `
         SELECT 
             id, slug, title, description, pictures, difficulty, time, distance, localisation, details, 
@@ -67,7 +66,7 @@ export const getHikeById = async (id) => {
  */
 
 export const getRandomHikes = async () => {
-    const query = `
+  const query = `
     SELECT 
         id, slug, title, description, pictures, difficulty, time, distance, localisation, details, 
         ST_AsGeoJSON(gps_coordinate) as gps_coordinate, created_at, updated_at 
@@ -75,7 +74,7 @@ export const getRandomHikes = async () => {
     ORDER BY RANDOM()
     LIMIT 4
 `;
-    const result = await pool.query(query);
+  const result = await pool.query(query);
 
-    return result.rows;
+  return result.rows;
 };
