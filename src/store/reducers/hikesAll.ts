@@ -9,14 +9,14 @@ import { Hike } from '../../@types/hike';
 //  le typage TS pour tout l'état (le state hikes du store.tsx)
 export type HikesList = {
   hikesList: Hike[];
-  loadingAllHikes: boolean;
+  loading: boolean;
   error: string | undefined | null;
 };
 
 // les propriétés par défaut du state hikes (le state du store.tsx)
 const initialState: HikesList = {
   hikesList: [],
-  loadingAllHikes: false,
+  loading: false,
   error: null,
 };
 
@@ -33,14 +33,14 @@ export const loadHikes = createAsyncThunk('HIKES/LOAD_HIKES', async () => {
 export const hikesListReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(loadHikes.pending, (state) => {
-      state.loadingAllHikes = true;
+      state.loading = true;
     })
     .addCase(loadHikes.rejected, (state, action) => {
       state.error = action.error.message;
-      state.loadingAllHikes = false;
+      state.loading = false;
     })
     .addCase(loadHikes.fulfilled, (state, action) => {
       state.hikesList = action.payload;
-      state.loadingAllHikes = false;
+      state.loading = false;
     });
 });

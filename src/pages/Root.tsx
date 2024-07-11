@@ -6,7 +6,6 @@ import { loadrandomHikes } from '../store/reducers/hikesRandom';
 import './Root.scss';
 
 // components
-import ScrollToTop from '../components/ScollToTop/ScrollToTop';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 
@@ -17,11 +16,16 @@ function Root() {
   useEffect(() => {
     dispatch(loadrandomHikes());
     dispatch(loadHikes());
-  }, [dispatch]);
+  }, []);
+
+  // on récupère l'URL pour surveiller lorsqu'elle change
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <div className="container__background">
-      <ScrollToTop />
       <Header />
       <div className="content">
         <Outlet />

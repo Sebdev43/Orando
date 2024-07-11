@@ -1,76 +1,68 @@
-import { createReducer, createAsyncThunk } from '@reduxjs/toolkit';
+import {
+  createReducer,
+  createAsyncThunk,
+  createAction,
+} from '@reduxjs/toolkit';
 import axios from 'axios';
 
 //  le typage TS pour tout l'état (le state hikes du store.tsx)
-export type userProps = {};
+export type Credentials = {
+  nickname: string;
+  localisation: string;
+  email: string;
+  password: string;
+};
+
+export type userProps = {
+  loading: boolean;
+  credentials: Credentials | null;
+  messageValidation: string;
+};
 
 // les propriétés par défaut du state hikes (le state du store.tsx)
-const initialState: userProps = {};
+const initialState: userProps = {
+  loading: false,
+  credentials: {
+    nickname: '',
+    localisation: '',
+    email: '',
+    password: '',
+  },
+  messageValidation: '',
+};
+
+export type KeysOfCredentials = keyof Credentials;
+export const changeField = createAction<{
+  value: string;
+  name: KeysOfCredentials;
+}>('user/changeField');
 
 // En asynchrone, on utilise la méthode "createasyncThunk" pour récupérer les données d'une API
-export const GETunTRUC = createAsyncThunk(
-  'USER/LOAD_FROM_API',
-  async (id: number) => {
+export const postRegisterDatas = createAsyncThunk(
+  'USER/POST_REGISTER_DATAS',
+  async (datas: Credentials) => {
     try {
-      const { data } = await axios.get(`/api/hikes/${id}`);
+      const { data } = await axios.post(`/api/accounts/signup`, datas);
       return data;
-    } catch {
-      throw new Error('Pas de user trouvé');
-    }
-  }
-);
-
-export const POSTunTRUC = createAsyncThunk(
-  'USER/POST_TO_API',
-  async (id: number) => {
-    try {
-      const { data } = await axios.get(`/api/user/${id}`);
-      return data;
-    } catch {
-      throw new Error('Pas de user trouvé');
-    }
-  }
-);
-
-export const PATCHunTRUC = createAsyncThunk(
-  'USER/PATCH_INTO_API',
-  async (id: number) => {
-    try {
-      const { data } = await axios.get(`/api/user/${id}`);
-      return data;
-    } catch {
-      throw new Error('Pas de user trouvé');
-    }
-  }
-);
-
-export const DELETEunTRUC = createAsyncThunk(
-  'USER/DELETE_INTO_API',
-  async (id: number) => {
-    try {
-      const { data } = await axios.get(`/api/user/${id}`);
-      return data;
-    } catch {
-      throw new Error('Pas de user trouvé');
+    } catch (error) {
+      throw new Error("L'enregistrement n'a pas fonctionné");
     }
   }
 );
 
 export const userReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(GETunTRUC.pending, (state) => {})
-    .addCase(GETunTRUC.rejected, (state, action) => {})
-    .addCase(GETunTRUC.fulfilled, (state, action) => {})
-    // POST
-    .addCase(POSTunTRUC.pending, (state) => {})
-    .addCase(POSTunTRUC.rejected, (state, action) => {})
-    .addCase(POSTunTRUC.fulfilled, (state, action) => {})
-    // PATCH
-    .addCase(PATCHunTRUC.pending, (state) => {})
-    .addCase(PATCHunTRUC.rejected, (state, action) => {})
-    .addCase(PATCHunTRUC.fulfilled, (state, action) => {})
-    // DELETE
-    .addCase(DELETEunTRUC.pending, (state) => {})
-    .addCase(DELETEunTRUC.rejected, (state, action) => {})
-    .addCase(DELETEunTRUC.fulfilled, (state, action) => {});
+    .addCase(postRegisterDatas.pending, (state) => {
+      state.loading = true;
+    })
+    .addCase(postRegisterDatas.rejected, (state, action) => {
+      state.loading = false;
+      console.log('register message : ' + action.error.message);
+    })
+    .addCase(postRegisterDatas.fulfilled, (state, action) => {
+      state.loading = false;
+      console.log('register : la réponse du server est OK');
+      console.log(action.payload);
+      state.messageValidation = action.payload;
+    });
 });

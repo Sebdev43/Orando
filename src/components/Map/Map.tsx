@@ -13,7 +13,8 @@ export default function Map({ geoDatas }: GeoDatasProps) {
   useEffect(() => {
     const map = new maplibregl.Map({
       container: mapContainerRef.current!,
-      style: 'https://api.maptiler.com/maps/bright/style.json?key=lKoHqTSlrjjlLkJx0OIm',
+      style:
+        'https://api.maptiler.com/maps/bright/style.json?key=lKoHqTSlrjjlLkJx0OIm',
       center: [-0.187961, 45.03991],
       zoom: 12,
     });
@@ -37,11 +38,9 @@ export default function Map({ geoDatas }: GeoDatasProps) {
           },
           paint: {
             'line-color': '#0000FF',
-            'line-width': 8,
+            'line-width': 5,
           },
         });
-
-
 
         // Zoom and center the map to fit the route
         const coordinates = parsedData.coordinates;

@@ -7,7 +7,7 @@ const ScrollToTop: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-
+  // TODO a transformer en bouton pour remonter
   return null;
 };
 

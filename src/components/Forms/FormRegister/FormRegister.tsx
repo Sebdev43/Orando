@@ -1,7 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { Errors } from '../../../@types/form';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import './FormRegister.scss';
+import { postRegisterDatas } from '../../../store/reducers/user';
 
+// Le typage des données
 export type FormData = {
   nickname: string;
   localisation: string;
@@ -10,26 +13,29 @@ export type FormData = {
   errors?: Errors;
 };
 
+// The actual component
 export default function FormRegister() {
+  const dispatch = useAppDispatch();
+  const messageValidation = useAppSelector(
+    (state) => state.user.messageValidation
+  );
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
 
+  // envoi des données au serveur
   const onSubmit = (data: FormData) => {
-    console.log(data);
-
-    // TODO : envoyer les données au serveur via un dispatch sur le reducer user
-
-    // TODO : indiquer les erreurs de validation au moment de l'envoi
-
-    // TODO : rediriger l'utilisateur si validation OK (de la requête)
+    dispatch(postRegisterDatas(data));
   };
 
-  console.log(errors);
-
-  return (
+  return messageValidation ? (
+    <span className="form__register-message-validation">
+      {messageValidation}
+    </span>
+  ) : (
     <form className="form__register" onSubmit={handleSubmit(onSubmit)}>
       <span className="error__nickname">
         {errors.nickname?.message as string}

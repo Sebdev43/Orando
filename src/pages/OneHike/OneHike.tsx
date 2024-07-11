@@ -19,8 +19,8 @@ function OneHike() {
   }, [id, dispatch]);
 
   const hike = useAppSelector((state) => state.hikeOne.oneHike);
-  const loading = useAppSelector((state) => state.hikeOne.oneHikeLoading);
-  const error = useAppSelector((state) => state.hikeOne.oneHikeError);
+  const loading = useAppSelector((state) => state.hikeOne.loading);
+  const error = useAppSelector((state) => state.hikeOne.error);
 
   if (error) {
     return <Navigate to="/error" replace />;

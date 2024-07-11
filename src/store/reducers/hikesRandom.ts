@@ -9,15 +9,15 @@ import { Hike } from '../../@types/hike';
 //  le typage TS pour tout l'état (le state hikes du store.tsx)
 export type HikesList = {
   randomHikesList: Hike[];
-  randomsHikesLoading: boolean;
-  randomError: string | undefined | null;
+  loading: boolean;
+  error: string | undefined | null;
 };
 
 // les propriétés par défaut du state hikes (le state du store.tsx)
 const initialState: HikesList = {
   randomHikesList: [],
-  randomsHikesLoading: false,
-  randomError: null,
+  loading: false,
+  error: null,
 };
 
 // En asynchrone, on utilise la méthode "createasyncThunk" pour récupérer les données d'une API
@@ -36,15 +36,15 @@ export const loadrandomHikes = createAsyncThunk(
 export const hikesRandomReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(loadrandomHikes.pending, (state) => {
-      state.randomsHikesLoading = true;
+      state.loading = true;
     })
     .addCase(loadrandomHikes.rejected, (state, action) => {
-      state.randomError = action.error.message;
-      state.randomsHikesLoading = false;
+      state.error = action.error.message;
+      state.loading = false;
       // Gestion des erreurs
     })
     .addCase(loadrandomHikes.fulfilled, (state, action) => {
       state.randomHikesList = action.payload;
-      state.randomsHikesLoading = false;
+      state.loading = false;
     });
 });

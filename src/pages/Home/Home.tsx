@@ -11,12 +11,7 @@ function Home() {
   //
   // What we need to use in renderHikes() to render the hikes
   const hikes = useAppSelector((state) => state.hikesRandom.randomHikesList);
-  const loading = useAppSelector(
-    (state) => state.hikesRandom.randomsHikesLoading
-  );
-  const skeletonNumber = useAppSelector(
-    (state) => state.websiteSettings.SkeletonNumberOfCards
-  );
+  const loading = useAppSelector((state) => state.hikesRandom.loading);
 
   // The content of Home component
   return (

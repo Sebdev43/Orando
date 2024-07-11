@@ -9,15 +9,15 @@ import { Hike } from '../../@types/hike';
 //  le typage TS pour tout l'état (le state hikes du store.tsx)
 export type hikeOneProps = {
   oneHike: Hike;
-  oneHikeLoading: boolean;
-  oneHikeError: string | undefined | null;
+  loading: boolean;
+  error: string | undefined | null;
 };
 
 // les propriétés par défaut du state hikes (le state du store.tsx)
 const initialState: hikeOneProps = {
   oneHike: Object.assign({}),
-  oneHikeLoading: true,
-  oneHikeError: null,
+  loading: true,
+  error: null,
 };
 
 // En asynchrone, on utilise la méthode "createasyncThunk" pour récupérer les données d'une API
@@ -36,14 +36,13 @@ export const loadAPI = createAsyncThunk(
 export const hikeOneReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(loadAPI.pending, (state) => {
-      state.oneHikeLoading = true;
+      state.loading = true;
     })
     .addCase(loadAPI.rejected, (state, action) => {
-      state.oneHikeError = action.error.message;
+      state.error = action.error.message;
     })
     .addCase(loadAPI.fulfilled, (state, action) => {
       state.oneHike = action.payload;
-      state.oneHikeLoading = false;
-      console.log(state.oneHike);
+      state.loading = false;
     });
 });
