@@ -1470,11 +1470,11 @@ Point de repos idéal près de la statue de la Vierge de la Consolation qui domi
     );
 
 
-INSERT INTO users (nickname, localisation, email, password)
+INSERT INTO users (nickname, localisation, email, password, email_verified)
 VALUES 
-    ('User1', 'Location1', 'user1@example.com', 'password1'),
-    ('User2', 'Location2', 'user2@example.com', 'password2'),
-    ('toto45', 'Ardeche', 'toto45@gmail.com', 'dc368af71f7d7e48bf096c6642f00e8e:f85f5d20b41637d21789c1f2df63ed143631e66d2c908d5b499bee38e2507659', '2024-07-11 17:40:55.350479+02', '2024-07-11 17:40:55.350479+02', true);
+    ('User1', 'Location1', 'user1@example.com', 'password1', false),
+    ('User2', 'Location2', 'user2@example.com', 'password2', false),
+    ('toto45', 'Ardeche', 'toto45@gmail.com', 'dc368af71f7d7e48bf096c6642f00e8e:f85f5d20b41637d21789c1f2df63ed143631e66d2c908d5b499bee38e2507659', true);
 INSERT INTO users_has_hikes (users_id, hikes_id)
 VALUES 
     (1, 1),
