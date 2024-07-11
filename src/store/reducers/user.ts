@@ -9,7 +9,7 @@ const initialState: userProps = {};
 
 // En asynchrone, on utilise la méthode "createasyncThunk" pour récupérer les données d'une API
 export const GETunTRUC = createAsyncThunk(
-  'HIKES/LOAD_FROM_API',
+  'USER/LOAD_FROM_API',
   async (id: number) => {
     try {
       const { data } = await axios.get(`/api/hikes/${id}`);
@@ -21,7 +21,7 @@ export const GETunTRUC = createAsyncThunk(
 );
 
 export const POSTunTRUC = createAsyncThunk(
-  'HIKES/LOAD_FROM_API',
+  'USER/POST_TO_API',
   async (id: number) => {
     try {
       const { data } = await axios.get(`/api/user/${id}`);
@@ -33,7 +33,7 @@ export const POSTunTRUC = createAsyncThunk(
 );
 
 export const PATCHunTRUC = createAsyncThunk(
-  'HIKES/LOAD_FROM_API',
+  'USER/PATCH_INTO_API',
   async (id: number) => {
     try {
       const { data } = await axios.get(`/api/user/${id}`);
@@ -45,7 +45,7 @@ export const PATCHunTRUC = createAsyncThunk(
 );
 
 export const DELETEunTRUC = createAsyncThunk(
-  'HIKES/LOAD_FROM_API',
+  'USER/DELETE_INTO_API',
   async (id: number) => {
     try {
       const { data } = await axios.get(`/api/user/${id}`);
