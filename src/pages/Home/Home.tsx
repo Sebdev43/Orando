@@ -10,10 +10,12 @@ import CardComponent from '../../components/CardComponent/CardComponent';
 function Home() {
   //
   // What we need to use in renderHikes() to render the hikes
-  const hikes = useAppSelector((state) => state.hikes.randomList);
-  const loading = useAppSelector((state) => state.hikes.loadingRandomsHikes);
+  const hikes = useAppSelector((state) => state.hikesRandom.randomHikesList);
+  const loading = useAppSelector(
+    (state) => state.hikesRandom.randomsHikesLoading
+  );
   const skeletonNumber = useAppSelector(
-    (state) => state.hikes.SkeletonNumberOfCards
+    (state) => state.websiteSettings.SkeletonNumberOfCards
   );
 
   // The content of Home component

@@ -8,8 +8,8 @@ import SkeletonLoader from '../../components/SkeletonLoader/SkeletonLoader';
 import CardComponent from '../../components/CardComponent/CardComponent';
 
 function Hikes() {
-  const loading = useAppSelector((state) => state.hikes.loadingAllHikes);
-  const hikes = useAppSelector((state) => state.hikes.hikesList);
+  const loading = useAppSelector((state) => state.hikesAll.loadingAllHikes);
+  const hikes = useAppSelector((state) => state.hikesAll.hikesList);
 
   const currentDifficulty = useAppSelector(
     (state) => state.hikesFilters.difficulty

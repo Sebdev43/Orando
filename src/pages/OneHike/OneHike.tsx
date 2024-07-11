@@ -6,8 +6,7 @@ import './OneHike.scss';
 // Components
 import HikeDetail from '../../components/HikeDetail/HikeDetail';
 import { useEffect } from 'react';
-import { loadAPI } from '../../store/reducers/hikesListReducer';
-import { Error } from '@mui/icons-material';
+import { loadAPI } from '../../store/reducers/hikeOne';
 
 // The actual component
 function OneHike() {
@@ -19,9 +18,9 @@ function OneHike() {
     dispatch(loadAPI(id));
   }, [id, dispatch]);
 
-  const hike = useAppSelector((state) => state.hikes.hikeById);
-  const loading = useAppSelector((state) => state.hikes.load);
-  const error = useAppSelector((state) => state.hikes.err);
+  const hike = useAppSelector((state) => state.hikeOne.oneHike);
+  const loading = useAppSelector((state) => state.hikeOne.oneHikeLoading);
+  const error = useAppSelector((state) => state.hikeOne.oneHikeError);
 
   if (error) {
     return <Navigate to="/error" replace />;
@@ -29,16 +28,6 @@ function OneHike() {
   if (loading) {
     return <h1 className="page_title">Chargement des randonnées</h1>;
   }
-
-  // if (!hike) {
-  //   return null; // Ou afficher un message de chargement ou une alternative appropriée
-  // }
-
-  // if (hike.id !== id) {
-  //   return <Navigate to="/error" replace />;
-  // }
-
-  console.log(hike);
 
   return (
     <div className="hike">

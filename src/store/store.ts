@@ -1,17 +1,21 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { hikesListReducer } from './reducers/hikesListReducer';
-import { breadcrumbsReducer } from './reducers/breadcrumbsReducer';
-import { menuReducer } from './reducers/menuReducer';
-import { settingsReducer } from './reducers/settingsReducer';
-import { hikesFiltersReducer } from './reducers/hikesFiltersReducer';
+import { hikesListReducer } from './reducers/hikesAll';
+import { breadcrumbsReducer } from './reducers/breadcrumbs';
+import { hikesRandomReducer } from './reducers/hikesRandom';
+import { menuReducer } from './reducers/menu';
+import { hikeOneReducer } from './reducers/hikeOne';
+import { settingsReducer } from './reducers/settings';
+import { hikesFiltersReducer } from './reducers/hikesFilters';
 
 const store = configureStore({
   reducer: {
     websiteSettings: settingsReducer,
+    hikesRandom: hikesRandomReducer,
+    hikesAll: hikesListReducer,
+    hikeOne: hikeOneReducer,
     // menu: menuReducer,
     breadcrumbs: breadcrumbsReducer,
-    hikes: hikesListReducer,
     hikesFilters: hikesFiltersReducer,
   },
 });

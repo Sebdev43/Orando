@@ -1,7 +1,8 @@
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../hooks/redux';
-import { loadrandomHikes, loadHikes } from '../store/reducers/hikesListReducer';
+import { loadHikes } from '../store/reducers/hikesAll';
+import { loadrandomHikes } from '../store/reducers/hikesRandom';
 import './Root.scss';
 
 // components
