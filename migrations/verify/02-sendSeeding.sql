@@ -8,6 +8,9 @@ SELECT id FROM "users" WHERE false;
 
 SELECT id FROM "hikes" WHERE false;
 
-
+SELECT COLUMN_NAME
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'users'
+AND COLUMN_NAME = 'email_verified';
 
 ROLLBACK;

@@ -12,6 +12,7 @@ CREATE TABLE "users" (
     "localisation" TEXT,
     "email" "email" UNIQUE NOT NULL,
     "password" TEXT NOT NULL,
+    "email_verified" BOOLEAN DEFAULT FALSE NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );
