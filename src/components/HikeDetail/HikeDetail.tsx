@@ -11,8 +11,12 @@ import { Button } from '@mui/material';
 import { formatHikeTime } from '../../utils/regEx';
 import { RenderDifficulty } from '../RenderTagDifficulty/RenderTagDifficultyStyle';
 
+type HikeDetailProps = {
+  hike: Hike;
+};
+
 // The actual component
-function HikeDetail(hike: Hike) {
+function HikeDetail({ hike }: HikeDetailProps) {
   const geoDatas = hike.gps_coordinate;
 
   function renderPictures() {
@@ -75,9 +79,9 @@ function HikeDetail(hike: Hike) {
         <p>{hike.details}</p>
       </section>
 
-      {/* <section className="hike__map">
+      <section className="hike__map">
         <Map geoDatas={geoDatas} />
-      </section> */}
+      </section>
 
       <footer className="hike__footer"></footer>
     </>

@@ -5,6 +5,7 @@ import axios from 'axios';
 // Une liste s'exprime par un tableau (en général)
 // ligne 14, le tableau des randonnées est doonc un [tableau] de type "Hike" = Hike[]
 import { Hike } from '../../@types/hike';
+import { redirect } from 'react-router-dom';
 
 //  le typage TS pour tout l'état (le state hikes du store.tsx)
 export type HikesList = {
@@ -14,6 +15,9 @@ export type HikesList = {
   loadingAllHikes: boolean;
   error: string | undefined | null;
   SkeletonNumberOfCards: number;
+  hikeById: Hike;
+  load: boolean;
+  err: string | undefined | null;
 };
 
 // les propriétés par défaut du state hikes (le state du store.tsx)
@@ -24,6 +28,9 @@ const initialState: HikesList = {
   loadingAllHikes: false,
   error: null,
   SkeletonNumberOfCards: 10,
+  hikeById: Object.assign({}),
+  load: true,
+  err: null,
 };
 
 // En asynchrone, on utilise la méthode "createasyncThunk" pour récupérer les données d'une API
@@ -48,6 +55,18 @@ export const loadHikes = createAsyncThunk('HIKES/LOAD_HIKES', async () => {
   }
 });
 
+export const loadAPI = createAsyncThunk(
+  'HIKES/LOAD_FROM_API',
+  async (id: number) => {
+    try {
+      const { data } = await axios.get(`/api/hikes/${id}`);
+      return data;
+    } catch {
+      throw new Error('Pas de randonnées "random" trouvées');
+    }
+  }
+);
+
 export const hikesListReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(loadrandomHikes.pending, (state) => {
@@ -68,10 +87,21 @@ export const hikesListReducer = createReducer(initialState, (builder) => {
     .addCase(loadHikes.rejected, (state, action) => {
       state.error = action.error.message;
       state.loadingAllHikes = false;
-      // Gestion des erreurs
     })
     .addCase(loadHikes.fulfilled, (state, action) => {
       state.hikesList = action.payload;
       state.loadingAllHikes = false;
+    })
+    // API
+    .addCase(loadAPI.pending, (state) => {
+      state.load = true;
+    })
+    .addCase(loadAPI.rejected, (state, action) => {
+      state.err = action.error.message;
+    })
+    .addCase(loadAPI.fulfilled, (state, action) => {
+      state.hikeById = action.payload;
+      state.load = false;
+      console.log(state.hikeById);
     });
 });

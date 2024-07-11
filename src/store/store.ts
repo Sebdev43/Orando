@@ -9,7 +9,7 @@ import { hikesFiltersReducer } from './reducers/hikesFiltersReducer';
 const store = configureStore({
   reducer: {
     websiteSettings: settingsReducer,
-    menu: menuReducer,
+    // menu: menuReducer,
     breadcrumbs: breadcrumbsReducer,
     hikes: hikesListReducer,
     hikesFilters: hikesFiltersReducer,

@@ -1,27 +1,48 @@
-import { Navigate, useParams } from 'react-router-dom';
+import { NavLink, Navigate, useParams } from 'react-router-dom';
 import { Hike } from '../../@types/hike';
-import { useAppSelector } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import './OneHike.scss';
 
 // Components
 import HikeDetail from '../../components/HikeDetail/HikeDetail';
+import { useEffect } from 'react';
+import { loadAPI } from '../../store/reducers/hikesListReducer';
+import { Error } from '@mui/icons-material';
 
 // The actual component
 function OneHike() {
-  const { slug } = useParams();
+  const dispatch = useAppDispatch();
+  const params = useParams();
+  const id = Number(params.id);
 
-  const hikes = useAppSelector((state) => state.hikes.hikesList);
-  const hike = hikes.find((hike: Hike) => hike.slug === slug);
+  useEffect(() => {
+    dispatch(loadAPI(id));
+  }, [id, dispatch]);
+
+  const hike = useAppSelector((state) => state.hikes.hikeById);
+  const loading = useAppSelector((state) => state.hikes.load);
+  const error = useAppSelector((state) => state.hikes.err);
+
+  if (error) {
+    return <Navigate to="/error" replace />;
+  }
+  if (loading) {
+    return <h1 className="page_title">Chargement des randonnées</h1>;
+  }
 
   // if (!hike) {
-  //   console.log('va voir dans le fichier OneHike.tsx');
+  //   return null; // Ou afficher un message de chargement ou une alternative appropriée
+  // }
+
+  // if (hike.id !== id) {
   //   return <Navigate to="/error" replace />;
   // }
 
+  console.log(hike);
+
   return (
     <div className="hike">
-      {hike?.slug === slug && <HikeDetail {...hike!} />}
-      {hike?.slug !== slug && <Navigate to="/error" replace />}
+      <HikeDetail hike={hike as Hike} />
     </div>
   );
 }

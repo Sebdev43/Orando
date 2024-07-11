@@ -5,7 +5,7 @@ export type Location = {
 };
 
 export interface Hike {
-  id: number | null;
+  id: number;
   slug: string;
   title: string;
   description: string;
@@ -20,11 +20,11 @@ export interface Hike {
   updated_at: string | null;
 }
 
-export type GPS = {
-  type: string;
-  coordinates: COORD[];
-};
-export type COORD = { [number: number] };
+// export type GPS = {
+//   type: string;
+//   coordinates: COORD[];
+// };
+// export type COORD = { [number: number] };
 
 // /**
 //  * Typescript types for the GeoJSON RFC7946 specification. This is not fully RFC-compliant due to lack of support for
