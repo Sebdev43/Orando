@@ -8,15 +8,24 @@ import Map from '../Map/Map';
 import { Button } from '@mui/material';
 
 // utils
-
 import { formatHikeTime } from '../../utils/regEx';
 import { RenderDifficulty } from '../RenderTagDifficulty/RenderTagDifficultyStyle';
 
-function HikeDetail(hike: Hike) {
+// Le typage
+type HikeDetailProps = {
+  hike: Hike;
+};
+
+// The actual component
+function HikeDetail({ hike }: HikeDetailProps) {
+  const geoDatas = hike.gps_coordinate;
+  
+  // Traitement du texte de l'itinéraire
   const text = hike.details;
   const regex = /\(\d+\)/g;
   const formatedDetails = text.replace(regex, (match) => `\n${match}`);
   const lines = formatedDetails.split('\n');
+
   return (
     <>
       {/* Prévoir un logo pour représenter les favoris et le positionner prévoir de sortir cette logique 
@@ -108,10 +117,9 @@ function HikeDetail(hike: Hike) {
           </p>
         </section>
 
-        <section className="hike__map">
-          <Map />
-        </section>
-      </main>
+      <section className="hike__map">
+        <Map geoDatas={geoDatas} />
+      </section>
 
       <footer className="hike__footer"></footer>
     </>

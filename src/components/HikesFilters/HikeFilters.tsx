@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
   changeDifficulty,
   changeLocalisation,
-} from '../../store/reducers/hikesFiltersReducer';
+} from '../../store/reducers/hikesFilters';
 import './HikeFilters.scss';
 
 // components from MUI
@@ -23,7 +23,7 @@ function HikeFilters() {
   );
 
   // on reprend les données du store pour les randonnées
-  const hikes = useAppSelector((state) => state.hikes.hikesList);
+  const hikes = useAppSelector((state) => state.hikesAll.hikesList);
   // 1er select : récupérer toutes les localisations
   const locations = [...new Set(hikes.map((hike) => hike.localisation))];
   // 2e select : récupérer toutes les difficultés

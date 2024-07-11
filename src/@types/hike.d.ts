@@ -1,3 +1,5 @@
+// import { Feature, FeatureCollection, Geometry } from 'geojson';
+
 export type Location = {
   pathname: string;
 };

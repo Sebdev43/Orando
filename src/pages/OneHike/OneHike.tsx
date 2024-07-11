@@ -1,25 +1,38 @@
-import { Navigate, useParams } from 'react-router-dom';
+import { NavLink, Navigate, useParams } from 'react-router-dom';
 import { Hike } from '../../@types/hike';
-import { useAppSelector } from '../../hooks/redux';
-
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import './OneHike.scss';
 
 // Components
 import HikeDetail from '../../components/HikeDetail/HikeDetail';
+import { useEffect } from 'react';
+import { loadAPI } from '../../store/reducers/hikeOne';
 
+// The actual component
 function OneHike() {
-  const { slug } = useParams();
+  const dispatch = useAppDispatch();
+  const params = useParams();
+  const id = Number(params.id);
 
-  const hikes = useAppSelector((state) => state.hikes.hikesList);
-  if (!hikes) {
+  useEffect(() => {
+    dispatch(loadAPI(id));
+  }, [id, dispatch]);
+
+  const hike = useAppSelector((state) => state.hikeOne.oneHike);
+  const loading = useAppSelector((state) => state.hikeOne.loading);
+  const error = useAppSelector((state) => state.hikeOne.error);
+
+  if (error) {
     return <Navigate to="/error" replace />;
   }
-  const hike = hikes.find((hike: Hike) => hike.slug === slug);
+  if (loading) {
+    return <h1 className="page_title">Chargement des randonnées</h1>;
+  }
 
   return (
-    <>
-      <HikeDetail {...hike!} />
-    </>
+    <div className="hike">
+      <HikeDetail hike={hike as Hike} />
+    </div>
   );
 }
 

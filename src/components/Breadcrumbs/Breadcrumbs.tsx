@@ -4,7 +4,7 @@ import './Breadcrumbs.scss';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/redux';
-import { changeLocation } from '../../store/reducers/breadcrumbsReducer';
+import { changeLocation } from '../../store/reducers/breadcrumbs';
 
 // utils
 import { formatBreadcrumbs } from '../../utils/regEx';

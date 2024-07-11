@@ -8,37 +8,19 @@ import { Hike } from '../../@types/hike';
 
 //  le typage TS pour tout l'état (le state hikes du store.tsx)
 export type HikesList = {
-  randomList: Hike[];
-  loadingRandomsHikes: boolean;
   hikesList: Hike[];
-  loadingAllHikes: boolean;
+  loading: boolean;
   error: string | undefined | null;
-  SkeletonNumberOfCards: number;
 };
 
 // les propriétés par défaut du state hikes (le state du store.tsx)
 const initialState: HikesList = {
-  randomList: [],
-  loadingRandomsHikes: false,
   hikesList: [],
-  loadingAllHikes: false,
+  loading: false,
   error: null,
-  SkeletonNumberOfCards: 10,
 };
 
 // En asynchrone, on utilise la méthode "createasyncThunk" pour récupérer les données d'une API
-export const loadrandomHikes = createAsyncThunk(
-  'HIKES/LOAD_RANDOM_HIKES',
-  async () => {
-    try {
-      const { data } = await axios.get(`/api/hikes/random`);
-      return data;
-    } catch {
-      throw new Error('Pas de randonnées "random" trouvées');
-    }
-  }
-);
-
 export const loadHikes = createAsyncThunk('HIKES/LOAD_HIKES', async () => {
   try {
     const { data } = await axios.get(`/api/hikes`);
@@ -50,28 +32,15 @@ export const loadHikes = createAsyncThunk('HIKES/LOAD_HIKES', async () => {
 
 export const hikesListReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(loadrandomHikes.pending, (state) => {
-      state.loadingRandomsHikes = true;
-    })
-    .addCase(loadrandomHikes.rejected, (state, action) => {
-      state.error = action.error.message;
-      state.loadingRandomsHikes = false;
-      // Gestion des erreurs
-    })
-    .addCase(loadrandomHikes.fulfilled, (state, action) => {
-      state.randomList = action.payload;
-      state.loadingRandomsHikes = false;
-    })
     .addCase(loadHikes.pending, (state) => {
-      state.loadingAllHikes = true;
+      state.loading = true;
     })
     .addCase(loadHikes.rejected, (state, action) => {
       state.error = action.error.message;
-      state.loadingAllHikes = false;
-      // Gestion des erreurs
+      state.loading = false;
     })
     .addCase(loadHikes.fulfilled, (state, action) => {
       state.hikesList = action.payload;
-      state.loadingAllHikes = false;
+      state.loading = false;
     });
 });

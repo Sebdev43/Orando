@@ -55,7 +55,7 @@ function CardComponent(hike: Hike) {
       </CardOverflow>
       {/* Card content */}
       <CardContent>
-        <NavLink to={`/randonnees/${hike.slug}`} className="no-decoration">
+        <NavLink to={`/randonnees/${hike.id}`} className="no-decoration">
           <h3 className="card__title">{hike.title}</h3>
         </NavLink>
       </CardContent>
