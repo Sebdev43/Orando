@@ -17,9 +17,9 @@ function OneHike() {
   const hike = hikes.find((hike: Hike) => hike.slug === slug);
 
   return (
-    <div className="hike">
+    <>
       <HikeDetail {...hike!} />
-    </div>
+    </>
   );
 }
 
