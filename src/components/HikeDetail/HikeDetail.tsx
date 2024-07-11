@@ -75,9 +75,9 @@ function HikeDetail(hike: Hike) {
         <p>{hike.details}</p>
       </section>
 
-      <section className="hike__map">
+      {/* <section className="hike__map">
         <Map geoDatas={geoDatas} />
-      </section>
+      </section> */}
 
       <footer className="hike__footer"></footer>
     </>

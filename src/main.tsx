@@ -32,7 +32,6 @@ const root = ReactDOM.createRoot(
 // Rooter d'url : simuler en avec REACT, le comportement d'un navigateur pour la gestion d'URL
 const router = createBrowserRouter(
   createRoutesFromElements(
-    // TODO : Ajouter un LOADER pour le chargement de la page
     <Route path="/" element={<Root />} errorElement={<NotFound />}>
       <Route index element={<Home />} />
       <Route path="/randonnees" element={<Hikes />} />
