@@ -11,6 +11,7 @@ CREATE TABLE "users" (
     "localisation" TEXT,
     "email" "email" UNIQUE NOT NULL,
     "password" TEXT NOT NULL,
+    "email_verified" BOOLEAN DEFAULT FALSE NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );
@@ -28,7 +29,6 @@ CREATE TABLE "hikes" (
     "localisation" TEXT NOT NULL,
     "details" TEXT NOT NULL,
     "gps_coordinate" GEOMETRY(LINESTRING, 4326),
-    "email_verified" BOOLEAN DEFAULT FALSE NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );
