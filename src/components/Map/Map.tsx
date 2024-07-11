@@ -38,7 +38,7 @@ export default function Map({ geoDatas }: GeoDatasProps) {
           },
           paint: {
             'line-color': '#0000FF',
-            'line-width': 5,
+            'line-width': 3,
           },
         });
 

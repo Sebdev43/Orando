@@ -9,7 +9,6 @@ import { Button } from '@mui/material';
 
 // utils
 import { formatHikeTime } from '../../utils/regEx';
-import { RenderDifficulty } from '../RenderTagDifficulty/RenderTagDifficultyStyle';
 
 // Le typage
 type HikeDetailProps = {
@@ -19,7 +18,7 @@ type HikeDetailProps = {
 // The actual component
 function HikeDetail({ hike }: HikeDetailProps) {
   const geoDatas = hike.gps_coordinate;
-  
+
   // Traitement du texte de l'itinéraire
   const text = hike.details;
   const regex = /\(\d+\)/g;
@@ -40,7 +39,7 @@ function HikeDetail({ hike }: HikeDetailProps) {
       </Button>
       <header className="hike__header">
         <h1>{hike.title}</h1>
-        <h2>Description :</h2>
+        <h2 className="hike__subtitle">Description :</h2>
         <span className="hike__description">{hike.description}</span>
       </header>
       <main>
@@ -103,25 +102,25 @@ function HikeDetail({ hike }: HikeDetailProps) {
           </section>
         </section>
         <section className="hike__tags">
-          <span className="hike__tag-localisation">{hike.localisation}</span>
-          <span className="hike__tag-difficulty">{hike.difficulty}</span>
-          <span className="hike__tag-time">{formatHikeTime(hike.time)}</span>
-          <span className="hike__tag-distance">{hike.distance} kms</span>
+          <span className="hike__tags-localisation">{hike.localisation}</span>
+          <span className="hike__tags-difficulty">{hike.difficulty}</span>
+          <span className="hike__tags-time">{formatHikeTime(hike.time)}</span>
+          <span className="hike__tags-distance">{hike.distance} kms</span>
         </section>
         <section className="hike__details">
           <h3>Infos pratiques et itinéraire :</h3>
-          <p>
-            {lines.map((line, index) => (
-              <p key={index}>{line}</p>
-            ))}
-          </p>
+
+          {lines.map((line, index) => (
+            <p key={index}>{line}</p>
+          ))}
         </section>
 
-      <section className="hike__map">
-        <Map geoDatas={geoDatas} />
-      </section>
+        <section className="hike__map">
+          <Map geoDatas={geoDatas} />
+        </section>
 
-      <footer className="hike__footer"></footer>
+        <footer className="hike__footer"></footer>
+      </main>
     </>
   );
 }
