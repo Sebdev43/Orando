@@ -1,0 +1,105 @@
+.form-account {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  margin: 0 auto;
+
+  h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #2A454E;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .form-account__field {
+    margin-bottom: 20px;
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: calc(100% - 110px);
+      padding: 8px;
+      margin-right: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 8px 12px;
+      margin-right: 5px;
+      background-color: #838c3b;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #218838;
+      }
+
+      &:last-child {
+        background-color: #e19655;
+        
+        &:hover {
+          background-color: #c82333;
+        }
+      }
+    }
+
+    span {
+      display: inline-block;
+      width: calc(100% - 110px);
+      padding: 8px;
+      background-color: #e9ecef;
+      border-radius: 4px;
+    }
+
+    button {
+      margin-left: 10px;
+    }
+  }
+
+  .form-account__delete {
+    background-color: #cc4b58;
+    color: black;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+    width: 100%;
+    text-align: center;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #c82333;
+    }
+  }
+
+  .form-account__favorites {
+    background-color: #A2D5CF;
+    color: black;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+    width: 100%;
+    text-align: center;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #73bfb8;
+    }
+  }
+}

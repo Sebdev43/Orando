@@ -1,5 +1,12 @@
+import FormAccount from "../../components/Forms/FormAccount/FormAccount";
+
 function Account() {
-  return <h1 className="page_title">PAGE DU COMPTE PERSO</h1>;
+  return (<section>
+    
+    <FormAccount />
+    </section>
+  )
+
 }
 
 export default Account;
