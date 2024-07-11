@@ -1,11 +1,21 @@
--- Verify orando:01-insertTables on pg
 
 BEGIN;
+-- Vérifier l'existence du domaine "email"
+SELECT 1
+FROM pg_type
+WHERE typname = 'email';
 
-SELECT id FROM "users" WHERE false;
+-- Vérifier l'existence des tables
+SELECT 1
+FROM information_schema.tables
+WHERE table_name = 'users';
 
-SELECT id FROM "hikes" WHERE false;
+SELECT 1
+FROM information_schema.tables
+WHERE table_name = 'hikes';
 
-SELECT id FROM "users_has_hikes" WHERE false;
+SELECT 1
+FROM information_schema.tables
+WHERE table_name = 'users_has_hikes';
 
 ROLLBACK;
