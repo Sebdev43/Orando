@@ -3,6 +3,7 @@ import './NotFound.scss';
 import errorImage from '/404fof.png';
 
 function NotFound() {
+
   useEffect(() => {
     document.body.classList.add('not-found-page');
     return () => {

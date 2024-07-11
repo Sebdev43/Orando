@@ -5,7 +5,7 @@ export type Location = {
 };
 
 export interface Hike {
-  id: number;
+  id: number | null;
   slug: string;
   title: string;
   description: string;

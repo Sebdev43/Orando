@@ -20,7 +20,8 @@ function OneHike() {
 
   return (
     <div className="hike">
-      <HikeDetail {...hike} />
+      {hike?.slug === slug && <HikeDetail {...hike!} />}
+      {hike?.slug !== slug && <Navigate to="/error" replace />}
     </div>
   );
 }
