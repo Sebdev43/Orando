@@ -14,13 +14,13 @@ export type FormData = {
 export default function FormAccount() {
   const [editingField, setEditingField] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
-  
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
-    getValues
+    getValues,
   } = useForm<FormData>({
     defaultValues: {
       nickname: 'Heike13',
@@ -60,6 +60,7 @@ export default function FormAccount() {
     <section className="form-account">
       <h2>Précisez vos informations pour créer un compte</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
+        {/* Nickname */}
         <section className="form-account__field">
           <label>Pseudo :</label>
           {editingField === 'nickname' ? (
@@ -83,36 +84,56 @@ export default function FormAccount() {
                   },
                 })}
               />
-              <span className="error__nickname">{errors.nickname?.message}</span>
-              <button type="button" onClick={() => setEditingField(null)}>OK</button>
-              <button type="button" onClick={handleCancel}>Annuler</button>
+              <span className="error__nickname">
+                {errors.nickname?.message}
+              </span>
+              <button type="button" onClick={() => setEditingField(null)}>
+                OK
+              </button>
+              <button type="button" onClick={handleCancel}>
+                Annuler
+              </button>
             </section>
           ) : (
             <section>
               <span>{getValues('nickname')}</span>
-              <button type="button" onClick={() => handleEdit('nickname')}>Modifier</button>
+              <button type="button" onClick={() => handleEdit('nickname')}>
+                Modifier
+              </button>
             </section>
           )}
         </section>
+        {/* Localisation */}
         <section className="form-account__field">
           <label>Département :</label>
           {editingField === 'localisation' ? (
             <section>
               <input
                 type="text"
-                {...register('localisation', { required: 'Vous devez choisir un département' })}
+                {...register('localisation', {
+                  required: 'Vous devez choisir un département',
+                })}
               />
-              <span className="error__localisation">{errors.localisation?.message}</span>
-              <button type="button" onClick={() => setEditingField(null)}>OK</button>
-              <button type="button" onClick={handleCancel}>Annuler</button>
+              <span className="error__localisation">
+                {errors.localisation?.message}
+              </span>
+              <button type="button" onClick={() => setEditingField(null)}>
+                OK
+              </button>
+              <button type="button" onClick={handleCancel}>
+                Annuler
+              </button>
             </section>
           ) : (
             <section>
               <span>{getValues('localisation')}</span>
-              <button type="button" onClick={() => handleEdit('localisation')}>Modifier</button>
+              <button type="button" onClick={() => handleEdit('localisation')}>
+                Modifier
+              </button>
             </section>
           )}
         </section>
+        {/* Email */}
         <section className="form-account__field">
           <label>Adresse mail :</label>
           {editingField === 'email' ? (
@@ -128,16 +149,23 @@ export default function FormAccount() {
                 })}
               />
               <span className="error__email">{errors.email?.message}</span>
-              <button type="button" onClick={() => setEditingField(null)}>OK</button>
-              <button type="button" onClick={handleCancel}>Annuler</button>
+              <button type="button" onClick={() => setEditingField(null)}>
+                OK
+              </button>
+              <button type="button" onClick={handleCancel}>
+                Annuler
+              </button>
             </section>
           ) : (
             <section>
               <span>{getValues('email')}</span>
-              <button type="button" onClick={() => handleEdit('email')}>Modifier</button>
+              <button type="button" onClick={() => handleEdit('email')}>
+                Modifier
+              </button>
             </section>
           )}
         </section>
+        {/* Password */}
         <section className="form-account__field">
           <label>Mot de passe :</label>
           {editingField === 'password' ? (
@@ -160,7 +188,8 @@ export default function FormAccount() {
                   },
                   maxLength: {
                     value: 20,
-                    message: 'Le mot de passe doit avoir moins de 20 caractères',
+                    message:
+                      'Le mot de passe doit avoir moins de 20 caractères',
                   },
                   pattern: {
                     value:
@@ -178,23 +207,35 @@ export default function FormAccount() {
                 })}
               />
               {passwordError && <span className="error">{passwordError}</span>}
-              <span className="error__password">{errors.currentPassword?.message}</span>
-              <span className="error__password">{errors.newPassword?.message}</span>
-              <span className="error__password">{errors.confirmPassword?.message}</span>
-              <button type="button" onClick={handleSubmit(onSubmit)}>OK</button>
-              <button type="button" onClick={handleCancel}>Annuler</button>
+              <span className="error__password">
+                {errors.currentPassword?.message}
+              </span>
+              <span className="error__password">
+                {errors.newPassword?.message}
+              </span>
+              <span className="error__password">
+                {errors.confirmPassword?.message}
+              </span>
+
+              <button type="button" onClick={handleSubmit(onSubmit)}>
+                OK
+              </button>
+              <button type="button" onClick={handleCancel}>
+                Annuler
+              </button>
             </section>
           ) : (
             <section>
               <span>********</span>
-              <button type="button" onClick={() => handleEdit('password')}>Modifier</button>
+              <button type="button" onClick={() => handleEdit('password')}>
+                Modifier
+              </button>
             </section>
           )}
         </section>
       </form>
       <button className="form-account__favorites">Accéder à mes favoris</button>
       <button className="form-account__delete">SUPPRIMER LE COMPTE</button>
-      
     </section>
   );
 }

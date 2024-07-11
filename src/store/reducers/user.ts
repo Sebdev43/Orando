@@ -50,19 +50,22 @@ export const postRegisterDatas = createAsyncThunk(
   }
 );
 
-export const userReducer = createReducer(initialState, (builder) => {
-  builder
-    .addCase(postRegisterDatas.pending, (state) => {
-      state.loading = true;
-    })
-    .addCase(postRegisterDatas.rejected, (state, action) => {
-      state.loading = false;
-      console.log('register message : ' + action.error.message);
-    })
-    .addCase(postRegisterDatas.fulfilled, (state, action) => {
-      state.loading = false;
-      console.log('register : la réponse du server est OK');
-      console.log(action.payload);
-      state.messageValidation = action.payload;
-    });
-});
+export const userRegistrationReducer = createReducer(
+  initialState,
+  (builder) => {
+    builder
+      .addCase(postRegisterDatas.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(postRegisterDatas.rejected, (state, action) => {
+        state.loading = false;
+        console.log('register message : ' + action.error.message);
+      })
+      .addCase(postRegisterDatas.fulfilled, (state, action) => {
+        state.loading = false;
+        console.log('register : la réponse du server est OK');
+        console.log(action.payload);
+        state.messageValidation = action.payload;
+      });
+  }
+);

@@ -17,7 +17,7 @@ export type FormData = {
 export default function FormRegister() {
   const dispatch = useAppDispatch();
   const messageValidation = useAppSelector(
-    (state) => state.user.messageValidation
+    (state) => state.userRegistration.messageValidation
   );
 
   const {

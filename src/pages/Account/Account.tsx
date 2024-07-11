@@ -1,12 +1,11 @@
-import FormAccount from "../../components/Forms/FormAccount/FormAccount";
+import FormAccount from '../../components/Forms/FormAccount/FormAccount';
 
 function Account() {
-  return (<section>
-    
-    <FormAccount />
+  return (
+    <section>
+      <FormAccount />
     </section>
-  )
-
+  );
 }
 
 export default Account;
