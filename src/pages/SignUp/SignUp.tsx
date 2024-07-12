@@ -4,7 +4,7 @@ import './SignUp.scss';
 import FormRegister from '../../components/Forms/FormRegister/FormRegister';
 
 // Actual (page) component
-function SignUp() {
+export default function SignUp() {
   return (
     <div className="signup__container">
       <h1 className="page_title">Créez votre compte</h1>
@@ -12,5 +12,3 @@ function SignUp() {
     </div>
   );
 }
-
-export default SignUp;

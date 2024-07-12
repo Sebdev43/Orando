@@ -1,11 +1,7 @@
-import {
-  createReducer,
-  createAsyncThunk,
-  createAction,
-} from '@reduxjs/toolkit';
+import { createReducer, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-//  le typage TS pour tout l'état (le state hikes du store.tsx)
+//  le typage TS
 export type Credentials = {
   nickname: string;
   localisation: string;
@@ -15,27 +11,18 @@ export type Credentials = {
 
 export type userProps = {
   loading: boolean;
-  credentials: Credentials | null;
-  messageValidation: string;
+  messageResponse: string;
+  isRegistered: boolean;
+  successMessage: string;
 };
 
 // les propriétés par défaut du state hikes (le state du store.tsx)
 const initialState: userProps = {
   loading: false,
-  credentials: {
-    nickname: '',
-    localisation: '',
-    email: '',
-    password: '',
-  },
-  messageValidation: '',
+  messageResponse: '',
+  successMessage: '',
+  isRegistered: false,
 };
-
-export type KeysOfCredentials = keyof Credentials;
-export const changeField = createAction<{
-  value: string;
-  name: KeysOfCredentials;
-}>('user/changeField');
 
 // En asynchrone, on utilise la méthode "createasyncThunk" pour récupérer les données d'une API
 export const postRegisterDatas = createAsyncThunk(
@@ -43,9 +30,10 @@ export const postRegisterDatas = createAsyncThunk(
   async (datas: Credentials) => {
     try {
       const { data } = await axios.post(`/api/accounts/signup`, datas);
+      console.log(data);
       return data;
-    } catch (error) {
-      throw new Error("L'enregistrement n'a pas fonctionné");
+    } catch (error: any) {
+      throw new Error(error.response.data.message); // c'est OK
     }
   }
 );
@@ -58,14 +46,14 @@ export const userRegistrationReducer = createReducer(
         state.loading = true;
       })
       .addCase(postRegisterDatas.rejected, (state, action) => {
+        state.messageResponse = action.error.message as string;
         state.loading = false;
-        console.log('register message : ' + action.error.message);
       })
       .addCase(postRegisterDatas.fulfilled, (state, action) => {
+        state.successMessage = action.payload.message;
+        state.messageResponse = '';
         state.loading = false;
-        console.log('register : la réponse du server est OK');
-        console.log(action.payload);
-        state.messageValidation = action.payload;
+        state.isRegistered = true;
       });
   }
 );

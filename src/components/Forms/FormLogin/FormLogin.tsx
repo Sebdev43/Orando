@@ -1,6 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { Errors } from '../../../@types/form';
 import './FormLogin.scss';
+import { useAppDispatch } from '../../../hooks/redux';
+import { postLoginDatas } from '../../../store/reducers/userConnection';
 
 export type FormData = {
   email: string;
@@ -10,6 +12,8 @@ export type FormData = {
 
 // The actual component
 export default function FormLogin() {
+  const dispatch = useAppDispatch();
+
   const {
     register,
     handleSubmit,
@@ -20,7 +24,7 @@ export default function FormLogin() {
     console.log(data);
 
     // TODO : envoyer les données au serveur via un dispatch sur le reducer user
-
+    dispatch(postLoginDatas(data));
     // TODO : indiquer les erreurs de validation au moment de l'envoi
 
     // TODO : rediriger l'utilisateur si validation OK (de la requête)
