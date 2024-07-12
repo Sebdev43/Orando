@@ -1,27 +1,46 @@
 import * as userDataMappers from "../dataMappers/userDataMappers.js";
+import { validationResult } from "express-validator";
+import { verifyPassword, hashPassword } from "../utils/passwordUtils.js";
 
 export const updateUser = async (req, res, next) => {
   try {
     const userId = req.user.id;
-    const { nickname, localisation, email, password } = req.body;
+    const { nickname, localisation, email, currentPassword, newPassword } = req.body;
 
-    if (!nickname || !localisation || !email || !password) {
-      const error = new Error(
-        "Il manque des informations pour modifier l'utilisateur !"
-      );
-      error.statusCode = 400;
-      throw error;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        status: "error",
+        message: "Données de requête invalides",
+        errors: errors.array(),
+      });
     }
 
-    const user = await userDataMappers.updateUser(
-      userId,
-      nickname,
-      localisation,
-      email,
-      password
-    );
+    let user = await userDataMappers.getUserById(userId);
 
-    //Filtrage des champs à renvoyer
+    if (newPassword) {
+      if (!currentPassword) {
+        return res.status(400).json({
+          status: "error",
+          message: "Le mot de passe actuel est requis pour changer le mot de passe",
+        });
+      }
+      const isPasswordValid = await verifyPassword(currentPassword, user.password);
+      if (!isPasswordValid) {
+        return res.status(400).json({
+          status: "error",
+          message: "Le mot de passe actuel est incorrect",
+        });
+      }
+      user.password = await hashPassword(newPassword);
+    }
+
+    if (nickname) user.nickname = nickname;
+    if (localisation) user.localisation = localisation;
+    if (email) user.email = email;
+
+    user = await userDataMappers.updateUser(userId, user.nickname, user.localisation, user.email, user.password);
+
     const filteredUser = {
       nickname: user.nickname,
       localisation: user.localisation,

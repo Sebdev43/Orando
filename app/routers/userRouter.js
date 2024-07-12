@@ -5,6 +5,7 @@ import {
   emailValidator,
   nicknameValidator,
   passwordValidator,
+  currentPasswordValidator,
 } from "../validators/userValidators.js";
 
 import { validateRequest } from "../middlewares/validateReqMiddleware.js";
@@ -39,13 +40,13 @@ router.get("/", authenticateJWT, getUserById);
 
 /**
  * @swagger
- * /users:
+  * /users:
  *   patch:
  *     summary: Mettre à jour les informations de l'utilisateur authentifié
- *     description: Update user information by their ID
+ *     description: Permet de mettre à jour une seule information de l'utilisateur à la fois. Fournissez uniquement le champ que vous souhaitez mettre à jour.
  *     tags: [Users]
  *     security:
- *     - bearerAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -55,12 +56,19 @@ router.get("/", authenticateJWT, getUserById);
  *             properties:
  *               nickname:
  *                 type: string
+ *                 description: Le nouveau pseudo de l'utilisateur
  *               localisation:
  *                 type: string
+ *                 description: La nouvelle localisation de l'utilisateur
  *               email:
  *                 type: string
- *               password:
+ *                 description: Le nouvel email de l'utilisateur
+ *               currentPassword:
  *                 type: string
+ *                 description: Le mot de passe actuel de l'utilisateur, requis pour changer le mot de passe
+ *               newPassword:
+ *                 type: string
+ *                 description: Le nouveau mot de passe de l'utilisateur
  *     responses:
  *       '200':
  *         description: User updated successfully
@@ -74,12 +82,12 @@ router.get("/", authenticateJWT, getUserById);
 router.patch(
   "/",
   [
-    emailValidator,
-    passwordValidator,
-    nicknameValidator,
-    authenticateJWT,
+    nicknameValidator.optional(),
+    emailValidator.optional(), 
+    currentPasswordValidator.optional(),
+    passwordValidator.optional({ nullable: true }),
     validateRequest,
-    passwordValidator,
+    authenticateJWT,
   ],
   updateUser
 );

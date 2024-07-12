@@ -103,6 +103,8 @@ router.post(
  *         description: User deleted successfully
  *       '404':
  *         description: User not found
+ *       '409':
+ *         description: Email ou pseudo déjà utilisé
  *       '500':
  *         description: Internal server error
  */

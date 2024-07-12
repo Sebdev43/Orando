@@ -49,20 +49,33 @@ export const signup = async (req, res, next) => {
       errors: errors.array(),
     });
   }
+
   try {
+    const existingEmailUser = await userDataMappers.getUserByEmail(email);
+    if (existingEmailUser) {
+      return res.status(409).json({
+        status: "error",
+        message: "Adresse email déjà utilisée",
+        emailExists: true,
+      });
+    }
+
+    const existingNicknameUser = await userDataMappers.getUserByNickname(nickname);
+    if (existingNicknameUser) {
+      return res.status(409).json({
+        status: "error",
+        message: "Le pseudo est déjà utilisé",
+        nicknameExists: true,
+      });
+    }
+
     const hashedPassword = await hashPassword(password);
-    const user = await userDataMappers.createUser(
-      nickname,
-      localisation,
-      email,
-      hashedPassword
-    );
+    const user = await userDataMappers.createUser(nickname, localisation, email, hashedPassword);
     const emailToken = generateEmailToken(user.id);
     await sendVerificationEmail(user.email, emailToken);
 
     return res.status(201).json({
-      message:
-        "Utilisateur créé avec succès. Un email de vérification a été envoyé.",
+      message: "Utilisateur créé avec succès. Un email de vérification a été envoyé.",
     });
   } catch (error) {
     next(error);
