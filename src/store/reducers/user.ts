@@ -6,10 +6,6 @@ import {
 import axios from 'axios';
 
 //  le typage TS pour tout l'état (le state hikes du store.tsx)
-export type AxiosErrorResponse = {
-  message: string;
-};
-
 export type Credentials = {
   nickname: string;
   localisation: string;
@@ -75,4 +71,3 @@ export const userRegistrationReducer = createReducer(
       });
   }
 );
-// Coucou@13
