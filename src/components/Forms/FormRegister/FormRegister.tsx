@@ -1,7 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { Errors } from '../../../@types/form';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { postRegisterDatas } from '../../../store/reducers/user';
+import { postRegisterDatas } from '../../../store/reducers/userRegistration';
+import { useEffect } from 'react';
+
+import locations from '../../../data/departements.json';
 import './FormRegister.scss';
 
 // Le typage des données
@@ -16,6 +19,8 @@ export type FormData = {
 // The actual component
 export default function FormRegister() {
   const dispatch = useAppDispatch();
+
+  // On récupère nos states venant du store qu'on stock dans une variable locale
   const isRegistered = useAppSelector(
     (state) => state.userRegistration.isRegistered
   );
@@ -32,13 +37,12 @@ export default function FormRegister() {
     formState: { errors },
   } = useForm<FormData>();
 
-  // envoi des données au serveur
+  // envoi des données au reducer (direction le server back)
   const onSubmit = (data: FormData) => {
     dispatch(postRegisterDatas(data));
   };
 
-  console.log('je suis enregistré sur la page FORM : ' + isRegistered);
-  console.log(messageResponse);
+  // création des messages d'erreurs pour mail et nickname
   const errorMessagesFromApi = messageResponse.map((error) => {
     return (
       <span key={error}>
@@ -92,15 +96,15 @@ export default function FormRegister() {
               required: 'Vous devez choisir un departement',
             })}
           >
-            {/* TOOOOOOOOOOOOOOOOOOOOOOOOODOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO !!!!!!!!!!!!!!!!!!!!!! */}
-            <option disabled value="no-choice">
+            <option disabled value="placeholder">
               Choisissez un département
             </option>
-            {/* se brancher à l'api de geoportail pour les départements */}
-            <option value="option1">Bouches du rhone</option>
-            <option value="option2">Le Nord</option>
-            <option value="option3">L'ouest du pays</option>
-            <option value="option4">Cote d'azure</option>
+            {/* data qui vient du dossier data */}
+            {locations.map((location, index) => (
+              <option key={index} value="option">
+                {location.nom}
+              </option>
+            ))}
           </select>
 
           <span className="error__email">

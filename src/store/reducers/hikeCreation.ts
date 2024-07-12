@@ -16,23 +16,28 @@ const initialState: hikeCreationProps = {
 
 // export const setWidth = createAction<string>('SETTINGS/MAX_WIDTH_MEDIASCREEN');
 
-export const locationsFromAPI = createAsyncThunk(
+export const getLocationsFromAPI = createAsyncThunk(
   'HIKE_LOCATION/LOAD_HIKE_LOCATIONS',
   async () => {
     try {
-      const { data } = await axios.get(`API DU GOUVERNEMENT`);
+      const { data } = await axios.get(`https://geo.api.gouv.fr/departements`);
+      console.log(data);
       return data;
     } catch {
-      throw new Error('Pas de localisation trouvées');
+      throw new Error('Pas de département trouvés');
     }
   }
 );
 
 export const hikeCreationReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(locationsFromAPI.pending, (state) => {})
-    .addCase(locationsFromAPI.rejected, (state, action) => {
+    .addCase(getLocationsFromAPI.pending, (state) => {
+      // Gestion du chargement
+    })
+    .addCase(getLocationsFromAPI.rejected, (state, action) => {
       // Gestion des erreurs
     })
-    .addCase(locationsFromAPI.fulfilled, (state, action) => {});
+    .addCase(getLocationsFromAPI.fulfilled, (state, action) => {
+      state.hikeLocations = action.payload;
+    });
 });

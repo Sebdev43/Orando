@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { Errors } from '../../../@types/form';
-import './FormLogin.scss';
 import { useAppDispatch } from '../../../hooks/redux';
 import { postLoginDatas } from '../../../store/reducers/userConnection';
+import './FormLogin.scss';
 
 export type FormData = {
   email: string;
@@ -21,20 +21,15 @@ export default function FormLogin() {
   } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => {
+    dispatch(postLoginDatas(data as any));
     console.log(data);
-
-    // TODO : envoyer les données au serveur via un dispatch sur le reducer user
-    // dispatch(postLoginDatas(data));
-    // TODO : indiquer les erreurs de validation au moment de l'envoi
-
-    // TODO : rediriger l'utilisateur si validation OK (de la requête)
   };
 
   console.log(errors);
 
   return (
     <form className="form__login" onSubmit={handleSubmit(onSubmit)}>
-      <span className="error__email">{errors.email?.message as string}</span>
+      <span className="error__email">{errors?.email?.message}</span>
       <input
         type="text"
         placeholder="Adresse Email"
@@ -47,10 +42,7 @@ export default function FormLogin() {
         })}
       />
 
-      <span className="error__password">
-        {errors.password?.message as string}
-      </span>
-
+      <span className="error__password">{errors?.password?.message}</span>
       <input
         type="text"
         placeholder="Mot de passe"

@@ -6,7 +6,7 @@ import { hikesRandomReducer } from './reducers/hikesRandom';
 import { hikeOneReducer } from './reducers/hikeOne';
 import { settingsReducer } from './reducers/settings';
 import { hikesFiltersReducer } from './reducers/hikesFilters';
-import { userRegistrationReducer } from './reducers/user';
+import { userRegistrationReducer } from './reducers/userRegistration';
 import { userConnectionReducer } from './reducers/userConnection';
 import { hikeCreationReducer } from './reducers/hikeCreation';
 import { menuReducer } from './reducers/menu';

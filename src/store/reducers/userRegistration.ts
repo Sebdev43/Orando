@@ -67,7 +67,7 @@ export const userRegistrationReducer = createReducer(
         state.successMessage = action.payload.message;
         state.messageResponse = [];
         state.loading = false;
-        state.isRegistered = true;
+        // state.isRegistered = true;
       });
   }
 );
