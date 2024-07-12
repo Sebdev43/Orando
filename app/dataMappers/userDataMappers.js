@@ -91,3 +91,10 @@ export const verifyUserEmail = async (userId) => {
   await pool.query(query, values);
 
 };
+
+export const getUserByNickname = async (nickname) => {
+  const query = `SELECT * FROM users WHERE nickname =$1`;
+    const values = [nickname];
+    const result = await pool.query(query, values);
+    return result.rows[0];
+};

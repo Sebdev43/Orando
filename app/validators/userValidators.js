@@ -12,10 +12,16 @@ export const emailValidator = body('email')
     .custom(async email => {
         const user = await userDataMappers.getUserByEmail(email);
         if (user) {
-            return new Error('Adresse email déjà utilisé');
+            return Promise.reject('Adresse email déjà utilisé');
         }
     });
 
 export const nicknameValidator = body('nickname')
-    .not().isEmpty().withMessage('Le pseudo est obligatoire');
+    .not().isEmpty().withMessage('Le pseudo est obligatoire')
+    .custom(async nickname => {
+        const user = await userDataMappers.getUserByNickname(nickname);
+        if (user) {
+            return Promise.reject('Pseudo déjà utilisé');
+        }
+    });
     

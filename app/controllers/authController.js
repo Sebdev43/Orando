@@ -6,6 +6,7 @@ import {
   generateEmailToken,
   sendVerificationEmail,
 } from "../utils/emailUtils.js";
+import { validationResult } from "express-validator";
 
 const secretKey = process.env.JWT_SECRET;
 
@@ -32,7 +33,6 @@ export const login = async (req, res, next) => {
   }
 
   const token = generateToken(user);
-  //const refreshToken = generateRefreshToken(user);
 
   return res.status(200).json({ token });
 };
@@ -40,40 +40,30 @@ export const login = async (req, res, next) => {
 //Fonction D'incription
 export const signup = async (req, res, next) => {
   const { nickname, localisation, email, password } = req.body;
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      status: "error",
+      message: "Données de requête invalides",
+      errors: errors.array(),
+    });
+  }
   try {
-    if (!nickname || !localisation || !email || !password) {
-      const error = new Error(
-        "Il manque des informations pour créer un utilisateur !"
-      );
-      error.statusCode = 400;
-      throw error;
-    }
-    // Hachage du mot de passe
     const hashedPassword = await hashPassword(password);
-
-    // Création de l'utilisateur
-
     const user = await userDataMappers.createUser(
       nickname,
       localisation,
       email,
       hashedPassword
     );
-
-    // Génération du token de vérification d'email
-
     const emailToken = generateEmailToken(user.id);
-
-    // Envoi de l'email de vérification
-
     await sendVerificationEmail(user.email, emailToken);
 
-    return res
-      .status(201)
-      .json({
-        message:
-          "Utilisateur créé avec succès. Un email de vérification a été envoyé.",
-      });
+    return res.status(201).json({
+      message:
+        "Utilisateur créé avec succès. Un email de vérification a été envoyé.",
+    });
   } catch (error) {
     next(error);
   }
@@ -103,7 +93,6 @@ export const verifyEmail = async (req, res, next) => {
   }
 };
 
-
 /*export const refreshToken = async (req, res) => {
     const { refreshToken } = req.body;
     try {
@@ -115,8 +104,7 @@ export const verifyEmail = async (req, res, next) => {
         res.status(403).json({ error: 'Refresh token invalide' });
     }
 };*/
-  
-  export const getConnectionPage = (req, res) => {
-  res.sendFile('createAccount.html', { root: 'public'});
-    };
 
+export const getConnectionPage = (req, res) => {
+  res.sendFile("createAccount.html", { root: "public" });
+};
