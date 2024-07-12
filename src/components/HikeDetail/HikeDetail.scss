@@ -5,14 +5,12 @@
   &__subtitle {
     margin-top: 1.5rem;
   }
-
   &__pictures {
     display: flex;
     margin: auto;
     gap: 10px;
     width: 43rem;
   }
-
   &__tags {
     display: flex;
     flex-wrap: wrap;
@@ -53,11 +51,9 @@
       box-shadow: 1px 1px 3px #000000;
     }
   }
-
   &__details {
     gap: 1rem;
   }
-
   &__map {
     display: flex;
     justify-content: center;
