@@ -5,6 +5,7 @@ import { verifyPassword, hashPassword } from "../utils/passwordUtils.js";
 import {
   generateEmailToken,
   sendVerificationEmail,
+  sendResetPasswordEmail,
 } from "../utils/emailUtils.js";
 import { validationResult } from "express-validator";
 
@@ -12,29 +13,49 @@ const secretKey = process.env.JWT_SECRET;
 
 export const login = async (req, res, next) => {
   const { email, password } = req.body;
-  const user = await userDataMappers.getUserByEmail(email);
+  const errors = validationResult(req);
 
-  if (!user) {
-    const error = new Error("Email invalide");
-    error.statusCode = 401;
-    throw error;
-  }
-  if (!user.email_verified) {
-    const error = new Error("Email non vérifié");
-    error.statusCode = 401;
-    throw error;
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      status: "error",
+      message: "Données de requête invalides",
+      errors: errors.array(),
+    });
   }
 
-  const isPasswordValid = await verifyPassword(password, user.password);
-  if (!isPasswordValid) {
-    const error = new Error("Email ou mot de passe incorrect");
-    error.statusCode = 401;
-    throw error;
+  try {
+    const user = await userDataMappers.getUserByEmail(email);
+
+    if (!user) {
+      return res.status(401).json({
+        status: "error",
+        message: "Email ou mot de passe incorrect",
+      });
+    }
+
+    if (!user.email_verified) {
+      const emailToken = generateEmailToken(user.id);
+      await sendVerificationEmail(user.email, emailToken);
+      return res.status(401).json({
+        status: "error",
+        message: "Email non vérifié. Un email de vérification a été envoyé.",
+      });
+    }
+
+    const isPasswordValid = await verifyPassword(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({
+        status: "error",
+        message: "Email ou mot de passe incorrect",
+      });
+    }
+
+    const token = generateToken(user);
+
+    return res.status(200).json({ token });
+  } catch (error) {
+    next(error);
   }
-
-  const token = generateToken(user);
-
-  return res.status(200).json({ token });
 };
 
 //Fonction D'incription
@@ -60,7 +81,9 @@ export const signup = async (req, res, next) => {
       });
     }
 
-    const existingNicknameUser = await userDataMappers.getUserByNickname(nickname);
+    const existingNicknameUser = await userDataMappers.getUserByNickname(
+      nickname
+    );
     if (existingNicknameUser) {
       return res.status(409).json({
         status: "error",
@@ -70,12 +93,18 @@ export const signup = async (req, res, next) => {
     }
 
     const hashedPassword = await hashPassword(password);
-    const user = await userDataMappers.createUser(nickname, localisation, email, hashedPassword);
+    const user = await userDataMappers.createUser(
+      nickname,
+      localisation,
+      email,
+      hashedPassword
+    );
     const emailToken = generateEmailToken(user.id);
     await sendVerificationEmail(user.email, emailToken);
 
     return res.status(201).json({
-      message: "Utilisateur créé avec succès. Un email de vérification a été envoyé.",
+      message:
+        "Utilisateur créé avec succès. Un email de vérification a été envoyé.",
     });
   } catch (error) {
     next(error);
@@ -117,6 +146,60 @@ export const verifyEmail = async (req, res, next) => {
         res.status(403).json({ error: 'Refresh token invalide' });
     }
 };*/
+
+export const forgotPassword = async (req, res, next) => {
+  const { email } = req.body;
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      status: "error",
+      message: "Données de requête invalides",
+      errors: errors.array(),
+    });
+  }
+
+  try {
+    const user = await userDataMappers.getUserByEmail(email);
+    if (user) {
+      const resetToken = generateEmailToken(user.id);
+      await sendResetPasswordEmail(user.email, resetToken);
+      
+    }
+    // répondre toujours avec le même message pour des raisons de sécurité
+    return res.status(200).json({
+      message: "Si l'adresse email existe, un email de réinitialisation de mot de passe a été envoyé.",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const resetPassword = async (req, res, next) => {
+  const { token , newPassword} = req.body;
+  const errors = validationResult(req);
+
+  if(!errors.isEmpty()){
+    return res.status(400).json({
+      status: "error",
+      message: "Données de requête invalides",
+      errors: errors.array(),
+    });
+  }
+
+  try {
+    const decoded = jwt.verify(token, secretKey);
+    const userId = decoded.userId;
+
+    const hashedPassword = await hashPassword(newPassword);
+    await userDataMappers.updatePassword(userId, hashedPassword);
+
+    return res.status(200).json({ message: "Mot de passe réinitialisé avec succès." });
+
+  } catch (error) {
+    return res.status(403).json({ error: "Token invalide ou expiré." });
+  }
+};
 
 export const getConnectionPage = (req, res) => {
   res.sendFile("createAccount.html", { root: "public" });

@@ -1,5 +1,5 @@
 import express from "express";
-import { login, verifyEmail, signup, getConnectionPage } from "../controllers/authController.js";
+import { login, verifyEmail, signup, getConnectionPage, forgotPassword, resetPassword } from "../controllers/authController.js";
 import { validateRequest } from "../middlewares/validateReqMiddleware.js";
 import { deleteUser } from "../controllers/userController.js";
 import { hashPasswordMiddleware } from "../middlewares/scryptMiddleware.js";
@@ -18,6 +18,7 @@ const router = express.Router();
  * /accounts/login:
  *   post:
  *     summary: Se connecter et obtenir un token JWT
+ *     description: Permet à un utilisateur de se connecter en fournissant son email et son mot de passe. Si l'email n'est pas vérifié, un nouveau lien de vérification sera envoyé.
  *     tags: [Accounts]
  *     requestBody:
  *       required: true
@@ -40,10 +41,41 @@ const router = express.Router();
  *               properties:
  *                 token:
  *                   type: string
- *                 refreshToken:
+ *       400:
+ *         description: Données de requête invalides
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
  *                   type: string
+ *                 message:
+ *                   type: string
+ *                 errors:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       msg:
+ *                         type: string
+ *                       param:
+ *                         type: string
+ *                       location:
+ *                         type: string
  *       401:
- *         description: Email ou mot de passe incorrect
+ *         description: Email ou mot de passe incorrect, ou email non vérifié
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                 message:
+ *                   type: string
+ *       500:
+ *         description: Erreur interne du serveur
  */
 router.post("/login", login);
 
@@ -132,6 +164,102 @@ router.delete("/delete", authenticateJWT, deleteUser);
  */
 router.get("/verify-email", verifyEmail);
 
+
+/**
+ * @swagger
+ * /accounts/forgot-password:
+ *   post:
+ *     summary: Demander la réinitialisation du mot de passe
+ *     description: Permet de demander la réinitialisation du mot de passe en fournissant un email. Si l'email existe, un lien de réinitialisation sera envoyé.
+ *     tags: [Accounts]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Si un compte avec cet email existe, un email de réinitialisation de mot de passe a été envoyé.
+ *       400:
+ *         description: Données de requête invalides
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                 message:
+ *                   type: string
+ *                 errors:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       msg:
+ *                         type: string
+ *                       param:
+ *                         type: string
+ *                       location:
+ *                         type: string
+ *       500:
+ *         description: Erreur interne du serveur
+ */
+router.post("/forgot-password", forgotPassword);
+
+/**
+ * @swagger
+ * /accounts/reset-password:
+ *   post:
+ *     summary: Réinitialiser le mot de passe
+ *     description: Permet de réinitialiser le mot de passe en fournissant le token reçu par email et le nouveau mot de passe.
+ *     tags: [Accounts]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               token:
+ *                 type: string
+ *               newPassword:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Mot de passe réinitialisé avec succès.
+ *       400:
+ *         description: Données de requête invalides ou token invalide/expiré.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                 message:
+ *                   type: string
+ *                 errors:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       msg:
+ *                         type: string
+ *                       param:
+ *                         type: string
+ *                       location:
+ *                         type: string
+ *       500:
+ *         description: Erreur interne du serveur
+ */
+
+router.post("/reset-password", resetPassword)
+
 /**
  * Route pour rafraîchir le token JWT
  *
@@ -167,6 +295,7 @@ router.get("/verify-email", verifyEmail);
  */
 //router.post("/refresh-token", refreshToken);
 
+// route Kevin test d'affichage
 
 router.get('/connection', getConnectionPage);
 
