@@ -28,7 +28,7 @@
     }
 
     &-logo {
-      width: 220px;
+      width: 10rem;
       margin: auto;
       margin-bottom: 1.5rem;
     }
@@ -37,10 +37,12 @@
 
 @media screen and (max-width: 840px) {
   .header {
-    &__top-logo {
-      margin-left: 0px;
-      padding-top: 1rem;
-      width: 200px;
+    &__top {
+      &-logo {
+        margin-left: 1rem;
+        padding-top: 1rem;
+        width: 10rem;
+      }
     }
   }
 }
