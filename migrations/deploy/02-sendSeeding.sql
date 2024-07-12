@@ -89,7 +89,7 @@ VALUES (
         'Facile',
         130,
         6.86,
-        'Moyenne',
+        'Mayenne',
         'Se garer sur le parking de l''abbatiale.
 
 (D) Prendre le petit escalier qui descend sur le port (coté route). Prendre en face la rue du Lary jusqu''au chemin des graves.
