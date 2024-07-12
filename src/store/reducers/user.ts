@@ -16,7 +16,7 @@ export type userProps = {
   successMessage: string;
 };
 
-// les propriétés par défaut du state hikes (le state du store.tsx)
+// les propriétés par défaut du state userRegistration (le state du store.tsx)
 const initialState: userProps = {
   loading: false,
   messageResponse: '',
@@ -38,6 +38,7 @@ export const postRegisterDatas = createAsyncThunk(
   }
 );
 
+// Le reducer qu'on réquisitionne quand on appelle la fonction correspondante ( ex : postRegisterDatas )
 export const userRegistrationReducer = createReducer(
   initialState,
   (builder) => {

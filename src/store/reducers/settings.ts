@@ -1,4 +1,3 @@
-import { useMediaQuery } from '@mui/material';
 import { createAction, createReducer } from '@reduxjs/toolkit';
 
 const initialState = {

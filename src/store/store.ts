@@ -8,6 +8,7 @@ import { settingsReducer } from './reducers/settings';
 import { hikesFiltersReducer } from './reducers/hikesFilters';
 import { userRegistrationReducer } from './reducers/user';
 import { userConnectionReducer } from './reducers/userConnection';
+import { hikeCreationReducer } from './reducers/hikeCreation';
 import { menuReducer } from './reducers/menu';
 
 const store = configureStore({
@@ -20,6 +21,7 @@ const store = configureStore({
     hikeOne: hikeOneReducer,
     breadcrumbs: breadcrumbsReducer,
     hikesFilters: hikesFiltersReducer,
+    hikeCreation: hikeCreationReducer,
     // menu: menuReducer,
   },
 });
