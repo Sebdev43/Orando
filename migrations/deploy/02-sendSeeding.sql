@@ -563,7 +563,7 @@ Enfin la rencontre du chêne millénaire ne peut pas laisser insensible.',
         'Moyenne',
         210,
         8.64,
-        'Navarre',
+        'Pyrénées-Atlantiques',
         '(D/A) De la place, se diriger vers le Nord-Ouest, l''itinéraire est fléché en Vert-et-Blanc.
 Au tabac, tourner à gauche et suivre le même balisage.
 Admirer les belles maisons le long de la petite route qui se transforme en piste après la dernière habitation.
@@ -652,7 +652,7 @@ VALUES (
         'Moyenne',
         355,
         15.48,
-        'Bouche-du-Rhône',
+        'Bouches-du-Rhône',
         'Départ depuis le parking des Antiques de Glanum à Saint-Rémy-de-Provence.
 Attention, Parking payant de 10h à 18h : 4€ (Mai 2018).
 
@@ -1046,7 +1046,7 @@ VALUES (
         'Moyenne',
         230,
         11.80,
-        'Bouche-du-Rhône',
+        'Bouches-du-Rhône',
         'Départ du parking du Castellas (parking du Pin de la Fée) sur la D24 route de Eygalières, 2 km environ au Nord de Mouriès.
 
 (D/A) Du parking, prendre à gauche la route d''Eygalières (D24) et longer cette route goudronnée sur 500 m.
