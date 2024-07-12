@@ -9,8 +9,12 @@ import pool from "../config/clientPg.js";
  * @returns {Object} - Détails de la relation création d'utilisateur
  */
 
-export const createUser = async (nickname, localisation, email, hashedPassword) => {
- 
+export const createUser = async (
+  nickname,
+  localisation,
+  email,
+  hashedPassword
+) => {
   const query = `INSERT INTO users (nickname, localisation, email, password)
    VALUES ($1, $2, $3, $4) 
    RETURNING id, nickname, localisation, email, password, created_at, updated_at`;
@@ -30,14 +34,19 @@ export const createUser = async (nickname, localisation, email, hashedPassword) 
  * @returns {Object} - Détails de la relation création d'utilisateur
  */
 
-export const updateUser = async (id, nickname, localisation, email, password) => {
-    const query =
-      `UPDATE users SET nickname = $2, localisation = $3, email = $4, password = $5, updated_at = NOW() 
+export const updateUser = async (
+  id,
+  nickname,
+  localisation,
+  email,
+  password
+) => {
+  const query = `UPDATE users SET nickname = $2, localisation = $3, email = $4, password = $5, updated_at = NOW() 
       WHERE id = $1
       RETURNING id, nickname, localisation, email, password, created_at, updated_at`;
-    const values = [id, nickname, localisation, email, password];
-    const result = await pool.query(query, values);
-    return result.rows[0];
+  const values = [id, nickname, localisation, email, password];
+  const result = await pool.query(query, values);
+  return result.rows[0];
 };
 
 /**
@@ -47,9 +56,9 @@ export const updateUser = async (id, nickname, localisation, email, password) =>
 
 export const getUserById = async (id) => {
   const query = `SELECT * FROM users WHERE id =$1`;
-    const values = [id];
-    const result = await pool.query(query, values);
-    return result.rows[0];
+  const values = [id];
+  const result = await pool.query(query, values);
+  return result.rows[0];
 };
 
 /**
@@ -75,11 +84,10 @@ export const deleteUser = async (id) => {
 
 export const getUserByEmail = async (email) => {
   const query = `SELECT * FROM users WHERE email =$1`;
-    const values = [email];
-    const result = await pool.query(query, values);
-    return result.rows[0];
+  const values = [email];
+  const result = await pool.query(query, values);
+  return result.rows[0];
 };
-
 
 export const verifyUserEmail = async (userId) => {
   const query = `
@@ -89,12 +97,17 @@ export const verifyUserEmail = async (userId) => {
     `;
   const values = [userId];
   await pool.query(query, values);
-
 };
 
 export const getUserByNickname = async (nickname) => {
   const query = `SELECT * FROM users WHERE nickname =$1`;
-    const values = [nickname];
-    const result = await pool.query(query, values);
-    return result.rows[0];
+  const values = [nickname];
+  const result = await pool.query(query, values);
+  return result.rows[0];
+};
+
+export const updatePassword = async (userId, hashedPassword) => {
+  const query = `UPDATE users SET password = $1, updated_at = NOW() WHERE id = $2`;
+  const values = [hashedPassword, userId];
+  await pool.query(query, values);
 };

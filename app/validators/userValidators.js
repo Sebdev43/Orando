@@ -24,4 +24,17 @@ export const nicknameValidator = body('nickname')
             return Promise.reject('Pseudo déjà utilisé');
         }
     });
-    
+
+export const currentPasswordValidator = body('currentPassword')
+    .optional()
+    .not().isEmpty().withMessage('Le mot de passe actuel est requis')
+    .custom(async (currentPassword, { req }) => {
+        const user = await userDataMappers.getUserById(req.user.id);
+        if (!user) {
+            throw new Error('Utilisateur introuvable');
+        }
+        const isPasswordValid = await verifyPassword(currentPassword, user.password);
+        if (!isPasswordValid) {
+            return new Error('Mot de passe incorrect');
+        }
+    });
