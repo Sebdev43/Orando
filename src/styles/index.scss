@@ -50,4 +50,14 @@ body {
   .container__background {
     padding: 0;
   }
+  .hike__pictures {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+  }
+  .map-wrapper {
+    width: 20%;
+    height: 10rem;
+  }
 }

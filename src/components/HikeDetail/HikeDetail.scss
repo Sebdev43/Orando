@@ -7,9 +7,9 @@
   }
   &__pictures {
     display: flex;
-
+    margin: auto;
     gap: 10px;
-    width: 33rem;
+    width: 43rem;
   }
   &__tags {
     display: flex;
@@ -91,12 +91,12 @@
     &__header {
       margin-bottom: 20px;
     }
-    &__pictures {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      width: 100%;
-    }
+    // &__pictures {
+    //   display: flex;
+    //   flex-wrap: wrap;
+    //   gap: 10px;
+    //   width: 100%;
+    // }
     &__tags {
       margin-top: 10px;
     }

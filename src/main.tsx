@@ -1,3 +1,4 @@
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import store from './store/store';
@@ -20,10 +21,11 @@ import OneHike from './pages/OneHike/OneHike';
 import Bookmarks from './pages/Bookmarks/Bookmarks';
 import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
+import LoginReset from './pages/LoginReset/LoginReset';
+import LoginReinit from './pages/LoginReinit/LoginReinit';
 import Account from './pages/Account/Account';
 import Imprints from './pages/Imprints/Imprints';
 import ConfidentialityPolicies from './pages/ConfidentialityPolicies/ConfidentialityPolicies';
-import React from 'react';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -39,6 +41,9 @@ const router = createBrowserRouter(
       <Route path="/favoris" element={<Bookmarks />} />
       <Route path="/inscription" element={<SignUp />} />
       <Route path="/connexion" element={<Login />} />
+      <Route path="/connexion/reset" element={<LoginReset />} />
+      <Route path="/connexion/reinit" element={<LoginReinit />} />
+      <Route path="/connexion/reinit/:token" element={<LoginReinit />} />
       <Route path="/mon-compte" element={<Account />} />
       <Route path="/mentions-legales" element={<Imprints />} />
       <Route
@@ -57,4 +62,3 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
-

@@ -11,3 +11,10 @@
   width: 100%;
   height: 100%;
 }
+
+@media screen and (max-width: 840px) {
+  .map-wrapper {
+    width: 95%;
+    height: 25rem;
+  }
+}
