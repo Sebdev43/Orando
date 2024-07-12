@@ -37,13 +37,26 @@ export default function FormRegister() {
     dispatch(postRegisterDatas(data));
   };
 
+  console.log('je suis enregistré sur la page FORM : ' + isRegistered);
+  console.log(messageResponse);
+  const errorMessagesFromApi = messageResponse.map((error) => {
+    return (
+      <span key={error}>
+        {error}
+        <br />
+      </span>
+    );
+  });
+
   return (
     <>
-      <span className="form__register__server-response-message">
-        {messageResponse ? messageResponse : sucessMessage}
-      </span>
-      {isRegistered ? null : (
+      {isRegistered ? (
+        sucessMessage
+      ) : (
         <form className="form__register" onSubmit={handleSubmit(onSubmit)}>
+          <span className="form__register__server-response-message">
+            {messageResponse ? errorMessagesFromApi : sucessMessage}
+          </span>
           {/* <p>{messageResponse}</p> */}
           <span className="error__nickname">
             {errors.nickname?.message as string}
@@ -79,10 +92,11 @@ export default function FormRegister() {
               required: 'Vous devez choisir un departement',
             })}
           >
+            {/* TOOOOOOOOOOOOOOOOOOOOOOOOODOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO !!!!!!!!!!!!!!!!!!!!!! */}
             <option disabled value="no-choice">
               Choisissez un département
             </option>
-            {/* se bra,cher à l'api de geoportail pour les départements */}
+            {/* se brancher à l'api de geoportail pour les départements */}
             <option value="option1">Bouches du rhone</option>
             <option value="option2">Le Nord</option>
             <option value="option3">L'ouest du pays</option>
@@ -129,8 +143,9 @@ export default function FormRegister() {
               },
             })}
           />
-
-          <input className="form__register__submit" type="submit" />
+          {isRegistered ? null : (
+            <input className="form__register__submit" type="submit" />
+          )}
         </form>
       )}
     </>

@@ -1,7 +1,15 @@
-import { createReducer, createAsyncThunk } from '@reduxjs/toolkit';
+import {
+  createReducer,
+  createAsyncThunk,
+  createAction,
+} from '@reduxjs/toolkit';
 import axios from 'axios';
 
-//  le typage TS
+//  le typage TS pour tout l'état (le state hikes du store.tsx)
+export type AxiosErrorResponse = {
+  message: string;
+};
+
 export type Credentials = {
   nickname: string;
   localisation: string;
@@ -11,15 +19,15 @@ export type Credentials = {
 
 export type userProps = {
   loading: boolean;
-  messageResponse: string;
+  messageResponse: string[];
   isRegistered: boolean;
   successMessage: string;
 };
 
-// les propriétés par défaut du state userRegistration (le state du store.tsx)
+// les propriétés par défaut du state hikes (le state du store.tsx)
 const initialState: userProps = {
   loading: false,
-  messageResponse: '',
+  messageResponse: [],
   successMessage: '',
   isRegistered: false,
 };
@@ -27,18 +35,22 @@ const initialState: userProps = {
 // En asynchrone, on utilise la méthode "createasyncThunk" pour récupérer les données d'une API
 export const postRegisterDatas = createAsyncThunk(
   'USER/POST_REGISTER_DATAS',
-  async (datas: Credentials) => {
+  async (datas: Credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post(`/api/accounts/signup`, datas);
-      console.log(data);
       return data;
-    } catch (error: any) {
-      throw new Error(error.response.data.message); // c'est OK
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        return rejectWithValue(error.response.data);
+      } else {
+        return rejectWithValue({
+          message: "L'enregistrement n'a pas fonctionné",
+        });
+      }
     }
   }
 );
 
-// Le reducer qu'on réquisitionne quand on appelle la fonction correspondante ( ex : postRegisterDatas )
 export const userRegistrationReducer = createReducer(
   initialState,
   (builder) => {
@@ -46,15 +58,21 @@ export const userRegistrationReducer = createReducer(
       .addCase(postRegisterDatas.pending, (state) => {
         state.loading = true;
       })
-      .addCase(postRegisterDatas.rejected, (state, action) => {
-        state.messageResponse = action.error.message as string;
+      .addCase(postRegisterDatas.rejected, (state, action: any) => {
         state.loading = false;
+        // je récupère tous les messages d'erreur de l'API pour les indiquer à mon utilisateur
+        // sur la page s'enregistrer, afin qu'il fasse les changements attendus.
+        const messages = action.payload.errors.map((error: any) => {
+          return error.msg;
+        });
+        state.messageResponse = messages as string[];
       })
       .addCase(postRegisterDatas.fulfilled, (state, action) => {
         state.successMessage = action.payload.message;
-        state.messageResponse = '';
+        state.messageResponse = [];
         state.loading = false;
         state.isRegistered = true;
       });
   }
 );
+// Coucou@13

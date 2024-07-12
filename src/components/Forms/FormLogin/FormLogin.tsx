@@ -24,7 +24,7 @@ export default function FormLogin() {
     console.log(data);
 
     // TODO : envoyer les données au serveur via un dispatch sur le reducer user
-    dispatch(postLoginDatas(data));
+    // dispatch(postLoginDatas(data));
     // TODO : indiquer les erreurs de validation au moment de l'envoi
 
     // TODO : rediriger l'utilisateur si validation OK (de la requête)
