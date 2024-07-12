@@ -10,24 +10,21 @@ body {
   background-image: url('/home.jpg');
   background-attachment: fixed;
   background-size: cover;
-  
 }
 .container__background {
   width: 90%;
   padding: 0rem 3rem;
   margin: auto;
   background-color: rgb(255, 255, 255);
-
-  
 }
 
 #root {
   width: 80%;
   margin: auto;
   background-color: rgb(255, 255, 255);
-  
+
   body.not-found-page & {
-    background-color: transparent; 
+    background-color: transparent;
   }
 }
 
