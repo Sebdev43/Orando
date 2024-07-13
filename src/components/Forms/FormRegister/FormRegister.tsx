@@ -24,13 +24,15 @@ export default function FormRegister() {
   const isRegistered = useAppSelector(
     (state) => state.userRegistration.isRegistered
   );
-  const messageResponse = useAppSelector(
-    (state) => state.userRegistration.messageResponse
+  const messagesResponse = useAppSelector(
+    (state) => state.userRegistration.messagesResponse
   );
   const sucessMessage = useAppSelector(
     (state) => state.userRegistration.successMessage
   );
 
+  // Le register permet de recuperer les valeurs des champs du formulaire
+  // afin de voir si elles sont valides ou non (dans la console)
   const {
     register,
     handleSubmit,
@@ -43,10 +45,10 @@ export default function FormRegister() {
   };
 
   // création des messages d'erreurs pour mail et nickname
-  const errorMessagesFromApi = messageResponse.map((error) => {
+  const errorMessagesFromApi = messagesResponse.map((message, index) => {
     return (
-      <span key={error}>
-        {error}
+      <span key={index}>
+        {message}
         <br />
       </span>
     );
@@ -59,7 +61,7 @@ export default function FormRegister() {
       ) : (
         <form className="form__register" onSubmit={handleSubmit(onSubmit)}>
           <span className="form__register__server-response-message">
-            {messageResponse ? errorMessagesFromApi : sucessMessage}
+            {messagesResponse ? errorMessagesFromApi : sucessMessage}
           </span>
           {/* <p>{messageResponse}</p> */}
           <span className="error__nickname">
@@ -96,7 +98,7 @@ export default function FormRegister() {
               required: 'Vous devez choisir un departement',
             })}
           >
-            <option disabled value="placeholder">
+            <option disabled selected value="placeholder">
               Choisissez un département
             </option>
             {/* data qui vient du dossier data */}
@@ -127,7 +129,7 @@ export default function FormRegister() {
           </span>
 
           <input
-            type="password"
+            type="text"
             placeholder="Mot de passe"
             {...register('password', {
               required: 'Vous devez choisir un mot de passe',
