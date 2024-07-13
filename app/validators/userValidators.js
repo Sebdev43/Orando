@@ -1,5 +1,5 @@
 import { body } from 'express-validator';
-import * as userDataMappers from '../dataMappers/userDataMappers.js';
+import { usersDataMappers } from '../dataMappers/index.dataMappers.js';
 export const passwordValidator = body('password')
     .isLength({ min: 8 }).withMessage('Le mot de passe doit contenir au moins 8 caractères')
     .matches(/[A-Z]/).withMessage('Le mot de passe doit contenir au moins une lettre majuscule')
@@ -10,7 +10,7 @@ export const passwordValidator = body('password')
 export const emailValidator = body('email')
     .isEmail().withMessage('Adresse email invalide')
     .custom(async email => {
-        const user = await userDataMappers.getUserByEmail(email);
+        const user = await usersDataMappers.getUserByEmail(email);
         if (user) {
             return Promise.reject('Adresse email déjà utilisé');
         }
@@ -19,7 +19,7 @@ export const emailValidator = body('email')
 export const nicknameValidator = body('nickname')
     .not().isEmpty().withMessage('Le pseudo est obligatoire')
     .custom(async nickname => {
-        const user = await userDataMappers.getUserByNickname(nickname);
+        const user = await usersDataMappers.getUserByNickname(nickname);
         if (user) {
             return Promise.reject('Pseudo déjà utilisé');
         }
@@ -29,7 +29,7 @@ export const currentPasswordValidator = body('currentPassword')
     .optional()
     .not().isEmpty().withMessage('Le mot de passe actuel est requis')
     .custom(async (currentPassword, { req }) => {
-        const user = await userDataMappers.getUserById(req.user.id);
+        const user = await usersDataMappers.getUserById(req.user.id);
         if (!user) {
             throw new Error('Utilisateur introuvable');
         }

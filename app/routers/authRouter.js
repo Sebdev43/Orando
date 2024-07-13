@@ -1,7 +1,6 @@
 import express from "express";
 import { login, verifyEmail, signup, getConnectionPage, forgotPassword, resetPassword } from "../controllers/authController.js";
 import { validateRequest } from "../middlewares/validateReqMiddleware.js";
-import { deleteUser } from "../controllers/userController.js";
 import { hashPasswordMiddleware } from "../middlewares/scryptMiddleware.js";
 import {
   emailValidator,
@@ -11,6 +10,14 @@ import {
 import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
 
 const router = express.Router();
+
+/**
+ * @swagger
+ * tags:
+ *   - name: Accounts
+ *     description: Operations related to user accounts
+ */
+
 
 /**
  * Route pour se connecter et obtenir un token JWT
@@ -50,8 +57,10 @@ const router = express.Router();
  *               properties:
  *                 status:
  *                   type: string
+ *                   example: error
  *                 message:
  *                   type: string
+ *                   example: Données de requête invalides
  *                 errors:
  *                   type: array
  *                   items:
@@ -72,11 +81,25 @@ const router = express.Router();
  *               properties:
  *                 status:
  *                   type: string
+ *                   example: error
  *                 message:
  *                   type: string
+ *                   example: Email ou mot de passe incorrect, ou email non vérifié
  *       500:
  *         description: Erreur interne du serveur
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Erreur interne du serveur
  */
+
 router.post("/login", login);
 
 /**
@@ -104,11 +127,66 @@ router.post("/login", login);
  *     responses:
  *       '201':
  *         description: User created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Utilisateur créé avec succès. Un email de vérification a été envoyé.
  *       '400':
- *         description: Error creating user
+ *         description: Invalid request data
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Invalid request data
+ *                 errors:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       msg:
+ *                         type: string
+ *                       param:
+ *                         type: string
+ *                       location:
+ *                         type: string
+ *       '409':
+ *         description: Email or nickname already in use
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Email or nickname already in use
  *       '500':
  *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Internal server error
  */
+
 router.post(
   "/signup",
   [
@@ -121,26 +199,7 @@ router.post(
   signup
 );
 
-/**
- * @swagger
- * /accounts/delete:
- *   delete:
- *     summary: Supprimer un utilisateur connecter
- *     description: Delete user by their Token
- *     tags: [Accounts]
- *     security:
- *      - bearerAuth: []
- *     responses:
- *       '200':
- *         description: User deleted successfully
- *       '404':
- *         description: User not found
- *       '409':
- *         description: Email ou pseudo déjà utilisé
- *       '500':
- *         description: Internal server error
- */
-router.delete("/delete", authenticateJWT, deleteUser);
+
 
 /**
  * @swagger
@@ -159,9 +218,29 @@ router.delete("/delete", authenticateJWT, deleteUser);
  *   responses:
  *     200:
  *       description: Email vérifié avec succès
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               message:
+ *                 type: string
+ *                 example: Email vérifié avec succès
  *     400:
  *       description: Token invalide ou expiré
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               status:
+ *                 type: string
+ *                 example: error
+ *               message:
+ *                 type: string
+ *                 example: Token invalide ou expiré
  */
+
 router.get("/verify-email", verifyEmail);
 
 
@@ -184,6 +263,14 @@ router.get("/verify-email", verifyEmail);
  *     responses:
  *       200:
  *         description: Si un compte avec cet email existe, un email de réinitialisation de mot de passe a été envoyé.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Si un compte avec cet email existe, un email de réinitialisation de mot de passe a été envoyé.
  *       400:
  *         description: Données de requête invalides
  *         content:
@@ -193,8 +280,10 @@ router.get("/verify-email", verifyEmail);
  *               properties:
  *                 status:
  *                   type: string
+ *                   example: error
  *                 message:
  *                   type: string
+ *                   example: Données de requête invalides
  *                 errors:
  *                   type: array
  *                   items:
@@ -208,7 +297,19 @@ router.get("/verify-email", verifyEmail);
  *                         type: string
  *       500:
  *         description: Erreur interne du serveur
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Erreur interne du serveur
  */
+
 router.post("/forgot-password", forgotPassword);
 
 /**
@@ -232,6 +333,14 @@ router.post("/forgot-password", forgotPassword);
  *     responses:
  *       200:
  *         description: Mot de passe réinitialisé avec succès.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Mot de passe réinitialisé avec succès.
  *       400:
  *         description: Données de requête invalides ou token invalide/expiré.
  *         content:
@@ -241,8 +350,10 @@ router.post("/forgot-password", forgotPassword);
  *               properties:
  *                 status:
  *                   type: string
+ *                   example: error
  *                 message:
  *                   type: string
+ *                   example: Données de requête invalides ou token invalide/expiré.
  *                 errors:
  *                   type: array
  *                   items:
@@ -256,6 +367,17 @@ router.post("/forgot-password", forgotPassword);
  *                         type: string
  *       500:
  *         description: Erreur interne du serveur
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Erreur interne du serveur
  */
 
 router.post("/reset-password", resetPassword)

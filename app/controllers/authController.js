@@ -1,6 +1,6 @@
 import { generateToken } from "../utils/jwtUtils.js";
 import jwt from "jsonwebtoken";
-import * as userDataMappers from "../dataMappers/userDataMappers.js";
+import { usersDataMappers } from "../dataMappers/index.dataMappers.js";
 import { verifyPassword, hashPassword } from "../utils/passwordUtils.js";
 import {
   generateEmailToken,
@@ -24,7 +24,7 @@ export const login = async (req, res, next) => {
   }
 
   try {
-    const user = await userDataMappers.getUserByEmail(email);
+    const user = await usersDataMappers.getUserByEmail(email);
 
     if (!user) {
       return res.status(401).json({
@@ -72,7 +72,7 @@ export const signup = async (req, res, next) => {
   }
 
   try {
-    const existingEmailUser = await userDataMappers.getUserByEmail(email);
+    const existingEmailUser = await usersDataMappers.getUserByEmail(email);
     if (existingEmailUser) {
       return res.status(409).json({
         status: "error",
@@ -81,7 +81,7 @@ export const signup = async (req, res, next) => {
       });
     }
 
-    const existingNicknameUser = await userDataMappers.getUserByNickname(
+    const existingNicknameUser = await usersDataMappers.getUserByNickname(
       nickname
     );
     if (existingNicknameUser) {
@@ -93,7 +93,7 @@ export const signup = async (req, res, next) => {
     }
 
     const hashedPassword = await hashPassword(password);
-    const user = await userDataMappers.createUser(
+    const user = await usersDataMappers.createUser(
       nickname,
       localisation,
       email,
@@ -117,7 +117,7 @@ export const verifyEmail = async (req, res, next) => {
     const decoded = jwt.verify(token, secretKey);
     const userId = decoded.userId;
 
-    const user = await userDataMappers.getUserById(userId);
+    const user = await usersDataMappers.findById(userId);
     if (!user) {
       const error = new Error("Utilisateur introuvable");
       error.statusCode = 400;
@@ -128,7 +128,7 @@ export const verifyEmail = async (req, res, next) => {
       error.statusCode = 400;
       throw error;
     }
-    await userDataMappers.verifyUserEmail(userId);
+    await usersDataMappers.verifyUserEmail(userId);
     return res.status(200).json({ message: "Email vérifié avec succès." });
   } catch (error) {
     next(error);
@@ -160,7 +160,7 @@ export const forgotPassword = async (req, res, next) => {
   }
 
   try {
-    const user = await userDataMappers.getUserByEmail(email);
+    const user = await usersDataMappers.getUserByEmail(email);
     if (user) {
       const resetToken = generateEmailToken(user.id);
       await sendResetPasswordEmail(user.email, resetToken);
@@ -192,7 +192,7 @@ export const resetPassword = async (req, res, next) => {
     const userId = decoded.userId;
 
     const hashedPassword = await hashPassword(newPassword);
-    await userDataMappers.updatePassword(userId, hashedPassword);
+    await usersDataMappers.updatePassword(userId, hashedPassword);
 
     return res.status(200).json({ message: "Mot de passe réinitialisé avec succès." });
 

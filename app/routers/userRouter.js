@@ -1,5 +1,5 @@
 import express from "express";
-import { updateUser, getUserById } from "../controllers/userController.js";
+import { updateUser, getUserById ,deleteUser } from "../controllers/userController.js";
 
 import {
   emailValidator,
@@ -10,6 +10,7 @@ import {
 
 import { validateRequest } from "../middlewares/validateReqMiddleware.js";
 import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
+
 const router = express.Router();
 
 /**
@@ -31,16 +32,49 @@ const router = express.Router();
  *     responses:
  *       '200':
  *         description: User found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 nickname:
+ *                   type: string
+ *                 localisation:
+ *                   type: string
+ *                 email:
+ *                   type: string
  *       '404':
  *         description: User not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: User not found
  *       '500':
  *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Internal server error
  */
 router.get("/", authenticateJWT, getUserById);
 
 /**
  * @swagger
-  * /users:
+ * /users:
  *   patch:
  *     summary: Mettre à jour les informations de l'utilisateur authentifié
  *     description: Permet de mettre à jour une seule information de l'utilisateur à la fois. Fournissez uniquement le champ que vous souhaitez mettre à jour.
@@ -72,12 +106,73 @@ router.get("/", authenticateJWT, getUserById);
  *     responses:
  *       '200':
  *         description: User updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: User updated successfully
+ *                 filteredUser:
+ *                   type: object
+ *                   properties:
+ *                     nickname:
+ *                       type: string
+ *                     localisation:
+ *                       type: string
+ *                     email:
+ *                       type: string
  *       '400':
- *         description: Error updating user
+ *         description: Invalid request data
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Invalid request data
+ *                 errors:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       msg:
+ *                         type: string
+ *                       param:
+ *                         type: string
+ *                       location:
+ *                         type: string
  *       '404':
  *         description: User not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: User not found
  *       '500':
  *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Internal server error
  */
 router.patch(
   "/",
@@ -91,5 +186,54 @@ router.patch(
   ],
   updateUser
 );
+
+/**
+ * @swagger
+ * /users:
+ *   delete:
+ *     summary: Supprimer un utilisateur authentifié
+ *     description: Supprime un utilisateur par leur token
+ *     tags: [Users]
+ *     security:
+ *      - bearerAuth: []
+ *     responses:
+ *       '200':
+ *         description: Utilisateur supprimé avec succès
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: User deleted successfully
+ *       '404':
+ *         description: Utilisateur non trouvé
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: User not found
+ *       '500':
+ *         description: Erreur interne du serveur
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Internal server error
+ */
+router.delete("/", authenticateJWT, deleteUser);
 
 export default router;

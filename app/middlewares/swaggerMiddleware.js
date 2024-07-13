@@ -1,5 +1,6 @@
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+import express from 'express';
 
 // Configuration de Swagger
 const swaggerOptions = {
@@ -40,5 +41,13 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
 
 export const swaggerMiddleware = (app) => {
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs, {
+    customCssUrl: '/swaggerCustom.css', 
+    customSiteTitle: "O'Rando API Documentation",
+    customfavIcon: "/logo-fond-noir.jpg",
+  }));
+
+  app.use('/swaggerCustom.css', express.static('public/swaggerCustom.css'));
+  app.use('/logo-fond-noir.jpg', express.static('public/logo-fond-noir.jpg'));  // Assurez-vous que ce chemin est correct
+  app.use('/Favicon-blanc.jpg', express.static('public/Favicon-blanc.jpg'));
 };

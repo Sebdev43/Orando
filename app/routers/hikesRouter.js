@@ -61,7 +61,21 @@ import {
  *                   updated_at:
  *                     type: string
  *                     format: date-time
+ *       500:
+ *         description: Erreur interne du serveur
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Erreur interne du serveur
  */
+
 router.get("/random", getRandomHikes);
 
 /**
@@ -111,14 +125,28 @@ router.get("/random", getRandomHikes);
  *                   updated_at:
  *                     type: string
  *                     format: date-time
+ *       500:
+ *         description: Erreur interne du serveur
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Erreur interne du serveur
  */
+
 router.get("/", getAllHikes);
 /**
  * Route pour récupérer la liste des randonnées avec pagination et tri par date de création
  * @swagger
  * /hikes/pages:
  *   get:
- *     summary: Récupérer la liste des randonnées
+ *     summary: Récupérer la liste des randonnées avec pagination
  *     tags: [Hikes]
  *     parameters:
  *       - in: query
@@ -167,7 +195,21 @@ router.get("/", getAllHikes);
  *                   updated_at:
  *                     type: string
  *                     format: date-time
+ *       500:
+ *         description: Erreur interne du serveur
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Erreur interne du serveur
  */
+
 router.get("/pages", getAllHikesPages);
 
 /**
@@ -224,7 +266,32 @@ router.get("/pages", getAllHikesPages);
  *                   format: date-time
  *       404:
  *         description: Randonnée non trouvée
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Randonnée non trouvée
+ *       500:
+ *         description: Erreur interne du serveur
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Erreur interne du serveur
  */
+
 router.get("/:id", getHikeById);
 
 export default router;

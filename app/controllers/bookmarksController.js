@@ -1,4 +1,4 @@
-import * as bookmarksDataMapper from "../dataMappers/bookmarksDataMapper.js";
+import { bookmarksDataMappers } from "../dataMappers/index.dataMappers.js";
 
 //Méthode pour ajouter une randonnée dans les favoris d'un utilisateur
 
@@ -13,7 +13,7 @@ export const addBookmark = async (req, res, next) => {
     }
 
     // Appel le dataMapper avec les paramètres de la requête
-    const bookmark = await bookmarksDataMapper.addBookmark(userId, hikeId);
+    const bookmark = await bookmarksDataMappers.addBookmark(userId, hikeId);
 
     if(!bookmark){
       const error = new Error("Randonnée déjà ajoutée dans les favoris");
@@ -32,7 +32,7 @@ export const removeBookmark = async (req, res, next) => {
   try {
     const userId = req.user.id;
     const { hikeId } = req.body;
-    const success = await bookmarksDataMapper.removeBookmark(userId, hikeId);
+    const success = await bookmarksDataMappers.removeBookmark(userId, hikeId);
     if (success) {
       return res.status(204).json({ message: "Randonnée supprimée des favoris" });
     } else {
@@ -48,7 +48,7 @@ export const removeBookmark = async (req, res, next) => {
 export const getBookmark = async (req, res, next) => {
   try {
     const userId = req.user.id;
-    const bookmarks = await bookmarksDataMapper.getBookmark(userId);
+    const bookmarks = await bookmarksDataMappers.getBookmark(userId);
 
     return res.status(200).json(bookmarks);
   } catch (error) {
