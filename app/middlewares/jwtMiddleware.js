@@ -1,5 +1,5 @@
 import { verifyToken } from "../utils/jwtUtils.js";
-import * as userDataMappers from "../dataMappers/userDataMappers.js";
+import { usersDataMappers } from "../dataMappers/index.dataMappers.js";
 
 
 export const authenticateJWT = async (req, res, next) => {
@@ -12,7 +12,7 @@ export const authenticateJWT = async (req, res, next) => {
             const decoded = verifyToken(token);
             const userId = decoded.userId;
 
-            const user = await userDataMappers.getUserById(userId);
+            const user = await usersDataMappers.findById(userId);
             if (!user) {
                 return res.status(401).json({ error: 'Utilisateur non trouvé.' });
             }

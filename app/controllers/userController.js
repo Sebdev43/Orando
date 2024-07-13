@@ -1,4 +1,4 @@
-import * as userDataMappers from "../dataMappers/userDataMappers.js";
+import { usersDataMappers } from "../dataMappers/index.dataMappers.js";
 import { validationResult } from "express-validator";
 import { verifyPassword, hashPassword } from "../utils/passwordUtils.js";
 
@@ -16,7 +16,7 @@ export const updateUser = async (req, res, next) => {
       });
     }
 
-    let user = await userDataMappers.getUserById(userId);
+    let user = await usersDataMappers.findById(userId);
 
     if (newPassword) {
       if (!currentPassword) {
@@ -39,7 +39,7 @@ export const updateUser = async (req, res, next) => {
     if (localisation) user.localisation = localisation;
     if (email) user.email = email;
 
-    user = await userDataMappers.updateUser(userId, user.nickname, user.localisation, user.email, user.password);
+    user = await usersDataMappers.updateUser(userId, user.nickname, user.localisation, user.email, user.password);
 
     const filteredUser = {
       nickname: user.nickname,
@@ -59,7 +59,7 @@ export const updateUser = async (req, res, next) => {
 export const getUserById = async (req, res, next) => {
   try {
     const userId = req.user.id;
-    const user = await userDataMappers.getUserById(userId);
+    const user = await usersDataMappers.findById(userId);
 
     if (!user) {
       const error = new Error("Utilisateur non trouvé");
@@ -83,7 +83,7 @@ export const deleteUser = async (req, res, next) => {
   const userId = req.user.id;
 
   try {
-    const success = await userDataMappers.deleteUser(userId);
+    const success = await usersDataMappers.deleteById(userId);
     if (success) {
       return res
         .status(200)

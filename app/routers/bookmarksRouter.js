@@ -36,12 +36,64 @@ import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
  *     responses:
  *       201:
  *         description: Randonnée ajoutée dans les favoris
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Randonnée ajoutée dans les favoris
  *       400:
  *         description: Erreur dans les paramètres de la requête
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Erreur dans les paramètres de la requête
+ *                 errors:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       msg:
+ *                         type: string
+ *                       param:
+ *                         type: string
+ *                       location:
+ *                         type: string
  *       409:
  *         description: Randonnée déjà ajoutée dans les favoris
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Randonnée déjà ajoutée dans les favoris
  *       500:
  *         description: Erreur lors de l'ajout de la randonnée dans les favoris
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Erreur lors de l'ajout de la randonnée dans les favoris
  */
 router.post("/", authenticateJWT, addBookmark);
 
@@ -68,9 +120,32 @@ router.post("/", authenticateJWT, addBookmark);
  *         description: Randonnée supprimée des favoris
  *       404:
  *         description: Randonnée non trouvée dans les favoris
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Randonnée non trouvée dans les favoris
  *       500:
  *         description: Erreur lors de la suppression de la randonnée des favoris
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Erreur lors de la suppression de la randonnée des favoris
  */
+
 router.delete("/", authenticateJWT, removeBookmark);
 
 /**
@@ -124,7 +199,19 @@ router.delete("/", authenticateJWT, removeBookmark);
  *                     format: date-time
  *       500:
  *         description: Erreur lors de la récupération des randonnées favorites
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Erreur lors de la récupération des randonnées favorites
  */
+
 router.get("/", authenticateJWT, getBookmark);
 
 export default router;

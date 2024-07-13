@@ -1,8 +1,8 @@
-import * as hikesDataMapper from "../dataMappers/hikesDataMapper.js";
+import { hikesDataMappers } from "../dataMappers/index.dataMappers.js";
 
 export const getAllHikes = async (req, res, next) => {
   try {
-    const hikes = await hikesDataMapper.getAllHikes();
+    const hikes = await hikesDataMappers.getAllHikes();
 
     return res.status(200).json(hikes);
   } catch (error) {
@@ -17,7 +17,7 @@ export const getAllHikesPages = async (req, res, next) => {
     const { page = 1 } = req.query;
 
     // Appel le dataMapper avec les paramètres de pagination, tri et ordre
-    const hikes = await hikesDataMapper.getAllHikesPages(page);
+    const hikes = await hikesDataMappers.getAllHikesPages(page);
 
     return res.status(200).json(hikes);
   } catch (error) {
@@ -31,7 +31,7 @@ export const getHikeById = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const hike = await hikesDataMapper.getHikeById(id);
+    const hike = await hikesDataMappers.getHikeById(id);
     if (!hike) {
       const error = new Error("Randonnée non trouvée");
       error.statusCode = 404;
@@ -47,7 +47,7 @@ export const getHikeById = async (req, res, next) => {
 
 export const getRandomHikes = async (req, res, next) => {
   try {
-    const hikes = await hikesDataMapper.getRandomHikes();
+    const hikes = await hikesDataMappers.getRandomHikes();
     return res.status(200).json(hikes);
   } catch (error) {
     next(error);
