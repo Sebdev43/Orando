@@ -6,7 +6,7 @@ import './OneHike.scss';
 // Components
 import HikeDetail from '../../components/HikeDetail/HikeDetail';
 import { useEffect } from 'react';
-import { loadAPI } from '../../store/reducers/hikeOne';
+import { getOneHike } from '../../store/reducers/hikeOne';
 
 // Le composant actuel est la page Une randonnée
 function OneHike() {
@@ -17,7 +17,7 @@ function OneHike() {
 
   // on provoque la requête qui charge les informations de la randonnée dans le store
   useEffect(() => {
-    dispatch(loadAPI(id));
+    dispatch(getOneHike(id));
   }, [id, dispatch]);
 
   const hike = useAppSelector((state) => state.hikeOne.oneHike);

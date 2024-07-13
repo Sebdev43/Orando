@@ -93,12 +93,12 @@ export default function FormRegister() {
             {errors.localisation?.message as string}
           </span>
           <select
-            // defaultValue=""
+            defaultValue="placeholder"
             {...register('localisation', {
               required: 'Vous devez choisir un departement',
             })}
           >
-            <option disabled selected value="placeholder">
+            <option disabled value="placeholder">
               Choisissez un département
             </option>
             {/* data qui vient du dossier data */}

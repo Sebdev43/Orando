@@ -21,7 +21,7 @@ const initialState: HikesList = {
 };
 
 // En asynchrone, on utilise la méthode "createasyncThunk" pour récupérer les données d'une API
-export const loadrandomHikes = createAsyncThunk(
+export const getRandomHikes = createAsyncThunk(
   'HIKES/LOAD_RANDOM_HIKES',
   async () => {
     try {
@@ -35,15 +35,15 @@ export const loadrandomHikes = createAsyncThunk(
 
 export const hikesRandomReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(loadrandomHikes.pending, (state) => {
+    .addCase(getRandomHikes.pending, (state) => {
       state.loading = true;
     })
-    .addCase(loadrandomHikes.rejected, (state, action) => {
+    .addCase(getRandomHikes.rejected, (state, action) => {
       state.error = action.error.message;
       state.loading = false;
       // Gestion des erreurs
     })
-    .addCase(loadrandomHikes.fulfilled, (state, action) => {
+    .addCase(getRandomHikes.fulfilled, (state, action) => {
       state.randomHikesList = action.payload;
       state.loading = false;
     });

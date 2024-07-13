@@ -10,10 +10,10 @@ export default function Login() {
     <div className="login__container">
       <h1 className="page_title">Se connecter</h1>
       <FormLogin />
-      <h4 className="title__no-account">
+      <p className="title__no-account">
         Si vous ne possédez pas de compte, {''}
         <NavLink to="/inscription">créez votre compte</NavLink>
-      </h4>
+      </p>
     </div>
   );
 }

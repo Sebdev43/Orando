@@ -3,7 +3,7 @@ import { Errors } from '../../../@types/form';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { postLoginDatas } from '../../../store/reducers/userConnection';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './FormLogin.scss';
 
 // Le typage des données
@@ -84,6 +84,8 @@ export default function FormLogin() {
           },
         })}
       />
+
+      <NavLink to="/connexion/reset">réinitialiser le mot de passe</NavLink>
 
       <input type="submit" />
     </form>

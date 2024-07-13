@@ -2,13 +2,13 @@ import { NavLink } from 'react-router-dom';
 import { Hike } from '../../@types/hike';
 import './CardComponent.scss';
 
-// components
+// Components
 import { RenderDifficulty } from '../RenderTagDifficulty/RenderTagDifficultyStyle';
 
-// utils
+// Utils
 import { formatHikeTime } from '../../utils/regEx';
 
-// Import des dépendances MUI en lien avec les composants appelés
+// Import des dépendances et composants MUI
 import AspectRatio from '@mui/joy/AspectRatio';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
@@ -19,6 +19,7 @@ import IconButton from '@mui/joy/IconButton';
 import Favorite from '@mui/icons-material/Favorite';
 // import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 
+// Le composant actuel
 function CardComponent(hike: Hike) {
   function actionToBookmarks(id: number) {
     console.log(id);
@@ -31,6 +32,7 @@ function CardComponent(hike: Hike) {
         <AspectRatio ratio="1">
           <img src={hike.pictures[0]} loading="lazy" alt="" />
         </AspectRatio>
+
         {/* Booksmarks button */}
         {/* ligne 64 : la fonction qui va déclencher la logique liée à l'add/del d'un favori  */}
         <IconButton
@@ -53,6 +55,7 @@ function CardComponent(hike: Hike) {
           <Favorite />
         </IconButton>
       </CardOverflow>
+
       {/* Card content */}
       <CardContent>
         <NavLink to={`/randonnees/${hike.id}`} className="no-decoration">

@@ -1,8 +1,8 @@
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../hooks/redux';
-import { loadHikes } from '../store/reducers/hikesAll';
-import { loadrandomHikes } from '../store/reducers/hikesRandom';
+import { getHikes } from '../store/reducers/hikesAll';
+import { getRandomHikes } from '../store/reducers/hikesRandom';
 import './Root.scss';
 
 // components
@@ -14,8 +14,8 @@ function Root() {
   const currentUrl = useLocation();
   // on récupère les randos dès que le composant Root est monté
   useEffect(() => {
-    dispatch(loadrandomHikes());
-    dispatch(loadHikes());
+    dispatch(getRandomHikes());
+    dispatch(getHikes());
   }, []);
 
   // on récupère l'URL pour surveiller lorsqu'elle change
@@ -31,6 +31,8 @@ function Root() {
         <Outlet />
       </div>
       {currentUrl.pathname !== '/connexion' &&
+      currentUrl.pathname !== '/connexion/reset' &&
+      currentUrl.pathname !== '/connexion/reinit' &&
       currentUrl.pathname !== '/inscription' ? (
         <Footer />
       ) : (

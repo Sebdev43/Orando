@@ -21,7 +21,7 @@ const initialState: HikesList = {
 };
 
 // En asynchrone, on utilise la méthode "createasyncThunk" pour récupérer les données d'une API
-export const loadHikes = createAsyncThunk('HIKES/LOAD_HIKES', async () => {
+export const getHikes = createAsyncThunk('HIKES/LOAD_HIKES', async () => {
   try {
     const { data } = await axios.get(`/api/hikes`);
     return data;
@@ -32,14 +32,14 @@ export const loadHikes = createAsyncThunk('HIKES/LOAD_HIKES', async () => {
 
 export const hikesListReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(loadHikes.pending, (state) => {
+    .addCase(getHikes.pending, (state) => {
       state.loading = true;
     })
-    .addCase(loadHikes.rejected, (state, action) => {
+    .addCase(getHikes.rejected, (state, action) => {
       state.error = action.error.message;
       state.loading = false;
     })
-    .addCase(loadHikes.fulfilled, (state, action) => {
+    .addCase(getHikes.fulfilled, (state, action) => {
       state.hikesList = action.payload;
       state.loading = false;
     });

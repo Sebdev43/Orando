@@ -21,7 +21,7 @@ const initialState: hikeOneProps = {
 };
 
 // En asynchrone, on utilise la méthode "createasyncThunk" pour récupérer les données d'une API
-export const loadAPI = createAsyncThunk(
+export const getOneHike = createAsyncThunk(
   'HIKES/LOAD_FROM_API',
   async (id: number) => {
     try {
@@ -35,13 +35,13 @@ export const loadAPI = createAsyncThunk(
 
 export const hikeOneReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(loadAPI.pending, (state) => {
+    .addCase(getOneHike.pending, (state) => {
       state.loading = true;
     })
-    .addCase(loadAPI.rejected, (state, action) => {
+    .addCase(getOneHike.rejected, (state, action) => {
       state.error = action.error.message;
     })
-    .addCase(loadAPI.fulfilled, (state, action) => {
+    .addCase(getOneHike.fulfilled, (state, action) => {
       state.oneHike = action.payload;
       state.loading = false;
     });

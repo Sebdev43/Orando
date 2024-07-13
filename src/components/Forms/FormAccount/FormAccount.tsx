@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './FormAccount.scss';
 
+// Le typage des données
 export type FormData = {
   nickname: string;
   localisation: string;
@@ -11,6 +12,7 @@ export type FormData = {
   confirmPassword: string;
 };
 
+// Le composant actuel
 export default function FormAccount() {
   const [editingField, setEditingField] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
@@ -56,6 +58,7 @@ export default function FormAccount() {
     setPasswordError(null);
   };
 
+  // Le rendu final du composant
   return (
     <section className="form-account">
       <h2>Précisez vos informations pour créer un compte</h2>

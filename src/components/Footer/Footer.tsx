@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import './Footer.scss';
 
+// Le composant actuel
 function Footer() {
   return (
     <footer className="footer">
