@@ -4,7 +4,7 @@ import './LoginReinit.scss';
 import FormLoginReinit from '../../components/Forms/FormLoginReinit/FormLoginReinit';
 import { NavLink } from 'react-router-dom';
 
-// Actual (page) component
+// Le composant actuel est la page Créer un nouveau mot de passe
 export default function Login() {
   return (
     <div className="login__container">

@@ -7,6 +7,7 @@ import HikeFilters from '../../components/HikesFilters/HikeFilters';
 import SkeletonLoader from '../../components/SkeletonLoader/SkeletonLoader';
 import CardComponent from '../../components/CardComponent/CardComponent';
 
+// Le composant actuel est la page Voir les randonnées
 function Hikes() {
   const loading = useAppSelector((state) => state.hikesAll.loading);
   const hikes = useAppSelector((state) => state.hikesAll.hikesList);

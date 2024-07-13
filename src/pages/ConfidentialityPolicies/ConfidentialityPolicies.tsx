@@ -1,6 +1,7 @@
 import './ConfidentialityPolicies.scss';
 
-function ConfidentialityPolicies() {
+// Le composant actuel est la page Politique de confidentialité
+export default function ConfidentialityPolicies() {
   return (
     <div className="confidentialityPolicies">
       <h1>Politique de confidentialité</h1>
@@ -474,5 +475,3 @@ function ConfidentialityPolicies() {
     </div>
   );
 }
-
-export default ConfidentialityPolicies;

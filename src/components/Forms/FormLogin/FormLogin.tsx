@@ -1,18 +1,27 @@
 import { useForm } from 'react-hook-form';
 import { Errors } from '../../../@types/form';
-import { useAppDispatch } from '../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { postLoginDatas } from '../../../store/reducers/userConnection';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './FormLogin.scss';
 
+// Le typage des données
 export type FormData = {
   email: string;
   password: string;
   errors?: Errors;
 };
 
-// The actual component
+// Le composant actuel
 export default function FormLogin() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const messageResponse = useAppSelector(
+    (state) => state.userConnection.messageResponse
+  );
+  const isLogged = useAppSelector((state) => state.userConnection.isLogged);
 
   const {
     register,
@@ -25,10 +34,21 @@ export default function FormLogin() {
     console.log('je suis onSubmit', data);
   };
 
-  // console.log(errors);
+  // Redirige l'utilisateur vers la page d'accueil si le state change a true
+  // "navigate" provient du hook useNavigate
+  useEffect(() => {
+    if (isLogged) {
+      navigate('/randonnees');
+    }
+  }, [isLogged]);
 
-  return (
+  // Le rendu, en fonction de si l'utilisateur est connecté ou non
+  return isLogged ? (
+    ''
+  ) : (
     <form className="form__login" onSubmit={handleSubmit(onSubmit)}>
+      <span>{messageResponse}</span>
+
       <span className="error__email">{errors?.email?.message}</span>
       <input
         type="text"

@@ -6,14 +6,13 @@ import './Home.scss';
 import SkeletonLoader from '../../components/SkeletonLoader/SkeletonLoader';
 import CardComponent from '../../components/CardComponent/CardComponent';
 
-// The component (and Page) Home
-function Home() {
-  //
-  // What we need to use in renderHikes() to render the hikes
+// Le composant actuel est la page Accueil
+export default function Home() {
+  // On récupère les états de notre store que l'on stock en copie locale
   const hikes = useAppSelector((state) => state.hikesRandom.randomHikesList);
   const loading = useAppSelector((state) => state.hikesRandom.loading);
 
-  // The content of Home component
+  // Le rendu final du composant
   return (
     <main className="home">
       <article>
@@ -95,5 +94,3 @@ function Home() {
     </main>
   );
 }
-
-export default Home;

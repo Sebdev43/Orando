@@ -4,7 +4,7 @@ import './Login.scss';
 import FormLogin from '../../components/Forms/FormLogin/FormLogin';
 import { NavLink } from 'react-router-dom';
 
-// Actual (page) component
+// Le composant actuel est la page Se connecter
 export default function Login() {
   return (
     <div className="login__container">

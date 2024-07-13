@@ -1,15 +1,18 @@
 import Nav from '../Nav/Nav';
 import { NavLink } from 'react-router-dom';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../hooks/redux';
 import './Header.scss';
 
 // Components
 import IconBreadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import NavTel from '../Nav/NavTel';
 
+// Le composant actuel
 function Header() {
-  const widthMediaScreen = useSelector(
+  // Récupération des états provenants du store que l'on stocke en copie locale
+  const isLogged = useAppSelector((state) => state.userConnection.isLogged);
+  const widthMediaScreen = useAppSelector(
     (state: any) => state.websiteSettings.widthMediaScreen
   );
 
@@ -17,6 +20,7 @@ function Header() {
 
   return (
     <header className="header">
+      {/* Bouton connexion et compte en fonction de si connecté ou non */}
       {isMobile ? (
         ''
       ) : (
@@ -26,12 +30,13 @@ function Header() {
               ? 'menu-link menu-link--active header__top-button'
               : 'menu-link header__top-button'
           }
-          // TODO : changer le lien en fonction de l'état isLogin, vers le compte
-          to={'/connexion'}
+          to={isLogged ? '/mon-compte' : '/connexion'}
         >
-          Se connecter
+          {isLogged ? 'Mon compte' : 'Se connecter'}
         </NavLink>
       )}
+
+      {/* Logo O'rando */}
       <NavLink to={'/'}>
         <img
           src="/logo_fond_blanc.png"
@@ -40,6 +45,7 @@ function Header() {
         />
       </NavLink>
 
+      {/* Menu de navigation en fonction de si mobile ou non*/}
       {isMobile ? <NavTel /> : <Nav />}
       <IconBreadcrumbs />
     </header>

@@ -1,4 +1,4 @@
-import { NavLink, Navigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { Hike } from '../../@types/hike';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import './OneHike.scss';
@@ -8,12 +8,14 @@ import HikeDetail from '../../components/HikeDetail/HikeDetail';
 import { useEffect } from 'react';
 import { loadAPI } from '../../store/reducers/hikeOne';
 
-// The actual component
+// Le composant actuel est la page Une randonnée
 function OneHike() {
+  const navigation = useNavigate();
   const dispatch = useAppDispatch();
   const params = useParams();
   const id = Number(params.id);
 
+  // on provoque la requête qui charge les informations de la randonnée dans le store
   useEffect(() => {
     dispatch(loadAPI(id));
   }, [id, dispatch]);
@@ -22,9 +24,13 @@ function OneHike() {
   const loading = useAppSelector((state) => state.hikeOne.loading);
   const error = useAppSelector((state) => state.hikeOne.error);
 
-  if (error) {
-    return <Navigate to="/error" replace />;
-  }
+  useEffect(() => {
+    if (error) {
+      return navigation('/error');
+    }
+  }, [error, navigation]);
+
+  // on affiche le chargement
   if (loading) {
     return <h1 className="page_title">Chargement des randonnées</h1>;
   }

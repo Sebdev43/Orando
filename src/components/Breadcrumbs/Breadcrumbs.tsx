@@ -1,31 +1,27 @@
 import { Location } from '../../@types/hike';
-import './Breadcrumbs.scss';
-
 import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/redux';
 import { changeLocation } from '../../store/reducers/breadcrumbs';
+import './Breadcrumbs.scss';
 
-// utils
+// Utils
 import { formatBreadcrumbs } from '../../utils/regEx';
 
-// import react component from MUI
+// React component from MUI
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import HomeIcon from '@mui/icons-material/Home';
 import FollowTheSignsSharpIcon from '@mui/icons-material/FollowTheSignsSharp';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
-// Component
+// Le composant actuel
 export default function IconBreadcrumbs() {
-  // On récupère la methode REACT qui va nous permettre d'appeler les méthodes d'actions
-  // qu'on a défini dans le reducer qui gère l'état (on verra un peu plus bas)
-  const dispatch = useAppDispatch();
-  // On récupère l'adresse URL actuelle grâce à une méthode REACT
-  const location: Location = useLocation();
+  // On récupère nos hooks
+  const dispatch = useAppDispatch(); // pour faire une action dans le reducer
+  const location: Location = useLocation(); // récupère l'url actuelle
 
-  // Un effet qui appelle (dispatch) l'action (changeLocation)
-  // liée au state (breadcrumbsReducer) en lui passant en paramètre (location.pathname)
+  // On fait une action dans le reducer "breadcrumbs.ts"
   useEffect(() => {
     dispatch(changeLocation(location.pathname));
   }, [location]);
@@ -95,7 +91,7 @@ export default function IconBreadcrumbs() {
     );
   };
 
-  // Cette partie rend l'affichage de la page, finale !
+  // Le rendu final du composant
   return (
     <div role="presentation">
       <Breadcrumbs className="breadcrumbs" aria-label="breadcrumb">

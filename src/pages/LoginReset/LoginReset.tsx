@@ -4,7 +4,7 @@ import './LoginReset.scss';
 import FormLoginReset from '../../components/Forms/FormLoginReset/FormLoginReset';
 import { NavLink } from 'react-router-dom';
 
-// Actual (page) component
+// Le composant actuel est la page Réinitialiser le mot de passe
 export default function Login() {
   return (
     <div className="login__container">
