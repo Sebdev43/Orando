@@ -22,10 +22,10 @@ export default function FormLogin() {
 
   const onSubmit = (data: FormData) => {
     dispatch(postLoginDatas(data as any));
-    console.log(data);
+    console.log('je suis onSubmit', data);
   };
 
-  console.log(errors);
+  // console.log(errors);
 
   return (
     <form className="form__login" onSubmit={handleSubmit(onSubmit)}>
@@ -36,7 +36,7 @@ export default function FormLogin() {
         {...register('email', {
           required: "L'email est obligatoire",
           pattern: {
-            value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+            value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i,
             message: "L'email n'est pas valide",
           },
         })}

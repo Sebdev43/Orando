@@ -16,12 +16,14 @@ const initialState: initialStateProps = {
 // password: Henri26!aufond
 
 export const postLoginDatas = createAsyncThunk(
-  'USER/POST_REGISTER_DATAS',
+  'USER/POST_LOGIN_DATAS',
   async (datas: FormData, { rejectWithValue }) => {
     try {
       const { data } = await axios.post(`/api/accounts/login`, datas);
+      console.log('je suis le try', data);
       return data;
     } catch (error) {
+      console.log('je suis le catch', error);
       throw new Error('Impossible de se connecter');
     }
   }
@@ -33,11 +35,11 @@ export const userConnectionReducer = createReducer(initialState, (builder) => {
       state.loading = true;
     })
     .addCase(postLoginDatas.rejected, (state, action) => {
-      console.log(action.error.message);
+      console.log('je suis rejected', action.error.message);
       state.loading = false;
     })
     .addCase(postLoginDatas.fulfilled, (state, action) => {
-      // console.log(action.payload.token);
+      console.log('je suis fulfilled', action.payload);
       state.loading = false;
       state.token = action.payload.token;
     });

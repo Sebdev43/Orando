@@ -56,9 +56,9 @@ export const userRegistrationReducer = createReducer(
       .addCase(postRegisterDatas.pending, (state) => {
         state.loading = true;
       })
-      .addCase(postRegisterDatas.rejected, (state, action: any) => {
+      .addCase(postRegisterDatas.rejected, (state, action) => {
         state.loading = false;
-        console.log('je suis rejected');
+        console.log('je suis rejected dans REGISTRATION pourquoi ???');
         console.log(action);
       })
       .addCase(postRegisterDatas.fulfilled, (state, action) => {
