@@ -9,7 +9,8 @@ export default function ScrollToTop() {
       const scrollPosition = window.scrollY;
       const screenHeight = window.innerHeight;
 
-      if (scrollPosition > screenHeight / 2) {
+      console.log(scrollPosition);
+      if (scrollPosition > 1250) {
         setShowButton(true);
       } else {
         setShowButton(false);
@@ -30,7 +31,7 @@ export default function ScrollToTop() {
       className={
         show
           ? 'scroll-to-top-button show-button'
-          : 'scroll-to-top-button o-show-button'
+          : 'scroll-to-top-button no-show-button'
       }
       type="button"
     >

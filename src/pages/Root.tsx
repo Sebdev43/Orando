@@ -8,6 +8,7 @@ import './Root.scss';
 // components
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
+import ScrollToTop from '../components/ScollToTop/ScrollToTop';
 
 function Root() {
   const dispatch: any = useAppDispatch();
@@ -28,6 +29,7 @@ function Root() {
     <div className="container__background">
       <Header />
       <div className="content">
+        <ScrollToTop />
         <Outlet />
       </div>
       {currentUrl.pathname !== '/connexion' &&

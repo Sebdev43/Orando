@@ -16,7 +16,6 @@ export default function Home() {
   // Le rendu final du composant
   return (
     <main className="home">
-      <ScrollToTop />
       <article>
         <img className="home__banner" />
         <h1 className="page_title">Bienvenue sur O'Rando !</h1>
