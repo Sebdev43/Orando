@@ -81,7 +81,7 @@ export default function Home() {
         </article>
       </article>
 
-      <h2 className="home__title-cards">Quelques randonnées :</h2>
+      <h2 className="page_title">Quelques randonnées :</h2>
       <article className="cards__content">
         {loading ? (
           <SkeletonLoader skeletonNumber={4} />

@@ -30,12 +30,12 @@ body {
 }
 .content {
   min-height: 60vh;
+  margin: 3rem 0;
 }
 
 .page_title {
-  margin-bottom: 1.5rem;
-  margin-top: 1.5rem;
-  font-size: 1.5rem;
+  margin: v.$gutter 0;
+  font-size: v.$gutter * 1.1;
 }
 
 @media screen and (max-width: 840px) {
@@ -45,7 +45,9 @@ body {
   #root {
     width: 100%;
   }
-
+  .page_title {
+    font-size: v.$gutter * 0.8;
+  }
   .header {
     display: flex;
   }

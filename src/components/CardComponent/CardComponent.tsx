@@ -6,7 +6,7 @@ import './CardComponent.scss';
 import { RenderDifficulty } from '../RenderTagDifficulty/RenderTagDifficultyStyle';
 
 // Utils
-import { formatHikeTime } from '../../utils/regEx';
+import { cutText, formatHikeTime } from '../../utils/regEx';
 
 // Import des dépendances et composants MUI
 import AspectRatio from '@mui/joy/AspectRatio';
@@ -26,63 +26,67 @@ function CardComponent(hike: Hike) {
   }
 
   return (
-    <NavLink to={`/randonnees/${hike.id}`} className="no-decoration">
-      <Card
-        className="card"
-        variant="outlined"
-        sx={{ width: 480, height: 700 }}
-      >
-        <CardOverflow>
-          {/* Photo */}
-          <AspectRatio ratio="1">
-            <img src={hike.pictures[0]} loading="lazy" alt="" />
-          </AspectRatio>
+    <>
+      <NavLink to={`/randonnees/${hike.id}`} className="no-decoration">
+        <Card
+          className="card"
+          variant="outlined"
+          sx={{ width: 400, height: 620 }}
+        >
+          <CardOverflow>
+            <IconButton
+              onClick={() => actionToBookmarks(hike.id)}
+              aria-label="Like minimal photography"
+              size="sm"
+              variant="plain"
+              sx={{
+                position: 'absolute',
+                zIndex: 20,
+                borderRadius: '50%',
+                right: '0.3rem',
+                bottom: '0.3rem',
+                transform: 'translateY(0%)',
+                color: 'red',
+                '&:hover': { color: '#da7b29' },
+              }}
+            >
+              <Favorite />
+            </IconButton>
+            {/* Photo */}
+            <AspectRatio ratio="1">
+              <img src={hike.pictures[0]} loading="lazy" alt="" />
+            </AspectRatio>
+          </CardOverflow>
 
-          {/* Booksmarks button */}
-          {/* ligne 64 : la fonction qui va déclencher la logique liée à l'add/del d'un favori  */}
-          <IconButton
-            onClick={() => actionToBookmarks(hike.id)}
-            aria-label="Like minimal photography"
-            size="sm"
-            variant="plain"
-            sx={{
-              position: 'absolute',
-              zIndex: 2,
-              borderRadius: '50%',
-              right: '0.5rem',
-              bottom: '-5.5rem',
-              transform: 'translateY(120%)',
-              color: 'red',
-              '&:hover': { color: '#da7b29' },
-            }}
-          >
-            {/*@TODO Add to bookmarks : if already in bookmarks, change to Favorite icons */}
-            <Favorite />
-          </IconButton>
-        </CardOverflow>
-
-        {/* Card content */}
-        <CardContent>
-          <h3 className="card__title">{hike.title}</h3>
-        </CardContent>
-        {/* Card footer */}
-        <CardOverflow variant="soft">
-          <Divider inset="context" />
-          {/* Card tags */}
-          <CardContent orientation="horizontal">
-            <Typography level="body-sm">{hike.localisation}</Typography>
-            <Divider orientation="vertical" />
-            <Typography level="body-sm">
-              Temps de marche : <br />
-              {formatHikeTime(hike.time)}
-            </Typography>
-            {/*j'appelle la fonction que j'ai déclaré précedemment pour gérer l'afficahge des couleurs fonction de la difficulté  */}
-            <Divider orientation="vertical" />
-            Difficulté {RenderDifficulty(hike)}
+          {/* Card content */}
+          <CardContent>
+            <h3 className="card__title">{hike.title}</h3>
+            <Typography level="body-sm">{cutText(hike.description)}</Typography>
           </CardContent>
-        </CardOverflow>
-      </Card>
-    </NavLink>
+
+          {/* Card footer */}
+          <CardOverflow variant="soft">
+            <Divider inset="context" />
+
+            {/* Card tags */}
+            <CardContent orientation="horizontal" className="card__tags">
+              <Typography level="body-sm">
+                Localisation : <br />
+                {hike.localisation}
+              </Typography>
+              <Typography level="body-sm">
+                Marche : <br />
+                {formatHikeTime(hike.time)}
+              </Typography>
+              <Typography level="body-sm">
+                Difficulté : <br />
+                {RenderDifficulty(hike)}
+              </Typography>
+            </CardContent>
+          </CardOverflow>
+        </Card>
+      </NavLink>
+    </>
   );
 }
 export default CardComponent;

@@ -12,3 +12,12 @@ export function formatHikeTime(time) {
   const minutes = time % 60;
   return `${hours} h ${minutes} min`;
 }
+
+export function cutText(text) {
+  // regex pour trouver les 15 premiers mots
+  const regex = /^(\s*\S+\s*){15}/;
+
+  // trouver et retourner les 15 premiers mots avec trois petits points à la fin
+  const match = text.match(regex);
+  return match ? match[0].trim() + '...' : text;
+}
