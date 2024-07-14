@@ -40,6 +40,7 @@ function HikeDetail({ hike }: HikeDetailProps) {
           <section className="section__one">
             <figure className={`large__grid`}>
               <img
+                loading="lazy"
                 className="large__picture"
                 src={hike.pictures[0]}
                 alt={`Une photo de ${hike.title}`}

@@ -9,7 +9,6 @@ export default function ScrollToTop() {
       const scrollPosition = window.scrollY;
       const screenHeight = window.innerHeight;
 
-      console.log(scrollPosition);
       if (scrollPosition > 1250) {
         setShowButton(true);
       } else {
@@ -19,7 +18,7 @@ export default function ScrollToTop() {
 
     window.addEventListener('scroll', handleScroll);
 
-    // Nettoyer l'événement de défilement lors du démontage du composant
+    // je nettoie (démonte) l’event listener sur le composant
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
