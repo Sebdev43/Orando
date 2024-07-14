@@ -5,6 +5,7 @@ import './Home.scss';
 // components
 import SkeletonLoader from '../../components/SkeletonLoader/SkeletonLoader';
 import CardComponent from '../../components/CardComponent/CardComponent';
+import ScrollToTop from '../../components/ScollToTop/ScrollToTop';
 
 // Le composant actuel est la page Accueil
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
   // Le rendu final du composant
   return (
     <main className="home">
+      <ScrollToTop />
       <article>
         <img className="home__banner" />
         <h1 className="page_title">Bienvenue sur O'Rando !</h1>

@@ -26,12 +26,7 @@ export default function IconBreadcrumbs() {
     dispatch(changeLocation(location.pathname));
   }, [location]);
 
-  // je fabrique un tableau avec les correspondances entre les id des randos, et le nom des randos
-  // const hikes = useAppSelector((state) => state.hikesAll.hikesList);
-  // const hikeName = hikes.map((hike: any) => {
-  //   location.pathname == hike.id;
-  // });
-  // console.log(location);
+  // TODO : fabriquer un tableau avec les correspondances entre les id des randos, et le nom des randos
 
   // Grâce à tout ce qu'il y a au dessus (dans la partie logique du composant)
   // je peux générer (toujours en logique, donc ici dans la même partie)

@@ -1,14 +1,41 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import './ScrollToTop.scss';
 
-const ScrollToTop: React.FC = () => {
-  const { pathname } = useLocation();
+export default function ScrollToTop() {
+  const [show, setShowButton] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  // TODO a transformer en bouton pour remonter
-  return null;
-};
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const screenHeight = window.innerHeight;
 
-export default ScrollToTop;
+      if (scrollPosition > screenHeight / 2) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Nettoyer l'événement de défilement lors du démontage du composant
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  return (
+    <button
+      onClick={() => window.scrollTo(0, 0)}
+      className={
+        show
+          ? 'scroll-to-top-button show-button'
+          : 'scroll-to-top-button o-show-button'
+      }
+      type="button"
+    >
+      {' '}
+      &#x2B06;
+    </button>
+  );
+}
