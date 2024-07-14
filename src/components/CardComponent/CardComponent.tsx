@@ -26,59 +26,63 @@ function CardComponent(hike: Hike) {
   }
 
   return (
-    <Card className="card" variant="outlined" sx={{ width: 480, height: 700 }}>
-      <CardOverflow>
-        {/* Photo */}
-        <AspectRatio ratio="1">
-          <img src={hike.pictures[0]} loading="lazy" alt="" />
-        </AspectRatio>
+    <NavLink to={`/randonnees/${hike.id}`} className="no-decoration">
+      <Card
+        className="card"
+        variant="outlined"
+        sx={{ width: 480, height: 700 }}
+      >
+        <CardOverflow>
+          {/* Photo */}
+          <AspectRatio ratio="1">
+            <img src={hike.pictures[0]} loading="lazy" alt="" />
+          </AspectRatio>
 
-        {/* Booksmarks button */}
-        {/* ligne 64 : la fonction qui va déclencher la logique liée à l'add/del d'un favori  */}
-        <IconButton
-          onClick={() => actionToBookmarks(hike.id)}
-          aria-label="Like minimal photography"
-          size="sm"
-          variant="plain"
-          sx={{
-            position: 'absolute',
-            zIndex: 2,
-            borderRadius: '50%',
-            right: '0.5rem',
-            bottom: '-5.5rem',
-            transform: 'translateY(120%)',
-            color: 'red',
-            '&:hover': { color: '#da7b29' },
-          }}
-        >
-          {/*@TODO Add to bookmarks : if already in bookmarks, change to Favorite icons */}
-          <Favorite />
-        </IconButton>
-      </CardOverflow>
+          {/* Booksmarks button */}
+          {/* ligne 64 : la fonction qui va déclencher la logique liée à l'add/del d'un favori  */}
+          <IconButton
+            onClick={() => actionToBookmarks(hike.id)}
+            aria-label="Like minimal photography"
+            size="sm"
+            variant="plain"
+            sx={{
+              position: 'absolute',
+              zIndex: 2,
+              borderRadius: '50%',
+              right: '0.5rem',
+              bottom: '-5.5rem',
+              transform: 'translateY(120%)',
+              color: 'red',
+              '&:hover': { color: '#da7b29' },
+            }}
+          >
+            {/*@TODO Add to bookmarks : if already in bookmarks, change to Favorite icons */}
+            <Favorite />
+          </IconButton>
+        </CardOverflow>
 
-      {/* Card content */}
-      <CardContent>
-        <NavLink to={`/randonnees/${hike.id}`} className="no-decoration">
+        {/* Card content */}
+        <CardContent>
           <h3 className="card__title">{hike.title}</h3>
-        </NavLink>
-      </CardContent>
-      {/* Card footer */}
-      <CardOverflow variant="soft">
-        <Divider inset="context" />
-        {/* Card tags */}
-        <CardContent orientation="horizontal">
-          <Typography level="body-sm">{hike.localisation}</Typography>
-          <Divider orientation="vertical" />
-          <Typography level="body-sm">
-            Temps de marche : <br />
-            {formatHikeTime(hike.time)}
-          </Typography>
-          {/*j'appelle la fonction que j'ai déclaré précedemment pour gérer l'afficahge des couleurs fonction de la difficulté  */}
-          <Divider orientation="vertical" />
-          Difficulté {RenderDifficulty(hike)}
         </CardContent>
-      </CardOverflow>
-    </Card>
+        {/* Card footer */}
+        <CardOverflow variant="soft">
+          <Divider inset="context" />
+          {/* Card tags */}
+          <CardContent orientation="horizontal">
+            <Typography level="body-sm">{hike.localisation}</Typography>
+            <Divider orientation="vertical" />
+            <Typography level="body-sm">
+              Temps de marche : <br />
+              {formatHikeTime(hike.time)}
+            </Typography>
+            {/*j'appelle la fonction que j'ai déclaré précedemment pour gérer l'afficahge des couleurs fonction de la difficulté  */}
+            <Divider orientation="vertical" />
+            Difficulté {RenderDifficulty(hike)}
+          </CardContent>
+        </CardOverflow>
+      </Card>
+    </NavLink>
   );
 }
 export default CardComponent;

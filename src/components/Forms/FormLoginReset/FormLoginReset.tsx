@@ -25,7 +25,7 @@ export default function FormLogin() {
   const onSubmit = (data: FormData) => {
     console.log(data);
     //TODO corriger car la requête renvoit un password
-    dispatch(postResetDatas(data));
+    dispatch(postResetDatas(data as any));
   };
 
   // Le rendu final du composant

@@ -33,7 +33,8 @@ function Root() {
       {currentUrl.pathname !== '/connexion' &&
       currentUrl.pathname !== '/connexion/reset' &&
       currentUrl.pathname !== '/connexion/reinit' &&
-      currentUrl.pathname !== '/inscription' ? (
+      currentUrl.pathname !== '/inscription' &&
+      currentUrl.pathname !== '/mon-compte' ? (
         <Footer />
       ) : (
         ''

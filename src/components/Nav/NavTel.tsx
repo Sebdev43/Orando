@@ -2,12 +2,14 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
+import { useAppSelector } from '../../hooks/redux';
 import { useNavigate } from 'react-router-dom';
 
 import './Nav.scss';
 
 export default function NavTel() {
   const navigate = useNavigate();
+  const isLogged = useAppSelector((state) => state.userConnection.isLogged);
 
   const handleMenuClick = (path: string) => {
     navigate(path);
@@ -84,10 +86,10 @@ export default function NavTel() {
               }}
               onClick={() => {
                 popupState.close();
-                handleMenuClick('/connexion');
+                handleMenuClick(isLogged ? '/mon-compte' : '/connexion');
               }}
             >
-              Se Connecter
+              {isLogged ? 'Mon compte' : 'Se connecter'}
             </MenuItem>
           </Menu>
         </>

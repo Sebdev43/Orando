@@ -27,16 +27,6 @@ function HikeDetail({ hike }: HikeDetailProps) {
 
   return (
     <>
-      {/* Prévoir un logo pour représenter les favoris et le positionner prévoir de sortir cette logique 
-      dans un composant "mettre en favoris" pour pouvoir coller le composant ou on souhaite par la suite*/}
-      <Button
-        aria-label="Ajouter aux favoris"
-        size="small"
-        variant="contained"
-        color="warning"
-      >
-        Ajouter aux favoris
-      </Button>
       <header className="hike__header">
         <h1>{hike.title}</h1>
         <h2 className="hike__subtitle">Description :</h2>

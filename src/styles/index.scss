@@ -1,5 +1,6 @@
 @use 'reset';
 @use 'fonts';
+@use 'keyframes';
 @use 'variables' as v;
 
 body {
@@ -15,17 +16,20 @@ body {
   width: 90%;
   padding: 0rem 3rem;
   margin: auto;
-  background-color: rgb(255, 255, 255);
+  background-color: v.$color-background;
 }
 
 #root {
   width: 80%;
   margin: auto;
-  background-color: rgb(255, 255, 255);
+  background-color: v.$color-background;
 
   body.not-found-page & {
     background-color: transparent;
   }
+}
+.content {
+  min-height: 60vh;
 }
 
 .page_title {
@@ -41,6 +45,7 @@ body {
   #root {
     width: 100%;
   }
+
   .header {
     display: flex;
   }

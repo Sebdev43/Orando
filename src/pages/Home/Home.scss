@@ -21,9 +21,11 @@
 }
 
 .cards__content {
+  margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 1.5rem;
   justify-content: center;
+  margin-bottom: 4rem;
 }

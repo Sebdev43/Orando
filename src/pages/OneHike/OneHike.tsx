@@ -1,4 +1,4 @@
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Hike } from '../../@types/hike';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import './OneHike.scss';
@@ -15,29 +15,22 @@ function OneHike() {
   const params = useParams();
   const id = Number(params.id);
 
+  const error = useAppSelector((state) => state.hikeOne.error);
+
   // on provoque la requête qui charge les informations de la randonnée dans le store
   useEffect(() => {
     dispatch(getOneHike(id));
-  }, [id, dispatch]);
-
-  const hike = useAppSelector((state) => state.hikeOne.oneHike);
-  const loading = useAppSelector((state) => state.hikeOne.loading);
-  const error = useAppSelector((state) => state.hikeOne.error);
-
-  useEffect(() => {
     if (error) {
       return navigation('/error');
     }
-  }, [error, navigation]);
+  }, [id, dispatch, error, navigation]);
 
-  // on affiche le chargement
-  if (loading) {
-    return <h1 className="page_title">Chargement des randonnées</h1>;
-  }
+  const hike = useAppSelector((state) => state.hikeOne.oneHike);
+  const loading = useAppSelector((state) => state.hikeOne.loading);
 
   return (
     <div className="hike">
-      <HikeDetail hike={hike as Hike} />
+      {loading ? '' : <HikeDetail hike={hike as Hike} />}
     </div>
   );
 }
