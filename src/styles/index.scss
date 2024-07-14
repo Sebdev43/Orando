@@ -29,8 +29,9 @@ body {
   }
 }
 .content {
-  min-height: 60vh;
+  min-height: 80vh;
   margin: 3rem 0;
+  margin-bottom: 15rem;
 }
 
 .page_title {
@@ -57,14 +58,39 @@ body {
   .container__background {
     padding: 0;
   }
-  .hike__pictures {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    width: 100%;
-  }
+
   .map-wrapper {
     width: 20%;
     height: 10rem;
+  }
+
+  .hike {
+    margin: 20px;
+
+    &__header {
+      margin-bottom: 20px;
+    }
+    &__tags {
+      margin-top: 10px;
+    }
+
+    &__details {
+      margin-top: 20px;
+    }
+
+    &_map {
+      margin-top: 20px;
+    }
+
+    &__footer {
+      margin-top: 20px;
+    }
+
+    &__pictures {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      width: 100%;
+    }
   }
 }

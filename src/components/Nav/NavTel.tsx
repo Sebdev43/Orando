@@ -29,14 +29,19 @@ export default function NavTel() {
               color: 'black',
               boxShadow: '2px 2px 4px #000000',
               borderRadius: '7px',
-              width: '100px',
+              width: '50px',
+              height: '50px',
               marginLeft: 'auto',
               marginBottom: '100px',
             }}
             variant="contained"
             {...bindTrigger(popupState)}
           >
-            Menu
+            <div className="hamburger-menu-wrapper">
+              <span className="hamburger-menu"></span>
+              <span className="hamburger-menu"></span>
+              <span className="hamburger-menu"></span>
+            </div>
           </Button>
           <Menu {...bindMenu(popupState)}>
             <MenuItem

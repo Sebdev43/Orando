@@ -1,3 +1,5 @@
+@use '../../styles/variables' as v;
+
 .hike {
   &__header {
     padding: 1rem;
@@ -22,32 +24,32 @@
       border: 1.5px solid;
       padding: 0.5rem;
       border-radius: 5px;
-      border-color: #9ba067bd;
-      background-color: #9ba06780;
+      border-color: v.$tag-color-localisation-border;
+      background-color: v.$tag-color-localisation;
       box-shadow: 1px 1px 3px #000000;
     }
     &-difficulty {
       border: 1.5px solid;
       padding: 0.5rem;
       border-radius: 5px;
-      border-color: #c0e430;
-      background-color: #c0e4307b;
+      border-color: v.$tag-color-difficulty-border;
+      background-color: v.$tag-color-difficulty;
       box-shadow: 1px 1px 3px #000000;
     }
     &-time {
       border: 1.5px solid;
       padding: 0.5rem;
       border-radius: 5px;
-      border-color: #a5d5d0;
-      background-color: #a5d5d080;
+      border-color: v.$tag-color-time-border;
+      background-color: v.$tag-color-time;
       box-shadow: 1px 1px 3px #000000;
     }
     &-distance {
       border: 1.5px solid;
       padding: 0.5rem;
       border-radius: 5px;
-      border-color: #e1975e;
-      background-color: #e1975e7f;
+      border-color: v.$tag-color-distance-border;
+      background-color: v.$tag-color-distance;
       box-shadow: 1px 1px 3px #000000;
     }
   }
@@ -81,36 +83,4 @@
   height: 95%;
   padding-bottom: 0.5rem;
   object-fit: cover;
-}
-
-//  RESPONSIVE A DEPLACER DANS INDEX AVEC TOUT LE RESTE DU RESPONSIVE
-@media screen and (max-width: 840px) {
-  .hike {
-    margin: 20px;
-
-    &__header {
-      margin-bottom: 20px;
-    }
-    // &__pictures {
-    //   display: flex;
-    //   flex-wrap: wrap;
-    //   gap: 10px;
-    //   width: 100%;
-    // }
-    &__tags {
-      margin-top: 10px;
-    }
-
-    &__details {
-      margin-top: 20px;
-    }
-
-    &_map {
-      margin-top: 20px;
-    }
-
-    &__footer {
-      margin-top: 20px;
-    }
-  }
 }

@@ -1,3 +1,5 @@
+@use '../../styles/variables' as v;
+
 .header {
   align-items: center;
 
@@ -7,8 +9,7 @@
       left: 75%;
       top: 4rem;
       padding: 1rem;
-      // background-color: rgba(47, 47, 47, 0.151);
-      background-color: #73bfb7a9;
+      background-color: v.$color-secondary;
       box-shadow: 2px 2px 4px #000000;
       color: black;
       text-decoration: none;

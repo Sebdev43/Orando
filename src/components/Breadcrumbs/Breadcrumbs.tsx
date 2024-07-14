@@ -1,7 +1,7 @@
-import { Location } from '../../@types/hike';
+import { Hike, Location } from '../../@types/hike';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { changeLocation } from '../../store/reducers/breadcrumbs';
 import './Breadcrumbs.scss';
 
@@ -25,6 +25,13 @@ export default function IconBreadcrumbs() {
   useEffect(() => {
     dispatch(changeLocation(location.pathname));
   }, [location]);
+
+  // je fabrique un tableau avec les correspondances entre les id des randos, et le nom des randos
+  // const hikes = useAppSelector((state) => state.hikesAll.hikesList);
+  // const hikeName = hikes.map((hike: any) => {
+  //   location.pathname == hike.id;
+  // });
+  // console.log(location);
 
   // Grâce à tout ce qu'il y a au dessus (dans la partie logique du composant)
   // je peux générer (toujours en logique, donc ici dans la même partie)
