@@ -2,6 +2,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Hike } from '../../@types/hike';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import './OneHike.scss';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 // Components
 import HikeDetail from '../../components/HikeDetail/HikeDetail';

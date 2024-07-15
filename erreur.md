@@ -1,0 +1,1 @@
+The file does not exist at "/home/sebdev43/projet-8-o-rando-front/node_modules/.vite/deps/chunk-PDUYQ6F5.js?v=513785a8" which is in the optimize deps directory. The dependency might be incompatible with the dep optimizer. Try adding it to `optimizeDeps.exclude`.
