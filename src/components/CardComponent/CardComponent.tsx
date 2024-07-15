@@ -17,6 +17,7 @@ import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';
 import IconButton from '@mui/joy/IconButton';
 import Favorite from '@mui/icons-material/Favorite';
+import { Box } from '@mui/material';
 // import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 
 // Le composant actuel
@@ -70,18 +71,22 @@ function CardComponent(hike: Hike) {
 
             {/* Card tags */}
             <CardContent orientation="horizontal" className="card__tags">
-              <Typography level="body-sm">
-                Localisation : <br />
-                {hike.localisation}
-              </Typography>
-              <Typography level="body-sm">
-                Marche : <br />
-                {formatHikeTime(hike.time)}
-              </Typography>
-              <Typography level="body-sm">
-                Difficulté : <br />
+              <div>
+                <Typography level="body-sm">Localisation :</Typography>
+                <Typography level="body-sm">{hike.localisation}</Typography>
+              </div>
+
+              <div>
+                <Typography level="body-sm">Marche :</Typography>
+                <Typography level="body-sm">
+                  {formatHikeTime(hike.time)}
+                </Typography>
+              </div>
+
+              <div>
+                <Typography level="body-sm">Difficulté :</Typography>
                 {RenderDifficulty(hike)}
-              </Typography>
+              </div>
             </CardContent>
           </CardOverflow>
         </Card>

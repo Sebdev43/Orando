@@ -4,6 +4,7 @@ import './ScrollToTop.scss';
 export default function ScrollToTop() {
   const [show, setShowButton] = useState(false);
 
+  // TODO utiliser un fire effect ?
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -15,7 +16,6 @@ export default function ScrollToTop() {
         setShowButton(false);
       }
     };
-
     window.addEventListener('scroll', handleScroll);
 
     // je nettoie (démonte) l’event listener sur le composant
