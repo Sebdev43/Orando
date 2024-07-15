@@ -15,7 +15,7 @@ export type FormReinitData = {
   token?: string | null;
 };
 
-//---------------------------------------------------------- Le composant actuel
+//------------------------------------------- Le composant actuel
 export default function FormReinit() {
   const dispatch = useAppDispatch();
 
