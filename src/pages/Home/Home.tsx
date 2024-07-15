@@ -23,6 +23,7 @@ export default function Home() {
           Bienvenue sur O'Rando, votre guide incontournable pour découvrir les
           plus beaux sentiers de{' '}
           <a
+            className="lien_wiki"
             href="https://fr.wikipedia.org/wiki/Randonn%C3%A9e"
             target="_blank"
           >
@@ -42,6 +43,7 @@ export default function Home() {
           sélectionnées dans des régions variées, des sommets alpins majestueux
           aux collines verdoyantes du{' '}
           <a
+            className="lien_wiki"
             href="https://fr.wikipedia.org/wiki/Massif_central"
             target="_blank"
           >
@@ -49,13 +51,18 @@ export default function Home() {
           </a>{' '}
           , en passant par les plages sauvages de la{' '}
           <a
+            className="lien_wiki"
             href="https://fr.wikipedia.org/wiki/C%C3%B4te_atlantique_fran%C3%A7aise"
             target="_blank"
           >
             Côte Atlantique
           </a>{' '}
           et les forêts enchantées des{' '}
-          <a href="https://fr.wikipedia.org/wiki/Vosges" target="_blank">
+          <a
+            className="lien_wiki"
+            href="https://fr.wikipedia.org/wiki/Vosges"
+            target="_blank"
+          >
             Vosges
           </a>
           . Chaque randonnée est décrite en détail, avec des informations
@@ -69,7 +76,11 @@ export default function Home() {
           pour vous aider à planifier votre sortie en toute sérénité. Vous
           trouverez également des suggestions d'équipements adaptés à chaque
           type de randonnée, qu'il s'agisse de courtes balades ou de{' '}
-          <a href="https://fr.wikipedia.org/wiki/Trekking" target="_blank">
+          <a
+            className="lien_wiki"
+            href="https://fr.wikipedia.org/wiki/Trekking"
+            target="_blank"
+          >
             treks
           </a>{' '}
           de plusieurs jours.
