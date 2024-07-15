@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './FormAccount.scss';
+import { Button } from '@mui/joy';
 
 // Le typage des données
 export type FormData = {
@@ -220,9 +221,15 @@ export default function FormAccount() {
                 {errors.confirmPassword?.message}
               </span>
 
-              <button type="button" onClick={handleSubmit(onSubmit)}>
+              <Button
+                onClick={handleSubmit(onSubmit)}
+                variant="solid"
+                color="primary"
+                size="sm"
+                sx={{ width: '25%' }}
+              >
                 OK
-              </button>
+              </Button>
               <button type="button" onClick={handleCancel}>
                 Annuler
               </button>

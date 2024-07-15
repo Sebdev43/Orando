@@ -1,8 +1,16 @@
-.form__login {
+@use '../../../styles/variables' as v;
+
+.form-login-reinit {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   padding: 1rem;
   width: 300px;
   margin: auto;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }

@@ -31,11 +31,11 @@ export default function FormLogin() {
 
   const onSubmit = (data: FormData) => {
     dispatch(postLoginDatas(data as any));
-    console.log('je suis onSubmit', data);
   };
 
   // Redirige l'utilisateur vers la page d'accueil si le state change a true
   // "navigate" provient du hook useNavigate
+  // TODO utiliser un fireEffect !
   useEffect(() => {
     if (isLogged) {
       navigate('/randonnees');

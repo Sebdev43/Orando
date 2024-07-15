@@ -21,7 +21,7 @@ import { Box } from '@mui/material';
 // import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 
 // Le composant actuel
-function CardComponent(hike: Hike) {
+export default function CardComponent(hike: Hike) {
   function actionToBookmarks(id: number) {
     console.log(id);
   }
@@ -88,4 +88,3 @@ function CardComponent(hike: Hike) {
     </>
   );
 }
-export default CardComponent;

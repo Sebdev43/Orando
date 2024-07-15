@@ -1,5 +1,6 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { FormReinitData } from '../../components/Forms/FormLoginReinit/FormLoginReinit';
 
 type initialStateProps = {
   token: string;
@@ -52,9 +53,14 @@ export const postResetDatas = createAsyncThunk(
 //  api/accounts/reset-password/
 export const postReinitDatas = createAsyncThunk(
   'USER/POST_REINIT_DATAS',
-  async (datas: FormData) => {
+  async (datas: FormReinitData) => {
     try {
-      const { data } = await axios.post(`api/accounts/reset-password/`, datas);
+      const { data } = await axios.post(
+        `http://localhost:4000/accounts/reset-password`,
+        {
+          datas,
+        }
+      );
       console.log('je suis le try', data);
       return data;
     } catch (error) {
@@ -83,7 +89,7 @@ export const userConnectionReducer = createReducer(initialState, (builder) => {
     })
     .addCase(postResetDatas.fulfilled, (state, action) => {
       state.resetMessage =
-        "Si l'adresse mail existe, un lien vous a été envoyé sur votre adresse email";
+        "Si l'adresse mail existe, un lien vous a été envoyé";
     })
     // Demande de reinitialisation du mot de passe
     .addCase(postReinitDatas.pending, (state) => {})
