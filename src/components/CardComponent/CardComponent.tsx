@@ -71,22 +71,16 @@ function CardComponent(hike: Hike) {
 
             {/* Card tags */}
             <CardContent orientation="horizontal" className="card__tags">
-              <div>
-                <Typography level="body-sm">Localisation :</Typography>
-                <Typography level="body-sm">{hike.localisation}</Typography>
-              </div>
+              <Typography level="body-sm">Localisation :</Typography>
+              <Typography level="body-sm">{hike.localisation}</Typography>
 
-              <div>
-                <Typography level="body-sm">Marche :</Typography>
-                <Typography level="body-sm">
-                  {formatHikeTime(hike.time)}
-                </Typography>
-              </div>
+              <Typography level="body-sm">Marche :</Typography>
+              <Typography level="body-sm">
+                {formatHikeTime(hike.time)}
+              </Typography>
 
-              <div>
-                <Typography level="body-sm">Difficulté :</Typography>
-                {RenderDifficulty(hike)}
-              </div>
+              <Typography level="body-sm">Difficulté :</Typography>
+              {RenderDifficulty(hike)}
             </CardContent>
           </CardOverflow>
         </Card>
