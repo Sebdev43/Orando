@@ -1,20 +1,10 @@
-import {
-  createReducer,
-  createAsyncThunk,
-  createAction,
-} from '@reduxjs/toolkit';
+import { createReducer, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { Credential } from '../../@types/form';
 
 //  le typage TS pour tout l'état (le state hikes du store.tsx)
-export type Credentials = {
-  nickname: string;
-  localisation: string;
-  email: string;
-  password: string;
-};
 
 export type userProps = {
-  loading: boolean;
   messagesResponse: string[];
   isRegistered: boolean;
   successMessage: string;
@@ -22,7 +12,6 @@ export type userProps = {
 
 // les propriétés par défaut du state hikes (le state du store.tsx)
 const initialState: userProps = {
-  loading: false,
   isRegistered: false,
   messagesResponse: [],
   successMessage: '',
@@ -31,7 +20,7 @@ const initialState: userProps = {
 // En asynchrone, on utilise la méthode "createasyncThunk" pour récupérer les données d'une API
 export const postRegisterDatas = createAsyncThunk(
   'USER/POST_REGISTER_DATAS',
-  async (datas: Credentials) => {
+  async (datas: Credential) => {
     try {
       const { data } = await axios.post(`/api/accounts/signup`, datas);
       return data;
@@ -52,29 +41,14 @@ export const postRegisterDatas = createAsyncThunk(
 export const userRegistrationReducer = createReducer(
   initialState,
   (builder) => {
-    builder
-      .addCase(postRegisterDatas.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(postRegisterDatas.rejected, (state, action) => {
-        state.loading = false;
-        console.log('je suis rejected dans REGISTRATION pourquoi ???');
-        console.log(action);
-      })
-      .addCase(postRegisterDatas.fulfilled, (state, action) => {
-        state.loading = false;
-        // console.log(action.payload.msg);
-
-        if (action.payload.message) {
-          state.successMessage = action.payload.message;
-          state.isRegistered = true;
-          console.log(state.successMessage);
-        }
-
-        if (action.payload.msg) {
-          state.messagesResponse = action.payload.msg;
-          console.log(state.messagesResponse);
-        }
-      });
+    builder.addCase(postRegisterDatas.fulfilled, (state, action) => {
+      if (action.payload.message) {
+        state.successMessage = action.payload.message;
+        state.isRegistered = true;
+      }
+      if (action.payload.msg) {
+        state.messagesResponse = action.payload.msg;
+      }
+    });
   }
 );

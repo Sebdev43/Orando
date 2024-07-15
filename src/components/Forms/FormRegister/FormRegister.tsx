@@ -60,7 +60,10 @@ export default function FormRegister() {
         sucessMessage
       ) : (
         <form className="form__register" onSubmit={handleSubmit(onSubmit)}>
-          <span className="form__register__server-response-message">
+          <span
+            style={{ color: 'red', textAlign: 'center' }}
+            className="form__register__server-response-message"
+          >
             {messagesResponse ? errorMessagesFromApi : sucessMessage}
           </span>
           {/* <p>{messageResponse}</p> */}
