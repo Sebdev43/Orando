@@ -1476,7 +1476,8 @@ INSERT INTO users (nickname, localisation, email, password, email_verified)
 VALUES 
     ('User1', 'Location1', 'user1@example.com', 'password1', false),
     ('User2', 'Location2', 'user2@example.com', 'password2', false),
-    ('toto45', 'Ardeche', 'toto45@gmail.com', 'dc368af71f7d7e48bf096c6642f00e8e:f85f5d20b41637d21789c1f2df63ed143631e66d2c908d5b499bee38e2507659', true);
+    ('toto45', 'Ardeche', 'toto45@gmail.com', 'dc368af71f7d7e48bf096c6642f00e8e:f85f5d20b41637d21789c1f2df63ed143631e66d2c908d5b499bee38e2507659', true),
+    ('matthias','Ardeche','matthias.hibon@sfr.fr','70dec9751134d56ca79f9bf19c70ee87:2609bd5ac3eaaa2765ccb79f0fa745d20707c552e66f50621d405b45dcb097cb',true);
 INSERT INTO users_has_hikes (users_id, hikes_id)
 VALUES 
     (1, 1),

@@ -48,6 +48,6 @@ export const swaggerMiddleware = (app) => {
   }));
 
   app.use('/swaggerCustom.css', express.static('public/swaggerCustom.css'));
-  app.use('/logo-fond-noir.jpg', express.static('public/logo-fond-noir.jpg'));  // Assurez-vous que ce chemin est correct
+  app.use('/logo.jpg', express.static('public/logo.jpg'));  
   app.use('/Favicon-blanc.jpg', express.static('public/Favicon-blanc.jpg'));
 };
