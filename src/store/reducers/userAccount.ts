@@ -13,6 +13,8 @@ type UserAccountProps = {
   credentials: Credential;
   favorites: string[];
   token: string | null;
+  editingField: string | null;
+  passwordError: string | null;
 };
 
 const initialState: UserAccountProps = {
@@ -22,10 +24,16 @@ const initialState: UserAccountProps = {
     email: '',
     password: '',
   },
+  editingField: null,
+  passwordError: null,
 
   token: localStorage.getItem('token'),
   favorites: [],
 };
+
+export const changeEditingField = createAction<string | null>(
+  'USER_ACCOUNT/CHANGE_EDITING_FIELD'
+);
 
 // Récupérer les données du User identifié avec le token
 export const getUserDatas = createAsyncThunk(
@@ -96,5 +104,9 @@ export const userAccountReducer = createReducer(initialState, (builder) => {
       state.credentials.localisation = action.payload.localisation;
       state.credentials.email = action.payload.email;
       state.credentials.password = action.payload.password;
+    })
+    // Change editing field
+    .addCase(changeEditingField, (state, action) => {
+      state.editingField = action.payload;
     });
 });

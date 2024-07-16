@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import {
+  changeEditingField,
   getUserDatas,
   patchUserDatas,
 } from '../../../store/reducers/userAccount';
@@ -19,10 +20,16 @@ export default function FormAccount() {
 
   // on récupère le state dans userAccountReducer
   const credentials = useAppSelector((state) => state.userAccount.credentials);
+  const editingField = useAppSelector(
+    (state) => state.userAccount.editingField
+  );
+  const passwordError = useAppSelector(
+    (state) => state.userAccount.passwordError
+  );
 
   // les states locaux pour le formulaire
-  const [editingField, setEditingField] = useState<string | null>(null);
-  const [passwordError, setPasswordError] = useState<string | null>(null);
+  // const [editingField, setEditingField] = useState<string | null>(null);
+  // const [passwordError, setPasswordError] = useState<string | null>(null);
 
   useEffect(() => {
     dispatch(getUserDatas());
@@ -32,48 +39,21 @@ export default function FormAccount() {
     register,
     handleSubmit,
     formState: { errors },
-    setValue,
   } = useForm<FormData>();
 
-  // useEffect(() => {
-  //   if (credentials) {
-  //     setValue('nickname', credentials.nickname);
-  //     setValue('localisation', credentials.localisation);
-  //     setValue('email', credentials.email);
-  //   }
-  // }, [credentials, setValue]);
-
   const onSubmit = (data: FormData) => {
-    // if (data.newPassword !== data.confirmPassword) {
-    //   setPasswordError('Les nouveaux mots de passe ne correspondent pas');
-    //   return;
-    // }
     if (data.nickname === credentials.nickname) {
-      setEditingField(null);
+      dispatch(changeEditingField(null));
       return console.log('Le nickname est identique');
     }
-
     console.log('Dans le submit : ', data);
-
     dispatch(patchUserDatas(data as any));
     handleCancel();
-
-    // Logique pour vérifier le mot de passe actuel et changer pour le nouveau mot de passe
-    // console.log('Current Password:', data.currentPassword);
-    // console.log('New Password:', data.newPassword);
-  };
-
-  const handleEdit = (field: string) => {
-    setEditingField(field);
   };
 
   const handleCancel = () => {
-    setEditingField(null);
-
-    // setValue('currentPassword', '');
-    // setValue('newPassword', '');
-    // setValue('confirmPassword', '');
-    setPasswordError(null);
+    dispatch(changeEditingField(null));
+    // setPasswordError(null);
   };
 
   // Le rendu final du composant
@@ -125,7 +105,10 @@ export default function FormAccount() {
         ) : (
           <section>
             <span>{credentials.nickname}</span>
-            <button type="button" onClick={() => handleEdit('nickname')}>
+            <button
+              type="button"
+              onClick={() => dispatch(changeEditingField('nickname'))}
+            >
               Modifier
             </button>
           </section>
@@ -146,7 +129,10 @@ export default function FormAccount() {
             <span className="error__localisation">
               {errors.localisation?.message}
             </span>
-            <button type="button" onClick={() => setEditingField(null)}>
+            <button
+              type="button"
+              onClick={() => dispatch(changeEditingField(null))}
+            >
               OK
             </button>
             <button type="button" onClick={handleCancel}>
@@ -180,7 +166,10 @@ export default function FormAccount() {
             />
             <span className="error__email">{errors.email?.message}</span>
 
-            <button type="button" onClick={() => setEditingField(null)}>
+            <button
+              type="button"
+              onClick={() => dispatch(changeEditingField(null))}
+            >
               OK
             </button>
             <button type="button" onClick={handleCancel}>
@@ -284,7 +273,4 @@ export default function FormAccount() {
       <button className="form-account__delete">SUPPRIMER LE COMPTE</button>
     </section>
   );
-}
-function postAccountDatas(data: FormData): any {
-  throw new Error('Function not implemented.');
 }
