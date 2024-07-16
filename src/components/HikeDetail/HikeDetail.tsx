@@ -32,7 +32,11 @@ function HikeDetail({ hike }: HikeDetailProps) {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000
+    autoplaySpeed: 3000,
+    adaptiveHeight: true,
+    centerMode: true,
+    centerPadding: '0',
+    arrows: true,
   };
 
   return (
@@ -49,39 +53,29 @@ function HikeDetail({ hike }: HikeDetailProps) {
         >
           <Slider {...sliderSettings}>
             {hike.pictures.map((picture, index) => (
-              <div key={index}>
+              <section key={index}>
                 <Zoom>
-                  <img
-                    loading="lazy"
-                    className="slide-image"
-                    src={picture}
-                    alt={`Une photo de ${hike.title}`}
-                  />
+                  <figure>
+                    <img
+                      loading="lazy"
+                      className="slide-image"
+                      src={picture}
+                      alt={`Une photo de ${hike.title}`}
+                    />
+                    <figcaption hidden={true}>{hike.description}</figcaption>
+                    <meta property="og:title" content={hike.title} />
+                    <meta property="og:type" content="photo" />
+                    <meta
+                      property="og:description"
+                      content={hike.description}
+                      hidden={true}
+                    />
+                    <meta property="og:site_name" content="O'Rando" />
+                  </figure>
                 </Zoom>
-              </div>
+              </section>
             ))}
           </Slider>
-
-{/*           <section className="section__one">
-            <figure className={`large__grid`}>
-              <img
-                loading="lazy"
-                className="large__picture"
-                src={hike.pictures[0]}
-                alt={`Une photo de ${hike.title}`}
-              />
-              <figcaption hidden={true}>{hike.description}</figcaption>
-              <meta property="og:title" content={hike.title} />
-              <meta property="og:type" content="photo" />
-              <meta
-                property="og:description"
-                content={hike.description}
-                hidden={true}
-              />
-              <meta property="og:site_name" content="O'Rando" />
-            </figure>
-          </section> */}
-          
         </section>
         <section className="hike__tags">
           <span className="hike__tags-localisation">{hike.localisation}</span>
