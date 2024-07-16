@@ -76,7 +76,7 @@ export default function CardComponent(hike: Hike) {
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                padding: '1px',
+                padding: '10px',
                 backgroundColor: '#f5f5f5',
                 borderRadius: '8px',
                 marginTop: '5px',
@@ -104,21 +104,15 @@ export default function CardComponent(hike: Hike) {
             >
               <div className="row">
                 <div className="column localisation-column">
-                  <Typography className="column" level="body-sm">
-                    Localisation:
-                  </Typography>
+                  <Typography level="body-sm">Localisation:</Typography>
                 </div>
 
                 <div className="column other-column">
-                  <Typography className="column" level="body-sm">
-                    Marche:
-                  </Typography>
+                  <Typography level="body-sm">Marche:</Typography>
                 </div>
 
                 <div className="column other-column">
-                  <Typography className="column" level="body-sm">
-                    Difficulté:
-                  </Typography>
+                  <Typography level="body-sm">Difficulté:</Typography>
                 </div>
               </div>
               <div className="row">

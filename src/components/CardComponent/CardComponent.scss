@@ -1,5 +1,7 @@
 @use '../../styles/variables' as v;
 .card {
+  border: 1rem solid;
+
   &__tags {
     display: flex;
     justify-content: space-between;
