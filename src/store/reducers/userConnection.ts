@@ -10,7 +10,7 @@ type initialStateProps = {
 };
 
 const initialState: initialStateProps = {
-  token: null,
+  token: localStorage.getItem('token') || null,
   messageResponse: '',
   isLogged: false,
   resetMessage: '',

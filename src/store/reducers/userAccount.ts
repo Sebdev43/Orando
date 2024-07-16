@@ -12,9 +12,9 @@ import { RootState } from '../store';
 type UserAccountProps = {
   credentials: Credential;
   favorites: string[];
-  token: string | null;
   editingField: string | null;
   passwordError: string | null;
+  // token: string | null;
 };
 
 const initialState: UserAccountProps = {
@@ -27,7 +27,7 @@ const initialState: UserAccountProps = {
   editingField: null,
   passwordError: null,
 
-  token: localStorage.getItem('token'),
+  // token: localStorage.getItem('token'),
   favorites: [],
 };
 
@@ -41,7 +41,7 @@ export const getUserDatas = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const rootstate = thunkAPI.getState() as RootState;
-      const token = rootstate.userAccount.token;
+      const token = rootstate.userConnection.token;
 
       const { data } = await axios.get('/api/users', {
         headers: {
@@ -61,7 +61,7 @@ export const patchUserDatas = createAsyncThunk(
   async (datas: Credential, thunkAPI) => {
     try {
       const rootstate = thunkAPI.getState() as RootState;
-      const token = rootstate.userAccount.token;
+      const token = rootstate.userConnection.token;
 
       console.log('dans le try', datas);
 

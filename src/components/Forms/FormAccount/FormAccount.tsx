@@ -20,6 +20,7 @@ export default function FormAccount() {
   const dispatch = useAppDispatch();
 
   // on récupère le state dans userAccountReducer
+  // const token = useAppSelector((state) => state.userConnection.token);
   const credentials = useAppSelector((state) => state.userAccount.credentials);
   const editingField = useAppSelector(
     (state) => state.userAccount.editingField
