@@ -15,7 +15,7 @@ export default function NotFound() {
     <div className="not-found-content">
       <h1 className="error-title">Vous êtes perdu au milieu des bois !</h1>
       <div className="overlay">
-        <img src={errorImage} alt="404 error" className="error-image" />
+        <img src={errorImage} alt="404 error" className="error-image" loading="lazy"/>
         <a href="/" className="home-link">
           C'est par ici
         </a>

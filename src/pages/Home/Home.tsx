@@ -17,7 +17,16 @@ export default function Home() {
   return (
     <main className="home">
       <article>
-        <img className="home__banner" />
+        <figure>
+          <img
+            className="home__banner"
+            loading="lazy"
+            
+          />
+          
+          <meta property="og:title" content="Photo de la Home-Page" />
+          
+        </figure>
         <h1 className="page_title">Bienvenue sur O'Rando !</h1>
         <article className="home__text-presentation">
           Bienvenue sur O'Rando, votre guide incontournable pour découvrir les

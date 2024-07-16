@@ -42,6 +42,7 @@ function Header() {
           src="/logo_fond_blanc.webp"
           alt="logo du site o'rando"
           className="header__top-logo"
+          loading="lazy"
         />
       </NavLink>
 

@@ -1,4 +1,4 @@
-import Cookies from 'js-cookie';
+/*import Cookies from 'js-cookie';
 
 export const setCookie = (name: string, value: string, days: number) => {
   Cookies.set(name, value, { expires: days });
@@ -10,4 +10,4 @@ export const getCookie = (name: string): string | undefined => {
 
 export const eraseCookie = (name: string) => {
   Cookies.remove(name);
-}
+}*/
