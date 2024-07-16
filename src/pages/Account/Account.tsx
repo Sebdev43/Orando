@@ -4,11 +4,12 @@ import { useAppSelector } from '../../hooks/redux';
 
 // Le composant actuel est la page Mon compte
 function Account() {
-  const token = useAppSelector((state) => state.userConnection.token);
+  const tokenStore = useAppSelector((state) => state.userConnection.token);
+  const tokenStorage = localStorage.getItem('token');
 
   return (
     <section>
-      {token ? (
+      {tokenStore || tokenStorage ? (
         <FormAccount />
       ) : (
         <p>Veuillez vous connecter pour accéder à votre compte.</p>
