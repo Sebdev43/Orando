@@ -7,6 +7,7 @@ export type Errors = {
 
 export type FormReinitData = {
   newPassword: string;
+  confirmPassword?: string;
   token: string;
 };
 
@@ -18,6 +19,15 @@ export type Credential = {
 };
 
 export type FormAccountData = {
+  nickname: string;
+  localisation: string;
+  email: string;
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+};
+
+export type FormData = {
   nickname: string;
   localisation: string;
   email: string;

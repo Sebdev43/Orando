@@ -1,17 +1,21 @@
-import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
+import {
+  createAction,
+  createAsyncThunk,
+  createReducer,
+} from '@reduxjs/toolkit';
 import axios from 'axios';
 import { FormReinitData } from '../../@types/form';
 
 type initialStateProps = {
   token: string | null;
-  messageResponse: string;
+  serverResponse: string;
   isLogged?: boolean;
   resetMessage: string;
 };
 
 const initialState: initialStateProps = {
-  token: localStorage.getItem('token'),
-  messageResponse: '',
+  token: localStorage.getItem('token') || null,
+  serverResponse: '',
   isLogged: false,
   resetMessage: '',
 };
@@ -22,7 +26,6 @@ export const postLoginDatas = createAsyncThunk(
   async (datas: FormData) => {
     try {
       const { data } = await axios.post(`/api/accounts/login`, datas);
-      localStorage.setItem('token', data.token);
       return data;
     } catch (error) {
       throw new Error("L'email ou le mot de passe sont incorrects");
@@ -59,15 +62,28 @@ export const postReinitDatas = createAsyncThunk(
   }
 );
 
+export const tokenLogout = createAction('USER/LOGOUT');
+export const clearServerResponse = createAction('USER/CLEAR_SERVER_RESPONSE');
+
 export const userConnectionReducer = createReducer(initialState, (builder) => {
   builder
     // LOGIN
     .addCase(postLoginDatas.rejected, (state, action) => {
-      state.messageResponse = action.error.message as string;
+      state.serverResponse = action.error.message as string;
     })
     .addCase(postLoginDatas.fulfilled, (state, action) => {
+      localStorage.setItem('token', action.payload.token);
       state.token = action.payload.token;
       state.isLogged = true;
+    })
+    .addCase(clearServerResponse, (state) => {
+      state.serverResponse = '';
+    })
+    // LOGOUT
+    .addCase(tokenLogout, (state) => {
+      state.token = null;
+      state.isLogged = false;
+      localStorage.removeItem('token');
     })
     // Demande de reset du mot de passe
     .addCase(postResetDatas.rejected, (state, action) => {

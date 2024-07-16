@@ -41,7 +41,7 @@ export default function FormRegister() {
 
   // envoi des données au reducer (direction le server back)
   const onSubmit = (data: FormData) => {
-    dispatch(postRegisterDatas(data));
+    dispatch(postRegisterDatas(data as any));
   };
 
   // création des messages d'erreurs pour mail et nickname

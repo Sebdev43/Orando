@@ -10,8 +10,10 @@ import NavTel from '../Nav/NavTel';
 
 // Le composant actuel
 function Header() {
+  const tokenStore = useAppSelector((state) => state.userConnection.token);
+  const tokenStorage = localStorage.getItem('token');
+
   // Récupération des états provenants du store que l'on stocke en copie locale
-  const isLogged = useAppSelector((state) => state.userConnection.isLogged);
   const widthMediaScreen = useAppSelector(
     (state: any) => state.websiteSettings.widthMediaScreen
   );
@@ -30,9 +32,9 @@ function Header() {
               ? 'menu-link menu-link--active header__top-button'
               : 'menu-link header__top-button'
           }
-          to={isLogged ? '/mon-compte' : '/connexion'}
+          to={tokenStore || tokenStorage ? '/mon-compte' : '/connexion'}
         >
-          {isLogged ? 'Mon compte' : 'Se connecter'}
+          {tokenStore || tokenStorage ? 'Mon compte' : 'Se connecter'}
         </NavLink>
       )}
 
