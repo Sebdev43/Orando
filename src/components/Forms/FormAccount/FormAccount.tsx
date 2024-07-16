@@ -1,22 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { getUserDatas } from '../../../store/reducers/userAccount';
 import './FormAccount.scss';
-import { Button } from '@mui/joy';
 
 // Le typage des données
-export type FormData = {
-  nickname: string;
-  localisation: string;
-  email: string;
-  currentPassword: string;
-  newPassword: string;
-  confirmPassword: string;
-};
+import { FormData } from '../../../@types/form';
+
+// MUI
+import { Button } from '@mui/joy';
 
 // Le composant actuel
 export default function FormAccount() {
+  const dispatch = useAppDispatch();
+
+  // on récupère le state dans userAccountReducer
+  const credentials = useAppSelector((state) => state.userAccount.credentials);
+
+  // les states locaux pour le formulaire
   const [editingField, setEditingField] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
+
+  useEffect(() => {
+    dispatch(getUserDatas());
+  }, [dispatch]);
 
   const {
     register,
@@ -24,16 +31,7 @@ export default function FormAccount() {
     formState: { errors },
     setValue,
     getValues,
-  } = useForm<FormData>({
-    defaultValues: {
-      nickname: 'Heike13',
-      localisation: '13 - Bouches du Rhône',
-      email: 'matthias@schooloclock.com',
-      currentPassword: 'Henricour16!',
-      newPassword: '',
-      confirmPassword: '',
-    },
-  });
+  } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => {
     if (data.newPassword !== data.confirmPassword) {
@@ -53,6 +51,9 @@ export default function FormAccount() {
 
   const handleCancel = () => {
     setEditingField(null);
+    setValue('nickname', '');
+    setValue('localisation', '');
+    setValue('email', '');
     setValue('currentPassword', '');
     setValue('newPassword', '');
     setValue('confirmPassword', '');
@@ -100,13 +101,14 @@ export default function FormAccount() {
             </section>
           ) : (
             <section>
-              <span>{getValues('nickname')}</span>
+              <span>{credentials.nickname}</span>
               <button type="button" onClick={() => handleEdit('nickname')}>
                 Modifier
               </button>
             </section>
           )}
         </section>
+
         {/* Localisation */}
         <section className="form-account__field">
           <label>Département :</label>
@@ -130,13 +132,14 @@ export default function FormAccount() {
             </section>
           ) : (
             <section>
-              <span>{getValues('localisation')}</span>
+              <span>{credentials.localisation}</span>
               <button type="button" onClick={() => handleEdit('localisation')}>
                 Modifier
               </button>
             </section>
           )}
         </section>
+
         {/* Email */}
         <section className="form-account__field">
           <label>Adresse mail :</label>
@@ -153,6 +156,7 @@ export default function FormAccount() {
                 })}
               />
               <span className="error__email">{errors.email?.message}</span>
+
               <button type="button" onClick={() => setEditingField(null)}>
                 OK
               </button>
@@ -162,13 +166,14 @@ export default function FormAccount() {
             </section>
           ) : (
             <section>
-              <span>{getValues('email')}</span>
+              <span>{credentials.email}</span>{' '}
               <button type="button" onClick={() => handleEdit('email')}>
                 Modifier
               </button>
             </section>
           )}
         </section>
+
         {/* Password */}
         <section className="form-account__field">
           <label>Mot de passe :</label>
@@ -236,7 +241,7 @@ export default function FormAccount() {
             </section>
           ) : (
             <section>
-              <span>********</span>
+              <span>***********</span>
               <button type="button" onClick={() => handleEdit('password')}>
                 Modifier
               </button>

@@ -25,3 +25,12 @@ export type FormAccountData = {
   newPassword: string;
   confirmPassword: string;
 };
+
+export type FormData = {
+  nickname: string;
+  localisation: string;
+  email: string;
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+};
