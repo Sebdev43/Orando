@@ -2,10 +2,13 @@ import FormAccount from '../../components/Forms/FormAccount/FormAccount';
 
 // Le composant actuel est la page Mon compte
 function Account() {
+  const token = localStorage.getItem('token');
   return (
-    <section>
-      <FormAccount />
-    </section>
+    token && (
+      <section>
+        <FormAccount />
+      </section>
+    )
   );
 }
 

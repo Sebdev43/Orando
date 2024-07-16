@@ -1,6 +1,5 @@
 import { createReducer, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { Credential } from '../../@types/form';
 
 //  le typage TS pour tout l'état (le state hikes du store.tsx)
 
@@ -20,7 +19,7 @@ const initialState: userProps = {
 // En asynchrone, on utilise la méthode "createasyncThunk" pour récupérer les données d'une API
 export const postRegisterDatas = createAsyncThunk(
   'USER/POST_REGISTER_DATAS',
-  async (datas: Credential) => {
+  async (datas: FormData) => {
     try {
       const { data } = await axios.post(`/api/accounts/signup`, datas);
       return data;

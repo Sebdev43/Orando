@@ -5,7 +5,7 @@ import {
   isRejected,
 } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { Credential, FormData } from '../../@types/form';
+import { Credential } from '../../@types/form';
 import { RootState } from '../store';
 
 // Le typage des données
@@ -59,6 +59,7 @@ export const patchUserDatas = createAsyncThunk(
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        data: datas,
       });
       return data;
     } catch (error) {
@@ -67,26 +68,21 @@ export const patchUserDatas = createAsyncThunk(
   }
 );
 
-// // Pour ajouter un favori
-// export const getBookmarks = createAsyncThunk(
-//   'USER/GET_BOOKMARKS',
-//   async (id: number) => {
-//     try {
-//       const { data } = await axios.post(`/api/favorites`, id);
-//       console.log('try de getBookmarks', data);
-//       return data;
-//     } catch (error) {
-//       console.log('je suis le catch');
-//       throw new Error('La liste des favoris est vide');
-//     }
-//   }
-// );
-
 export const userAccountReducer = createReducer(initialState, (builder) => {
-  builder.addCase(getUserDatas.fulfilled, (state, action) => {
-    state.credentials.nickname = action.payload.nickname;
-    state.credentials.localisation = action.payload.localisation;
-    state.credentials.email = action.payload.email;
-    state.credentials.password = action.payload.password;
-  });
+  builder
+    // Get user datas
+    .addCase(getUserDatas.fulfilled, (state, action) => {
+      state.credentials.nickname = action.payload.nickname;
+      state.credentials.localisation = action.payload.localisation;
+      state.credentials.email = action.payload.email;
+      state.credentials.password = action.payload.password;
+    })
+
+    // Patch user datas
+    .addCase(patchUserDatas.fulfilled, (state, action) => {
+      state.credentials.nickname = action.payload.nickname;
+      state.credentials.localisation = action.payload.localisation;
+      state.credentials.email = action.payload.email;
+      state.credentials.password = action.payload.password;
+    });
 });

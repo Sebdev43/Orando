@@ -61,6 +61,7 @@ export const postReinitDatas = createAsyncThunk(
 
 export const userConnectionReducer = createReducer(initialState, (builder) => {
   builder
+    // LOGIN
     .addCase(postLoginDatas.rejected, (state, action) => {
       state.messageResponse = action.error.message as string;
     })

@@ -1,9 +1,27 @@
 export type Errors = {
-  nickname?: Message;
-  localisation?: Message;
-  email?: Message;
-  password?: Message;
+  nickname?: string;
+  localisation?: string;
+  email?: string;
+  password?: string;
 };
-export type Message = {
-  message: string;
+
+export type FormReinitData = {
+  newPassword: string;
+  token: string;
+};
+
+export type Credential = {
+  nickname: string;
+  localisation: string;
+  email: string;
+  password: string;
+};
+
+export type FormAccountData = {
+  nickname: string;
+  localisation: string;
+  email: string;
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
 };
