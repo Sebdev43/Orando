@@ -79,7 +79,8 @@ export default function CardComponent(hike: Hike) {
               className="card__tags"
               sx={{
                 display: 'flex',
-                justifyContent: 'space-around',
+                justifyContent: 'center',
+                alignItems: 'center',
                 padding: '10px',
                 backgroundColor: '#f5f5f5',
                 borderRadius: '8px',
@@ -88,6 +89,8 @@ export default function CardComponent(hike: Hike) {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
+                  flex: 1,
+                  textAlign: 'center',
                   '& .MuiTypography-root': {
                     fontSize: '14px',
                     color: '#555',
