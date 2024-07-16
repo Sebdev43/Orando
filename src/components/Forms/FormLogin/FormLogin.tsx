@@ -47,7 +47,9 @@ export default function FormLogin() {
     ''
   ) : (
     <form className="form__login" onSubmit={handleSubmit(onSubmit)}>
-      <span>{messageResponse}</span>
+      <span style={{ color: 'red', textAlign: 'center' }}>
+        {messageResponse}
+      </span>
 
       <span className="error__email">{errors?.email?.message}</span>
       <input

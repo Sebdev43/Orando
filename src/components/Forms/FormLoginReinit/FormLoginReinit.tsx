@@ -9,13 +9,9 @@ import './FormLoginReinit.scss';
 import { Button } from '@mui/joy';
 
 // Le typage des données
-export type FormReinitData = {
-  newPassword: string;
-  confirmPassword?: string;
-  token?: string | null;
-};
+import { FormReinitData } from '../../../@types/form';
 
-//---------------------------------------------------------- Le composant actuel
+//------------------------------------------- Le composant actuel
 export default function FormReinit() {
   const dispatch = useAppDispatch();
 

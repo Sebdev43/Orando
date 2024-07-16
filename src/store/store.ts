@@ -9,12 +9,14 @@ import { hikesFiltersReducer } from './reducers/hikesFilters';
 import { userRegistrationReducer } from './reducers/userRegistration';
 import { userConnectionReducer } from './reducers/userConnection';
 import { hikeCreationReducer } from './reducers/hikeCreation';
+import { userAccountReducer } from './reducers/userAccount';
 import { menuReducer } from './reducers/menu';
 
 const store = configureStore({
   reducer: {
     userRegistration: userRegistrationReducer,
     userConnection: userConnectionReducer,
+    userAccount: userAccountReducer,
     websiteSettings: settingsReducer,
     hikesRandom: hikesRandomReducer,
     hikesAll: hikesListReducer,
