@@ -83,6 +83,25 @@ export const patchUserDatas = createAsyncThunk(
   }
 );
 
+export const deleteAccount = createAsyncThunk(
+  'USER/DELETE_ACCOUNT',
+  async (_, thunkAPI) => {
+    try {
+      const rootstate = thunkAPI.getState() as RootState;
+      const token = rootstate.userConnection.token;
+
+      const { data } = await axios.delete('/api/users', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return data;
+    } catch (error) {
+      throw new Error('Une erreur est survenue');
+    }
+  }
+);
+
 export const actionToLogout = createAction('USER/LOGOUT');
 
 export const userAccountReducer = createReducer(initialState, (builder) => {
@@ -108,6 +127,15 @@ export const userAccountReducer = createReducer(initialState, (builder) => {
     })
     // Action pour logout
     .addCase(actionToLogout, (state) => {
+      state.credentials.nickname = '';
+      state.credentials.localisation = '';
+      state.credentials.email = '';
+      state.credentials.password = '';
+      state.favorites = [];
+      localStorage.removeItem('token');
+    })
+    // DELETE ACCOUNT
+    .addCase(deleteAccount.fulfilled, (state) => {
       state.credentials.nickname = '';
       state.credentials.localisation = '';
       state.credentials.email = '';

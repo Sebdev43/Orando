@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   actionToLogout,
   changeEditingField,
+  deleteAccount,
   getUserDatas,
   patchUserDatas,
 } from '../../../store/reducers/userAccount';
@@ -50,13 +51,19 @@ export default function FormAccount() {
 
   const handleCancel = () => {
     dispatch(changeEditingField(null));
-    // setPasswordError(null);
   };
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     dispatch(tokenLogout());
     dispatch(actionToLogout());
+    navigate('/');
+  };
+
+  const handleDeleteAccount = () => {
+    dispatch(deleteAccount());
+    dispatch(actionToLogout());
+    localStorage.removeItem('token');
     navigate('/');
   };
 
@@ -256,7 +263,9 @@ export default function FormAccount() {
       <button className="form-account__logout" onClick={handleLogout}>
         Se déconnecter
       </button>
-      <button className="form-account__delete">SUPPRIMER LE COMPTE</button>
+      <button className="form-account__delete" onClick={handleDeleteAccount}>
+        SUPPRIMER LE COMPTE
+      </button>
     </section>
   );
 }
