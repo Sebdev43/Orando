@@ -32,7 +32,7 @@ export default function CardComponent(hike: Hike) {
         <Card
           className="card"
           variant="outlined"
-          sx={{ width: 400, height: 630 }}
+          sx={{ width: 400, height: 640 }}
         >
           <CardOverflow>
             <IconButton
@@ -75,57 +75,43 @@ export default function CardComponent(hike: Hike) {
               className="card__tags"
               sx={{
                 display: 'flex',
-                flexDirection: 'column',
+                justifyContent: 'space-around',
                 padding: '10px',
                 backgroundColor: '#f5f5f5',
                 borderRadius: '8px',
                 marginTop: '5px',
-                '& .row': {
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  marginBottom: '8px',
-                },
+
                 '& .column': {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                   '& .MuiTypography-root': {
-                    fontSize: '15px',
+                    fontSize: '14px',
                     color: '#555',
                   },
                 },
                 '& .localisation-column': {
-                  width: '40%',
+                  width: '35%',
                 },
                 '&.other-column': {
-                  width: '30%',
+                  width: '35%',
                 },
               }}
             >
-              <div className="row">
-                <div className="column localisation-column">
-                  <Typography level="body-sm">Localisation:</Typography>
-                </div>
-
-                <div className="column other-column">
-                  <Typography level="body-sm">Marche:</Typography>
-                </div>
-
-                <div className="column other-column">
-                  <Typography level="body-sm">Difficulté:</Typography>
-                </div>
+              <div className="column localisation-column">
+                <Typography level="body-sm">Localisation:</Typography>
+                <Typography level="body-sm">{hike.localisation}</Typography>
               </div>
-              <div className="row">
-                <div className="column localisation-column">
-                  <Typography level="body-sm">{hike.localisation}</Typography>
-                </div>
 
-                <div className="column other-column">
-                  <Typography level="body-sm">
-                    {formatHikeTime(hike.time)}
-                  </Typography>
-                </div>
+              <div className="column other-column">
+                <Typography level="body-sm">Marche:</Typography>
+                <Typography level="body-sm">
+                  {formatHikeTime(hike.time)}
+                </Typography>
+              </div>
 
+              <div className="column other-column">
+                <Typography level="body-sm">Difficulté:</Typography>
                 <div className="column other-column">
                   {RenderDifficulty(hike)}
                 </div>
