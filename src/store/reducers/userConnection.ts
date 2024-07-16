@@ -10,7 +10,7 @@ type initialStateProps = {
 };
 
 const initialState: initialStateProps = {
-  token: localStorage.getItem('token'),
+  token: null,
   messageResponse: '',
   isLogged: false,
   resetMessage: '',
@@ -22,7 +22,6 @@ export const postLoginDatas = createAsyncThunk(
   async (datas: FormData) => {
     try {
       const { data } = await axios.post(`/api/accounts/login`, datas);
-      localStorage.setItem('token', data.token);
       return data;
     } catch (error) {
       throw new Error("L'email ou le mot de passe sont incorrects");
@@ -66,6 +65,7 @@ export const userConnectionReducer = createReducer(initialState, (builder) => {
       state.messageResponse = action.error.message as string;
     })
     .addCase(postLoginDatas.fulfilled, (state, action) => {
+      localStorage.setItem('token', action.payload.token);
       state.token = action.payload.token;
       state.isLogged = true;
     })

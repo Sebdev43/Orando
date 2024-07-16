@@ -39,7 +39,7 @@ export default function FormReinit() {
     } else {
       const dataPack = { token: urlToken, newPassword: data.newPassword };
       console.log(dataPack);
-      dispatch(postReinitDatas(dataPack));
+      dispatch(postReinitDatas(dataPack as any));
     }
   };
 

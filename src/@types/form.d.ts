@@ -7,6 +7,7 @@ export type Errors = {
 
 export type FormReinitData = {
   newPassword: string;
+  confirmPassword?: string;
   token: string;
 };
 
