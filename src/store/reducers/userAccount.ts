@@ -19,8 +19,8 @@ type UserAccountProps = {
 
 const initialState: UserAccountProps = {
   credentials: {
-    nickname: '',
-    localisation: '',
+    nickname: '', // il faudra persister cette info
+    localisation: '', // il faudra persister cette info
     email: '',
     password: '',
   },

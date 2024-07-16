@@ -6,6 +6,7 @@ import {
   getUserDatas,
   patchUserDatas,
 } from '../../../store/reducers/userAccount';
+import locations from '../../../data/departements.json';
 import './FormAccount.scss';
 
 // Le typage des données
@@ -43,8 +44,7 @@ export default function FormAccount() {
 
   const onSubmit = (data: FormData) => {
     if (data.nickname === credentials.nickname) {
-      dispatch(changeEditingField(null));
-      return console.log('Le nickname est identique');
+      return dispatch(changeEditingField(null));
     }
     console.log('Dans le submit : ', data);
     dispatch(patchUserDatas(data as any));
@@ -60,15 +60,6 @@ export default function FormAccount() {
   return (
     <section className="form-account">
       <h2>Modifier le compte</h2>
-      {/* 
-      
-      
-      */}
-      {/* <form onSubmit={handleSubmit(onSubmit)}> */}
-      {/* 
-
-
-*/}
 
       {/* Nickname */}
       <section className="form-account__field">
@@ -120,19 +111,22 @@ export default function FormAccount() {
         <label>Département :</label>
         {editingField === 'localisation' ? (
           <section>
-            <input
-              type="text"
+            <select
               {...register('localisation', {
                 required: 'Vous devez choisir un département',
               })}
-            />
+            >
+              <option value="">Choisissez un département</option>
+              {locations.map((location) => (
+                <option key={location.code} value={location.nom}>
+                  {location.nom}
+                </option>
+              ))}
+            </select>
             <span className="error__localisation">
               {errors.localisation?.message}
             </span>
-            <button
-              type="button"
-              onClick={() => dispatch(changeEditingField(null))}
-            >
+            <button type="button" onClick={handleSubmit(onSubmit)}>
               OK
             </button>
             <button type="button" onClick={handleCancel}>
@@ -142,7 +136,10 @@ export default function FormAccount() {
         ) : (
           <section>
             <span>{credentials.localisation}</span>
-            <button type="button" onClick={() => handleEdit('localisation')}>
+            <button
+              type="button"
+              onClick={() => dispatch(changeEditingField('localisation'))}
+            >
               Modifier
             </button>
           </section>
@@ -179,7 +176,10 @@ export default function FormAccount() {
         ) : (
           <section>
             <span>{credentials.email}</span>{' '}
-            <button type="button" onClick={() => handleEdit('email')}>
+            <button
+              type="button"
+              onClick={() => dispatch(changeEditingField('email'))}
+            >
               Modifier
             </button>
           </section>
@@ -253,7 +253,10 @@ export default function FormAccount() {
         ) : (
           <section>
             <span>***********</span>
-            <button type="button" onClick={() => handleEdit('password')}>
+            <button
+              type="button"
+              onClick={() => dispatch(changeEditingField('password'))}
+            >
               Modifier
             </button>
           </section>
