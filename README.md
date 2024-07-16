@@ -70,7 +70,7 @@ Ce qu'il est requis pour commencer avec notre projet...
 Pour démarrer le serveur http:
 
 ```bash
-mpn run dev
+npm run dev
 ```
 
 ## Fabriqué avec
