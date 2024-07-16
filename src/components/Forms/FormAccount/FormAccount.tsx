@@ -123,15 +123,13 @@ export default function FormAccount() {
                 </option>
               ))}
             </select>
-            <span className="error__localisation">
-              {errors.localisation?.message}
-            </span>
             <button type="button" onClick={handleSubmit(onSubmit)}>
               OK
             </button>
             <button type="button" onClick={handleCancel}>
               Annuler
             </button>
+            {errors.localisation?.message}
           </section>
         ) : (
           <section>
@@ -161,21 +159,17 @@ export default function FormAccount() {
                 },
               })}
             />
-            <span className="error__email">{errors.email?.message}</span>
-
-            <button
-              type="button"
-              onClick={() => dispatch(changeEditingField(null))}
-            >
+            <button type="button" onClick={handleSubmit(onSubmit)}>
               OK
             </button>
             <button type="button" onClick={handleCancel}>
               Annuler
             </button>
+            {errors.email?.message}
           </section>
         ) : (
           <section>
-            <span>{credentials.email}</span>{' '}
+            <span>{credentials.email}</span>
             <button
               type="button"
               onClick={() => dispatch(changeEditingField('email'))}
