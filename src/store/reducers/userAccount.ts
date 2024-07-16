@@ -50,17 +50,29 @@ export const getUserDatas = createAsyncThunk(
 // Patch pour modifier les infos du compte
 export const patchUserDatas = createAsyncThunk(
   'USER/PATCH_USER',
-  async (datas: FormData, thunkAPI) => {
+  async (datas: Credential, thunkAPI) => {
     try {
       const rootstate = thunkAPI.getState() as RootState;
       const token = rootstate.userAccount.token;
 
-      const { data } = await axios.get('/api/users', {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      console.log('dans le try', datas);
+
+      const { data } = await axios.patch(
+        '/api/users',
+        {
+          nickname: datas.nickname,
+          localisation: datas.localisation,
+          email: datas.email,
         },
-        data: datas,
-      });
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log('dans le try', data);
+
       return data;
     } catch (error) {
       throw new Error('Une erreur est survenue');

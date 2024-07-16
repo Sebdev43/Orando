@@ -13,6 +13,7 @@ function Header() {
   const token = localStorage.getItem('token');
 
   // Récupération des états provenants du store que l'on stocke en copie locale
+  const isLogged = useAppSelector((state) => state.userConnection.isLogged);
   const widthMediaScreen = useAppSelector(
     (state: any) => state.websiteSettings.widthMediaScreen
   );
@@ -31,9 +32,9 @@ function Header() {
               ? 'menu-link menu-link--active header__top-button'
               : 'menu-link header__top-button'
           }
-          to={token ? '/mon-compte' : '/connexion'}
+          to={isLogged ? '/mon-compte' : '/connexion'}
         >
-          {token ? 'Mon compte' : 'Se connecter'}
+          {isLogged ? 'Mon compte' : 'Se connecter'}
         </NavLink>
       )}
 
