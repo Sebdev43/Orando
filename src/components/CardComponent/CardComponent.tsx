@@ -70,8 +70,74 @@ export default function CardComponent(hike: Hike) {
             <Divider inset="context" />
 
             {/* Card tags */}
-            <CardContent orientation="horizontal" className="card__tags">
-              <Typography level="body-sm">Localisation :</Typography>
+            <CardContent
+              orientation="horizontal"
+              className="card__tags"
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '1px',
+                backgroundColor: '#f5f5f5',
+                borderRadius: '8px',
+                marginTop: '5px',
+                '& .row': {
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  marginBottom: '8px',
+                },
+                '& .column': {
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  '& .MuiTypography-root': {
+                    fontSize: '15px',
+                    color: '#555',
+                  },
+                },
+                '& .localisation-column': {
+                  width: '40%',
+                },
+                '&.other-column': {
+                  width: '30%',
+                },
+              }}
+            >
+              <div className="row">
+                <div className="column localisation-column">
+                  <Typography className="column" level="body-sm">
+                    Localisation:
+                  </Typography>
+                </div>
+
+                <div className="column other-column">
+                  <Typography className="column" level="body-sm">
+                    Marche:
+                  </Typography>
+                </div>
+
+                <div className="column other-column">
+                  <Typography className="column" level="body-sm">
+                    Difficulté:
+                  </Typography>
+                </div>
+              </div>
+              <div className="row">
+                <div className="column localisation-column">
+                  <Typography level="body-sm">{hike.localisation}</Typography>
+                </div>
+
+                <div className="column other-column">
+                  <Typography level="body-sm">
+                    {formatHikeTime(hike.time)}
+                  </Typography>
+                </div>
+
+                <div className="column other-column">
+                  {RenderDifficulty(hike)}
+                </div>
+              </div>
+
+              {/* <Typography level="body-sm">Localisation :</Typography>
 
               <Typography level="body-sm">{hike.localisation}</Typography>
 
@@ -81,7 +147,7 @@ export default function CardComponent(hike: Hike) {
                 {formatHikeTime(hike.time)}
               </Typography>
               <Typography level="body-sm">Difficulté :</Typography>
-              {RenderDifficulty(hike)}
+              {RenderDifficulty(hike)} */}
             </CardContent>
           </CardOverflow>
         </Card>
