@@ -3,9 +3,9 @@ import './HikeDetail.scss';
 
 // Components
 import Map from '../Map/Map';
-
-// libs
-import { Button } from '@mui/material';
+import Slider from 'react-slick';
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 
 // utils
 import { formatHikeTime } from '../../utils/regEx';
@@ -25,6 +25,16 @@ function HikeDetail({ hike }: HikeDetailProps) {
   const formatedDetails = text.replace(regex, (match) => `\n${match}`);
   const lines = formatedDetails.split('\n');
 
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000
+  };
+
   return (
     <>
       <header className="hike__header">
@@ -37,7 +47,22 @@ function HikeDetail({ hike }: HikeDetailProps) {
           className="hike__pictures"
           aria-label="Photos qui présentent divers points de vue de la randonnée"
         >
-          <section className="section__one">
+          <Slider {...sliderSettings}>
+            {hike.pictures.map((picture, index) => (
+              <div key={index}>
+                <Zoom>
+                  <img
+                    loading="lazy"
+                    className="slide-image"
+                    src={picture}
+                    alt={`Une photo de ${hike.title}`}
+                  />
+                </Zoom>
+              </div>
+            ))}
+          </Slider>
+
+{/*           <section className="section__one">
             <figure className={`large__grid`}>
               <img
                 loading="lazy"
@@ -55,42 +80,8 @@ function HikeDetail({ hike }: HikeDetailProps) {
               />
               <meta property="og:site_name" content="O'Rando" />
             </figure>
-          </section>
-
-          <section className="section__two">
-            <figure className={`small__picture`}>
-              <img
-                className="small__picture"
-                src={hike.pictures[1]}
-                alt={`Une photo de ${hike.title}`}
-              />
-              <figcaption hidden={true}>{hike.description}</figcaption>
-              <meta property="og:title" content={hike.title} />
-              <meta property="og:type" content="photo" />
-              <meta
-                property="og:description"
-                content={hike.description}
-                hidden={true}
-              />
-              <meta property="og:site_name" content="O'Rando" />
-            </figure>
-            <figure className={`small__picture`}>
-              <img
-                className="small__picture"
-                src={hike.pictures[2]}
-                alt={`Une photo de ${hike.title}`}
-              />
-              <figcaption hidden={true}>{hike.description}</figcaption>
-              <meta property="og:title" content={hike.title} />
-              <meta property="og:type" content="photo" />
-              <meta
-                property="og:description"
-                content={hike.description}
-                hidden={true}
-              />
-              <meta property="og:site_name" content="O'Rando" />
-            </figure>
-          </section>
+          </section> */}
+          
         </section>
         <section className="hike__tags">
           <span className="hike__tags-localisation">{hike.localisation}</span>
@@ -100,16 +91,13 @@ function HikeDetail({ hike }: HikeDetailProps) {
         </section>
         <section className="hike__details">
           <h3>Infos pratiques et itinéraire :</h3>
-
           {lines.map((line, index) => (
             <p key={index}>{line}</p>
           ))}
         </section>
-
         <section className="hike__map">
           <Map geoDatas={geoDatas} />
         </section>
-
         <footer className="hike__footer"></footer>
       </main>
     </>
