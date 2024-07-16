@@ -1,37 +1,33 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { useNavigate } from 'react-router-dom';
+
 import {
+  actionToLogout,
   changeEditingField,
   getUserDatas,
   patchUserDatas,
 } from '../../../store/reducers/userAccount';
-import locations from '../../../data/departements.json';
 import './FormAccount.scss';
+
+// Local datas
+import locations from '../../../data/departements.json';
 
 // Le typage des données
 import { FormData } from '../../../@types/form';
+import { tokenLogout } from '../../../store/reducers/userConnection';
 
-// MUI
-import { Button } from '@mui/joy';
-
-// Le composant actuel
+// ----------------------------------  Le composant actuel
 export default function FormAccount() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  // on récupère le state dans userAccountReducer
-  // const token = useAppSelector((state) => state.userConnection.token);
+  // on récupère les propriétés du state userAccount dans userAccountReducer
   const credentials = useAppSelector((state) => state.userAccount.credentials);
   const editingField = useAppSelector(
     (state) => state.userAccount.editingField
   );
-  const passwordError = useAppSelector(
-    (state) => state.userAccount.passwordError
-  );
-
-  // les states locaux pour le formulaire
-  // const [editingField, setEditingField] = useState<string | null>(null);
-  // const [passwordError, setPasswordError] = useState<string | null>(null);
 
   useEffect(() => {
     dispatch(getUserDatas());
@@ -55,6 +51,13 @@ export default function FormAccount() {
   const handleCancel = () => {
     dispatch(changeEditingField(null));
     // setPasswordError(null);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    dispatch(tokenLogout());
+    dispatch(actionToLogout());
+    navigate('/');
   };
 
   // Le rendu final du composant
@@ -86,12 +89,13 @@ export default function FormAccount() {
                 },
               })}
             />
-            <button type="button" onClick={handleSubmit(onSubmit)}>
-              OK
-            </button>
-            <button type="button" onClick={handleCancel}>
+            <button className="btn-cancel" type="button" onClick={handleCancel}>
               Annuler
             </button>
+            <button type="button" onClick={handleSubmit(onSubmit)}>
+              OK
+            </button>{' '}
+            <br />
             {errors.nickname?.message}
           </section>
         ) : (
@@ -113,6 +117,7 @@ export default function FormAccount() {
         {editingField === 'localisation' ? (
           <section>
             <select
+              className="form__field__select"
               {...register('localisation', {
                 required: 'Vous devez choisir un département',
               })}
@@ -124,12 +129,13 @@ export default function FormAccount() {
                 </option>
               ))}
             </select>
+            <button className="btn-cancel" type="button" onClick={handleCancel}>
+              Annuler
+            </button>
             <button type="button" onClick={handleSubmit(onSubmit)}>
               OK
             </button>
-            <button type="button" onClick={handleCancel}>
-              Annuler
-            </button>
+            <br />
             {errors.localisation?.message}
           </section>
         ) : (
@@ -160,12 +166,13 @@ export default function FormAccount() {
                 },
               })}
             />
+            <button className="btn-cancel" type="button" onClick={handleCancel}>
+              Annuler
+            </button>
             <button type="button" onClick={handleSubmit(onSubmit)}>
               OK
             </button>
-            <button type="button" onClick={handleCancel}>
-              Annuler
-            </button>
+            <br />
             {errors.email?.message}
           </section>
         ) : (
@@ -187,14 +194,14 @@ export default function FormAccount() {
         {editingField === 'password' ? (
           <section>
             <input
-              type="password"
+              type="text"
               placeholder="Mot de passe actuel"
               {...register('currentPassword', {
                 required: 'Vous devez entrer votre mot de passe actuel',
               })}
             />
             <input
-              type="password"
+              type="text"
               placeholder="Nouveau mot de passe"
               {...register('newPassword', {
                 required: 'Vous devez choisir un mot de passe',
@@ -215,34 +222,18 @@ export default function FormAccount() {
               })}
             />
             <input
-              type="password"
+              type="text"
               placeholder="Confirmer le nouveau mot de passe"
               {...register('confirmPassword', {
                 required: 'Vous devez confirmer votre mot de passe',
               })}
             />
-            {passwordError && <span className="error">{passwordError}</span>}
-            <span className="error__password">
-              {errors.currentPassword?.message}
-            </span>
-            <span className="error__password">
-              {errors.newPassword?.message}
-            </span>
-            <span className="error__password">
-              {errors.confirmPassword?.message}
-            </span>
 
-            <Button
-              onClick={handleSubmit(onSubmit)}
-              variant="solid"
-              color="primary"
-              size="sm"
-              sx={{ width: '25%' }}
-            >
-              OK
-            </Button>
-            <button type="button" onClick={handleCancel}>
+            <button className="btn-cancel" type="button" onClick={handleCancel}>
               Annuler
+            </button>
+            <button type="button" onClick={handleSubmit(onSubmit)}>
+              OK
             </button>
           </section>
         ) : (
@@ -254,20 +245,17 @@ export default function FormAccount() {
             >
               Modifier
             </button>
+            <br />
+            {errors.currentPassword?.message}
+            {errors.newPassword?.message}
+            {errors.confirmPassword?.message}
           </section>
         )}
       </section>
-      {/* 
-        
-        
-        */}
-      {/* </form> */}
-      {/* 
-      
-      
-      
-      */}
-      <button className="form-account__favorites">Accéder à mes favoris</button>
+
+      <button className="form-account__logout" onClick={handleLogout}>
+        Se déconnecter
+      </button>
       <button className="form-account__delete">SUPPRIMER LE COMPTE</button>
     </section>
   );

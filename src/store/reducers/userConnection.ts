@@ -1,4 +1,8 @@
-import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
+import {
+  createAction,
+  createAsyncThunk,
+  createReducer,
+} from '@reduxjs/toolkit';
 import axios from 'axios';
 import { FormReinitData } from '../../@types/form';
 
@@ -58,6 +62,8 @@ export const postReinitDatas = createAsyncThunk(
   }
 );
 
+export const tokenLogout = createAction('USER/LOGOUT');
+
 export const userConnectionReducer = createReducer(initialState, (builder) => {
   builder
     // LOGIN
@@ -68,6 +74,10 @@ export const userConnectionReducer = createReducer(initialState, (builder) => {
       localStorage.setItem('token', action.payload.token);
       state.token = action.payload.token;
       state.isLogged = true;
+    })
+    // LOGOUT
+    .addCase(tokenLogout, (state) => {
+      state.token = null;
     })
     // Demande de reset du mot de passe
     .addCase(postResetDatas.rejected, (state, action) => {

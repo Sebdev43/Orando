@@ -13,21 +13,16 @@ type UserAccountProps = {
   credentials: Credential;
   favorites: string[];
   editingField: string | null;
-  passwordError: string | null;
-  // token: string | null;
 };
 
 const initialState: UserAccountProps = {
   credentials: {
-    nickname: '', // il faudra persister cette info
-    localisation: '', // il faudra persister cette info
+    nickname: '',
+    localisation: '',
     email: '',
     password: '',
   },
   editingField: null,
-  passwordError: null,
-
-  // token: localStorage.getItem('token'),
   favorites: [],
 };
 
@@ -88,6 +83,8 @@ export const patchUserDatas = createAsyncThunk(
   }
 );
 
+export const actionToLogout = createAction('USER/LOGOUT');
+
 export const userAccountReducer = createReducer(initialState, (builder) => {
   builder
     // Get user datas
@@ -108,5 +105,14 @@ export const userAccountReducer = createReducer(initialState, (builder) => {
     // Change editing field
     .addCase(changeEditingField, (state, action) => {
       state.editingField = action.payload;
+    })
+    // Action pour logout
+    .addCase(actionToLogout, (state) => {
+      state.credentials.nickname = '';
+      state.credentials.localisation = '';
+      state.credentials.email = '';
+      state.credentials.password = '';
+      state.favorites = [];
+      localStorage.removeItem('token');
     });
 });
