@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import errorImage from '/404fof.png';
+import errorImage from '/404fof.webp';
 import './NotFound.scss';
 
 // Le composant actuel est la page 404 / Error

@@ -39,7 +39,7 @@ function Header() {
       {/* Logo O'rando */}
       <NavLink to={'/'}>
         <img
-          src="/logo_fond_blanc.svg"
+          src="/logo_fond_blanc.webp"
           alt="logo du site o'rando"
           className="header__top-logo"
         />
