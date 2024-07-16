@@ -62,7 +62,11 @@ export default function CardComponent(hike: Hike) {
           {/* Card content */}
           <CardContent>
             <h3 className="card__title">{hike.title}</h3>
-            <Typography level="body-sm">{cutText(hike.description)}</Typography>
+            <div className="card__description">
+              <Typography level="body-sm">
+                {cutText(hike.description)}
+              </Typography>
+            </div>
           </CardContent>
 
           {/* Card footer */}
@@ -79,7 +83,6 @@ export default function CardComponent(hike: Hike) {
                 padding: '10px',
                 backgroundColor: '#f5f5f5',
                 borderRadius: '8px',
-                marginTop: '5px',
 
                 '& .column': {
                   display: 'flex',
@@ -91,10 +94,10 @@ export default function CardComponent(hike: Hike) {
                   },
                 },
                 '& .localisation-column': {
-                  width: '35%',
+                  width: '40%',
                 },
                 '&.other-column': {
-                  width: '35%',
+                  width: '30%',
                 },
               }}
             >
