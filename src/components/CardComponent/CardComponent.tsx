@@ -32,7 +32,7 @@ export default function CardComponent(hike: Hike) {
         <Card
           className="card"
           variant="outlined"
-          sx={{ width: 400, height: 620 }}
+          sx={{ width: 400, height: 630 }}
         >
           <CardOverflow>
             <IconButton
@@ -72,13 +72,14 @@ export default function CardComponent(hike: Hike) {
             {/* Card tags */}
             <CardContent orientation="horizontal" className="card__tags">
               <Typography level="body-sm">Localisation :</Typography>
+
               <Typography level="body-sm">{hike.localisation}</Typography>
 
               <Typography level="body-sm">Marche :</Typography>
+
               <Typography level="body-sm">
                 {formatHikeTime(hike.time)}
               </Typography>
-
               <Typography level="body-sm">Difficulté :</Typography>
               {RenderDifficulty(hike)}
             </CardContent>
