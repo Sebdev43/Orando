@@ -23,7 +23,6 @@ export default function FormLogin() {
   } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
     dispatch(postResetDatas(data as any));
   };
 
@@ -31,7 +30,6 @@ export default function FormLogin() {
   return (
     <>
       <form className="form__login" onSubmit={handleSubmit(onSubmit)}>
-        <span className="error__email">{errors.email?.message as string}</span>
         <input
           type="text"
           placeholder="Adresse Email"
@@ -43,15 +41,12 @@ export default function FormLogin() {
             },
           })}
         />
-        <input type="submit" />
+
+        <input className="form-account__favorites" type="submit" />
       </form>
 
-      {/* un message qui rend l'état de la requête */}
       {resetMessage && (
-        <p
-          style={{ textAlign: 'center', fontWeight: 'bold', color: 'red' }}
-          className="form__login__message"
-        >
+        <p className="form__login__message">
           {resetMessage}
         </p>
       )}

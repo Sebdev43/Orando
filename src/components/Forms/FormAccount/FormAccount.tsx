@@ -62,11 +62,11 @@ export default function FormAccount() {
   // Le rendu final du composant
   return (
     <section className="form-account">
-      <h2>Précisez vos informations pour créer un compte</h2>
+      <h2>Précisez vos informations pour modifiez votre compte</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Nickname */}
         <section className="form-account__field">
-          <label>Pseudo :</label>
+          <label htmlFor="nickname">Pseudo :</label>
           {editingField === 'nickname' ? (
             <section>
               <input
