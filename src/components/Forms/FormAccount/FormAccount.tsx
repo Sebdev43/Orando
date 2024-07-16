@@ -30,6 +30,7 @@ export default function FormAccount() {
     (state) => state.userAccount.editingField
   );
 
+  // on récupère les infos dans le reducer (qui viennent de la BDD)
   useEffect(() => {
     dispatch(getUserDatas());
   }, [dispatch, credentials]);
@@ -40,6 +41,7 @@ export default function FormAccount() {
     formState: { errors },
   } = useForm<FormData>();
 
+  // button ok
   const onSubmit = (data: FormData) => {
     if (data.nickname === credentials.nickname) {
       return dispatch(changeEditingField(null));
@@ -49,6 +51,7 @@ export default function FormAccount() {
     handleCancel();
   };
 
+  // button cancel
   const handleCancel = () => {
     dispatch(changeEditingField(null));
   };
