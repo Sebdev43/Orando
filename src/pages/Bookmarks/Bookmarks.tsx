@@ -26,9 +26,7 @@ export default function Bookmarks() {
   ) as boolean;
 
   useEffect(() => {
-    return () => {
-      dispatch(getBookmarks());
-    };
+    dispatch(getBookmarks());
   }, [dispatch]);
 
   // On récupère les propriétés du state hikesFilters dans hikesFiltersReducer
