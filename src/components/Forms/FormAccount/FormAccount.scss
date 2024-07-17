@@ -3,19 +3,23 @@
   background-color: #f9f9f9;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 70%;
+  max-width: 80%;
   margin: 0 auto;
 
   h2 {
-    font-size: 1.5em;
-    margin-bottom: 20px;
     text-align: center;
-    color: #2a454e;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    color: #000000;
+    margin-bottom: 1.5rem;
   }
 
   .form-account__field {
-    margin-bottom: 20px;
+    max-width: 80%;
+    margin: auto;
+    margin-bottom: 2.5rem;
+    margin-left: 7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     label {
       font-weight: bold;
@@ -24,7 +28,16 @@
     }
 
     input {
-      width: calc(100% - 110px);
+      width: 60%;
+      padding: 8px;
+      margin-right: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background-color: #cccccc44;
+    }
+
+    .form__field__select {
+      width: 60%;
       padding: 8px;
       margin-right: 10px;
       border-radius: 4px;
@@ -32,13 +45,14 @@
     }
 
     button {
+      max-width: 150px;
       padding: 8px 12px;
-      margin-right: 5px;
-      background-color: #838c3b;
-      border: none;
-      color: white;
-      border-radius: 4px;
+      margin: 10px 10px;
       cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      background-color: #838c3b;
       transition: background-color 0.3s ease;
 
       &:hover {
@@ -54,52 +68,69 @@
       }
     }
 
+    .btn-cancel {
+      max-width: 150px;
+      padding: 8px 12px;
+      margin: 10px 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      background-color: #bc2828bc;
+      transition: background-color 0.3s ease;
+      &:hover {
+        background-color: #b01d1d;
+      }
+    }
+
     span {
       display: inline-block;
-      width: calc(100% - 110px);
+      width: 60%;
       padding: 8px;
-      background-color: #e9ecef;
+      margin-right: 10px;
       border-radius: 4px;
-    }
+      background-color: #ccc;
+      border-radius: 4px;
 
-    button {
-      margin-left: 10px;
-    }
-  }
-
-  .form-account__delete {
-    background-color: #cc4b58;
-    color: black;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    display: block;
-    margin: 20px auto;
-    width: 100%;
-    text-align: center;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: #c82333;
+      button {
+        margin: 0;
+      }
     }
   }
+}
 
-  .form-account__favorites {
-    background-color: #a2d5cf;
-    color: black;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    display: block;
-    margin: 20px auto;
-    width: 100%;
-    text-align: center;
-    transition: background-color 0.3s ease;
+.form-account__delete {
+  background-color: #cc4b58;
+  color: black;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+  max-width: 230px;
+  text-align: center;
+  transition: background-color 0.3s ease;
 
-    &:hover {
-      background-color: #73bfb8;
-    }
+  &:hover {
+    background-color: #c82333;
+  }
+}
+.form-account__logout {
+  background-color: #a2d5cf;
+  color: black;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+  // width: min-max(50px, 180px);
+  max-width: 180px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #73bfb8;
   }
 }

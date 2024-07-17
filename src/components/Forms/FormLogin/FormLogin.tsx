@@ -1,7 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { Errors } from '../../../@types/form';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { postLoginDatas } from '../../../store/reducers/userConnection';
+import {
+  clearServerResponse,
+  postLoginDatas,
+} from '../../../store/reducers/userConnection';
 import { useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import './FormLogin.scss';
@@ -18,8 +21,8 @@ export default function FormLogin() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const messageResponse = useAppSelector(
-    (state) => state.userConnection.messageResponse
+  const serverResponse = useAppSelector(
+    (state) => state.userConnection.serverResponse
   );
   const isLogged = useAppSelector((state) => state.userConnection.isLogged);
 
@@ -33,18 +36,27 @@ export default function FormLogin() {
     dispatch(postLoginDatas(data as any));
   };
 
+
+  // Redirige l'utilisateur vers la page d'accueil si le state change a true
+  // TODO utiliser un fireEffect pourquoi pas !
   useEffect(() => {
     if (isLogged) {
       navigate('/randonnees');
     }
   }, [isLogged]);
+    
+  // Nettoyage du state serverResponse
+  useEffect(() => {
+    dispatch(clearServerResponse());
+  }, [dispatch]);
 
+  // Le rendu, en fonction de si l'utilisateur est connecté ou non
   return isLogged ? (
     ''
   ) : (
     <form className="form__login" onSubmit={handleSubmit(onSubmit)}>
       <span style={{ color: 'red', textAlign: 'center' }}>
-        {messageResponse}
+        {serverResponse}
       </span>
 
       <section className="form__login__field">

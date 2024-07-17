@@ -1,14 +1,20 @@
+import React, { useEffect } from 'react';
 import FormAccount from '../../components/Forms/FormAccount/FormAccount';
+import { useAppSelector } from '../../hooks/redux';
 
 // Le composant actuel est la page Mon compte
 function Account() {
-  const token = localStorage.getItem('token');
+  const tokenStore = useAppSelector((state) => state.userConnection.token);
+  const tokenStorage = localStorage.getItem('token');
+
   return (
-    token && (
-      <section>
+    <section>
+      {tokenStore || tokenStorage ? (
         <FormAccount />
-      </section>
-    )
+      ) : (
+        <p>Veuillez vous connecter pour accéder à votre compte.</p>
+      )}
+    </section>
   );
 }
 
