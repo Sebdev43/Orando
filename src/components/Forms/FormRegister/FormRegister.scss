@@ -1,39 +1,33 @@
-.form-account {
+.form-register {
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   max-width: 70%;
   margin: 0 auto;
-  box-sizing: border-box
+  box-sizing: border-box;
 
-  h2 {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #2a454e;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
   }
 
-  .form-account__field {
-    margin-bottom: 20px;
+  .form-register__field {
+    max-width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-    label {
-      font-weight: bold;
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    input, select {
+    input,
+    select {
       width: 100% !important;
       padding: 8px;
-
+      margin-top: 5px;
       border-radius: 4px;
       border: 1px solid #ccc;
       background-color: #e9ecef;
     }
-
-
 
     span {
       display: inline-block;
@@ -49,9 +43,7 @@
     }
   }
 
-
-
-  .form-account__favorites {
+  .form-validation {
     background-color: #a2d5cf;
     color: black;
     padding: 10px;
@@ -60,15 +52,12 @@
     cursor: pointer;
     display: block;
     margin: 20px auto;
-    width: 100%;
+    max-width: 30%;
     text-align: center;
     transition: background-color 0.3s ease;
 
     &:hover {
       background-color: #73bfb8;
     }
-  }
-  .error__nickname{
-    background-color: white;
   }
 }

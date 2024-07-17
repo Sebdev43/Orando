@@ -1,8 +1,9 @@
-import { Outlet, useLocation, useParams } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useAppDispatch } from '../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { getHikes } from '../store/reducers/hikesAll';
 import { getRandomHikes } from '../store/reducers/hikesRandom';
+import { getBookmarks } from '../store/reducers/bookmarks';
 import './Root.scss';
 
 // components
@@ -13,10 +14,16 @@ import ScrollToTop from '../components/ScollToTop/ScrollToTop';
 function Root() {
   const dispatch: any = useAppDispatch();
   const currentUrl = useLocation();
-  // on récupère les randos dès que le composant Root est monté
+
+  const token = useAppSelector((state) => state.userConnection.token);
+
+  // on récupère les randos dès que le composant Root est monté pour le premier rendu
   useEffect(() => {
     dispatch(getRandomHikes());
     dispatch(getHikes());
+    if (token) {
+      dispatch(getBookmarks());
+    }
   }, []);
 
   // on récupère l'URL pour surveiller lorsqu'elle change
@@ -46,3 +53,6 @@ function Root() {
 }
 
 export default Root;
+function getBookmark(): any {
+  throw new Error('Function not implemented.');
+}

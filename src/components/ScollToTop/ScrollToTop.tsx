@@ -37,7 +37,7 @@ export default function ScrollToTop() {
       type="button"
     >
       {' '}
-      &#x2B06;
+      &#x2B06; Top
     </button>
   );
 }

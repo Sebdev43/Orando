@@ -3,6 +3,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getBookmarks } from '../../store/reducers/bookmarks';
 import { NavLink } from 'react-router-dom';
 
+import './Bookmarks.scss';
+
 // Le typage des données
 import { Hike } from '../../@types/hike';
 
@@ -15,19 +17,16 @@ import CardComponent from '../../components/CardComponent/CardComponent';
 export default function Bookmarks() {
   const dispatch = useAppDispatch();
 
-  // On récupère les propriétés du state bookmarks dans bookmarksReducer
-  const tokenStore = useAppSelector((state) => state.userConnection.token);
-  const tokenStorage = localStorage.getItem('token');
   const bookmarks = useAppSelector(
     (state) => state.bookmarks.bookmarks
   ) as Hike[];
-  const isLoading = useAppSelector(
-    (state) => state.bookmarks.isLoading
-  ) as boolean;
 
+  const token = useAppSelector((state) => state.userConnection.token);
+
+  // On actualise la propriété bookmarks du state à chacun de ses changements
   useEffect(() => {
     dispatch(getBookmarks());
-  }, [dispatch]);
+  }, []);
 
   // On récupère les propriétés du state hikesFilters dans hikesFiltersReducer
   const currentDifficulty = useAppSelector(
@@ -38,7 +37,7 @@ export default function Bookmarks() {
   );
 
   // je filtre les favoris par difficulté et par localisation
-  const filteredBookmarks = bookmarks.filter((hike: Hike) => {
+  const filteredBookmarks = bookmarks?.filter((hike: Hike) => {
     const difficultyMatches: boolean =
       currentDifficulty === '' || hike.difficulty === currentDifficulty;
     const locationMatches: boolean =
@@ -53,17 +52,13 @@ export default function Bookmarks() {
         <h1>Favoris</h1>
       </header>
       <main className="bookmarks">
-        {tokenStore || tokenStorage ? (
+        {token ? (
           <>
             <section className="bookmarks__filters">
               <HikeFilters data={bookmarks} />
             </section>
             <section className="bookmarks__list">
-              {isLoading ? (
-                <SkeletonLoader skeletonNumber={20} />
-              ) : // Si la liste des favoris n'est pas vide
-              filteredBookmarks.length > 0 ? (
-                // On affiche la liste des favoris ici
+              {filteredBookmarks.length > 0 ? (
                 filteredBookmarks.map((hike: Hike, index: number) => (
                   <CardComponent key={index} {...hike} />
                 ))
