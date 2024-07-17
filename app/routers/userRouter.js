@@ -5,8 +5,8 @@ import {
   deleteUser,
 } from "../controllers/userController.js";
 
-import { validateUpdateUser } from "../validators/userValidators.js";
-
+import { userValidators, validateUpdateUser } from "../validators/usersValidators.js";
+import { validateRequest } from "../middlewares/validateReqMiddleware.js";
 import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
 
 const router = express.Router();
@@ -41,32 +41,8 @@ const router = express.Router();
  *                   type: string
  *                 email:
  *                   type: string
- *       '404':
- *         description: User not found
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: User not found
- *       '500':
- *         description: Internal server error
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: Internal server error
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
  */
 router.get("/", authenticateJWT, getUserById);
 
@@ -121,31 +97,11 @@ router.get("/", authenticateJWT, getUserById);
  *                       type: string
  *                     email:
  *                       type: string
- *       '400':
- *         description: Invalid request data
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: Invalid request data
- *                 errors:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       msg:
- *                         type: string
- *                       param:
- *                         type: string
- *                       location:
- *                         type: string
- *       '404':
+ *       400:
+ *         $ref: '#/components/responses/BadRequestError'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       404:
  *         description: User not found
  *         content:
  *           application/json:
@@ -154,25 +110,12 @@ router.get("/", authenticateJWT, getUserById);
  *               properties:
  *                 status:
  *                   type: string
- *                   example: error
+ *                   example: "error"
  *                 message:
  *                   type: string
- *                   example: User not found
- *       '500':
- *         description: Internal server error
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: Internal server error
+ *                   example: "Utilisateur non trouvé"
  */
-router.patch("/", authenticateJWT, validateUpdateUser, updateUser);
+router.patch("/", authenticateJWT, validateUpdateUser, userValidators,  validateRequest, updateUser);
 
 /**
  * @swagger
@@ -194,8 +137,10 @@ router.patch("/", authenticateJWT, validateUpdateUser, updateUser);
  *                 message:
  *                   type: string
  *                   example: User deleted successfully
- *       '404':
- *         description: Utilisateur non trouvé
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       404:
+ *         description: User not found
  *         content:
  *           application/json:
  *             schema:
@@ -203,23 +148,10 @@ router.patch("/", authenticateJWT, validateUpdateUser, updateUser);
  *               properties:
  *                 status:
  *                   type: string
- *                   example: error
+ *                   example: "error"
  *                 message:
  *                   type: string
- *                   example: User not found
- *       '500':
- *         description: Erreur interne du serveur
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: Internal server error
+ *                   example: "Utilisateur non trouvé"
  */
 router.delete("/", authenticateJWT, deleteUser);
 

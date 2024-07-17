@@ -34,11 +34,22 @@ class usersDataMappers extends coreDataMappers {
    * @param {id} id - ID de l'utilisateur
    * @returns {Object} - Détails de la relation création d'utilisateur
    */
-  async updateUser(id, nickname, localisation, email, password) {
-    const query = `UPDATE users SET nickname = $2, localisation = $3, email = $4, password = $5, updated_at = NOW() 
-    WHERE id = $1
-    RETURNING id, nickname, localisation, email, password, created_at, updated_at`;
-    const values = [id, nickname, localisation, email, password];
+  async updateUser(id, fields) {
+    const updates = [];
+    const values = [id];
+
+    Object.keys(fields).forEach((field, index) => {
+      values.push(fields[field]);
+      updates.push(`"${field}" = $${index + 2}`);
+    });
+
+    const query = `
+      UPDATE users
+      SET ${updates.join(', ')}, updated_at = NOW()
+      WHERE id = $1
+      RETURNING id, nickname, localisation, email, password, created_at, updated_at
+    `;
+
     const result = await pool.query(query, values);
     return result.rows[0];
   }
