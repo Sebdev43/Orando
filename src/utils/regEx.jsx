@@ -14,8 +14,8 @@ export function formatHikeTime(time) {
 }
 
 export function cutText(text) {
-  // regex pour trouver les 15 premiers mots
-  const regex = /^(\s*\S+\s*){15}/;
+  // regex pour trouver les 25 premiers mots, utilisés dans CardComponent.
+  const regex = /^(\s*\S+\s*){25}/;
 
   // trouver et retourner les 15 premiers mots avec trois petits points à la fin
   const match = text.match(regex);
