@@ -11,7 +11,6 @@ import { RootState } from '../store';
 // Le typage des données
 type UserAccountProps = {
   credentials: Credential;
-  favorites: string[];
   editingField: string | null;
 };
 
@@ -23,7 +22,6 @@ const initialState: UserAccountProps = {
     password: '',
   },
   editingField: null,
-  favorites: [],
 };
 
 export const changeEditingField = createAction<string | null>(
@@ -109,6 +107,9 @@ export const actionToLogout = createAction('USER/LOGOUT');
 export const userAccountReducer = createReducer(initialState, (builder) => {
   builder
     // Get user datas
+    .addCase(getUserDatas.rejected, (state) => {
+      localStorage.removeItem('token');
+    })
     .addCase(getUserDatas.fulfilled, (state, action) => {
       state.credentials.nickname = action.payload.nickname;
       state.credentials.localisation = action.payload.localisation;
@@ -133,7 +134,6 @@ export const userAccountReducer = createReducer(initialState, (builder) => {
       state.credentials.localisation = '';
       state.credentials.email = '';
       state.credentials.password = '';
-      state.favorites = [];
       localStorage.removeItem('token');
     })
     // DELETE ACCOUNT
@@ -142,7 +142,6 @@ export const userAccountReducer = createReducer(initialState, (builder) => {
       state.credentials.localisation = '';
       state.credentials.email = '';
       state.credentials.password = '';
-      state.favorites = [];
       localStorage.removeItem('token');
     });
 });
