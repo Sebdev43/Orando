@@ -21,6 +21,9 @@ export const changeLocalisation = createAction<string>(
 );
 export const changeTime = createAction<number>('HIKES_FILTERS/CHANGE_TIME');
 
+export const clearHikesFilters = createAction(
+  'HIKES_FILTERS/CLEAR_HIKES_FILTERS'
+);
 // reducer
 export const hikesFiltersReducer = createReducer(initialState, (builder) => {
   builder
@@ -32,5 +35,10 @@ export const hikesFiltersReducer = createReducer(initialState, (builder) => {
     })
     .addCase(changeTime, (state, action) => {
       state.time = action.payload;
+    })
+    .addCase(clearHikesFilters, (state) => {
+      state.difficulty = '';
+      state.localisation = '';
+      state.time = null;
     });
 });

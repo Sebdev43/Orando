@@ -1,5 +1,5 @@
 import { Hike } from '../../@types/hike';
-import { useAppSelector } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import './Hikes.scss';
 
 // components
@@ -8,7 +8,8 @@ import SkeletonLoader from '../../components/SkeletonLoader/SkeletonLoader';
 import CardComponent from '../../components/CardComponent/CardComponent';
 
 // Le composant actuel est la page Voir les randonnées
-function Hikes() {
+export default function Hikes() {
+  const dispatch = useAppDispatch();
   const loading = useAppSelector((state) => state.hikesAll.loading);
   const hikes = useAppSelector((state) => state.hikesAll.hikesList);
 
@@ -34,7 +35,7 @@ function Hikes() {
       <h1 className="page_title">Toutes les randonnées du catalogue </h1>
       <div className="hikes">
         <section className="hikes__filters">
-          <HikeFilters />
+          <HikeFilters data={hikes} />
         </section>
         <section className="hikes__list">
           {loading ? (
@@ -49,5 +50,3 @@ function Hikes() {
     </>
   );
 }
-
-export default Hikes;
