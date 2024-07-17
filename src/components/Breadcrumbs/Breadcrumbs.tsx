@@ -24,7 +24,7 @@ export default function IconBreadcrumbs() {
   // On fait une action dans le reducer "breadcrumbs.ts"
   useEffect(() => {
     dispatch(changeLocation(location.pathname));
-  }, [location]);
+  }, [dispatch, location.pathname]);
 
   // TODO : fabriquer un tableau avec les correspondances entre les id des randos, et le nom des randos
 
