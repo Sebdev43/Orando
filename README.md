@@ -5,7 +5,7 @@ The site is optimized for viewing on a mobile screen.
 
 ### Functionality
 
-- User authentication and management (Creating an account, reading the account, modifying the account, deleting the account)
+- User authentication and management (Creating an account, Reading the account, Updating the account, Deleting the account)
 - Consultation of routes available, with search by Difficulty and/or Department
 - Interactive map of each hike
 - Favorite routes
