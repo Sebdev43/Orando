@@ -21,11 +21,7 @@ export default function Bookmarks() {
     (state) => state.bookmarks.bookmarks
   ) as Hike[];
 
-  const isLoading = useAppSelector(
-    (state) => state.bookmarks.isLoading
-  ) as boolean;
-
-  const tokenStore = useAppSelector((state) => state.userConnection.token);
+  const token = useAppSelector((state) => state.userConnection.token);
 
   // On actualise la propriété bookmarks du state à chacun de ses changements
   useEffect(() => {
@@ -51,37 +47,35 @@ export default function Bookmarks() {
   });
 
   return (
-    !isLoading && (
-      <>
-        <header>
-          <h1>Favoris</h1>
-        </header>
-        <main className="bookmarks">
-          {tokenStore ? (
-            <>
-              <section className="bookmarks__filters">
-                {bookmarks.length > 0 ? <HikeFilters data={bookmarks} /> : ''}
-              </section>
-              <section className="bookmarks__list">
-                {filteredBookmarks.length > 0 ? (
-                  filteredBookmarks.map((hike: Hike, index: number) => (
-                    <CardComponent key={index} {...hike} />
-                  ))
-                ) : (
-                  <p className="bookmarks__not-found">
-                    Vous n'avez pas de favoris
-                  </p>
-                )}
-              </section>
-            </>
-          ) : (
-            <p className="bookmarks__not-logged">
-              Vous devez vous <NavLink to="/connexion">connecter</NavLink>
-              &nbsp;pour voir vos Favoris
-            </p>
-          )}
-        </main>
-      </>
-    )
+    <>
+      <header>
+        <h1>Favoris</h1>
+      </header>
+      <main className="bookmarks">
+        {token ? (
+          <>
+            <section className="bookmarks__filters">
+              <HikeFilters data={bookmarks} />
+            </section>
+            <section className="bookmarks__list">
+              {filteredBookmarks.length > 0 ? (
+                filteredBookmarks.map((hike: Hike, index: number) => (
+                  <CardComponent key={index} {...hike} />
+                ))
+              ) : (
+                <p className="bookmarks__not-found">
+                  Vous n'avez pas de favoris
+                </p>
+              )}
+            </section>
+          </>
+        ) : (
+          <p className="bookmarks__not-logged">
+            Vous devez vous <NavLink to="/connexion">connecter</NavLink>
+            &nbsp;pour voir vos Favoris
+          </p>
+        )}
+      </main>
+    </>
   );
 }

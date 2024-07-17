@@ -58,15 +58,15 @@ export default function FormRegister() {
       {isRegistered ? (
         successMessage
       ) : (
-        <form className="form-account" onSubmit={handleSubmit(onSubmit)}>
+        <form className="form-register" onSubmit={handleSubmit(onSubmit)}>
           <h2>Créer un compte</h2>
           <span
             style={{ color: 'red', textAlign: 'center' }}
-            className="form-account__server-response-message"
+            className="form-register__server-response-message"
           >
             {messagesResponse ? errorMessagesFromApi : successMessage}
           </span>
-          <section className="form-account__field">
+          <section className="form-register__field">
             <label htmlFor="nickname">Pseudo :</label>
 
             <input
@@ -95,7 +95,7 @@ export default function FormRegister() {
               {errors.nickname?.message as string}
             </span>
           </section>
-          <section className="form-account__field">
+          <section className="form-register__field">
             <label htmlFor="localisation">Localisation</label>
             <select
               id="localisation"
@@ -117,7 +117,7 @@ export default function FormRegister() {
               {errors.localisation?.message as string}
             </span>
           </section>
-          <section className="form-account__field">
+          <section className="form-register__field">
             <label htmlFor="email">Adresse Email</label>
             <input
               type="text"
@@ -135,7 +135,7 @@ export default function FormRegister() {
               {errors.email?.message as string}
             </span>
           </section>
-          <section className="form-account__field">
+          <section className="form-register__field">
             <label htmlFor="password">Mot de passe</label>
             <input
               type="password"
@@ -163,7 +163,7 @@ export default function FormRegister() {
               {errors.password?.message as string}
             </span>
           </section>
-          <button className="form-account__favorites" type="submit">
+          <button className="form-validation" type="submit">
             S'inscrire
           </button>
         </form>
