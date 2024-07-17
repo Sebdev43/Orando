@@ -89,18 +89,23 @@ export default function CardComponent(hike: Hike) {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  flex: 1,
                   textAlign: 'center',
                   '& .MuiTypography-root': {
                     fontSize: '14px',
                     color: '#555',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
                   },
                 },
                 '& .localisation-column': {
-                  width: '40%',
+                  flexBasis: '50%',
+                  flexGrow: 2,
+                  textAlign: 'left',
                 },
                 '&.other-column': {
-                  width: '30%',
+                  flexBasis: '25%',
+                  flexGrow: 1,
                 },
               }}
             >
