@@ -104,6 +104,25 @@ class usersDataMappers extends coreDataMappers {
     const values = [userId];
     await pool.query(query, values);
   }
+  /**
+   * Supprime un utilisateur et ses bookmarks associés
+   * @param {number} userId - ID de l'utilisateur à supprimer
+   * @returns {boolean} - Retourne true si l'utilisateur a été supprimé
+   */
+  async deleteUserAndDependencies(userId) {
+    const query = `
+      WITH deleted_dependencies AS (
+        DELETE FROM users_has_hikes
+        WHERE users_id = $1
+      )
+      DELETE FROM users
+      WHERE id = $1
+      RETURNING *;
+    `;
+    const values = [userId];
+    const result = await pool.query(query, values);
+    return result.rowCount > 0;
+  }
 }
 
 export default new usersDataMappers();

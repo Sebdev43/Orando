@@ -1,5 +1,5 @@
 import express from "express";
-import { login, verifyEmail, signup, getConnectionPage, forgotPassword, resetPassword } from "../controllers/authController.js";
+import { login, verifyEmail, signup, getConnectionPage, forgotPassword, resetPassword, logout, refreshToken } from "../controllers/authController.js";
 import { validateRequest } from "../middlewares/validateReqMiddleware.js";
 import { hashPasswordMiddleware } from "../middlewares/scryptMiddleware.js";
 import { loginValidator } from "../validators/loginValidator.js";
@@ -75,7 +75,7 @@ const router = express.Router();
  *                   example: Erreur interne du serveur
  */
 
-router.post("/login",loginValidator,validateRequest, login);
+router.post("/login",loginValidator, login);
 
 /**
  * @swagger
@@ -143,7 +143,6 @@ router.post("/login",loginValidator,validateRequest, login);
 router.post(
   "/signup",
   signupValidator,
-  validateRequest,
   hashPasswordMiddleware,
   signup
 );
@@ -213,7 +212,7 @@ router.get("/verify-email", verifyEmail);
  *         $ref: '#/components/responses/BadRequestError'
  */
 
-router.post("/forgot-password",loginValidator, validateRequest, forgotPassword);
+router.post("/forgot-password",validateRequest, forgotPassword);
 
 /**
  * @swagger
@@ -258,24 +257,38 @@ router.post("/forgot-password",loginValidator, validateRequest, forgotPassword);
  *                   example: "Token invalide ou expiré."
  */
 
-router.post("/reset-password",loginValidator, validateRequest, resetPassword)
+router.post("/reset-password", validateRequest, resetPassword)
 
 /**
- * Route pour rafraîchir le token JWT
- *
- * /auth/refresh-token:
+ * @swagger
+ * /accounts/logout:
  *   post:
- *     summary: Rafraîchir le token JWT
- *     tags: [Accounts]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               refreshToken:
- *                 type: string
+ *     summary: Déconnecte l'utilisateur en révoquant son token
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Déconnexion réussie
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Déconnexion réussie"
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ */
+router.post('/logout', authenticateJWT, logout);
+
+/**
+ * @swagger
+ * /accounts/refresh:
+ *   post:
+ *     summary: Rafraîchir le token d'accès
+ *     tags: [Authentication]
  *     responses:
  *       200:
  *         description: Token rafraîchi avec succès
@@ -286,14 +299,19 @@ router.post("/reset-password",loginValidator, validateRequest, resetPassword)
  *               properties:
  *                 token:
  *                   type: string
- *                 refreshToken:
- *                   type: string
  *       401:
- *         description: Refresh token manquant
+ *         description: Refresh token manquant ou utilisateur non trouvé
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
  *       403:
- *         description: Refresh token invalide
+ *         $ref: '#/components/responses/UnauthorizedError'
  */
-//router.post("/refresh-token", refreshToken);
+router.post("/refresh", refreshToken);
 
 // route Kevin test d'affichage
 

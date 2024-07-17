@@ -14,10 +14,18 @@ class bookmarksDataMappers extends coreDataMappers {
  */
   async addBookmark(userId, hikeId) {
     const query = `
+    WITH inserted AS (
       INSERT INTO users_has_hikes (users_id, hikes_id)
       VALUES ($1, $2)
       ON CONFLICT (users_id, hikes_id) DO NOTHING
-      RETURNING id, users_id, hikes_id, created_at, updated_at;
+      RETURNING hikes_id
+    )
+    SELECT 
+      h.id, h.slug, h.title, h.description, h.pictures, h.difficulty, h.time, h.distance, 
+      h.localisation, h.details, ST_AsGeoJSON(h.gps_coordinate) as gps_coordinate, 
+      h.created_at, h.updated_at
+    FROM inserted
+    JOIN hikes h ON h.id = inserted.hikes_id;
   `;
     const values = [userId, hikeId];
     const result = await pool.query(query, values);
@@ -60,8 +68,14 @@ class bookmarksDataMappers extends coreDataMappers {
   }
 
 
-};
 
+  /**
+   * Supprime un utilisateur et ses bookmarks associés
+   * @param {number} userId - ID de l'utilisateur à supprimer
+   * @returns {boolean} - Retourne true si l'utilisateur a été supprimé
+   */
+
+};
 export default new bookmarksDataMappers();
 
 

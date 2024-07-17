@@ -102,7 +102,7 @@ export const deleteUser = async (req, res, next) => {
   const userId = req.user.id;
 
   try {
-    const success = await usersDataMappers.deleteById(userId);
+    const success = await usersDataMappers.deleteUserAndDependencies(userId);
     if (success) {
       return res
         .status(200)
