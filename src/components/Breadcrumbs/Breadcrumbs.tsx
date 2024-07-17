@@ -1,7 +1,7 @@
-import { Hike, Location } from '../../@types/hike';
+import { Location } from '../../@types/hike';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useAppDispatch } from '../../hooks/redux';
 import { changeLocation } from '../../store/reducers/breadcrumbs';
 import './Breadcrumbs.scss';
 

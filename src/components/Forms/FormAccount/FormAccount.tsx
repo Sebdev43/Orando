@@ -32,9 +32,7 @@ export default function FormAccount() {
 
   // on récupère les infos dans le reducer (qui viennent de la BDD)
   useEffect(() => {
-    return () => {
-      dispatch(getUserDatas());
-    };
+    dispatch(getUserDatas());
   }, [dispatch, credentials]);
 
   const {
