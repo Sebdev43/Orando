@@ -133,7 +133,7 @@ export default function FormAccount() {
                 required: 'Vous devez choisir un département',
               })}
             >
-              <option value="">Choisissez un département</option>
+              <option value={credentials.localisation}>{credentials.localisation}</option>
               {locations.map((location) => (
                 <option key={location.code} value={location.nom}>
                   {location.nom}
