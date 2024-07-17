@@ -5,7 +5,7 @@ import {
   isRejected,
 } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { Credential } from '../../@types/form';
+import { Credential, PatchCredential } from '../../@types/form';
 import { RootState } from '../store';
 
 // Le typage des données
@@ -53,7 +53,7 @@ export const getUserDatas = createAsyncThunk(
 // Patch pour modifier les infos du compte
 export const patchUserDatas = createAsyncThunk(
   'USER/PATCH_USER',
-  async (datas: Credential, thunkAPI) => {
+  async (datas: PatchCredential, thunkAPI) => {
     try {
       const rootstate = thunkAPI.getState() as RootState;
       const token = rootstate.userConnection.token;

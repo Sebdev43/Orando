@@ -17,6 +17,13 @@ export type Credential = {
   email: string;
   password: string;
 };
+export type PatchCredential = {
+  nickname?: string;
+  localisation?: string;
+  email?: string;
+  currentPassword?: string;
+  newPassword?: string;
+};
 
 export type FormAccountData = {
   nickname: string;
