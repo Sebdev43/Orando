@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form';
-import { useAppDispatch } from '../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { postReinitDatas } from '../../../store/reducers/userConnection';
-import { useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './FormLoginReinit.scss';
 
 // MUI
@@ -14,6 +14,7 @@ import { FormReinitData } from '../../../@types/form';
 //------------------------------------------- Le composant actuel
 export default function FormReinit() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   // je récupère le token dans l'URL
   const location = useLocation();
@@ -38,8 +39,8 @@ export default function FormReinit() {
       return;
     } else {
       const dataPack = { token: urlToken, newPassword: data.newPassword };
-      console.log(dataPack);
       dispatch(postReinitDatas(dataPack as any));
+      navigate('/connexion');
     }
   };
 
