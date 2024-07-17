@@ -3,10 +3,11 @@ const router = express.Router();
 import {
   addBookmark,
   removeBookmark,
-  getBookmark
+  getBookmark,
 } from "../controllers/bookmarksController.js";
-
+import { validateRequest } from "../middlewares/validateReqMiddleware.js";
 import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
+import { bookmarksValidators } from "../validators/bookmarksValidators.js";
 
 /**
  * @swagger
@@ -45,7 +46,11 @@ import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
  *                   type: string
  *                   example: Randonnée ajoutée dans les favoris
  *       400:
- *         description: Erreur dans les paramètres de la requête
+ *         $ref: '#/components/responses/BadRequestError'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       404:
+ *         description: Hike not found
  *         content:
  *           application/json:
  *             schema:
@@ -53,49 +58,18 @@ import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
  *               properties:
  *                 status:
  *                   type: string
- *                   example: error
+ *                   example: "error"
  *                 message:
  *                   type: string
- *                   example: Erreur dans les paramètres de la requête
- *                 errors:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       msg:
- *                         type: string
- *                       param:
- *                         type: string
- *                       location:
- *                         type: string
- *       409:
- *         description: Randonnée déjà ajoutée dans les favoris
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: Randonnée déjà ajoutée dans les favoris
- *       500:
- *         description: Erreur lors de l'ajout de la randonnée dans les favoris
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: Erreur lors de l'ajout de la randonnée dans les favoris
+ *                   example: "Randonnée non trouvée"
  */
-router.post("/", authenticateJWT, addBookmark);
+router.post(
+  "/",
+  authenticateJWT,
+  bookmarksValidators,
+  validateRequest,
+  addBookmark
+);
 
 /**
  * Route pour supprimer une randonnée des favoris d'un utilisateur
@@ -118,8 +92,12 @@ router.post("/", authenticateJWT, addBookmark);
  *     responses:
  *       204:
  *         description: Randonnée supprimée des favoris
+ *       400:
+ *         $ref: '#/components/responses/BadRequestError'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
  *       404:
- *         description: Randonnée non trouvée dans les favoris
+ *         description: Bookmark not found
  *         content:
  *           application/json:
  *             schema:
@@ -127,26 +105,19 @@ router.post("/", authenticateJWT, addBookmark);
  *               properties:
  *                 status:
  *                   type: string
- *                   example: error
+ *                   example: "error"
  *                 message:
  *                   type: string
- *                   example: Randonnée non trouvée dans les favoris
- *       500:
- *         description: Erreur lors de la suppression de la randonnée des favoris
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: Erreur lors de la suppression de la randonnée des favoris
+ *                   example: "Favori non trouvé"
  */
 
-router.delete("/", authenticateJWT, removeBookmark);
+router.delete(
+  "/",
+  authenticateJWT,
+  bookmarksValidators,
+  validateRequest,
+  removeBookmark
+);
 
 /**
  * Route pour récupérer la liste des randonnées favorites d'un utilisateur
@@ -197,19 +168,8 @@ router.delete("/", authenticateJWT, removeBookmark);
  *                   updated_at:
  *                     type: string
  *                     format: date-time
- *       500:
- *         description: Erreur lors de la récupération des randonnées favorites
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: Erreur lors de la récupération des randonnées favorites
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
  */
 
 router.get("/", authenticateJWT, getBookmark);

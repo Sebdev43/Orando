@@ -61,3 +61,11 @@ export const validateUpdateUser = [
         next();
     }
 ];
+export const userValidators = [
+    body('nickname').optional().isString().withMessage('Le pseudo doit être une chaîne de caractères'),
+    body('localisation').optional().isString().withMessage('La localisation doit être une chaîne de caractères'),
+    body('email').optional().isEmail().withMessage('Adresse email invalide'),
+    body('currentPassword').optional().isString().withMessage('Le mot de passe actuel doit être une chaîne de caractères'),
+    body('newPassword').optional().isString().withMessage('Le nouveau mot de passe doit être une chaîne de caractères'),
+];
+

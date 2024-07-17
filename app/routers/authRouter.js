@@ -2,11 +2,8 @@ import express from "express";
 import { login, verifyEmail, signup, getConnectionPage, forgotPassword, resetPassword } from "../controllers/authController.js";
 import { validateRequest } from "../middlewares/validateReqMiddleware.js";
 import { hashPasswordMiddleware } from "../middlewares/scryptMiddleware.js";
-import {
-  emailValidator,
-  nicknameValidator,
-  passwordValidator,
-} from "../validators/userValidators.js";
+import { loginValidator } from "../validators/loginValidator.js";
+import { signupValidator } from "../validators/signupValidator.js";
 import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
 
 const router = express.Router();
@@ -49,29 +46,7 @@ const router = express.Router();
  *                 token:
  *                   type: string
  *       400:
- *         description: Données de requête invalides
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: Données de requête invalides
- *                 errors:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       msg:
- *                         type: string
- *                       param:
- *                         type: string
- *                       location:
- *                         type: string
+ *         $ref: '#/components/responses/BadRequestError'
  *       401:
  *         description: Email ou mot de passe incorrect, ou email non vérifié
  *         content:
@@ -100,7 +75,7 @@ const router = express.Router();
  *                   example: Erreur interne du serveur
  */
 
-router.post("/login", login);
+router.post("/login",loginValidator,validateRequest, login);
 
 /**
  * @swagger
@@ -136,29 +111,7 @@ router.post("/login", login);
  *                   type: string
  *                   example: Utilisateur créé avec succès. Un email de vérification a été envoyé.
  *       '400':
- *         description: Invalid request data
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: Invalid request data
- *                 errors:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       msg:
- *                         type: string
- *                       param:
- *                         type: string
- *                       location:
- *                         type: string
+ *         $ref: '#/components/responses/BadRequestError'
  *       '409':
  *         description: Email or nickname already in use
  *         content:
@@ -189,13 +142,9 @@ router.post("/login", login);
 
 router.post(
   "/signup",
-  [
-    emailValidator,
-    passwordValidator,
-    nicknameValidator,
-    validateRequest,
-    hashPasswordMiddleware,
-  ],
+  signupValidator,
+  validateRequest,
+  hashPasswordMiddleware,
   signup
 );
 
@@ -227,18 +176,7 @@ router.post(
  *                 type: string
  *                 example: Email vérifié avec succès
  *     400:
- *       description: Token invalide ou expiré
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               status:
- *                 type: string
- *                 example: error
- *               message:
- *                 type: string
- *                 example: Token invalide ou expiré
+ *         $ref: '#/components/responses/BadRequestError'
  */
 
 router.get("/verify-email", verifyEmail);
@@ -272,45 +210,10 @@ router.get("/verify-email", verifyEmail);
  *                   type: string
  *                   example: Si un compte avec cet email existe, un email de réinitialisation de mot de passe a été envoyé.
  *       400:
- *         description: Données de requête invalides
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: Données de requête invalides
- *                 errors:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       msg:
- *                         type: string
- *                       param:
- *                         type: string
- *                       location:
- *                         type: string
- *       500:
- *         description: Erreur interne du serveur
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: Erreur interne du serveur
+ *         $ref: '#/components/responses/BadRequestError'
  */
 
-router.post("/forgot-password", forgotPassword);
+router.post("/forgot-password",loginValidator, validateRequest, forgotPassword);
 
 /**
  * @swagger
@@ -342,45 +245,20 @@ router.post("/forgot-password", forgotPassword);
  *                   type: string
  *                   example: Mot de passe réinitialisé avec succès.
  *       400:
- *         description: Données de requête invalides ou token invalide/expiré.
+ *         $ref: '#/components/responses/BadRequestError'
+ *       403:
+ *         description: Invalid or expired token
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
- *                 status:
+ *                 error:
  *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: Données de requête invalides ou token invalide/expiré.
- *                 errors:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       msg:
- *                         type: string
- *                       param:
- *                         type: string
- *                       location:
- *                         type: string
- *       500:
- *         description: Erreur interne du serveur
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: Erreur interne du serveur
+ *                   example: "Token invalide ou expiré."
  */
 
-router.post("/reset-password", resetPassword)
+router.post("/reset-password",loginValidator, validateRequest, resetPassword)
 
 /**
  * Route pour rafraîchir le token JWT

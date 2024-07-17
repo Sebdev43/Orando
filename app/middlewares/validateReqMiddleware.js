@@ -5,7 +5,7 @@ export const validateRequest = (req, res, next) => {
     if (!errors.isEmpty()) {
         return res.status(400).json({
             status: "error",
-            message: "Invalid request data",
+            message: "Données de requête invalides",
             errors: errors.array(),
         });
     }

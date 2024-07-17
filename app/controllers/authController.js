@@ -135,18 +135,6 @@ export const verifyEmail = async (req, res, next) => {
   }
 };
 
-/*export const refreshToken = async (req, res) => {
-    const { refreshToken } = req.body;
-    try {
-        const user = verifyRefreshToken(refreshToken);
-        const newToken = generateToken(user);
-        const newRefreshToken = generateRefreshToken(user);
-        res.status(200).json({ token: newToken, refreshToken: newRefreshToken });
-    } catch (error) {
-        res.status(403).json({ error: 'Refresh token invalide' });
-    }
-};*/
-
 export const forgotPassword = async (req, res, next) => {
   const { email } = req.body;
   const errors = validationResult(req);
@@ -164,7 +152,6 @@ export const forgotPassword = async (req, res, next) => {
     if (user) {
       const resetToken = generateEmailToken(user.id);
       await sendResetPasswordEmail(user.email, resetToken);
-      
     }
     // répondre toujours avec le même message pour des raisons de sécurité
     return res.status(200).json({
@@ -176,10 +163,10 @@ export const forgotPassword = async (req, res, next) => {
 };
 
 export const resetPassword = async (req, res, next) => {
-  const { token , newPassword} = req.body;
+  const { token, newPassword } = req.body;
   const errors = validationResult(req);
 
-  if(!errors.isEmpty()){
+  if (!errors.isEmpty()) {
     return res.status(400).json({
       status: "error",
       message: "Données de requête invalides",
@@ -195,7 +182,6 @@ export const resetPassword = async (req, res, next) => {
     await usersDataMappers.updatePassword(userId, hashedPassword);
 
     return res.status(200).json({ message: "Mot de passe réinitialisé avec succès." });
-
   } catch (error) {
     return res.status(403).json({ error: "Token invalide ou expiré." });
   }
