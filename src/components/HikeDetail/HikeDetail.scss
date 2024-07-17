@@ -14,10 +14,9 @@
     position: relative;
 
     .slide-image {
-      width: 100%;
+      width: auto;
       height: auto;
       object-fit: cover;
-      max-height: 300px;
       margin: 0 auto;
       transition: transform 0.3s ease;
     }
