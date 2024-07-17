@@ -42,7 +42,6 @@ class usersDataMappers extends coreDataMappers {
     const result = await pool.query(query, values);
     return result.rows[0];
   }
-
   /**
    * Obtenir un compte utilisateur
    * @param {TEXT} email - Email de l'utilisateur
@@ -72,7 +71,11 @@ class usersDataMappers extends coreDataMappers {
    * @param {*} hashedPassword
    */
   async updatePassword(userId, hashedPassword) {
-    const query = `UPDATE users SET password = $1, updated_at = NOW() WHERE id = $2`;
+    const query = `UPDATE users
+                   SET password = $1,
+                       updated_at = NOW()
+                   WHERE id = $2`;
+
     const values = [hashedPassword, userId];
     await pool.query(query, values);
   }

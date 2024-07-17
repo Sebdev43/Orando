@@ -1,14 +1,12 @@
 import express from "express";
-import { updateUser, getUserById ,deleteUser } from "../controllers/userController.js";
-
 import {
-  emailValidator,
-  nicknameValidator,
-  passwordValidator,
-  currentPasswordValidator,
-} from "../validators/userValidators.js";
+  updateUser,
+  getUserById,
+  deleteUser,
+} from "../controllers/userController.js";
 
-import { validateRequest } from "../middlewares/validateReqMiddleware.js";
+import { validateUpdateUser } from "../validators/userValidators.js";
+
 import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
 
 const router = express.Router();
@@ -174,18 +172,7 @@ router.get("/", authenticateJWT, getUserById);
  *                   type: string
  *                   example: Internal server error
  */
-router.patch(
-  "/",
-  [
-    nicknameValidator.optional(),
-    emailValidator.optional(), 
-    currentPasswordValidator.optional(),
-    passwordValidator.optional({ nullable: true }),
-    validateRequest,
-    authenticateJWT,
-  ],
-  updateUser
-);
+router.patch("/", authenticateJWT, validateUpdateUser, updateUser);
 
 /**
  * @swagger

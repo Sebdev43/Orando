@@ -8,7 +8,7 @@
         "doc": "doc"
     },
     "scripts": {
-        "dev": "node --watch server.mjs",
+        "dev": "node --watch server.js",
         "start": "NODE_ENV=production node .",
         "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
         "test:watch": "jest --watch",

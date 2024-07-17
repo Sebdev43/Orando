@@ -1,6 +1,5 @@
 import { verifyToken } from "../utils/jwtUtils.js";
-import { usersDataMappers } from "../dataMappers/index.dataMappers.js";
-
+import {usersDataMappers} from "../dataMappers/index.dataMappers.js";
 
 export const authenticateJWT = async (req, res, next) => {
     const authHeader = req.headers['authorization'];
@@ -20,7 +19,7 @@ export const authenticateJWT = async (req, res, next) => {
                 return res.status(403).json({ error: 'Email non vérifié.' });
             }
 
-            req.user = user;
+            req.user = { id: userId };
             next();
         } catch (error) {
             res.status(403).json({ error: 'Token invalide ou expiré.' });

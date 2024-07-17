@@ -93,5 +93,3 @@ Liste des auteurs du projet:
 - **O'clock** _alias_ [@Oclock](https://oclock.io/)
 - **Robert Sébastien** _alias_ [@sebdev43](https://github.com/Sebdev43)
 - **Cannizzaro Kevin** _alias_ [@CannizzaroKevin](https://github.com/CannizzaroKevin)
-- **Hassane BEZZA** _alias_ [@HASSANEBEZZA](https://github.com/HASSANEBEZZA
-)

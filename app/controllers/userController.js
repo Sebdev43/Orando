@@ -4,55 +4,51 @@ import { verifyPassword, hashPassword } from "../utils/passwordUtils.js";
 
 export const updateUser = async (req, res, next) => {
   try {
-    const userId = req.user.id;
-    const { nickname, localisation, email, currentPassword, newPassword } = req.body;
+      const userId = req.user.id; 
+      const { nickname, localisation, email, currentPassword, newPassword } = req.body;
 
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({
-        status: "error",
-        message: "Données de requête invalides",
-        errors: errors.array(),
+      let user = await usersDataMappers.findById(userId);
+      if (!user) {
+          return res.status(404).json({
+              status: "error",
+              message: "Utilisateur non trouvé",
+          });
+      }
+
+      if (newPassword) {
+          if (!currentPassword) {
+              return res.status(400).json({
+                  status: "error",
+                  message: "Le mot de passe actuel est requis pour changer le mot de passe",
+              });
+          }
+          const isPasswordValid = await verifyPassword(currentPassword, user.password);
+          if (!isPasswordValid) {
+              return res.status(400).json({
+                  status: "error",
+                  message: "Le mot de passe actuel est incorrect",
+              });
+          }
+          const hashedNewPassword = await hashPassword(newPassword);
+          await usersDataMappers.updatePassword(userId, hashedNewPassword);
+      }
+
+      if (nickname || localisation || email) {
+          user = await usersDataMappers.updateUser(userId, nickname, localisation, email, user.password);
+      }
+
+      const filteredUser = {
+          nickname: user.nickname,
+          localisation: user.localisation,
+          email: user.email,
+      };
+
+      return res.status(200).json({
+          message: "Utilisateur mis à jour avec succès",
+          filteredUser,
       });
-    }
-
-    let user = await usersDataMappers.findById(userId);
-
-    if (newPassword) {
-      if (!currentPassword) {
-        return res.status(400).json({
-          status: "error",
-          message: "Le mot de passe actuel est requis pour changer le mot de passe",
-        });
-      }
-      const isPasswordValid = await verifyPassword(currentPassword, user.password);
-      if (!isPasswordValid) {
-        return res.status(400).json({
-          status: "error",
-          message: "Le mot de passe actuel est incorrect",
-        });
-      }
-      user.password = await hashPassword(newPassword);
-    }
-
-    if (nickname) user.nickname = nickname;
-    if (localisation) user.localisation = localisation;
-    if (email) user.email = email;
-
-    user = await usersDataMappers.updateUser(userId, user.nickname, user.localisation, user.email, user.password);
-
-    const filteredUser = {
-      nickname: user.nickname,
-      localisation: user.localisation,
-      email: user.email,
-    };
-
-    return res.status(200).json({
-      message: "Utilisateur mis à jour avec succès",
-      filteredUser,
-    });
   } catch (error) {
-    next(error);
+      next(error);
   }
 };
 
