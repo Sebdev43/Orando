@@ -104,6 +104,7 @@ export default function FormReinit() {
             variant="solid"
             color="primary"
             size="sm"
+            className="form-account__favorites"
             sx={{ width: '25%' }}
           >
             OK

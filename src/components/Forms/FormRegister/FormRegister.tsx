@@ -44,7 +44,6 @@ export default function FormRegister() {
     dispatch(postRegisterDatas(data as any));
   };
 
-  // création des messages d'erreurs pour mail et nickname
   const errorMessagesFromApi = messagesResponse.map((message, index) => {
     return (
       <span key={index}>
@@ -57,104 +56,114 @@ export default function FormRegister() {
   return (
     <>
       {isRegistered ? (
-        sucessMessage
+        successMessage
       ) : (
-        <form className="form__register" onSubmit={handleSubmit(onSubmit)}>
+        <form className="form-account" onSubmit={handleSubmit(onSubmit)}>
+          <h2>Créer un compte</h2>
           <span
             style={{ color: 'red', textAlign: 'center' }}
-            className="form__register__server-response-message"
+            className="form-account__server-response-message"
           >
-            {messagesResponse ? errorMessagesFromApi : sucessMessage}
+            {messagesResponse ? errorMessagesFromApi : successMessage}
           </span>
-          {/* <p>{messageResponse}</p> */}
-          <span className="error__nickname">
-            {errors.nickname?.message as string}
-          </span>
-          <input
-            // doit avoir 1 chiffre et 1 caractère spécial + pas d'espace au début et à la fin
-            type="text"
-            placeholder="Pseudo"
-            {...register('nickname', {
-              required: 'Vous devez choisir un pseudo',
-              min: {
-                value: 5,
-                message: 'La longueur minimale est de 5 caractères',
-              },
-              maxLength: {
-                value: 20,
-                message: 'La longueur maximale est de 20 caractères',
-              },
-              pattern: {
-                value:
-                  /^(?! )(?!.* $)(?!.* {2})(?=.{1,20}$)(?=(?:[^a-zA-Z0-9]*[a-zA-Z0-9]){5})[\w\W]*$/i,
-                message: "Le pseudo n'est pas valide",
-              },
-            })}
-          />
+          <section className="form-account__field">
+            <label htmlFor="nickname">Pseudo :</label>
 
-          <span className="error__localisation">
-            {errors.localisation?.message as string}
-          </span>
-          <select
-            defaultValue="placeholder"
-            {...register('localisation', {
-              required: 'Vous devez choisir un departement',
-            })}
-          >
-            <option disabled value="placeholder">
-              Choisissez un département
-            </option>
-            {/* data qui vient du dossier data */}
-            {locations.map((location, index) => (
-              <option key={index} value="option">
-                {location.nom}
+            <input
+              type="text"
+              id="nickname"
+              placeholder="Pseudo"
+              style={{ width: '100%' }}
+              {...register('nickname', {
+                required: 'Vous devez choisir un pseudo',
+                minLength: {
+                  value: 5,
+                  message: 'La longueur minimale est de 5 caractères',
+                },
+                maxLength: {
+                  value: 20,
+                  message: 'La longueur maximale est de 20 caractères',
+                },
+                pattern: {
+                  value:
+                    /^(?! )(?!.* $)(?!.* {2})(?=.{1,20}$)(?=(?:[^a-zA-Z0-9]*[a-zA-Z0-9]){5})[\w\W]*$/i,
+                  message: "Le pseudo n'est pas valide",
+                },
+              })}
+            />
+            <span className="error__nickname">
+              {errors.nickname?.message as string}
+            </span>
+          </section>
+          <section className="form-account__field">
+            <label htmlFor="localisation">Localisation</label>
+            <select
+              id="localisation"
+              defaultValue="placeholder"
+              {...register('localisation', {
+                required: 'Vous devez choisir un departement',
+              })}
+            >
+              <option disabled value="placeholder">
+                Choisissez un département
               </option>
-            ))}
-          </select>
-
-          <span className="error__email">
-            {errors.email?.message as string}
-          </span>
-          <input
-            type="text"
-            placeholder="Adresse Email"
-            {...register('email', {
-              required: "L'email est obligatoire",
-              pattern: {
-                value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
-                message: "L'email n'est pas valide",
-              },
-            })}
-          />
-
-          <span className="error__password">
-            {errors.password?.message as string}
-          </span>
-
-          <input
-            type="text"
-            placeholder="Mot de passe"
-            {...register('password', {
-              required: 'Vous devez choisir un mot de passe',
-              min: {
-                value: 8,
-                message: 'Le mot de passe doit avoir au moins 8 caractères',
-              },
-              maxLength: {
-                value: 20,
-                message: 'Le mot de passe doit avoir moins de 20 caractères',
-              },
-              pattern: {
-                value:
-                  /^(?! )(?!.* $)(?!.* {2})(?=.{1,20}$)(?=(?:[^a-zA-Z0-9]*[a-zA-Z0-9]){8})(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[\w\W]*$/i,
-                message:
-                  'Le mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre et un caractère speciaux',
-              },
-            })}
-          />
-          {isRegistered ? null : (
-            <input className="form__register__submit" type="submit" />
-          )}
+              {locations.map((location, index) => (
+                <option key={index} value={location.nom}>
+                  {location.nom}
+                </option>
+              ))}
+            </select>
+            <span className="error__localisation">
+              {errors.localisation?.message as string}
+            </span>
+          </section>
+          <section className="form-account__field">
+            <label htmlFor="email">Adresse Email</label>
+            <input
+              type="text"
+              id="email"
+              placeholder="Adresse Email"
+              {...register('email', {
+                required: "L'email est obligatoire",
+                pattern: {
+                  value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+                  message: "L'email n'est pas valide",
+                },
+              })}
+            />
+            <span className="error__email">
+              {errors.email?.message as string}
+            </span>
+          </section>
+          <section className="form-account__field">
+            <label htmlFor="password">Mot de passe</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Mot de passe"
+              {...register('password', {
+                required: 'Vous devez choisir un mot de passe',
+                minLength: {
+                  value: 8,
+                  message: 'Le mot de passe doit avoir au moins 8 caractères',
+                },
+                maxLength: {
+                  value: 20,
+                  message: 'Le mot de passe doit avoir moins de 20 caractères',
+                },
+                pattern: {
+                  value:
+                    /^(?! )(?!.* $)(?!.* {2})(?=.{1,20}$)(?=(?:[^a-zA-Z0-9]*[a-zA-Z0-9]){8})(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[\\w\\W]*$/i,
+                  message:
+                    'Le mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre et un caractère speciaux',
+                },
+              })}
+            />
+            <span className="error__password">
+              {errors.password?.message as string}
+            </span>
+          </section>
+          <button className="form-account__favorites" type="submit">S'inscrire</button>
         </form>
       )}
     </>

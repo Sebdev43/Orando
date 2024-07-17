@@ -36,6 +36,7 @@ export default function FormLogin() {
     dispatch(postLoginDatas(data as any));
   };
 
+
   // Redirige l'utilisateur vers la page d'accueil si le state change a true
   // TODO utiliser un fireEffect pourquoi pas !
   useEffect(() => {
@@ -43,7 +44,7 @@ export default function FormLogin() {
       navigate('/randonnees');
     }
   }, [isLogged]);
-
+    
   // Nettoyage du state serverResponse
   useEffect(() => {
     dispatch(clearServerResponse());
@@ -58,45 +59,51 @@ export default function FormLogin() {
         {serverResponse}
       </span>
 
-      <span className="error__email">{errors?.email?.message}</span>
-      <input
-        type="text"
-        placeholder="Adresse Email"
-        {...register('email', {
-          required: "L'email est obligatoire",
-          pattern: {
-            value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i,
-            message: "L'email n'est pas valide",
-          },
-        })}
-      />
+      <section className="form__login__field">
+        
+        <input
+          type="text"
+          placeholder="Adresse Email"
+          {...register('email', {
+            required: "L'email est obligatoire",
+            pattern: {
+              value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i,
+              message: "L'email n'est pas valide",
+            },
+          })}
+        />
+        <span className="error__email">{errors?.email?.message}</span>
+      </section>
 
-      <span className="error__password">{errors?.password?.message}</span>
-      <input
-        type="text"
-        placeholder="Mot de passe"
-        {...register('password', {
-          required: 'Vous devez choisir un mot de passe',
-          min: {
-            value: 8,
-            message: 'Le mot de passe doit avoir au moins 8 caractères',
-          },
-          maxLength: {
-            value: 20,
-            message: 'Le mot de passe doit avoir moins de 20 caractères',
-          },
-          pattern: {
-            value:
-              /^(?! )(?!.* $)(?!.* {2})(?=.{1,20}$)(?=(?:[^a-zA-Z0-9]*[a-zA-Z0-9]){8})(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[\w\W]*$/i,
-            message:
-              'Le mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre et un caractère speciaux',
-          },
-        })}
-      />
+      <section className="form__login__field">
+        
+        <input
+          type="text"
+          placeholder="Mot de passe"
+          {...register('password', {
+            required: 'Vous devez choisir un mot de passe',
+            min: {
+              value: 8,
+              message: 'Le mot de passe doit avoir au moins 8 caractères',
+            },
+            maxLength: {
+              value: 20,
+              message: 'Le mot de passe doit avoir moins de 20 caractères',
+            },
+            pattern: {
+              value:
+                /^(?! )(?!.* $)(?!.* {2})(?=.{1,20}$)(?=(?:[^a-zA-Z0-9]*[a-zA-Z0-9]){8})(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[\w\W]*$/i,
+              message:
+                'Le mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre et un caractère speciaux',
+            },
+          })}
+        />
+        <span className="error__password">{errors?.password?.message}</span>
+      </section>
 
       <NavLink to="/connexion/reset">réinitialiser le mot de passe</NavLink>
 
-      <input type="submit" />
+      <input className="form-account__favorites" type="submit" />
     </form>
   );
 }

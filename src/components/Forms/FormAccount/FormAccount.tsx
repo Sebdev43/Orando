@@ -73,6 +73,7 @@ export default function FormAccount() {
   // Le rendu final du composant
   return (
     <section className="form-account">
+      
       <h2>Modifier le compte</h2>
 
       {/* Nickname */}
@@ -269,6 +270,7 @@ export default function FormAccount() {
       <button className="form-account__delete" onClick={handleDeleteAccount}>
         SUPPRIMER LE COMPTE
       </button>
+
     </section>
   );
 }
