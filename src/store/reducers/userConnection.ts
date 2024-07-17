@@ -14,7 +14,7 @@ type initialStateProps = {
 };
 
 const initialState: initialStateProps = {
-  token: localStorage.getItem('token') || null,
+  token: localStorage.getItem('token') || null, //! Vérifier la validité du token
   serverResponse: '',
   isLogged: false,
   resetMessage: '',

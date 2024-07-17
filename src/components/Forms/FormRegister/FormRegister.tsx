@@ -27,7 +27,7 @@ export default function FormRegister() {
   const messagesResponse = useAppSelector(
     (state) => state.userRegistration.messagesResponse
   );
-  const sucessMessage = useAppSelector(
+  const successMessage = useAppSelector(
     (state) => state.userRegistration.successMessage
   );
 
@@ -153,9 +153,9 @@ export default function FormRegister() {
                 },
                 pattern: {
                   value:
-                    /^(?! )(?!.* $)(?!.* {2})(?=.{1,20}$)(?=(?:[^a-zA-Z0-9]*[a-zA-Z0-9]){8})(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[\\w\\W]*$/i,
+                    /^(?! )(?!.* $)(?!.* {2})(?=.{1,20}$)(?=(?:[^a-zA-Z0-9]*[a-zA-Z0-9]){8})(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[\w\W]*$/i,
                   message:
-                    'Le mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre et un caractère speciaux',
+                    'Le mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre et un caractère spécial',
                 },
               })}
             />
@@ -163,7 +163,9 @@ export default function FormRegister() {
               {errors.password?.message as string}
             </span>
           </section>
-          <button className="form-account__favorites" type="submit">S'inscrire</button>
+          <button className="form-account__favorites" type="submit">
+            S'inscrire
+          </button>
         </form>
       )}
     </>

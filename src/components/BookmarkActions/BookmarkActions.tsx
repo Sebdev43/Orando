@@ -1,18 +1,25 @@
 import { Favorite } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
-import { useAppDispatch } from '../../hooks/redux';
-import { addBookmark } from '../../store/reducers/bookmarks';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { addBookmark, deleteBookmark } from '../../store/reducers/bookmarks';
 
 export type BookmarksProps = {
   id: number;
 };
+
+//------------------------------- Le composant actuel
 export default function Bookmarks({ id }: BookmarksProps) {
   const dispatch = useAppDispatch();
+  const bookmarks = useAppSelector((state) => state.bookmarks.bookmarks);
 
-  // Actions
   function handleClick(id: number) {
-    console.log(id);
-    dispatch(addBookmark(id));
+    console.log('Dans le handleClick', id);
+
+    if (bookmarks.filter((bookmark) => bookmark.id === id)) {
+      dispatch(deleteBookmark(id));
+    } else {
+      dispatch(addBookmark(id));
+    }
   }
 
   return (

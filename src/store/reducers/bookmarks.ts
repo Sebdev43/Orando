@@ -27,9 +27,6 @@ export const getBookmarks = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       });
-
-      console.log('Dans le try de GET BOOKMARKS', data);
-
       return data;
     } catch (error) {
       throw new Error('Une erreur est survenue');
@@ -38,21 +35,20 @@ export const getBookmarks = createAsyncThunk(
 );
 
 export const deleteBookmark = createAsyncThunk(
-  'BOOKMARKS/DELETE_BOOKMARKS',
-  async (hikeId, thunkAPI) => {
+  'BOOKMARK/DELETE_BOOKMARK',
+  async (id: number, thunkAPI) => {
     try {
-      const rootstate = thunkAPI.getState() as RootState;
-      const token = rootstate.userConnection.token;
+      const rootState = thunkAPI.getState() as RootState;
+      const token = rootState.userConnection.token;
+      console.log('dans le try DELETE', id);
 
       const { data } = await axios.delete('/api/bookmarks', {
-        data: hikeId,
+        data: { hikeId: id },
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-
-      console.log('Dans le try de DELETE BOOKMARK', data);
-
+      console.log('dans le return du DELETE', data);
       return data;
     } catch (error) {
       throw new Error('Une erreur est survenue');
@@ -61,14 +57,12 @@ export const deleteBookmark = createAsyncThunk(
 );
 
 export const addBookmark = createAsyncThunk(
-  'BOOKMARKS/POST_BOOKMARKS',
-  async (id, thunkAPI) => {
+  'BOOKMARK/POST_BOOKMARK',
+  async (id: number, thunkAPI) => {
     try {
       const rootstate = thunkAPI.getState() as RootState;
       const token = rootstate.userConnection.token;
-
-      console.log('dans le try ADD BOOKMARK', id, token);
-
+      console.log('dans le try ADD', id);
       const { data } = await axios.post(
         '/api/bookmarks',
         { hikeId: id },
@@ -78,8 +72,7 @@ export const addBookmark = createAsyncThunk(
           },
         }
       );
-
-      console.log('Dans le try de POST BOOKMARK', data);
+      console.log('dans le try ADD', data);
 
       return data;
     } catch (error) {
@@ -91,16 +84,27 @@ export const addBookmark = createAsyncThunk(
 // Le reducer
 export const bookmarksReducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(getBookmarks.pending, (state) => {
+      console.log(' DANS LE GET PENDING ');
+      state.isLoading = true;
+    })
     .addCase(getBookmarks.fulfilled, (state, action) => {
+      console.log('dans le fulfilled GET');
       state.isLoading = false;
       state.bookmarks = action.payload;
     })
     .addCase(deleteBookmark.fulfilled, (state, action) => {
-      state.bookmarks = action.payload;
-      console.log(state.bookmarks);
+      console.log('dans le fulfilled DELETE', action.payload);
+
+      state.bookmarks = state.bookmarks.filter(
+        (hike: Hike) => hike.id !== action.payload
+      );
+    })
+    .addCase(addBookmark.rejected, (state, action) => {
+      console.log('dans le rejected ADD', action);
     })
     .addCase(addBookmark.fulfilled, (state, action) => {
-      state.bookmarks = action.payload;
-      console.log(state.bookmarks);
+      console.log('dans le fulfilled ADD', action);
+      state.bookmarks.push(action.payload);
     });
 });
