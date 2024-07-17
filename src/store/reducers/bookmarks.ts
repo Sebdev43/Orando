@@ -62,17 +62,22 @@ export const deleteBookmark = createAsyncThunk(
 
 export const addBookmark = createAsyncThunk(
   'BOOKMARKS/POST_BOOKMARKS',
-  async (hikeId, thunkAPI) => {
+  async (id, thunkAPI) => {
     try {
       const rootstate = thunkAPI.getState() as RootState;
       const token = rootstate.userConnection.token;
 
-      const { data } = await axios.post('/api/bookmarks', {
-        data: hikeId,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      console.log('dans le try ADD BOOKMARK', id, token);
+
+      const { data } = await axios.post(
+        '/api/bookmarks',
+        { hikeId: id },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       console.log('Dans le try de POST BOOKMARK', data);
 
@@ -92,8 +97,10 @@ export const bookmarksReducer = createReducer(initialState, (builder) => {
     })
     .addCase(deleteBookmark.fulfilled, (state, action) => {
       state.bookmarks = action.payload;
+      console.log(state.bookmarks);
     })
     .addCase(addBookmark.fulfilled, (state, action) => {
       state.bookmarks = action.payload;
+      console.log(state.bookmarks);
     });
 });
