@@ -22,7 +22,7 @@ export type PatchCredential = {
   localisation?: string;
   email?: string;
   currentPassword?: string;
-  newPassword?: string;
+  confirmPassword?: string;
 };
 
 export type FormAccountData = {

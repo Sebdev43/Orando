@@ -66,6 +66,8 @@ export const patchUserDatas = createAsyncThunk(
           nickname: datas.nickname,
           localisation: datas.localisation,
           email: datas.email,
+          currentPassword: datas.currentPassword,
+          newPassword: datas.confirmPassword,
         },
         {
           headers: {
