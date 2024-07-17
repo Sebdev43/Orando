@@ -79,19 +79,18 @@ export default function CardComponent(hike: Hike) {
               className="card__tags"
               sx={{
                 display: 'flex',
-                justifyContent: 'center',
+                justifyContent: 'space-between',
                 alignItems: 'center',
                 padding: '10px',
                 backgroundColor: '#f5f5f5',
                 borderRadius: '8px',
-
                 '& .column': {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                   textAlign: 'center',
                   '& .MuiTypography-root': {
-                    fontSize: '14px',
+                    fontSize: '0.8rem',
                     color: '#555',
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
@@ -99,13 +98,14 @@ export default function CardComponent(hike: Hike) {
                   },
                 },
                 '& .localisation-column': {
-                  flexBasis: '50%',
-                  flexGrow: 2,
+                  flexBasis: '33%',
                   textAlign: 'left',
                 },
-                '&.other-column': {
-                  flexBasis: '25%',
-                  flexGrow: 1,
+                '& .time-column': {
+                  flexBasis: '33%',
+                },
+                '& .difficulty-column': {
+                  flexBasis: '33%',
                 },
               }}
             >
@@ -114,21 +114,22 @@ export default function CardComponent(hike: Hike) {
                 <Typography level="body-sm">{hike.localisation}</Typography>
               </div>
 
-              <div className="column other-column">
+              <div className="column time-column">
                 <Typography level="body-sm">Marche:</Typography>
                 <Typography level="body-sm">
                   {formatHikeTime(hike.time)}
                 </Typography>
               </div>
 
-              <div className="column other-column">
+              <div className="column difficulty-column">
                 <Typography level="body-sm">Difficulté:</Typography>
                 <div className="column other-column">
                   {RenderDifficulty(hike)}
                 </div>
               </div>
+            </CardContent>
 
-              {/* <Typography level="body-sm">Localisation :</Typography>
+            {/* <Typography level="body-sm">Localisation :</Typography>
 
               <Typography level="body-sm">{hike.localisation}</Typography>
 
@@ -139,7 +140,6 @@ export default function CardComponent(hike: Hike) {
               </Typography>
               <Typography level="body-sm">Difficulté :</Typography>
               {RenderDifficulty(hike)} */}
-            </CardContent>
           </CardOverflow>
         </Card>
       </NavLink>
