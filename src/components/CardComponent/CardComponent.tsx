@@ -128,18 +128,6 @@ export default function CardComponent(hike: Hike) {
                 </div>
               </div>
             </CardContent>
-
-            {/* <Typography level="body-sm">Localisation :</Typography>
-
-              <Typography level="body-sm">{hike.localisation}</Typography>
-
-              <Typography level="body-sm">Marche :</Typography>
-
-              <Typography level="body-sm">
-                {formatHikeTime(hike.time)}
-              </Typography>
-              <Typography level="body-sm">Difficulté :</Typography>
-              {RenderDifficulty(hike)} */}
           </CardOverflow>
         </Card>
       </NavLink>
