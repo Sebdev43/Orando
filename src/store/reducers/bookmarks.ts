@@ -1,9 +1,4 @@
-import {
-  createAction,
-  createAsyncThunk,
-  createReducer,
-  isRejected,
-} from '@reduxjs/toolkit';
+import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { RootState } from '../store';
 import { Hike } from '../../@types/hike';
@@ -14,6 +9,7 @@ type BookmarksProps = {
   isLoading: boolean;
 };
 
+//------------------------------  Le composant actuel
 const initialState: BookmarksProps = {
   bookmarks: [],
   isLoading: false,

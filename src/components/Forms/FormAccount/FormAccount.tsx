@@ -32,7 +32,9 @@ export default function FormAccount() {
 
   // on récupère les infos dans le reducer (qui viennent de la BDD)
   useEffect(() => {
-    dispatch(getUserDatas());
+    return () => {
+      dispatch(getUserDatas());
+    };
   }, [dispatch, credentials]);
 
   const {
@@ -73,7 +75,6 @@ export default function FormAccount() {
   // Le rendu final du composant
   return (
     <section className="form-account">
-      
       <h2>Modifier le compte</h2>
 
       {/* Nickname */}
@@ -133,7 +134,9 @@ export default function FormAccount() {
                 required: 'Vous devez choisir un département',
               })}
             >
-              <option value={credentials.localisation}>{credentials.localisation}</option>
+              <option value={credentials.localisation}>
+                {credentials.localisation}
+              </option>
               {locations.map((location) => (
                 <option key={location.code} value={location.nom}>
                   {location.nom}
@@ -270,7 +273,6 @@ export default function FormAccount() {
       <button className="form-account__delete" onClick={handleDeleteAccount}>
         SUPPRIMER LE COMPTE
       </button>
-
     </section>
   );
 }

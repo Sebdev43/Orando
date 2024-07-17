@@ -1,15 +1,17 @@
 import { useEffect } from 'react';
-import { Hike } from '../../@types/hike';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getBookmarks } from '../../store/reducers/bookmarks';
 import { NavLink } from 'react-router-dom';
+
+// Le typage des données
+import { Hike } from '../../@types/hike';
 
 // components
 import HikeFilters from '../../components/HikesFilters/HikeFilters';
 import SkeletonLoader from '../../components/SkeletonLoader/SkeletonLoader';
 import CardComponent from '../../components/CardComponent/CardComponent';
 
-// Le composant actuel est la page Favoris
+//------------------------------- Le composant actuel est la page Favoris
 export default function Bookmarks() {
   const dispatch = useAppDispatch();
 
@@ -24,7 +26,9 @@ export default function Bookmarks() {
   ) as boolean;
 
   useEffect(() => {
-    dispatch(getBookmarks());
+    return () => {
+      dispatch(getBookmarks());
+    };
   }, [dispatch]);
 
   // On récupère les propriétés du state hikesFilters dans hikesFiltersReducer
@@ -54,7 +58,7 @@ export default function Bookmarks() {
         {tokenStore || tokenStorage ? (
           <>
             <section className="bookmarks__filters">
-              <HikeFilters />
+              <HikeFilters data={bookmarks} />
             </section>
             <section className="bookmarks__list">
               {isLoading ? (
