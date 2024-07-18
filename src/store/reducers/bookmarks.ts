@@ -40,7 +40,6 @@ export const deleteBookmark = createAsyncThunk(
     try {
       const rootState = thunkAPI.getState() as RootState;
       const token = rootState.userConnection.token;
-      console.log('dans le try DELETE', id);
 
       const { data } = await axios.delete('/api/bookmarks', {
         data: { hikeId: id },
@@ -48,7 +47,6 @@ export const deleteBookmark = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log('dans le return du DELETE', data);
       return data;
     } catch (error) {
       throw new Error('Une erreur est survenue');
@@ -72,8 +70,6 @@ export const addBookmark = createAsyncThunk(
           },
         }
       );
-      console.log('dans le try ADD', data);
-
       return data;
     } catch (error) {
       throw new Error('Une erreur est survenue');
@@ -85,26 +81,18 @@ export const addBookmark = createAsyncThunk(
 export const bookmarksReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(getBookmarks.pending, (state) => {
-      console.log(' DANS LE GET PENDING ');
       state.isLoading = true;
     })
     .addCase(getBookmarks.fulfilled, (state, action) => {
-      console.log('dans le fulfilled GET');
       state.isLoading = false;
       state.bookmarks = action.payload;
     })
     .addCase(deleteBookmark.fulfilled, (state, action) => {
-      console.log('dans le fulfilled DELETE', action.payload);
-
       state.bookmarks = state.bookmarks.filter(
-        (hike: Hike) => hike.id !== action.payload
+        (hike: Hike) => hike.id !== action.payload.hikeId
       );
     })
-    .addCase(addBookmark.rejected, (state, action) => {
-      console.log('dans le rejected ADD', action);
-    })
     .addCase(addBookmark.fulfilled, (state, action) => {
-      console.log('dans le fulfilled ADD', action);
       state.bookmarks.push(action.payload);
     });
 });

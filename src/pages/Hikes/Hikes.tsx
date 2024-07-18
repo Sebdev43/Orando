@@ -1,5 +1,5 @@
 import { Hike } from '../../@types/hike';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useAppSelector } from '../../hooks/redux';
 import './Hikes.scss';
 
 // components
@@ -9,7 +9,6 @@ import CardComponent from '../../components/CardComponent/CardComponent';
 
 // Le composant actuel est la page Voir les randonnées
 export default function Hikes() {
-  const dispatch = useAppDispatch();
   const loading = useAppSelector((state) => state.hikesAll.loading);
   const hikes = useAppSelector((state) => state.hikesAll.hikesList);
 
