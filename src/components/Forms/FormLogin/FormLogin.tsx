@@ -36,7 +36,6 @@ export default function FormLogin() {
     dispatch(postLoginDatas(data as any));
   };
 
-
   // Redirige l'utilisateur vers la page d'accueil si le state change a true
   // TODO utiliser un fireEffect pourquoi pas !
   useEffect(() => {
@@ -44,7 +43,7 @@ export default function FormLogin() {
       navigate('/randonnees');
     }
   }, [isLogged]);
-    
+
   // Nettoyage du state serverResponse
   useEffect(() => {
     dispatch(clearServerResponse());
@@ -60,9 +59,8 @@ export default function FormLogin() {
       </span>
 
       <section className="form__login__field">
-        
         <input
-          type="text"
+          type="email"
           placeholder="Adresse Email"
           {...register('email', {
             required: "L'email est obligatoire",
@@ -76,9 +74,8 @@ export default function FormLogin() {
       </section>
 
       <section className="form__login__field">
-        
         <input
-          type="text"
+          type="password"
           placeholder="Mot de passe"
           {...register('password', {
             required: 'Vous devez choisir un mot de passe',

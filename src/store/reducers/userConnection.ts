@@ -55,7 +55,6 @@ export const postReinitDatas = createAsyncThunk(
         newPassword: datas.newPassword,
         token: datas.token,
       });
-      console.log(data);
       return data;
     } catch (error) {
       throw new Error('Le mot de passe ne convient pas');
@@ -100,7 +99,6 @@ export const userConnectionReducer = createReducer(initialState, (builder) => {
       state.resetMessage = action.error.message as string;
     })
     .addCase(postReinitDatas.fulfilled, (state, action) => {
-      console.log('dans le fulfilled du post reinit');
       state.resetMessage = action.payload.message;
     });
 });

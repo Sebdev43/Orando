@@ -120,7 +120,7 @@ export default function FormRegister() {
           <section className="form-register__field">
             <label htmlFor="email">Adresse Email</label>
             <input
-              type="text"
+              type="email"
               id="email"
               placeholder="Adresse Email"
               {...register('email', {

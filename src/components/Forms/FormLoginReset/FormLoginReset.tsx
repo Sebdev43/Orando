@@ -31,7 +31,7 @@ export default function FormLogin() {
     <>
       <form className="form__login" onSubmit={handleSubmit(onSubmit)}>
         <input
-          type="text"
+          type="email"
           placeholder="Adresse Email"
           {...register('email', {
             required: "L'email est obligatoire",
@@ -45,11 +45,7 @@ export default function FormLogin() {
         <input className="form-account__favorites" type="submit" />
       </form>
 
-      {resetMessage && (
-        <p className="form__login__message">
-          {resetMessage}
-        </p>
-      )}
+      {resetMessage && <p className="form__login__message">{resetMessage}</p>}
     </>
   );
 }

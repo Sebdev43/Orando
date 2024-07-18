@@ -20,7 +20,7 @@ export default function FormReinit() {
   // je récupère le token dans l'URL que je décode pour vérifier l'expiration
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const urlToken = searchParams.get('token');
+  const urlToken = searchParams.get('token') as string;
 
   // TODO a vérifier si ça marche sur le site
   // jwt-decode

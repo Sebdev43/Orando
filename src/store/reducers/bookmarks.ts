@@ -63,8 +63,6 @@ export const addBookmark = createAsyncThunk(
       const rootstate = thunkAPI.getState() as RootState;
       const token = rootstate.userConnection.token;
 
-      console.log('dans le try ADD', id);
-
       const { data } = await axios.post(
         '/api/bookmarks',
         { hikeId: id },
