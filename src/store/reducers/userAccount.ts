@@ -12,6 +12,7 @@ type UserAccountProps = {
   credentials: Credential;
   editingField: string | null;
   errorUserDatas: string;
+  fulfiledMessage: string;
 };
 
 const initialState: UserAccountProps = {
@@ -22,7 +23,7 @@ const initialState: UserAccountProps = {
     password: '',
   },
   errorUserDatas: '',
-
+  fulfiledMessage: '',
   editingField: null,
 };
 
@@ -125,9 +126,11 @@ export const userAccountReducer = createReducer(initialState, (builder) => {
     // Patch user datas
     .addCase(patchUserDatas.rejected, (state, action) => {
       state.errorUserDatas = action.error.message as string;
+
       console.log(state.errorUserDatas);
     })
     .addCase(patchUserDatas.fulfilled, (state, action) => {
+      state.fulfiledMessage = action.payload.message;
       state.credentials.nickname = action.payload.nickname;
       state.credentials.localisation = action.payload.localisation;
       state.credentials.email = action.payload.email;
@@ -150,10 +153,10 @@ export const userAccountReducer = createReducer(initialState, (builder) => {
     })
     // DELETE ACCOUNT
     .addCase(deleteAccount.fulfilled, (state) => {
+      localStorage.removeItem('token');
       state.credentials.nickname = '';
       state.credentials.localisation = '';
       state.credentials.email = '';
       state.credentials.password = '';
-      localStorage.removeItem('token');
     });
 });

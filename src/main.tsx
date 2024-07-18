@@ -24,6 +24,7 @@ import Login from './pages/Login/Login';
 import LoginReset from './pages/LoginReset/LoginReset';
 import LoginReinit from './pages/LoginReinit/LoginReinit';
 import Account from './pages/Account/Account';
+import AccountDelete from './pages/Account/AccountDelete';
 import Imprints from './pages/Imprints/Imprints';
 import ConfidentialityPolicies from './pages/ConfidentialityPolicies/ConfidentialityPolicies';
 
@@ -44,6 +45,7 @@ const router = createBrowserRouter(
       <Route path="/connexion/reset" element={<LoginReset />} />
       <Route path="/connexion/reinit" element={<LoginReinit />} />
       <Route path="/connexion/reinit/:token" element={<LoginReinit />} />
+      <Route path="/validation/suppression" element={<AccountDelete />} />
       <Route path="/mon-compte" element={<Account />} />
       <Route path="/mentions-legales" element={<Imprints />} />
       <Route

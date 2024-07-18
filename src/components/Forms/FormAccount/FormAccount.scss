@@ -13,9 +13,15 @@
     text-align: center;
     margin-bottom: 3rem;
   }
-  &__error-message {
+  &__message-error {
     color: red;
     text-align: center;
+    height: 1rem;
+  }
+  &__message-success {
+    color: green;
+    text-align: center;
+    height: 1rem;
   }
   &__labels-form {
     font-weight: bold;
@@ -134,5 +140,39 @@
   transition: background-color 0.3s ease;
   &:hover {
     background-color: #b01d1d;
+  }
+}
+
+// AccountDelete.tsx
+.delete__account {
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &-container {
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h3 {
+      text-align: center;
+      margin-top: 2rem;
+    }
   }
 }

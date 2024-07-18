@@ -5,7 +5,6 @@ import {
   actionToLogout,
   changeEditingField,
   clearErrorUserDatas,
-  deleteAccount,
   getUserDatas,
   patchUserDatas,
 } from '../../../store/reducers/userAccount';
@@ -28,37 +27,21 @@ export default function FormAccount() {
   const errorUserDatas = useAppSelector(
     (state) => state.userAccount.errorUserDatas
   );
+  const fulfiledMessage = useAppSelector(
+    (state) => state.userAccount.fulfiledMessage
+  );
 
   // on récupère les infos dans le reducer (qui viennent de la BDD)
   useEffect(() => {
     dispatch(getUserDatas());
   }, [credentials, dispatch]);
 
+  // TODO vérifier les infos dans les champs
   // TODO button ok
-
   // TODO button cancel
-  const handleCancel = () => {
-    dispatch(changeEditingField(null));
-  };
-  // button logout
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    dispatch(tokenLogout());
-    dispatch(actionToLogout());
-    navigate('/');
-  };
-  //  button delete account
-  const handleDeleteAccount = () => {
-    dispatch(deleteAccount());
-    dispatch(actionToLogout());
-    localStorage.removeItem('token');
-    navigate('/');
-  };
-
-  // button réinit
-  const handleReinitPassword = () => {
-    navigate('/connexion/reset');
-  };
+  // const handleCancel = () => {
+  //   dispatch(changeEditingField(null));
+  // };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>, field?: string) => {
     e.preventDefault();
@@ -76,8 +59,11 @@ export default function FormAccount() {
   return (
     <section className="form">
       <h2>Modifier le compte</h2>
-      <p className="form__error-message">
+      <p className="form__message-error">
         {errorUserDatas ? errorUserDatas : ''}
+      </p>
+      <p className="form__message-success">
+        {fulfiledMessage ? fulfiledMessage : ''}
       </p>
 
       <form
@@ -95,7 +81,7 @@ export default function FormAccount() {
           id="test"
           // value={credentials.nickname}
         />
-        <input type="submit" className="form__update-button" />
+        <input type="submit" className="form__update-button" value={'OK'} />
       </form>
 
       <form
@@ -115,7 +101,7 @@ export default function FormAccount() {
             </option>
           ))}
         </select>
-        <input type="submit" className="form__update-button" />
+        <input type="submit" className="form__update-button" value={'OK'} />
       </form>
 
       <form className="form__container" onSubmit={(e) => onSubmit(e, 'email')}>
@@ -130,23 +116,43 @@ export default function FormAccount() {
           id="test"
           // value={credentials.email}
         />
-        <input type="submit" className="form__update-button" />
+        <input type="submit" className="form__update-button" value={'OK'} />
       </form>
 
-      <button className="form__reinit-button" onClick={handleReinitPassword}>
+      <button
+        className="form__reinit-button"
+        onClick={() => {
+          navigate('/connexion/reset');
+        }}
+      >
         Réinitialiser le mot de passe
       </button>
-      <button className="form__send-button" onClick={handleLogout}>
+      <button
+        className="form__send-button"
+        onClick={() => {
+          localStorage.removeItem('token');
+          dispatch(tokenLogout());
+          dispatch(actionToLogout());
+          navigate('/');
+        }}
+      >
         Se déconnecter
       </button>
       <br />
 
       <Button
         className="delete-button"
-        onClick={handleDeleteAccount}
+        onClick={() => {
+          navigate('/validation/suppression');
+        }}
         variant="contained"
         color="error"
-        sx={{ width: '160px', margin: '0 auto', marginTop: '4rem' }}
+        sx={{
+          width: '160px',
+          margin: '0 auto',
+          marginTop: '4rem',
+          fontWeight: 'bold',
+        }}
       >
         Supprimer mon compte
       </Button>
