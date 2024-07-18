@@ -1,13 +1,7 @@
 import { Favorite } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import {
-  addBookmark,
-  deleteBookmark,
-  getBookmarks,
-} from '../../store/reducers/bookmarks';
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { addBookmark, deleteBookmark } from '../../store/reducers/bookmarks';
 
 export type BookmarksProps = {
   id: number;
@@ -17,12 +11,6 @@ export type BookmarksProps = {
 export default function Bookmarks({ id }: BookmarksProps) {
   const dispatch = useAppDispatch();
   const bookmarks = useAppSelector((state) => state.bookmarks.bookmarks);
-
-  // const location = useLocation().pathname;
-
-  // useEffect(() => {
-  //   dispatch(getBookmarks());
-  // }, [bookmarks]);
 
   function handleClick(id: number) {
     if (bookmarks.find((bookmark) => bookmark.id === id)) {

@@ -11,7 +11,7 @@ import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import ScrollToTop from '../components/ScollToTop/ScrollToTop';
 
-function Root() {
+export default function Root() {
   const dispatch: any = useAppDispatch();
   const currentUrl = useLocation();
 
@@ -21,9 +21,7 @@ function Root() {
   useEffect(() => {
     dispatch(getRandomHikes());
     dispatch(getHikes());
-    if (token) {
-      dispatch(getBookmarks());
-    }
+    dispatch(getBookmarks());
   }, []);
 
   // on récupère l'URL pour surveiller lorsqu'elle change
@@ -50,9 +48,4 @@ function Root() {
       )}
     </div>
   );
-}
-
-export default Root;
-function getBookmark(): any {
-  throw new Error('Function not implemented.');
 }

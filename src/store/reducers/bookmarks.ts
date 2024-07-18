@@ -84,8 +84,8 @@ export const bookmarksReducer = createReducer(initialState, (builder) => {
       state.isLoading = true;
     })
     .addCase(getBookmarks.fulfilled, (state, action) => {
-      state.isLoading = false;
       state.bookmarks = action.payload;
+      state.isLoading = false;
     })
     .addCase(deleteBookmark.fulfilled, (state, action) => {
       state.bookmarks = state.bookmarks.filter(
@@ -93,6 +93,6 @@ export const bookmarksReducer = createReducer(initialState, (builder) => {
       );
     })
     .addCase(addBookmark.fulfilled, (state, action) => {
-      state.bookmarks.push(action.payload);
+      state.bookmarks.push(action.payload.hike);
     });
 });

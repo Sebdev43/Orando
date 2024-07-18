@@ -15,16 +15,12 @@ import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';
-import IconButton from '@mui/joy/IconButton';
-import Favorite from '@mui/icons-material/Favorite';
 import Bookmarks from '../BookmarkActions/BookmarkActions';
-import { useEffect } from 'react';
+
 // import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 
 // Le composant actuel
 export default function CardComponent(hike: Hike) {
-  console.log('On essaie de passer par CardComponent pour ??');
-
   return (
     <>
       {/* <NavLink to={`/randonnees/${hike.id}`} className="no-decoration"> */}
