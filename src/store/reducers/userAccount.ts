@@ -7,11 +7,13 @@ import {
 import axios from 'axios';
 import { Credential, PatchCredential } from '../../@types/form';
 import { RootState } from '../store';
+import { Message } from '@mui/icons-material';
 
 // Le typage des données
 type UserAccountProps = {
   credentials: Credential;
   editingField: string | null;
+  errorUserDatas: string;
 };
 
 const initialState: UserAccountProps = {
@@ -21,6 +23,8 @@ const initialState: UserAccountProps = {
     email: '',
     password: '',
   },
+  errorUserDatas: '',
+
   editingField: null,
 };
 
@@ -77,8 +81,8 @@ export const patchUserDatas = createAsyncThunk(
       console.log('dans le try', data);
 
       return data;
-    } catch (error) {
-      throw new Error('Une erreur est survenue');
+    } catch (errors: any) {
+      throw new Error(errors.response.data.errors[0].msg);
     }
   }
 );
@@ -97,12 +101,15 @@ export const deleteAccount = createAsyncThunk(
       });
       return data;
     } catch (error) {
-      throw new Error('Une erreur est survenue');
+      console.log(error);
     }
   }
 );
 
 export const actionToLogout = createAction('USER/LOGOUT');
+export const clearErrorUserDatas = createAction(
+  'USER/CLEAR_USER_ERROR_MESSAGE'
+);
 
 export const userAccountReducer = createReducer(initialState, (builder) => {
   builder
@@ -118,11 +125,18 @@ export const userAccountReducer = createReducer(initialState, (builder) => {
     })
 
     // Patch user datas
+    .addCase(patchUserDatas.rejected, (state, action) => {
+      state.errorUserDatas = action.error.message as string;
+      console.log(state.errorUserDatas);
+    })
     .addCase(patchUserDatas.fulfilled, (state, action) => {
       state.credentials.nickname = action.payload.nickname;
       state.credentials.localisation = action.payload.localisation;
       state.credentials.email = action.payload.email;
       state.credentials.password = action.payload.password;
+    })
+    .addCase(clearErrorUserDatas, (state) => {
+      state.errorUserDatas = '';
     })
     // Change editing field
     .addCase(changeEditingField, (state, action) => {

@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { useNavigate } from 'react-router-dom';
-
 import {
   actionToLogout,
   changeEditingField,
+  clearErrorUserDatas,
   deleteAccount,
   getUserDatas,
   patchUserDatas,
@@ -16,8 +15,8 @@ import './FormAccount.scss';
 import locations from '../../../data/departements.json';
 
 // Le typage des données
-import { FormData } from '../../../@types/form';
 import { tokenLogout } from '../../../store/reducers/userConnection';
+import { Button } from '@mui/material';
 
 // ----------------------------------  Le composant actuel
 export default function FormAccount() {
@@ -26,43 +25,29 @@ export default function FormAccount() {
 
   // on récupère les propriétés du state userAccount dans userAccountReducer
   const credentials = useAppSelector((state) => state.userAccount.credentials);
-  const editingField = useAppSelector(
-    (state) => state.userAccount.editingField
+  const errorUserDatas = useAppSelector(
+    (state) => state.userAccount.errorUserDatas
   );
 
   // on récupère les infos dans le reducer (qui viennent de la BDD)
   useEffect(() => {
     dispatch(getUserDatas());
-  }, [dispatch, credentials]);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>();
+  }, [credentials, dispatch]);
 
   // button ok
-  const onSubmit = (data: FormData) => {
-    if (data.nickname === credentials.nickname) {
-      return dispatch(changeEditingField(null));
-    }
-    console.log('Dans le submit : ', data);
-    dispatch(patchUserDatas(data as any));
-    handleCancel();
-  };
 
   // button cancel
   const handleCancel = () => {
     dispatch(changeEditingField(null));
   };
-
+  // button logout
   const handleLogout = () => {
     localStorage.removeItem('token');
     dispatch(tokenLogout());
     dispatch(actionToLogout());
     navigate('/');
   };
-
+  //  button delete
   const handleDeleteAccount = () => {
     dispatch(deleteAccount());
     dispatch(actionToLogout());
@@ -70,207 +55,101 @@ export default function FormAccount() {
     navigate('/');
   };
 
+  // button réinit
+  const handleReinitPassword = () => {
+    navigate('/connexion/reset');
+  };
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>, field?: string) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const testValue = formData.get(`${field}`);
+    const data = {
+      [`${field}`]: testValue,
+    };
+    console.log(data);
+    dispatch(patchUserDatas(data));
+    dispatch(clearErrorUserDatas());
+  };
+
   // Le rendu final du composant
   return (
-    <section className="form-account">
+    <section className="form">
       <h2>Modifier le compte</h2>
+      <p className="form__error-message">
+        {errorUserDatas ? errorUserDatas : ''}
+      </p>
 
-      {/* Nickname */}
-      <section className="form-account__field">
-        <label>Pseudo :</label>
-        {editingField === 'nickname' ? (
-          <section>
-            <input
-              type="text"
-              {...register('nickname', {
-                required: 'Vous devez choisir un pseudo',
-                minLength: {
-                  value: 5,
-                  message: 'La longueur minimale est de 5 caractères',
-                },
-                maxLength: {
-                  value: 20,
-                  message: 'La longueur maximale est de 20 caractères',
-                },
-                pattern: {
-                  value:
-                    /^(?! )(?!.* $)(?!.* {2})(?=.{1,20}$)(?=(?:[^a-zA-Z0-9]*[a-zA-Z0-9]){5})[\w\W]*$/i,
-                  message: "Le pseudo n'est pas valide",
-                },
-              })}
-            />
-            <button className="btn-cancel" type="button" onClick={handleCancel}>
-              Annuler
-            </button>
-            <button type="button" onClick={handleSubmit(onSubmit)}>
-              OK
-            </button>{' '}
-            <br />
-            {errors.nickname?.message}
-          </section>
-        ) : (
-          <section>
-            <span>{credentials.nickname}</span>
-            <button
-              type="button"
-              onClick={() => dispatch(changeEditingField('nickname'))}
-            >
-              Modifier
-            </button>
-          </section>
-        )}
-      </section>
+      <form
+        className="form__container"
+        onSubmit={(e) => onSubmit(e, 'nickname')}
+      >
+        <label className="form__labels-form" htmlFor="test">
+          Pseudo :
+        </label>
+        <input
+          className="form__field"
+          type="text"
+          placeholder={credentials.nickname}
+          name="nickname"
+          id="test"
+          // value={credentials.nickname}
+        />
+        <input type="submit" className="form__update-button" />
+      </form>
 
-      {/* Localisation */}
-      <section className="form-account__field">
-        <label>Département :</label>
-        {editingField === 'localisation' ? (
-          <section>
-            <select
-              className="form__field__select"
-              {...register('localisation', {
-                required: 'Vous devez choisir un département',
-              })}
-            >
-              <option value={credentials.localisation}>
-                {credentials.localisation}
-              </option>
-              {locations.map((location) => (
-                <option key={location.code} value={location.nom}>
-                  {location.nom}
-                </option>
-              ))}
-            </select>
-            <button className="btn-cancel" type="button" onClick={handleCancel}>
-              Annuler
-            </button>
-            <button type="button" onClick={handleSubmit(onSubmit)}>
-              OK
-            </button>
-            <br />
-            {errors.localisation?.message}
-          </section>
-        ) : (
-          <section>
-            <span>{credentials.localisation}</span>
-            <button
-              type="button"
-              onClick={() => dispatch(changeEditingField('localisation'))}
-            >
-              Modifier
-            </button>
-          </section>
-        )}
-      </section>
+      <form
+        className="form__container"
+        onSubmit={(e) => onSubmit(e, 'localisation')}
+      >
+        <label className="form__labels-form" htmlFor="localisation">
+          Localisation :{' '}
+        </label>
+        <select name="localisation" id="">
+          <option value={credentials.localisation}>
+            {credentials.localisation}
+          </option>
+          {locations.map((location) => (
+            <option key={location.code} value={location.nom}>
+              {location.nom}
+            </option>
+          ))}
+        </select>
+        <input type="submit" className="form__update-button" />
+      </form>
 
-      {/* Email */}
-      <section className="form-account__field">
-        <label>Adresse mail :</label>
-        {editingField === 'email' ? (
-          <section>
-            <input
-              type="email"
-              {...register('email', {
-                required: "L'email est obligatoire",
-                pattern: {
-                  value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
-                  message: "L'email n'est pas valide",
-                },
-              })}
-            />
-            <button className="btn-cancel" type="button" onClick={handleCancel}>
-              Annuler
-            </button>
-            <button type="button" onClick={handleSubmit(onSubmit)}>
-              OK
-            </button>
-            <br />
-            {errors.email?.message}
-          </section>
-        ) : (
-          <section>
-            <span>{credentials.email}</span>
-            <button
-              type="button"
-              onClick={() => dispatch(changeEditingField('email'))}
-            >
-              Modifier
-            </button>
-          </section>
-        )}
-      </section>
+      <form className="form__container" onSubmit={(e) => onSubmit(e, 'email')}>
+        <label className="form__labels-form" htmlFor="email">
+          Email :
+        </label>
+        <input
+          className="form__field"
+          type="mail"
+          placeholder={credentials.email}
+          name="email"
+          id="test"
+          // value={credentials.email}
+        />
+        <input type="submit" className="form__update-button" />
+      </form>
 
-      {/* Password */}
-      <section className="form-account__field">
-        <label>Mot de passe :</label>
-        {editingField === 'password' ? (
-          <section>
-            <input
-              type="text"
-              placeholder="Mot de passe actuel"
-              {...register('currentPassword', {
-                required: 'Vous devez entrer votre mot de passe actuel',
-              })}
-            />
-            <input
-              type="text"
-              placeholder="Nouveau mot de passe"
-              {...register('newPassword', {
-                required: 'Vous devez choisir un mot de passe',
-                minLength: {
-                  value: 8,
-                  message: 'Le mot de passe doit avoir au moins 8 caractères',
-                },
-                maxLength: {
-                  value: 20,
-                  message: 'Le mot de passe doit avoir moins de 20 caractères',
-                },
-                pattern: {
-                  value:
-                    /^(?! )(?!.* $)(?!.* {2})(?=.{1,20}$)(?=(?:[^a-zA-Z0-9]*[a-zA-Z0-9]){8})(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[\w\W]*$/i,
-                  message:
-                    'Le mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre et un caractère speciaux',
-                },
-              })}
-            />
-            <input
-              type="text"
-              placeholder="Confirmer le nouveau mot de passe"
-              {...register('confirmPassword', {
-                required: 'Vous devez confirmer votre mot de passe',
-              })}
-            />
-
-            <button className="btn-cancel" type="button" onClick={handleCancel}>
-              Annuler
-            </button>
-            <button type="button" onClick={handleSubmit(onSubmit)}>
-              OK
-            </button>
-          </section>
-        ) : (
-          <section>
-            <span>***********</span>
-            <button
-              type="button"
-              onClick={() => dispatch(changeEditingField('password'))}
-            >
-              Modifier
-            </button>
-            <br />
-            {errors.currentPassword?.message}
-            {errors.newPassword?.message}
-            {errors.confirmPassword?.message}
-          </section>
-        )}
-      </section>
-
-      <button className="form-account__logout" onClick={handleLogout}>
+      <button className="form__reinit-button" onClick={handleReinitPassword}>
+        Réinitialiser le mot de passe
+      </button>
+      <button className="form__send-button" onClick={handleLogout}>
         Se déconnecter
       </button>
-      <button className="form-account__delete" onClick={handleDeleteAccount}>
-        SUPPRIMER LE COMPTE
-      </button>
+      <br />
+
+      <Button
+        className="delete-button"
+        onClick={handleDeleteAccount}
+        variant="contained"
+        color="error"
+        sx={{ width: '160px', margin: '0 auto', marginTop: '4rem' }}
+      >
+        Supprimer mon compte
+      </Button>
     </section>
   );
 }

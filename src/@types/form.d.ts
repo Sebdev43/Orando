@@ -41,4 +41,5 @@ export type FormData = {
   currentPassword: string;
   newPassword: string;
   confirmPassword: string;
+  test: string;
 };

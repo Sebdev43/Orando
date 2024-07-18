@@ -1,100 +1,77 @@
-.form-account {
+.form {
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   max-width: 80%;
   margin: 0 auto;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 
   h2 {
     text-align: center;
-    color: #000000;
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  &__error-message {
+    color: red;
+    text-align: center;
+  }
+  &__labels-form {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+  }
+  &__container {
+    margin: 1.5rem auto;
+    text-align: center;
+  }
+  &__field,
+  select {
+    padding: 8px;
+    margin-right: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #e9ecef;
   }
 
-  .form-account__field {
-    max-width: 80%;
-    margin: auto;
-    margin-bottom: 2.5rem;
+  &__span {
+    font-style: italic;
+    font-weight: lighter;
+  }
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  &__update-button {
+    max-width: 150px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    margin-top: 0.3rem;
+    padding: 10px;
+    background-color: #e19655cc;
 
-    label {
-      font-weight: bold;
-      display: block;
-      margin-bottom: 5px;
+    &:hover {
+      background-color: #c87e3d;
+      text-align: center;
     }
+  }
 
-    input {
-      width: 60%;
-      padding: 8px;
-      margin-right: 10px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-      background-color: #cccccc44;
-    }
+  &__send-button,
+  &__reinit-button {
+    margin: 2rem auto;
+    background-color: #a2d5cf;
+    color: black;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    max-width: 230px;
+    text-align: center;
+    transition: background-color 0.3s ease;
 
-    .form__field__select {
-      width: 60%;
-      padding: 8px;
-      margin-right: 10px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
-
-    button {
-      max-width: 150px;
-      padding: 8px 12px;
-      margin: 10px 10px;
-      cursor: pointer;
-      border: none;
-      border-radius: 4px;
-      color: white;
-      background-color: #838c3b;
-      transition: background-color 0.3s ease;
-
-      &:hover {
-        background-color: #218838;
-      }
-
-      &:last-child {
-        background-color: #e19655;
-
-        &:hover {
-          background-color: #c82333;
-        }
-      }
-    }
-
-    .btn-cancel {
-      max-width: 150px;
-      padding: 8px 12px;
-      margin: 10px 10px;
-      cursor: pointer;
-      border: none;
-      border-radius: 4px;
-      color: white;
-      background-color: #bc2828bc;
-      transition: background-color 0.3s ease;
-      &:hover {
-        background-color: #b01d1d;
-      }
-    }
-
-    span {
-      display: inline-block;
-      width: 60%;
-      padding: 8px;
-      margin-right: 10px;
-      border-radius: 4px;
-      background-color: #ccc;
-      border-radius: 4px;
-
-      button {
-        margin: 0;
-      }
+    &:hover {
+      background-color: #73bfb8;
     }
   }
 }
@@ -119,12 +96,10 @@
 .form-account__logout {
   background-color: #a2d5cf;
   color: black;
-  padding: 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   display: block;
-  margin: 20px auto;
   // width: min-max(50px, 180px);
   max-width: 180px;
   text-align: center;
@@ -132,5 +107,32 @@
 
   &:hover {
     background-color: #73bfb8;
+  }
+}
+
+.form__submit {
+  max-width: 150px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  background-color: #838c3b;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #218838;
+  }
+}
+
+.btn-cancel {
+  max-width: 150px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  background-color: #bc2828bc;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #b01d1d;
   }
 }
