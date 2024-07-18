@@ -67,7 +67,6 @@ router.post(
   "/",
   authenticateJWT,
   bookmarksValidators,
-  validateRequest,
   addBookmark
 );
 
@@ -115,7 +114,6 @@ router.delete(
   "/",
   authenticateJWT,
   bookmarksValidators,
-  validateRequest,
   removeBookmark
 );
 

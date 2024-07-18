@@ -77,7 +77,7 @@ const router = express.Router();
  *                   example: Erreur interne du serveur
  */
 
-router.post("/login",loginValidator,validateRequest, login);
+router.post("/login",loginValidator, login);
 
 /**
  * @swagger
@@ -146,7 +146,6 @@ router.post(
   "/signup",
   signupValidator,
   hashPasswordMiddleware,
-  validateRequest,
   signup
 );
 
@@ -215,7 +214,7 @@ router.get("/verify-email", verifyEmail);
  *         $ref: '#/components/responses/BadRequestError'
  */
 
-router.post("/forgot-password",forgotPasswordValidator, validateRequest, forgotPassword);
+router.post("/forgot-password",forgotPasswordValidator, forgotPassword);
 
 /**
  * @swagger
@@ -260,7 +259,7 @@ router.post("/forgot-password",forgotPasswordValidator, validateRequest, forgotP
  *                   example: "Token invalide ou expiré."
  */
 
-router.post("/reset-password",resetPasswordValidator, validateRequest, resetPassword)
+router.post("/reset-password",resetPasswordValidator, resetPassword)
 
 /**
  * @swagger
