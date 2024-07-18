@@ -45,7 +45,7 @@ const router = createBrowserRouter(
       <Route path="/connexion/reset" element={<LoginReset />} />
       <Route path="/connexion/reinit" element={<LoginReinit />} />
       <Route path="/connexion/reinit/:token" element={<LoginReinit />} />
-      <Route path="/validation/suppression" element={<AccountDelete />} />
+      <Route path="/validation/delete" element={<AccountDelete />} />
       <Route path="/mon-compte" element={<Account />} />
       <Route path="/mentions-legales" element={<Imprints />} />
       <Route

@@ -45,6 +45,8 @@ export default function FormAccount() {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>, field?: string) => {
     e.preventDefault();
+    dispatch(clearErrorUserDatas());
+
     const formData = new FormData(e.currentTarget);
     const testValue = formData.get(`${field}`);
     const data = {
@@ -52,7 +54,6 @@ export default function FormAccount() {
     };
     console.log(data);
     dispatch(patchUserDatas(data));
-    dispatch(clearErrorUserDatas());
   };
 
   // Le rendu final du composant
@@ -165,7 +166,7 @@ export default function FormAccount() {
         <Button
           className="button-delete"
           onClick={() => {
-            navigate('/validation/suppression');
+            navigate('/validation/delete');
           }}
           variant="contained"
           color="error"
