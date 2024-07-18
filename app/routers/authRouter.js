@@ -5,6 +5,7 @@ import { hashPasswordMiddleware } from "../middlewares/scryptMiddleware.js";
 import { loginValidator } from "../validators/loginValidator.js";
 import { signupValidator } from "../validators/signupValidator.js";
 import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
+import { forgotPasswordValidator } from "../validators/forgotPasswordValidator.js";
 
 const router = express.Router();
 
@@ -213,7 +214,7 @@ router.get("/verify-email", verifyEmail);
  *         $ref: '#/components/responses/BadRequestError'
  */
 
-router.post("/forgot-password", forgotPassword);
+router.post("/forgot-password",forgotPasswordValidator, validateRequest, forgotPassword);
 
 /**
  * @swagger

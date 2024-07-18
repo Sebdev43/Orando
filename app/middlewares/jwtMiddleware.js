@@ -29,37 +29,35 @@ export const authenticateJWT = async (req, res, next) => {
         next();
     } catch (err) {
         // Le JWT est expiré ou invalide
-        if (!refreshToken) {
-            return res.status(403).json({ error: 'Token invalide ou expiré et refresh token manquant' });
-        }
+        if (err.name === 'TokenExpiredError' && refreshToken) {
+            try {
+                const decodedRefreshToken = verifyRefreshToken(refreshToken);
+                const user = await usersDataMappers.findById(decodedRefreshToken.userId);
 
-        try {
-            const decodedRefreshToken = verifyRefreshToken(refreshToken);
-            const user = await usersDataMappers.findById(decodedRefreshToken.userId);
+                if (!user) {
+                    return res.status(401).json({ error: 'Utilisateur non trouvé.' });
+                }
 
-            if (!user) {
-                return res.status(401).json({ error: 'Utilisateur non trouvé.' });
+                const ip = req.ip;
+                const userAgent = req.headers['user-agent'];
+                const newToken = generateToken(user, ip, userAgent);
+                const newRefreshToken = generateRefreshToken(user);
+
+                res.cookie('refreshToken', newRefreshToken, {
+                    httpOnly: true,
+                    secure: process.env.NODE_ENV === 'production',
+                    sameSite: 'Strict',
+                    maxAge: 7 * 24 * 60 * 60 * 1000 // 7 jours
+                });
+
+                res.setHeader('Authorization', `Bearer ${newToken}`);
+                req.user = { id: user.id };
+                next();
+            } catch (refreshErr) {
+                return res.status(403).json({ error: 'Refresh token invalide' });
             }
-
-            const ip = req.ip;
-            const userAgent = req.headers['user-agent'];
-            const newToken = generateToken(user, ip, userAgent);
-            const newRefreshToken = generateRefreshToken(user);
-
-            // Mettre à jour le refresh token dans le cookie
-            res.cookie('refreshToken', newRefreshToken, {
-                httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
-                sameSite: 'Strict',
-                maxAge: 7 * 24 * 60 * 60 * 1000 // 7 jours
-            });
-
-            // Envoyer le nouveau token d'accès
-            res.setHeader('Authorization', `Bearer ${newToken}`);
-            req.user = { id: user.id };
-            next();
-        } catch (refreshErr) {
-            return res.status(403).json({ error: 'Refresh token invalide' });
+        } else {
+            next(err);
         }
     }
 };
