@@ -6,7 +6,7 @@ import {
   getHikeById,
   getRandomHikes,
 } from "../controllers/hikesController.js";
-import { validateRequest } from "../middlewares/validateReqMiddleware.js";
+
 
 /**
  * @swagger
@@ -16,7 +16,6 @@ import { validateRequest } from "../middlewares/validateReqMiddleware.js";
  */
 
 /**
- * Route pour récupérer 4 randonnées de manière aléatoire
  * @swagger
  * /hikes/random:
  *   get:
@@ -24,7 +23,7 @@ import { validateRequest } from "../middlewares/validateReqMiddleware.js";
  *     tags: [Hikes]
  *     responses:
  *       200:
- *         description: 4 randonnées aléatoires
+ *         description: Liste de 4 randonnées aléatoires
  *         content:
  *           application/json:
  *             schema:
@@ -34,53 +33,32 @@ import { validateRequest } from "../middlewares/validateReqMiddleware.js";
  *                 properties:
  *                   id:
  *                     type: integer
- *                   slug:
- *                     type: string
  *                   title:
  *                     type: string
  *                   description:
  *                     type: string
- *                   pictures:
- *                     type: array
- *                     items:
- *                       type: string
  *                   difficulty:
- *                     type: string
- *                   time:
  *                     type: integer
+ *                   time:
+ *                     type: number
  *                   distance:
  *                     type: number
  *                   localisation:
  *                     type: string
- *                   details:
- *                     type: string
- *                   gps_coordinate:
- *                     type: object
  *                   created_at:
  *                     type: string
  *                     format: date-time
  *                   updated_at:
  *                     type: string
  *                     format: date-time
- *       500:
- *         description: Erreur interne du serveur
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: Erreur interne du serveur
+ *       400:
+ *         $ref: '#/components/responses/BadRequestError'
  */
 
-router.get("/random",validateRequest, getRandomHikes);
+router.get("/random", getRandomHikes);
 
 /**
- * Route pour récupérer la liste des randonnées avec pagination et tri par date de création
+ * Route pour récupérer la liste des randonnées 
  * @swagger
  * /hikes:
  *   get:
@@ -126,24 +104,12 @@ router.get("/random",validateRequest, getRandomHikes);
  *                   updated_at:
  *                     type: string
  *                     format: date-time
- *       500:
- *         description: Erreur interne du serveur
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: Erreur interne du serveur
+ *       400:
+ *         $ref: '#/components/responses/BadRequestError'
  */
 
-router.get("/",validateRequest, getAllHikes);
+router.get("/", getAllHikes);
 /**
- * Route pour récupérer la liste des randonnées avec pagination et tri par date de création
  * @swagger
  * /hikes/pages:
  *   get:
@@ -158,7 +124,7 @@ router.get("/",validateRequest, getAllHikes);
  *         description: Le numéro de la page
  *     responses:
  *       200:
- *         description: La liste des randonnées
+ *         description: Liste paginée des randonnées
  *         content:
  *           application/json:
  *             schema:
@@ -168,53 +134,31 @@ router.get("/",validateRequest, getAllHikes);
  *                 properties:
  *                   id:
  *                     type: integer
- *                   slug:
- *                     type: string
  *                   title:
  *                     type: string
  *                   description:
  *                     type: string
- *                   pictures:
- *                     type: array
- *                     items:
- *                       type: string
  *                   difficulty:
- *                     type: string
- *                   time:
  *                     type: integer
+ *                   time:
+ *                     type: number
  *                   distance:
  *                     type: number
  *                   localisation:
  *                     type: string
- *                   details:
- *                     type: string
- *                   gps_coordinate:
- *                     type: object
  *                   created_at:
  *                     type: string
  *                     format: date-time
  *                   updated_at:
  *                     type: string
  *                     format: date-time
- *       500:
- *         description: Erreur interne du serveur
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: Erreur interne du serveur
+ *       400:
+ *         $ref: '#/components/responses/BadRequestError'
  */
 
-router.get("/pages",validateRequest, getAllHikesPages);
+router.get("/pages", getAllHikesPages);
 
 /**
- * Route pour récupérer une randonnée par son ID
  * @swagger
  * /hikes/{id}:
  *   get:
@@ -237,34 +181,26 @@ router.get("/pages",validateRequest, getAllHikesPages);
  *               properties:
  *                 id:
  *                   type: integer
- *                 slug:
- *                   type: string
  *                 title:
  *                   type: string
  *                 description:
  *                   type: string
- *                 pictures:
- *                   type: array
- *                   items:
- *                     type: string
  *                 difficulty:
- *                   type: string
- *                 time:
  *                   type: integer
+ *                 time:
+ *                   type: number
  *                 distance:
  *                   type: number
  *                 localisation:
  *                   type: string
- *                 details:
- *                   type: string
- *                 gps_coordinate:
- *                   type: object
  *                 created_at:
  *                   type: string
  *                   format: date-time
  *                 updated_at:
  *                   type: string
  *                   format: date-time
+ *       400:
+ *         $ref: '#/components/responses/BadRequestError'
  *       404:
  *         description: Randonnée non trouvée
  *         content:
@@ -274,25 +210,12 @@ router.get("/pages",validateRequest, getAllHikesPages);
  *               properties:
  *                 status:
  *                   type: string
- *                   example: error
+ *                   example: "error"
  *                 message:
  *                   type: string
- *                   example: Randonnée non trouvée
- *       500:
- *         description: Erreur interne du serveur
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: Erreur interne du serveur
+ *                   example: "Randonnée non trouvée"
  */
 
-router.get("/:id",validateRequest, getHikeById);
+router.get("/:id", getHikeById);
 
 export default router;

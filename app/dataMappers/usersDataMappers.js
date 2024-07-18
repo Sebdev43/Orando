@@ -9,10 +9,10 @@ class usersDataMappers extends coreDataMappers {
 
   /**
    * Création d'un compte utilisateur
-   * @param {TEXT} nickname - Pseudo de l'utilisateur
-   * @param {TEXT} localisation - Département de l'utilisateur
-   * @param {TEXT} email - Email de l'utilisateur soumis à un DOMAIN
-   * @param {TEXT} hashedPassword - Mot de passe de l'utilisateur haché
+   * @param {string} nickname - Pseudo de l'utilisateur
+   * @param {string} localisation - Département de l'utilisateur
+   * @param {string} email - Email de l'utilisateur soumis à un DOMAIN
+   * @param {string} hashedPassword - Mot de passe de l'utilisateur haché
    * @returns {Object} - Détails de la relation création d'utilisateur
    */
   async createUser(nickname, localisation, email, hashedPassword) {
@@ -25,13 +25,10 @@ class usersDataMappers extends coreDataMappers {
     return result.rows[0];
   }
 
-  /**
+    /**
    * Mise à jour d'un compte utilisateur
-   * @param {TEXT} nickname - Pseudo de l'utilisateur
-   * @param {TEXT} localisation - Département de l'utilisateur
-   * @param {TEXT} email - Email de l'utilisateur soumis à un DOMAIN
-   * @param {TEXT} password - Mot de passe de l'utilisateur
-   * @param {id} id - ID de l'utilisateur
+   * @param {number} id - ID de l'utilisateur
+   * @param {Object} fields - Champs à mettre à jour
    * @returns {Object} - Détails de la relation création d'utilisateur
    */
   async updateUser(id, fields) {
@@ -53,9 +50,10 @@ class usersDataMappers extends coreDataMappers {
     const result = await pool.query(query, values);
     return result.rows[0];
   }
-  /**
-   * Obtenir un compte utilisateur
-   * @param {TEXT} email - Email de l'utilisateur
+   /**
+   * Obtenir un compte utilisateur par son email
+   * @param {string} email - Email de l'utilisateur
+   * @returns {Object} - Détails du compte de l'utilisateur
    */
   async getUserByEmail(email) {
     const query = `SELECT * FROM users WHERE email =$1`;
@@ -66,7 +64,7 @@ class usersDataMappers extends coreDataMappers {
 
   /**
    * Obtenir un compte utilisateur par son pseudo
-   * @param {*} nickname
+   * @param {string} nickname - Pseudo de l'utilisateur
    * @returns {Object} - Détails du compte de l'utilisateur
    */
   async getUserByNickname(nickname) {
@@ -77,9 +75,9 @@ class usersDataMappers extends coreDataMappers {
   }
 
   /**
-   * Permet de mettre à jour le mot de passe haché d'un utilisateur
-   * @param {*} userId
-   * @param {*} hashedPassword
+   * Met à jour le mot de passe haché d'un utilisateur
+   * @param {number} userId - ID de l'utilisateur
+   * @param {string} hashedPassword - Mot de passe haché
    */
   async updatePassword(userId, hashedPassword) {
     const query = `UPDATE users
@@ -92,8 +90,8 @@ class usersDataMappers extends coreDataMappers {
   }
 
   /**
-   * Permet de vérifier si l'email de l'utilisateur a été vérifié
-   * @param {*} userId
+   * Vérifie si l'email de l'utilisateur a été vérifié
+   * @param {number} userId - ID de l'utilisateur
    */
   async verifyUserEmail(userId) {
     const query = `

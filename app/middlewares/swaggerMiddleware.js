@@ -96,6 +96,11 @@ const swaggerOptions = {
 // Initialisation de Swagger-jsdoc
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
 
+/**
+ * Middleware pour configurer Swagger
+ * @param {Express.Application} app - L'application Express
+ */
+
 export const swaggerMiddleware = (app) => {
   app.use(
     "/api-docs",

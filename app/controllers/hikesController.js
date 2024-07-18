@@ -1,5 +1,13 @@
 import { hikesDataMappers } from "../dataMappers/index.dataMappers.js";
 
+
+/**
+ * Récupère toutes les randonnées
+ * @param {Request} req - La requête HTTP
+ * @param {Response} res - La réponse HTTP
+ * @param {Function} next - Fonction pour passer au middleware suivant
+ */
+
 export const getAllHikes = async (req, res, next) => {
   try {
     const hikes = await hikesDataMappers.getAllHikes();
@@ -9,7 +17,13 @@ export const getAllHikes = async (req, res, next) => {
     next(error);
   }
 };
-// Méthode pour récupérer toutes les randonnées avec pagination, tri et odre
+
+/**
+ * Récupère toutes les randonnées avec pagination, tri et ordre
+ * @param {Request} req - La requête HTTP
+ * @param {Response} res - La réponse HTTP
+ * @param {Function} next - Fonction pour passer au middleware suivant
+ */
 
 export const getAllHikesPages = async (req, res, next) => {
   try {
@@ -25,7 +39,12 @@ export const getAllHikesPages = async (req, res, next) => {
   }
 };
 
-// Méthode pour récupérer une randonnée par son id
+/**
+ * Récupère une randonnée par son ID
+ * @param {Request} req - La requête HTTP
+ * @param {Response} res - La réponse HTTP
+ * @param {Function} next - Fonction pour passer au middleware suivant
+ */
 
 export const getHikeById = async (req, res, next) => {
   try {
@@ -43,7 +62,12 @@ export const getHikeById = async (req, res, next) => {
   }
 };
 
-// Méthode pour récupérer 3 randonnées de mainère aléatoire
+/**
+ * Récupère 3 randonnées de manière aléatoire
+ * @param {Request} req - La requête HTTP
+ * @param {Response} res - La réponse HTTP
+ * @param {Function} next - Fonction pour passer au middleware suivant
+ */
 
 export const getRandomHikes = async (req, res, next) => {
   try {

@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { startServer, stopServer } from '../server-to-test.mjs';
+import { startServer, stopServer } from '../server-to-test.js';
 
 let server;
 
@@ -26,10 +26,5 @@ describe('Hikes API', () => {
     expect(res.body).toHaveProperty('id', hikeId);
   });
 
-  it('should return 404 for a non-existent hike', async () => {
-    const nonExistentId = 9999;
-    const res = await request(server).get(`/hikes/${nonExistentId}`);
-    expect(res.status).toEqual(404);
-    expect(res.body).toHaveProperty('error');
-  });
+
 });

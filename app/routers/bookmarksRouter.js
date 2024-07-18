@@ -5,9 +5,9 @@ import {
   removeBookmark,
   getBookmark,
 } from "../controllers/bookmarksController.js";
-import { validateRequest } from "../middlewares/validateReqMiddleware.js";
 import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
 import { bookmarksValidators } from "../validators/bookmarksValidators.js";
+import { validateRequest } from "../middlewares/validateReqMiddleware.js";
 
 /**
  * @swagger
@@ -17,7 +17,6 @@ import { bookmarksValidators } from "../validators/bookmarksValidators.js";
  */
 
 /**
- * Route pour ajouter une randonnée dans les favoris d'un utilisateur
  * @swagger
  * /bookmarks:
  *   post:
@@ -34,6 +33,7 @@ import { bookmarksValidators } from "../validators/bookmarksValidators.js";
  *             properties:
  *               hikeId:
  *                 type: integer
+ *                 description: ID de la randonnée à ajouter en favori
  *     responses:
  *       201:
  *         description: Randonnée ajoutée dans les favoris
@@ -50,7 +50,7 @@ import { bookmarksValidators } from "../validators/bookmarksValidators.js";
  *       401:
  *         $ref: '#/components/responses/UnauthorizedError'
  *       404:
- *         description: Hike not found
+ *         description: Randonnée non trouvée
  *         content:
  *           application/json:
  *             schema:
@@ -61,18 +61,16 @@ import { bookmarksValidators } from "../validators/bookmarksValidators.js";
  *                   example: "error"
  *                 message:
  *                   type: string
- *                   example: "Randonnée non trouvée"
+ *                   example: "Aucun hike trouvé avec cet ID."
  */
 router.post(
   "/",
   authenticateJWT,
   bookmarksValidators,
-  validateRequest,
   addBookmark
 );
 
 /**
- * Route pour supprimer une randonnée des favoris d'un utilisateur
  * @swagger
  * /bookmarks:
  *   delete:
@@ -89,6 +87,7 @@ router.post(
  *             properties:
  *               hikeId:
  *                 type: integer
+ *                 description: ID de la randonnée à supprimer des favoris
  *     responses:
  *       204:
  *         description: Randonnée supprimée des favoris
@@ -97,7 +96,7 @@ router.post(
  *       401:
  *         $ref: '#/components/responses/UnauthorizedError'
  *       404:
- *         description: Bookmark not found
+ *         description: Favori non trouvé
  *         content:
  *           application/json:
  *             schema:
@@ -115,12 +114,11 @@ router.delete(
   "/",
   authenticateJWT,
   bookmarksValidators,
-  validateRequest,
+
   removeBookmark
 );
 
 /**
- * Route pour récupérer la liste des randonnées favorites d'un utilisateur
  * @swagger
  * /bookmarks:
  *   get:

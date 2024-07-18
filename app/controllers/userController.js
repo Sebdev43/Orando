@@ -2,6 +2,12 @@ import { usersDataMappers } from "../dataMappers/index.dataMappers.js";
 import { validationResult } from "express-validator";
 import { verifyPassword, hashPassword } from "../utils/passwordUtils.js";
 
+/**
+ * Met à jour les informations d'un utilisateur.
+ * @param {Request} req - La requête HTTP
+ * @param {Response} res - La réponse HTTP
+ * @param {Function} next - Fonction pour passer au middleware suivant
+ */
 
 export const updateUser = async (req, res, next) => {
   try {
@@ -23,7 +29,7 @@ export const updateUser = async (req, res, next) => {
       if (!allowedFields.includes(field)) {
         return res.status(400).json({
           status: "error",
-          message: `Le champ ${field} n'est pas autorisé.`,
+          message:  `Le champ ${field} n'est pas autorisé. Seuls les champs suivants sont autorisés : ${allowedFields.join(', ')}.`,
         });
       }
     }
@@ -75,6 +81,14 @@ export const updateUser = async (req, res, next) => {
   }
 };
 
+
+/**
+ * Récupère un utilisateur par son ID.
+ * @param {Request} req - La requête HTTP
+ * @param {Response} res - La réponse HTTP
+ * @param {Function} next - Fonction pour passer au middleware suivant
+ */
+
 export const getUserById = async (req, res, next) => {
   try {
     const userId = req.user.id;
@@ -97,6 +111,13 @@ export const getUserById = async (req, res, next) => {
     next(error);
   }
 };
+
+/**
+ * Supprime un utilisateur
+ * @param {Request} req - La requête HTTP
+ * @param {Response} res - La réponse HTTP
+ * @param {Function} next - Fonction pour passer au middleware suivant
+ */
 
 export const deleteUser = async (req, res, next) => {
   const userId = req.user.id;

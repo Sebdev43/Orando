@@ -20,6 +20,6 @@ pool.connect((error) => {
     if (error) {
         console.error("Une erreur à lieu à la connexion avec notre BDD :",error.message);
     } else {
-        console.log("Connection à la BDD réussie ! bien joué Kéké !");
+        console.log("Connection à la BDD réussie !");
     }
 });

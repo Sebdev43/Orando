@@ -1,7 +1,13 @@
 import { bookmarksDataMappers } from "../dataMappers/index.dataMappers.js";
 import { validationResult } from "express-validator";
 
-// Méthode pour ajouter une randonnée dans les favoris d'un utilisateur
+/**
+ * Ajoute une randonnée aux favoris de l'utilisateur
+ * @param {Request} req - La requête HTTP
+ * @param {Response} res - La réponse HTTP
+ * @param {Function} next - Fonction pour passer au middleware suivant
+ */
+
 export const addBookmark = async (req, res, next) => {
   try {
     const errors = validationResult(req);
@@ -36,7 +42,13 @@ export const addBookmark = async (req, res, next) => {
   }
 };
 
-// Méthode pour supprimer une randonnée des favoris d'un utilisateur
+/**
+ * Supprime une randonnée des favoris de l'utilisateur
+ * @param {Request} req - La requête HTTP
+ * @param {Response} res - La réponse HTTP
+ * @param {Function} next - Fonction pour passer au middleware suivant
+ */
+
 export const removeBookmark = async (req, res, next) => {
   try {
     const errors = validationResult(req);
@@ -63,7 +75,13 @@ export const removeBookmark = async (req, res, next) => {
   }
 };
 
-// Méthode pour récupérer les randonnées favoris d'un utilisateur
+/**
+ * Récupère les randonnées favorites de l'utilisateur
+ * @param {Request} req - La requête HTTP
+ * @param {Response} res - La réponse HTTP
+ * @param {Function} next - Fonction pour passer au middleware suivant
+ */
+
 export const getBookmark = async (req, res, next) => {
   try {
     const userId = req.user.id;
