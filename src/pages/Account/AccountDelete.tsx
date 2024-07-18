@@ -38,6 +38,7 @@ export default function AccountDelete() {
             width: '160px',
             margin: '0 auto',
             marginTop: '4rem',
+            marginBottom: '1rem',
             fontWeight: 'bold',
           }}
         >

@@ -1,13 +1,21 @@
-.form {
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 80%;
-  margin: 0 auto;
-  justify-content: center;
+@use '../../../styles/variables' as v;
+
+.form__fields-wrapper {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  margin: 2rem 0rem;
+}
+
+.form {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: 0 auto;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
   h2 {
     text-align: center;
@@ -27,14 +35,15 @@
     font-weight: bold;
     display: block;
     margin-bottom: 5px;
-    text-align: left;
   }
   &__container {
-    margin: 1.5rem auto;
-    text-align: center;
+    margin: 0.8rem auto;
   }
+
   &__field,
   select {
+    width: 230px;
+    height: 3rem;
     padding: 8px;
     margin-right: 1rem;
     border-radius: 4px;
@@ -42,105 +51,52 @@
     background-color: #e9ecef;
   }
 
-  &__span {
-    font-style: italic;
-    font-weight: lighter;
-  }
-
-  &__update-button {
+  &__button-validate {
     max-width: 150px;
+    color: black;
     cursor: pointer;
     border: none;
     border-radius: 4px;
     margin-top: 0.3rem;
     padding: 10px;
-    background-color: #e19655cc;
-
-    &:hover {
-      background-color: #c87e3d;
-      text-align: center;
-    }
-  }
-
-  &__send-button,
-  &__reinit-button {
-    margin: 2rem auto;
-    background-color: #a2d5cf;
-    color: black;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    display: block;
-    max-width: 230px;
-    text-align: center;
+    background-color: v.$color-primary;
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: #73bfb8;
+      background-color: v.$color-primary-hover;
+      text-align: center;
     }
   }
 }
 
-.form-account__delete {
-  background-color: #cc4b58;
+.form__actions-button {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+.actions__button-reset,
+.actions__button-logout {
+  width: 150px;
   color: black;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  margin-top: 0.3rem;
   padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  display: block;
-  margin: 20px auto;
-  max-width: 230px;
-  text-align: center;
+  background-color: v.$color-secondary;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #c82333;
-  }
-}
-.form-account__logout {
-  background-color: #a2d5cf;
-  color: black;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  display: block;
-  // width: min-max(50px, 180px);
-  max-width: 180px;
-  text-align: center;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #73bfb8;
+    background-color: v.$color-secondary-hover;
+    text-align: center;
   }
 }
 
-.form__submit {
-  max-width: 150px;
-  cursor: pointer;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  background-color: #838c3b;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #218838;
-  }
-}
-
-.btn-cancel {
-  max-width: 150px;
-  cursor: pointer;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  background-color: #bc2828bc;
-  transition: background-color 0.3s ease;
-  &:hover {
-    background-color: #b01d1d;
-  }
+.form__delete-account-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 // AccountDelete.tsx

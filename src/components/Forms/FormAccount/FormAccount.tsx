@@ -57,105 +57,128 @@ export default function FormAccount() {
 
   // Le rendu final du composant
   return (
-    <section className="form">
-      <h2>Modifier le compte</h2>
-      <p className="form__message-error">
-        {errorUserDatas ? errorUserDatas : ''}
-      </p>
-      <p className="form__message-success">
-        {fulfiledMessage ? fulfiledMessage : ''}
-      </p>
+    <main className="form">
+      <header>
+        <h2>Modifier le compte</h2>
+        <p className="form__message-error">
+          {errorUserDatas ? errorUserDatas : ''}
+        </p>
+        <p className="form__message-success">
+          {fulfiledMessage ? fulfiledMessage : ''}
+        </p>
+      </header>
 
-      <form
-        className="form__container"
-        onSubmit={(e) => onSubmit(e, 'nickname')}
-      >
-        <label className="form__labels-form" htmlFor="test">
-          Pseudo :
-        </label>
-        <input
-          className="form__field"
-          type="text"
-          placeholder={credentials.nickname}
-          name="nickname"
-          id="test"
-          // value={credentials.nickname}
-        />
-        <input type="submit" className="form__update-button" value={'OK'} />
-      </form>
+      <main className="form__fields-wrapper">
+        <form
+          className="form__container"
+          onSubmit={(e) => onSubmit(e, 'nickname')}
+        >
+          <label className="form__labels-form" htmlFor="test">
+            Pseudo :
+          </label>
+          <input
+            className="form__field"
+            type="text"
+            placeholder={credentials.nickname}
+            name="nickname"
+            id="test"
+            // value={credentials.nickname}
+          />
+          <input
+            type="submit"
+            className="form__button-validate button"
+            value={'OK'}
+          />
+        </form>
 
-      <form
-        className="form__container"
-        onSubmit={(e) => onSubmit(e, 'localisation')}
-      >
-        <label className="form__labels-form" htmlFor="localisation">
-          Localisation :{' '}
-        </label>
-        <select name="localisation" id="">
-          <option value={credentials.localisation}>
-            {credentials.localisation}
-          </option>
-          {locations.map((location) => (
-            <option key={location.code} value={location.nom}>
-              {location.nom}
+        <form
+          className="form__container"
+          onSubmit={(e) => onSubmit(e, 'localisation')}
+        >
+          <label className="form__labels-form" htmlFor="localisation">
+            Localisation :{' '}
+          </label>
+          <select name="localisation" id="">
+            <option value={credentials.localisation}>
+              {credentials.localisation}
             </option>
-          ))}
-        </select>
-        <input type="submit" className="form__update-button" value={'OK'} />
-      </form>
+            {locations.map((location) => (
+              <option key={location.code} value={location.nom}>
+                {location.nom}
+              </option>
+            ))}
+          </select>
+          <input
+            type="submit"
+            className="form__button-validate button"
+            value={'OK'}
+          />
+        </form>
 
-      <form className="form__container" onSubmit={(e) => onSubmit(e, 'email')}>
-        <label className="form__labels-form" htmlFor="email">
-          Email :
-        </label>
-        <input
-          className="form__field"
-          type="mail"
-          placeholder={credentials.email}
-          name="email"
-          id="test"
-          // value={credentials.email}
-        />
-        <input type="submit" className="form__update-button" value={'OK'} />
-      </form>
+        <form
+          className="form__container"
+          onSubmit={(e) => onSubmit(e, 'email')}
+        >
+          <label className="form__labels-form" htmlFor="email">
+            Email :
+          </label>
+          <input
+            className="form__field"
+            type="mail"
+            placeholder={credentials.email}
+            name="email"
+            id="test"
+            // value={credentials.email}
+          />
+          <input
+            type="submit"
+            className="form__button-validate button"
+            value={'OK'}
+          />
+        </form>
+      </main>
 
-      <button
-        className="form__reinit-button"
-        onClick={() => {
-          navigate('/connexion/reset');
-        }}
-      >
-        Réinitialiser le mot de passe
-      </button>
-      <button
-        className="form__send-button"
-        onClick={() => {
-          localStorage.removeItem('token');
-          dispatch(tokenLogout());
-          dispatch(actionToLogout());
-          navigate('/');
-        }}
-      >
-        Se déconnecter
-      </button>
-      <br />
+      <section className="form__actions-button">
+        <button
+          className="actions__button-reset"
+          onClick={() => {
+            navigate('/connexion/reset');
+          }}
+        >
+          Réinitialiser le mot de passe
+        </button>
+        <button
+          className="actions__button-logout"
+          onClick={() => {
+            localStorage.removeItem('token');
+            dispatch(tokenLogout());
+            dispatch(actionToLogout());
+            navigate('/');
+          }}
+        >
+          Se déconnecter
+        </button>
+        <br />
+      </section>
 
-      <Button
-        className="delete-button"
-        onClick={() => {
-          navigate('/validation/suppression');
-        }}
-        variant="contained"
-        color="error"
-        sx={{
-          width: '160px',
-          margin: '0 auto',
-          marginTop: '4rem',
-          fontWeight: 'bold',
-        }}
-      >
-        Supprimer mon compte
-      </Button>
-    </section>
+      <footer className="form__delete-account-wrapper">
+        <Button
+          className="button-delete"
+          onClick={() => {
+            navigate('/validation/suppression');
+          }}
+          variant="contained"
+          color="error"
+          sx={{
+            width: '160px',
+            margin: '0 auto',
+            marginTop: '4rem',
+            fontWeight: 'bold',
+          }}
+        >
+          Supprimer mon compte
+        </Button>
+      </footer>
+    </main>
   );
 }
