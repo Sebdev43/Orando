@@ -7,12 +7,14 @@ import { Hike } from '../../@types/hike';
 type BookmarksProps = {
   bookmarks: Hike[];
   isLoading: boolean;
+  isFavorite: boolean;
 };
 
 //------------------------------  Le composant actuel
 const initialState: BookmarksProps = {
   bookmarks: [],
   isLoading: false,
+  isFavorite: false,
 };
 
 export const getBookmarks = createAsyncThunk(
@@ -60,7 +62,9 @@ export const addBookmark = createAsyncThunk(
     try {
       const rootstate = thunkAPI.getState() as RootState;
       const token = rootstate.userConnection.token;
+
       console.log('dans le try ADD', id);
+
       const { data } = await axios.post(
         '/api/bookmarks',
         { hikeId: id },

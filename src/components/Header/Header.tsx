@@ -25,7 +25,6 @@ function Header() {
 
   return (
     <header className="header">
-      {/* Bouton connexion et compte en fonction de si connecté ou non */}
       {isMobile ? (
         ''
       ) : (
@@ -37,6 +36,7 @@ function Header() {
           }
           to={expiredToken ? '/connexion' : '/mon-compte'}
         >
+          {/* Le bouton Se Connecter évolue selon l'état connecté ou non */}
           {expiredToken ? 'Se connecter' : 'Mon compte'}
         </NavLink>
       )}

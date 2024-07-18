@@ -17,13 +17,10 @@ import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';
 import Bookmarks from '../BookmarkActions/BookmarkActions';
 
-// import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
-
 // Le composant actuel
 export default function CardComponent(hike: Hike) {
   return (
     <>
-      {/* <NavLink to={`/randonnees/${hike.id}`} className="no-decoration"> */}
       <Card
         className="card"
         variant="outlined"
@@ -38,13 +35,18 @@ export default function CardComponent(hike: Hike) {
           </AspectRatio>
         </CardOverflow>
 
-        {/* Card content */}
-        <CardContent>
-          <h3 className="card__title">{hike.title}</h3>
-          <div className="card__description">
-            <Typography level="body-sm">{cutText(hike.description)}</Typography>
-          </div>
-        </CardContent>
+        {/* Le nav link qui permet de voyager vers la page de la randonne */}
+        <NavLink to={`/randonnees/${hike.id}`} className="no-decoration">
+          {/* Card content */}
+          <CardContent>
+            <h3 className="card__title">{hike.title}</h3>
+            <div className="card__description">
+              <Typography level="body-sm">
+                {cutText(hike.description)}
+              </Typography>
+            </div>
+          </CardContent>
+        </NavLink>
 
         {/* Card footer */}
         <CardOverflow variant="soft">
@@ -107,7 +109,6 @@ export default function CardComponent(hike: Hike) {
           </CardContent>
         </CardOverflow>
       </Card>
-      {/* </NavLink> */}
     </>
   );
 }

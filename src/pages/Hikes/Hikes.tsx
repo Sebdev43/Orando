@@ -1,16 +1,23 @@
 import { Hike } from '../../@types/hike';
-import { useAppSelector } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import './Hikes.scss';
 
 // components
 import HikeFilters from '../../components/HikesFilters/HikeFilters';
 import SkeletonLoader from '../../components/SkeletonLoader/SkeletonLoader';
 import CardComponent from '../../components/CardComponent/CardComponent';
+import { useEffect } from 'react';
+import { getBookmarks } from '../../store/reducers/bookmarks';
 
-// Le composant actuel est la page Voir les randonnées
+//------------------------------ Le composant actuel est la page Voir les randonnées
 export default function Hikes() {
   const loading = useAppSelector((state) => state.hikesAll.loading);
   const hikes = useAppSelector((state) => state.hikesAll.hikesList);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getBookmarks());
+  }, []);
 
   const currentDifficulty = useAppSelector(
     (state) => state.hikesFilters.difficulty

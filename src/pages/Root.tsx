@@ -21,7 +21,7 @@ export default function Root() {
   useEffect(() => {
     dispatch(getRandomHikes());
     dispatch(getHikes());
-    dispatch(getBookmarks());
+    token && dispatch(getBookmarks());
   }, []);
 
   // on récupère l'URL pour surveiller lorsqu'elle change

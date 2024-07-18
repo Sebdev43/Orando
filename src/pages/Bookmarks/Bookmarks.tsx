@@ -10,7 +10,7 @@ import { Hike } from '../../@types/hike';
 
 // components
 import HikeFilters from '../../components/HikesFilters/HikeFilters';
-import SkeletonLoader from '../../components/SkeletonLoader/SkeletonLoader';
+// import SkeletonLoader from '../../components/SkeletonLoader/SkeletonLoader';
 import CardComponent from '../../components/CardComponent/CardComponent';
 import { isTokenExpired } from '../../utils/decodeJwt';
 

@@ -70,19 +70,21 @@ export default function NavTel() {
             >
               Voir les randos
             </MenuItem>
-            <MenuItem
-              sx={{
-                ':hover': {
-                  backgroundColor: '#73bfb7',
-                },
-              }}
-              onClick={() => {
-                popupState.close();
-                handleMenuClick('/favoris');
-              }}
-            >
-              Favoris
-            </MenuItem>
+            {isLogged && (
+              <MenuItem
+                sx={{
+                  ':hover': {
+                    backgroundColor: '#73bfb7',
+                  },
+                }}
+                onClick={() => {
+                  popupState.close();
+                  handleMenuClick('/favoris');
+                }}
+              >
+                Favoris
+              </MenuItem>
+            )}
             <MenuItem
               sx={{
                 ':hover': {
