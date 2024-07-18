@@ -5,6 +5,11 @@ import jwt from 'jsonwebtoken';
 
 const secretKey = process.env.JWT_SECRET;
 
+/**
+ * Middleware pour valider les champs de la requête de réinitialisation du mot de passe.
+ * @module resetPasswordValidator
+ */
+
 export const resetPasswordValidator = [
     body('token')
         .exists().withMessage('Le token de réinitialisation est requis.')
@@ -39,6 +44,15 @@ export const resetPasswordValidator = [
 
             req.user = user;  
         }),
+
+    /**
+     * Middleware pour gérer les erreurs de validation.
+     * @param {Request} req - La requête HTTP
+     * @param {Response} res - La réponse HTTP
+     * @param {Function} next - La fonction middleware suivante
+     * @returns {Response|undefined}
+     */
+
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {

@@ -1,8 +1,8 @@
 import { body, validationResult } from 'express-validator';
 
 /**
- * Validateur pour la route de connexion.
- * Vérifie que l'email et le mot de passe sont valides.
+ * Middleware pour valider les champs de la requête de connexion.
+ * @module loginValidator
  */
 export const loginValidator = [
   body('email')
@@ -11,6 +11,14 @@ export const loginValidator = [
   body('password')
     .exists().withMessage('Le mot de passe est requis.')
     .isString().withMessage('Le mot de passe doit être une chaîne de caractères.'),
+    /**
+     * Middleware pour gérer les erreurs de validation.
+     * @param {Request} req - La requête HTTP
+     * @param {Response} res - La réponse HTTP
+     * @param {Function} next - La fonction middleware suivante
+     * @returns {Response|undefined}
+     */
+
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

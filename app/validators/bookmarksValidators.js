@@ -1,6 +1,10 @@
 import { body, validationResult } from 'express-validator';
 import { hikesDataMappers } from '../dataMappers/index.dataMappers.js';
 
+/**
+ * Middleware pour valider les champs de la requête d'ajout de favori.
+ * @module bookmarksValidators
+ */
 export const bookmarksValidators = [
     body('hikeId')
         .exists().withMessage('Le paramètre hikeId est requis.')
@@ -11,6 +15,15 @@ export const bookmarksValidators = [
                 return Promise.reject('Aucun hike trouvé avec cet ID.');
             }
         }),
+
+    /**
+     * Middleware pour gérer les erreurs de validation.
+     * @param {Request} req - La requête HTTP
+     * @param {Response} res - La réponse HTTP
+     * @param {Function} next - La fonction middleware suivante
+     * @returns {Response|undefined}
+     */
+
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {

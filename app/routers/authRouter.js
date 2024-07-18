@@ -14,12 +14,11 @@ const router = express.Router();
  * @swagger
  * tags:
  *   - name: Accounts
- *     description: Operations related to user accounts
+ *     description: Opérations liées aux comptes utilisateurs
  */
 
 
 /**
- * Route pour se connecter et obtenir un token JWT
  * @swagger
  * /accounts/login:
  *   post:
@@ -102,8 +101,8 @@ router.post("/login",loginValidator, login);
  *               password:
  *                 type: string
  *     responses:
- *       '201':
- *         description: User created successfully
+ *       201:
+ *         description: Utilisateur créé avec succès. Un email de vérification a été envoyé.
  *         content:
  *           application/json:
  *             schema:
@@ -112,10 +111,10 @@ router.post("/login",loginValidator, login);
  *                 message:
  *                   type: string
  *                   example: Utilisateur créé avec succès. Un email de vérification a été envoyé.
- *       '400':
+ *       400:
  *         $ref: '#/components/responses/BadRequestError'
- *       '409':
- *         description: Email or nickname already in use
+ *       409:
+ *         description: Email ou pseudo déjà utilisé
  *         content:
  *           application/json:
  *             schema:
@@ -126,9 +125,9 @@ router.post("/login",loginValidator, login);
  *                   example: error
  *                 message:
  *                   type: string
- *                   example: Email or nickname already in use
- *       '500':
- *         description: Internal server error
+ *                   example: Email ou pseudo déjà utilisé
+ *       500:
+ *         description: Erreur interne du serveur
  *         content:
  *           application/json:
  *             schema:
@@ -139,7 +138,7 @@ router.post("/login",loginValidator, login);
  *                   example: error
  *                 message:
  *                   type: string
- *                   example: Internal server error
+ *                   example: Erreur interne du serveur
  */
 
 router.post(
@@ -154,29 +153,29 @@ router.post(
 /**
  * @swagger
  * /accounts/verify-email:
- *  get:
- *   summary: Vérifier l'email de l'utilisateur
- *   description: Vérifie l'email de l'utilisateur
- *   tags: [Accounts]
- *   parameters:
- *     - in: query
- *       name: token
- *       schema:
- *         type: string
- *       required: true
- *       description: Token de vérification de l'email
- *   responses:
- *     200:
- *       description: Email vérifié avec succès
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               message:
- *                 type: string
- *                 example: Email vérifié avec succès
- *     400:
+ *   get:
+ *     summary: Vérifier l'email de l'utilisateur
+ *     description: Vérifie l'email de l'utilisateur
+ *     tags: [Accounts]
+ *     parameters:
+ *       - in: query
+ *         name: token
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Token de vérification de l'email
+ *     responses:
+ *       200:
+ *         description: Email vérifié avec succès
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Email vérifié avec succès
+ *       400:
  *         $ref: '#/components/responses/BadRequestError'
  */
 
@@ -248,7 +247,7 @@ router.post("/forgot-password",forgotPasswordValidator, forgotPassword);
  *       400:
  *         $ref: '#/components/responses/BadRequestError'
  *       403:
- *         description: Invalid or expired token
+ *         description: Token invalide ou expiré
  *         content:
  *           application/json:
  *             schema:
@@ -256,7 +255,7 @@ router.post("/forgot-password",forgotPasswordValidator, forgotPassword);
  *               properties:
  *                 error:
  *                   type: string
- *                   example: "Token invalide ou expiré."
+ *                   example: Token invalide ou expiré.
  */
 
 router.post("/reset-password",resetPasswordValidator, resetPassword)
@@ -279,7 +278,7 @@ router.post("/reset-password",resetPasswordValidator, resetPassword)
  *               properties:
  *                 message:
  *                   type: string
- *                   example: "Déconnexion réussie"
+ *                   example: Déconnexion réussie
  *       401:
  *         $ref: '#/components/responses/UnauthorizedError'
  */
