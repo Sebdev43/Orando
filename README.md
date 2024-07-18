@@ -16,6 +16,7 @@ Ce qu'il est requis pour commencer avec notre projet...
 - [npm](https://www.npmjs.com/)
 - [Postgis](https://postgis.net/)
 - [Sqitch](https://sqitch.org/)
+- [Docker](https://www.docker.com/)
 
 ### Installation
 
@@ -73,18 +74,45 @@ Pour démarrer le serveur http:
 npm run dev
 ```
 
+## Documentation de l'API
+
+Ce projet utilise Swagger pour documenter l'API RESTful.
+Swagger permet de générer une documentation interactive et facilement navigable, ce qui facilite la compréhension et l'uilisation des différentes endpointss de l'API.
+
+### Accès à la documentation Swagger
+
+Pour accéder à la documentation Swagger, démarrez l'application et rendez-vous à l'URL suivante dans votre navigateur : http://localhost:4000/api-docs/
+
 ## Fabriqué avec
 
 Voici les programmes/logiciels/ressources que vous nous avons utilisé pour développer notre projet :
 
 - [Express](https://expressjs.com/)
+- [Express-rate-limit](https://www.npmjs.com/package/express-rate-limit)
+- [Express-validator](https://www.npmjs.com/package/express-validator)
 - [PG](https://www.npmjs.com/package/pg)
 - [Dot-env](https://www.npmjs.com/package/dotenv)
+- [File-stream-rotator](https://www.npmjs.com/package/file-stream-rotator)
 - [Swagger](https://swagger.io/resources/open-api/)
 - [Js-Doc](https://jsdoc.app/)
-- [Bcrypt](https://www.bcrypt.fr/)
-- [jsonwebtoken](https://jwt.io/)
+- [Scrypt](https://www.npmjs.com/package/scrypt)
+- [Jsonwebtoken](https://jwt.io/)
+- [Helmet](https://www.npmjs.com/package/helmet)
+- [Morgan](https://www.npmjs.com/package/morgan)
+- [Node-cache](https://www.npmjs.com/package/node-cache)
+- [Nodemailer](https://www.npmjs.com/package/nodemailer)
+- [Cors](https://www.npmjs.com/package/cors)
 - [Vs-code](https://code.visualstudio.com/)
+
+### Sécurité de l'Application
+
+Pour une documentation complète sur les aspects de sécurité de cette application, veuillez consulter le fichier [Sécurité de l'application](./doc/La-sécurité-de-l'app.md)
+
+### Plusieurs documentation disponible si besoin
+
+- [Installation de Docker](./doc/docker-install.md)
+- [Sauvegarde automatique de PostgreSQL sur Gdrive](./doc/Documentation%20de%20mise%20en%20place%20des%20sauvergardes%20de%20la%20Bdd.md)
+- [Vérification de l'Email et Authentification JWT](./doc/Documentation%20pour%20la%20mise%20en%20place%20de%20la%20vérification%20de%20l'email%20et%20l'authentification%20JWT.md)
 
 ## Auteurs
 

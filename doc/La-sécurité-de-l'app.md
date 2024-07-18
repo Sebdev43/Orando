@@ -1,4 +1,4 @@
-# Meusures de Sécurité de l'application
+# Mesures de Sécurité de l'application
 
 Notre Api utilise plusieurs meusures de sécurité pour protéger les données les données des utilisateurs et garantir le bon fonctionnement du système. Voici une description des principales mesures de sécurité mises en place.
 
