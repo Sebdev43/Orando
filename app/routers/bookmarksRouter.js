@@ -5,9 +5,9 @@ import {
   removeBookmark,
   getBookmark,
 } from "../controllers/bookmarksController.js";
-import { validateRequest } from "../middlewares/validateReqMiddleware.js";
 import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
 import { bookmarksValidators } from "../validators/bookmarksValidators.js";
+import { validateRequest } from "../middlewares/validateReqMiddleware.js";
 
 /**
  * @swagger

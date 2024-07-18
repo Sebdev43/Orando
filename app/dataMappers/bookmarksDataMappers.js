@@ -7,11 +7,11 @@ class bookmarksDataMappers extends coreDataMappers {
   }
 
   /**
- * Ajouter une randonnée dans les favoris d'un utilisateur
- * @param {number} userId - ID de l'utilisateur
- * @param {number} hikeId - ID de la randonnée
- * @returns {Object} - Détails de la relation du favoris
- */
+   * Ajouter une randonnée dans les favoris d'un utilisateur
+   * @param {number} userId - ID de l'utilisateur
+   * @param {number} hikeId - ID de la randonnée
+   * @returns {Object} - Détails de la relation du favoris
+   */
   async addBookmark(userId, hikeId) {
     const query = `
     WITH inserted AS (
@@ -33,11 +33,11 @@ class bookmarksDataMappers extends coreDataMappers {
   }
 
   /**
- * Spupprimer une randonnée des favoris d'un utilisateur
- * @param {number} userId - ID de l'utilisateur
- * @param {number} hikeId - ID de la randonnée
- * @returns {boolean} - Succès de la suppression
- */
+   * Spupprimer une randonnée des favoris d'un utilisateur
+   * @param {number} userId - ID de l'utilisateur
+   * @param {number} hikeId - ID de la randonnée
+   * @returns {boolean} - Succès de la suppression
+   */
   async removeBookmark(userId, hikeId) {
     const query = `
       DELETE FROM users_has_hikes
@@ -49,10 +49,10 @@ class bookmarksDataMappers extends coreDataMappers {
   }
 
   /**
- * Route pour récupérer la liste des randonnées favorites d'un utilisateur
- * @param {number} userId - ID de l'utilisateur
- * @returns {Array} - Liste des randonnées favorites
- */
+   * Route pour récupérer la liste des randonnées favorites d'un utilisateur
+   * @param {number} userId - ID de l'utilisateur
+   * @returns {Array} - Liste des randonnées favorites
+   */
   async getBookmark(userId) {
     const query = `
         SELECT 
@@ -66,16 +66,5 @@ class bookmarksDataMappers extends coreDataMappers {
     const result = await pool.query(query, values);
     return result.rows;
   }
-
-
-
-  /**
-   * Supprime un utilisateur et ses bookmarks associés
-   * @param {number} userId - ID de l'utilisateur à supprimer
-   * @returns {boolean} - Retourne true si l'utilisateur a été supprimé
-   */
-
-};
+}
 export default new bookmarksDataMappers();
-
-

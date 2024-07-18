@@ -32,18 +32,16 @@ const corsOptions = {
     }
   },
   methods: "GET, POST, PATCH, DELETE, OPTIONS",
-  allowedHeaders:
-    "Authorization, Content-Type, X-Customer-Software, X-My-Custom,Accept, Accept-Language",
+  allowedHeaders: "Authorization, Content-Type, X-Customer-Software, X-My-Custom,Accept, Accept-Language",
   credentials: true,
 };
 
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-  standardHeaders: true,
-  legacyHeaders: false,
+  windowMs: 15 * 60 * 1000,  // 15 minutes
+  max: 100,  // Limite de 100 requêtes par fenêtre de 15 minutes
+  standardHeaders: true,  // Retourne les informations de limite dans les en-têtes `RateLimit-*`
+  legacyHeaders: false,  // Désactive les en-têtes `X-RateLimit-*`
 });
-
 
 app.use(express.static('./public'));
 app.use(cors(corsOptions));
@@ -60,7 +58,7 @@ initializeRoutes(app);
 
 app.set("trust proxy", 1);
 
-//Middleware pour les routes non trouvées
+// Middleware pour les routes non trouvées
 app.use((req, res, next) => {
   const error = new Error("Route non trouvée");
   error.statusCode = 404;
@@ -68,9 +66,9 @@ app.use((req, res, next) => {
 });
 
 // Middleware de gestion des erreurs
-
 app.use(errorHandler);
 
+// Redirection vers HTTPS
 app.use((req, res, next) => {
   if (req.headers["x-forwarded-proto"] !== "https") {
     return res.redirect(`https://${req.headers.host}${req.url}`);
@@ -78,7 +76,7 @@ app.use((req, res, next) => {
   next();
 });
 
-
+// Démarrage du serveur
 if (process.env.NODE_ENV !== "test") {
   app.listen(port, () => {
     console.log(`Serveur en cours d'exécution sur http://localhost:${port}`);

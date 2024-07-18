@@ -22,8 +22,8 @@ class hikesDataMappers extends coreDataMappers {
   }
   /**
    * Retourne toutes les randonnées avec pagination
-   * @param {*} page
-   * @param {*} itemsPerPage
+   * @param {number} page - Numéro de la page
+   * @param {number} itemsPerPage - Nombre d'éléments par page
    * @returns {Array} - Liste des randonnées
    */
   async getAllHikesPages(page, itemsPerPage = 10) {
@@ -43,7 +43,7 @@ class hikesDataMappers extends coreDataMappers {
 
   /**
    * Retourne quatre randonnées de manière aléatoires
-   * @param {*} limit
+   * @param {number} limit - Limite du nombre de randonnées à retournées
    * @returns {Array} - Liste des 4 randonnées aléatoires
    */
   async getRandomHikes(limit = 4) {
@@ -62,7 +62,7 @@ class hikesDataMappers extends coreDataMappers {
   }
   /**
    * Retourne une randonnée par son ID
-   * @param {*} id
+   * @param {number} id - Id de la randonnée
    * @returns {Object} - Détails de la randonnée
    */
   async getHikeById(id) {

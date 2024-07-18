@@ -2,6 +2,13 @@ import { verifyToken, verifyRefreshToken, generateToken, generateRefreshToken } 
 import { usersDataMappers } from '../dataMappers/index.dataMappers.js';
 import { isTokenRevoked, revokeToken } from '../utils/node-Cache.js';
 
+/**
+ * Middleware pour authentifier les requêtes JWT
+ * @param {Request} req - La requête HTTP
+ * @param {Response} res - La réponse HTTP
+ * @param {Function} next - Fonction pour passer au middleware suivant
+ */
+
 export const authenticateJWT = async (req, res, next) => {
     const authHeader = req.headers['authorization'];
     const refreshToken = req.cookies.refreshToken;
@@ -18,7 +25,7 @@ export const authenticateJWT = async (req, res, next) => {
         }
 
         const decoded = verifyToken(token);
-        req.user = { id: decoded.userId }; // Assurez-vous que `decoded` contient `userId`
+        req.user = { id: decoded.userId }; 
         next();
     } catch (err) {
         // Le JWT est expiré ou invalide

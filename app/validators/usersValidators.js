@@ -2,6 +2,7 @@ import { body, validationResult } from 'express-validator';
 import { usersDataMappers } from '../dataMappers/index.dataMappers.js';
 import { verifyPassword } from '../utils/passwordUtils.js';
 
+// Validators individuels
 export const passwordValidator = body('newPassword')
     .optional()
     .isLength({ min: 8 }).withMessage('Le mot de passe doit contenir au moins 8 caractères')
@@ -44,7 +45,13 @@ export const currentPasswordValidator = body('currentPassword')
         }
     });
 
-export const validateUpdateUser = [
+// Combinaison des validators
+export const userValidators = [
+    body('nickname').optional().isString().withMessage('Le pseudo doit être une chaîne de caractères'),
+    body('localisation').optional().isString().withMessage('La localisation doit être une chaîne de caractères'),
+    body('email').optional().isEmail().withMessage('Adresse email invalide'),
+    body('currentPassword').optional().isString().withMessage('Le mot de passe actuel doit être une chaîne de caractères'),
+    body('newPassword').optional().isString().withMessage('Le nouveau mot de passe doit être une chaîne de caractères'),
     currentPasswordValidator,
     passwordValidator,
     nicknameValidator,
@@ -61,11 +68,3 @@ export const validateUpdateUser = [
         next();
     }
 ];
-export const userValidators = [
-    body('nickname').optional().isString().withMessage('Le pseudo doit être une chaîne de caractères'),
-    body('localisation').optional().isString().withMessage('La localisation doit être une chaîne de caractères'),
-    body('email').optional().isEmail().withMessage('Adresse email invalide'),
-    body('currentPassword').optional().isString().withMessage('Le mot de passe actuel doit être une chaîne de caractères'),
-    body('newPassword').optional().isString().withMessage('Le nouveau mot de passe doit être une chaîne de caractères'),
-];
-

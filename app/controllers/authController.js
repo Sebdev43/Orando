@@ -12,6 +12,14 @@ import { validationResult } from "express-validator";
 
 const secretKey = process.env.JWT_SECRET;
 
+
+/**
+ * Connecte un utilisateur et génère un token JWT
+ * @param {Request} req - La requête HTTP
+ * @param {Response} res - La réponse HTTP
+ * @param {Function} next - Fonction pour passer au middleware suivant
+ */
+
 export const login = async (req, res, next) => {
   const { email, password } = req.body;
   const errors = validationResult(req);
@@ -37,7 +45,7 @@ export const login = async (req, res, next) => {
       if (!user.email_verified) {
           return res.status(403).json({
               status: "error",
-              message: "Email non vérifié.",
+              message: "Email non vérifié. Veuillez vérifier votre email pour continuer.",
           });
       }
 
@@ -67,7 +75,13 @@ export const login = async (req, res, next) => {
   }
 };
 
-//Fonction D'incription
+/**
+ * Inscrit un nouvel utilisateur
+ * @param {Request} req - La requête HTTP
+ * @param {Response} res - La réponse HTTP
+ * @param {Function} next - Fonction pour passer au middleware suivant
+ */
+
 export const signup = async (req, res, next) => {
   const { nickname, localisation, email, password } = req.body;
   const errors = validationResult(req);
@@ -120,6 +134,13 @@ export const signup = async (req, res, next) => {
   }
 };
 
+/**
+ * Inscrit un nouvel utilisateur
+ * @param {Request} req - La requête HTTP
+ * @param {Response} res - La réponse HTTP
+ * @param {Function} next - Fonction pour passer au middleware suivant
+ */
+
 export const verifyEmail = async (req, res, next) => {
   try {
     const { token } = req.query;
@@ -140,9 +161,24 @@ export const verifyEmail = async (req, res, next) => {
     await usersDataMappers.verifyUserEmail(userId);
     return res.status(200).json({ message: "Email vérifié avec succès." });
   } catch (error) {
+    if (error.name === 'JsonWebTokenError') {
+      error.statusCode = 400;
+      error.message = 'Token de vérification invalide';
+    }
+    if (error.name === 'TokenExpiredError') {
+      error.statusCode = 400;
+      error.message = 'Token de vérification expiré';
+    }
     next(error);
   }
 };
+
+/**
+ * Demande la réinitialisation du mot de passe
+ * @param {Request} req - La requête HTTP
+ * @param {Response} res - La réponse HTTP
+ * @param {Function} next - Fonction pour passer au middleware suivant
+ */
 
 export const forgotPassword = async (req, res, next) => {
   const { email } = req.body;
@@ -171,6 +207,13 @@ export const forgotPassword = async (req, res, next) => {
   }
 };
 
+/**
+ * Réinitialise le mot de passe de l'utilisateur
+ * @param {Request} req - La requête HTTP
+ * @param {Response} res - La réponse HTTP
+ * @param {Function} next - Fonction pour passer au middleware suivant
+ */
+
 export const resetPassword = async (req, res, next) => {
   const { token, newPassword } = req.body;
   const errors = validationResult(req);
@@ -192,13 +235,22 @@ export const resetPassword = async (req, res, next) => {
 
     return res.status(200).json({ message: "Mot de passe réinitialisé avec succès." });
   } catch (error) {
-    return res.status(403).json({ error: "Token invalide ou expiré." });
+    if (error.name === 'JsonWebTokenError') {
+      return res.status(403).json({ error: 'Token de réinitialisation invalide' });
+    }
+    if (error.name === 'TokenExpiredError') {
+      return res.status(403).json({ error: 'Token de réinitialisation expiré' });
+    }
+    next(error);
   }
 };
 
-export const getConnectionPage = (req, res) => {
-  res.sendFile("createAccount.html", { root: "public" });
-};
+/**
+ * Rafraîchit le token d'accès
+ * @param {Request} req - La requête HTTP
+ * @param {Response} res - La réponse HTTP
+ * @param {Function} next - Fonction pour passer au middleware suivant
+ */
 
 export const refreshToken = async (req, res, next) => {
   const refreshToken = req.cookies.refreshToken;
@@ -229,9 +281,23 @@ export const refreshToken = async (req, res, next) => {
 
       return res.status(200).json({ token: newToken });
   } catch (error) {
+    if (error.name === 'JsonWebTokenError') {
+      return res.status(403).json({ error: 'Refresh token invalide' });
+    }
+    if (error.name === 'TokenExpiredError') {
+      return res.status(403).json({ error: 'Refresh token expiré' });
+    }
       next(error);
   }
 };
+
+
+/**
+ * Déconnecte l'utilisateur en révoquant son token
+ * @param {Request} req - La requête HTTP
+ * @param {Response} res - La réponse HTTP
+ * @param {Function} next - Fonction pour passer au middleware suivant
+ */
 
 export const logout = async (req, res, next) => {
   const authHeader = req.headers['authorization'];
@@ -251,3 +317,4 @@ export const logout = async (req, res, next) => {
       res.status(401).json({ error: 'Token manquant' });
   }
 };
+

@@ -5,7 +5,7 @@ import {
   deleteUser,
 } from "../controllers/userController.js";
 
-import { userValidators, validateUpdateUser } from "../validators/usersValidators.js";
+import { userValidators } from "../validators/usersValidators.js";
 import { validateRequest } from "../middlewares/validateReqMiddleware.js";
 import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
 
@@ -115,7 +115,7 @@ router.get("/", authenticateJWT, getUserById);
  *                   type: string
  *                   example: "Utilisateur non trouvé"
  */
-router.patch("/", authenticateJWT, validateUpdateUser, userValidators,  validateRequest, updateUser);
+router.patch("/", authenticateJWT, userValidators,  validateRequest, updateUser);
 
 /**
  * @swagger

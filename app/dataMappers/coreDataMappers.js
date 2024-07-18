@@ -17,7 +17,7 @@ class coreDataMappers {
 
   /**
    * Retourne un élément de la table par son id
-   * @param {*} id
+   * @param {number} id - ID de l'élément
    * @returns {Object} - Détails de l'élément de la table
    */
 
@@ -30,7 +30,7 @@ class coreDataMappers {
 
   /**
    * Permets de supprimer un élément de la table par son id
-   * @param {*} id
+   * @param {number} id - ID de l'élément
    * @returns {Boolean} - Retourne true si l'élément a été supprimé
    */
   async deleteById(id) {

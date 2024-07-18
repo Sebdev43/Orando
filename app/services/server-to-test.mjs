@@ -1,4 +1,4 @@
-import app from '../../server.mjs';
+import app from '../../server.js';
 
 let server;
 

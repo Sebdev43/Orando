@@ -6,7 +6,7 @@ import {
   getHikeById,
   getRandomHikes,
 } from "../controllers/hikesController.js";
-import { validateRequest } from "../middlewares/validateReqMiddleware.js";
+
 
 /**
  * @swagger
@@ -77,7 +77,7 @@ import { validateRequest } from "../middlewares/validateReqMiddleware.js";
  *                   example: Erreur interne du serveur
  */
 
-router.get("/random",validateRequest, getRandomHikes);
+router.get("/random", getRandomHikes);
 
 /**
  * Route pour récupérer la liste des randonnées avec pagination et tri par date de création
@@ -141,7 +141,7 @@ router.get("/random",validateRequest, getRandomHikes);
  *                   example: Erreur interne du serveur
  */
 
-router.get("/",validateRequest, getAllHikes);
+router.get("/", getAllHikes);
 /**
  * Route pour récupérer la liste des randonnées avec pagination et tri par date de création
  * @swagger
@@ -211,7 +211,7 @@ router.get("/",validateRequest, getAllHikes);
  *                   example: Erreur interne du serveur
  */
 
-router.get("/pages",validateRequest, getAllHikesPages);
+router.get("/pages", getAllHikesPages);
 
 /**
  * Route pour récupérer une randonnée par son ID
@@ -293,6 +293,6 @@ router.get("/pages",validateRequest, getAllHikesPages);
  *                   example: Erreur interne du serveur
  */
 
-router.get("/:id",validateRequest, getHikeById);
+router.get("/:id", getHikeById);
 
 export default router;

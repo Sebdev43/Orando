@@ -1,5 +1,5 @@
 import express from "express";
-import { login, verifyEmail, signup, getConnectionPage, forgotPassword, resetPassword, logout, refreshToken } from "../controllers/authController.js";
+import { login, verifyEmail, signup, forgotPassword, resetPassword, logout, refreshToken } from "../controllers/authController.js";
 import { validateRequest } from "../middlewares/validateReqMiddleware.js";
 import { hashPasswordMiddleware } from "../middlewares/scryptMiddleware.js";
 import { loginValidator } from "../validators/loginValidator.js";
@@ -75,7 +75,7 @@ const router = express.Router();
  *                   example: Erreur interne du serveur
  */
 
-router.post("/login",loginValidator, login);
+router.post("/login",loginValidator,validateRequest, login);
 
 /**
  * @swagger
@@ -144,6 +144,7 @@ router.post(
   "/signup",
   signupValidator,
   hashPasswordMiddleware,
+  validateRequest,
   signup
 );
 
@@ -212,7 +213,7 @@ router.get("/verify-email", verifyEmail);
  *         $ref: '#/components/responses/BadRequestError'
  */
 
-router.post("/forgot-password",validateRequest, forgotPassword);
+router.post("/forgot-password", forgotPassword);
 
 /**
  * @swagger
@@ -257,7 +258,7 @@ router.post("/forgot-password",validateRequest, forgotPassword);
  *                   example: "Token invalide ou expiré."
  */
 
-router.post("/reset-password", validateRequest, resetPassword)
+router.post("/reset-password", resetPassword)
 
 /**
  * @swagger
@@ -313,9 +314,6 @@ router.post('/logout', authenticateJWT, logout);
  */
 router.post("/refresh", refreshToken);
 
-// route Kevin test d'affichage
-
-router.get('/connection', getConnectionPage);
 
 
 export default router;
