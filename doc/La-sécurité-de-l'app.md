@@ -10,12 +10,12 @@ Notre Api utilise plusieurs meusures de sécurité pour protéger les données l
 app.use(helmet({ contentSecurityPolicy: false }));
 ```
 
-## 2. Protection contre les Attaques XSS avec `xss-clean`
+## 2. Protection contre les Attaques XSS avec `xss`
 
-[XSS Clean](https://github.com/jsonmaur/xss-clean) est utilisé pour prévenir les attaques de type cross-site scripting (XSS). Cette bibliothèque nettoie les entrées utilisateur pour éliminer les scripts malveillants.
+[XSS](https://www.npmjs.com/package/xss) est utilisé pour prévenir les attaques de type cross-site scripting (XSS). Cette bibliothèque nettoie les entrées utilisateur pour éliminer les scripts malveillants pour l'utiliser un faut créer un middelware.
 
 ```javascript
-app.use(xss());
+app.use(xssMiddleware);
 ```
 
 ## 3. Limitation du Taux de Requête avec `express-rate-limit`

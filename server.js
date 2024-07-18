@@ -3,7 +3,7 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
-import xss from "xss-clean";
+import xssMiddleware from "./app/middlewares/xssMiddleware.js";
 import cookieParser from "cookie-parser";
 import logger from "./app/middlewares/loggerMiddleware.js";
 import { initializeRoutes, initializeSwagger } from "./app/index.app.js";
@@ -50,7 +50,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(limiter);
-app.use(xss());
+app.use(xssMiddleware);
 app.use(logger);
 
 initializeSwagger(app);
