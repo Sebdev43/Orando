@@ -266,7 +266,7 @@ router.post("/reset-password",resetPasswordValidator, resetPassword)
  * /accounts/logout:
  *   post:
  *     summary: Déconnecte l'utilisateur en révoquant son token
- *     tags: [Auth]
+ *     tags: [Accounts]
  *     security:
  *       - bearerAuth: []
  *     responses:
@@ -290,7 +290,7 @@ router.post('/logout', authenticateJWT, logout);
  * /accounts/refresh:
  *   post:
  *     summary: Rafraîchir le token d'accès
- *     tags: [Authentication]
+ *     tags: [Accounts]
  *     responses:
  *       200:
  *         description: Token rafraîchi avec succès
