@@ -6,6 +6,7 @@ import { loginValidator } from "../validators/loginValidator.js";
 import { signupValidator } from "../validators/signupValidator.js";
 import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
 import { forgotPasswordValidator } from "../validators/forgotPasswordValidator.js";
+import { resetPasswordValidator } from "../validators/resetPasswordValidator.js";
 
 const router = express.Router();
 
@@ -259,7 +260,7 @@ router.post("/forgot-password",forgotPasswordValidator, validateRequest, forgotP
  *                   example: "Token invalide ou expiré."
  */
 
-router.post("/reset-password", resetPassword)
+router.post("/reset-password",resetPasswordValidator, validateRequest, resetPassword)
 
 /**
  * @swagger
