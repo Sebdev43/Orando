@@ -5,6 +5,7 @@ import {
 } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { FormReinitData } from '../../@types/form';
+import { isTokenExpired } from '../../utils/decodeJwt';
 
 type initialStateProps = {
   token: string | null;
@@ -14,7 +15,7 @@ type initialStateProps = {
 };
 
 const initialState: initialStateProps = {
-  token: localStorage.getItem('token') || null, //! Vérifier la validité du token
+  token: '',
   serverResponse: '',
   isLogged: false,
   resetMessage: '',
@@ -74,8 +75,8 @@ export const userConnectionReducer = createReducer(initialState, (builder) => {
     })
     .addCase(postLoginDatas.fulfilled, (state, action) => {
       localStorage.setItem('token', action.payload.token);
-      state.token = action.payload.token;
       state.isLogged = true;
+      state.token = action.payload.token;
     })
     .addCase(clearServerResponse, (state) => {
       state.serverResponse = '';

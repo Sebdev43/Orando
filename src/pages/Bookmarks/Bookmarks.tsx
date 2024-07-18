@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getBookmarks } from '../../store/reducers/bookmarks';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import './Bookmarks.scss';
 
@@ -12,16 +12,18 @@ import { Hike } from '../../@types/hike';
 import HikeFilters from '../../components/HikesFilters/HikeFilters';
 import SkeletonLoader from '../../components/SkeletonLoader/SkeletonLoader';
 import CardComponent from '../../components/CardComponent/CardComponent';
+import { isTokenExpired } from '../../utils/decodeJwt';
 
 //------------------------------- Le composant actuel est la page Favoris
 export default function Bookmarks() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  const bookmarks = useAppSelector(
-    (state) => state.bookmarks.bookmarks
-  ) as Hike[];
+  const bookmarks = useAppSelector((state) => state.bookmarks.bookmarks);
+  const isLoading = useAppSelector((state) => state.bookmarks.isLoading);
 
-  const token = useAppSelector((state) => state.userConnection.token);
+  const token = localStorage.getItem('token') as string;
+  const expiredToken = isTokenExpired(token);
 
   // On actualise la propriété bookmarks du state à chacun de ses changements
   useEffect(() => {
@@ -46,36 +48,41 @@ export default function Bookmarks() {
     return difficultyMatches && locationMatches;
   });
 
-  return (
+  return expiredToken ? (
+    <p className="bookmarks__not-logged">
+      Vous devez vous <NavLink to="/connexion">connecter</NavLink>
+      &nbsp;pour voir vos Favoris
+    </p>
+  ) : (
     <>
       <header>
         <h1>Favoris</h1>
       </header>
-      <main className="bookmarks">
-        {token ? (
-          <>
-            <section className="bookmarks__filters">
-              <HikeFilters data={bookmarks} />
-            </section>
-            <section className="bookmarks__list">
-              {filteredBookmarks.length > 0 ? (
-                filteredBookmarks.map((hike: Hike, index: number) => (
-                  <CardComponent key={index} {...hike} />
-                ))
-              ) : (
-                <p className="bookmarks__not-found">
-                  Vous n'avez pas de favoris
-                </p>
-              )}
-            </section>
-          </>
-        ) : (
-          <p className="bookmarks__not-logged">
-            Vous devez vous <NavLink to="/connexion">connecter</NavLink>
-            &nbsp;pour voir vos Favoris
-          </p>
-        )}
-      </main>
+
+      {isLoading ? (
+        <SkeletonLoader skeletonNumber={10} />
+      ) : (
+        <main className="bookmarks">
+          {filteredBookmarks && (
+            <>
+              <section className="bookmarks__filters">
+                <HikeFilters data={bookmarks} />
+              </section>
+              <section className="bookmarks__list">
+                {filteredBookmarks.length === 0 ? (
+                  <p className="bookmarks__not-found">
+                    Vous n'avez pas de favoris
+                  </p>
+                ) : (
+                  filteredBookmarks.map((hike: Hike, index: number) => (
+                    <CardComponent key={index} {...hike} />
+                  ))
+                )}
+              </section>
+            </>
+          )}
+        </main>
+      )}
     </>
   );
 }

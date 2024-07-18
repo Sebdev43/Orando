@@ -8,10 +8,13 @@ import './Header.scss';
 import IconBreadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import NavTel from '../Nav/NavTel';
 
+// utils
+import { isTokenExpired } from '../../utils/decodeJwt';
+
 // Le composant actuel
 function Header() {
-  const tokenStore = useAppSelector((state) => state.userConnection.token);
-  const tokenStorage = localStorage.getItem('token');
+  const token = localStorage.getItem('token');
+  const expiredToken = isTokenExpired(token as string) as boolean;
 
   // Récupération des états provenants du store que l'on stocke en copie locale
   const widthMediaScreen = useAppSelector(
@@ -32,9 +35,9 @@ function Header() {
               ? 'menu-link menu-link--active header__top-button'
               : 'menu-link header__top-button'
           }
-          to={tokenStore || tokenStorage ? '/mon-compte' : '/connexion'}
+          to={expiredToken ? '/connexion' : '/mon-compte'}
         >
-          {tokenStore || tokenStorage ? 'Mon compte' : 'Se connecter'}
+          {expiredToken ? 'Se connecter' : 'Mon compte'}
         </NavLink>
       )}
 

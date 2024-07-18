@@ -1,18 +1,21 @@
-import React, { useEffect } from 'react';
 import FormAccount from '../../components/Forms/FormAccount/FormAccount';
-import { useAppSelector } from '../../hooks/redux';
+import { isTokenExpired } from '../../utils/decodeJwt';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 // Le composant actuel est la page Mon compte
 function Account() {
-  const tokenStore = useAppSelector((state) => state.userConnection.token);
-  const tokenStorage = localStorage.getItem('token');
+  const token = localStorage.getItem('token') as string;
+  const expiredToken = isTokenExpired(token);
 
   return (
     <section>
-      {tokenStore || tokenStorage ? (
-        <FormAccount />
+      {expiredToken ? (
+        <p className="bookmarks__not-logged">
+          Vous devez vous <NavLink to="/connexion">connecter</NavLink>
+          &nbsp;pour voir vos Favoris
+        </p>
       ) : (
-        <p>Veuillez vous connecter pour accéder à votre compte.</p>
+        <FormAccount />
       )}
     </section>
   );

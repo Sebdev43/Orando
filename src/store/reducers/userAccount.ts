@@ -1,14 +1,12 @@
+import { RootState } from '../store';
 import {
   createAction,
   createAsyncThunk,
   createReducer,
-  isRejected,
 } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { Credential, PatchCredential } from '../../@types/form';
-import { RootState } from '../store';
-import { Message } from '@mui/icons-material';
 
+import { Credential, PatchCredential } from '../../@types/form';
 // Le typage des données
 type UserAccountProps = {
   credentials: Credential;

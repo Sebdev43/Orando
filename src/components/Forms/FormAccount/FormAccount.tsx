@@ -34,9 +34,9 @@ export default function FormAccount() {
     dispatch(getUserDatas());
   }, [credentials, dispatch]);
 
-  // button ok
+  // TODO button ok
 
-  // button cancel
+  // TODO button cancel
   const handleCancel = () => {
     dispatch(changeEditingField(null));
   };
@@ -47,7 +47,7 @@ export default function FormAccount() {
     dispatch(actionToLogout());
     navigate('/');
   };
-  //  button delete
+  //  button delete account
   const handleDeleteAccount = () => {
     dispatch(deleteAccount());
     dispatch(actionToLogout());

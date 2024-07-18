@@ -10,19 +10,27 @@ import { Button } from '@mui/joy';
 
 // Le typage des données
 import { FormReinitData } from '../../../@types/form';
+import { isTokenExpired } from '../../../utils/decodeJwt';
 
 //------------------------------------------- Le composant actuel
 export default function FormReinit() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  // je récupère le token dans l'URL
+  // je récupère le token dans l'URL que je décode pour vérifier l'expiration
   const location = useLocation();
-  // console.log(location);
   const searchParams = new URLSearchParams(location.search);
-  // console.log(searchParams);
   const urlToken = searchParams.get('token');
-  // console.log(urlToken);
+
+  // TODO a vérifier si ça marche sur le site
+  // jwt-decode
+  const expired = isTokenExpired(urlToken);
+
+  if (expired) {
+    console.log('Token is expired');
+  } else {
+    console.log('Token is still valid');
+  }
 
   const {
     register,
