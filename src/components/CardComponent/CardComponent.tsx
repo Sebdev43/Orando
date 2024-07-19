@@ -21,8 +21,6 @@ import Bookmarks from '../BookmarkActions/BookmarkActions';
 
 // Le composant actuel
 export default function CardComponent(hike: Hike) {
-  const navigate = useNavigate();
-
   const token = useAppSelector((state) => state.userConnection.token) as string;
   const tokenIsExpired = isTokenExpired(token);
 

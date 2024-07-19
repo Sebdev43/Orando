@@ -51,7 +51,7 @@ export default function FormLogin() {
 
   // Le rendu, en fonction de si l'utilisateur est connecté ou non
   return isLogged ? (
-    ''
+    'Vous êtes connecté'
   ) : (
     <form className="form__login" onSubmit={handleSubmit(onSubmit)}>
       <span style={{ color: 'red', textAlign: 'center' }}>
@@ -98,7 +98,9 @@ export default function FormLogin() {
         <span className="error__password">{errors?.password?.message}</span>
       </section>
 
-      <NavLink to="/connexion/reset">réinitialiser le mot de passe</NavLink>
+      <NavLink className="form-account__forgot-password" to="/connexion/reset">
+        réinitialiser le mot de passe
+      </NavLink>
 
       <input className="form-account__favorites" type="submit" />
     </form>

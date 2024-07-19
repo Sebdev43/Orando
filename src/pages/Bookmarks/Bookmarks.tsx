@@ -26,7 +26,7 @@ export default function Bookmarks() {
 
   // On actualise la propriété bookmarks du state à chacun de ses changements
   useEffect(() => {
-    dispatch(getBookmarks());
+    expiredToken ? null : dispatch(getBookmarks());
   }, []);
 
   // On récupère les propriétés du state hikesFilters dans hikesFiltersReducer
