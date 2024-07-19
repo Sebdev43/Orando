@@ -144,6 +144,7 @@ export default function FormAccount() {
           className="actions__button-reset"
           onClick={() => {
             navigate('/connexion/reset');
+            // TODO installer js-cookie pour le delete ici
           }}
         >
           Réinitialiser le mot de passe
@@ -154,6 +155,8 @@ export default function FormAccount() {
             localStorage.removeItem('token');
             dispatch(tokenLogout());
             dispatch(actionToLogout());
+            // TODO installer js-cookie pour le delete ici
+
             navigate('/');
           }}
         >

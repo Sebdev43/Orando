@@ -7,6 +7,7 @@ import {
 import axios from 'axios';
 
 import { Credential, PatchCredential } from '../../@types/form';
+import { Cookie } from '@mui/icons-material';
 // Le typage des données
 type UserAccountProps = {
   credentials: Credential;

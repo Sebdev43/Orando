@@ -1,5 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Hike } from '../../@types/hike';
+import { useAppSelector } from '../../hooks/redux';
+import { isTokenExpired } from '../../utils/decodeJwt';
 import './CardComponent.scss';
 
 // Components
@@ -16,11 +18,14 @@ import CardOverflow from '@mui/joy/CardOverflow';
 import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';
 import Bookmarks from '../BookmarkActions/BookmarkActions';
-import { CardActionArea } from '@mui/material';
 
 // Le composant actuel
 export default function CardComponent(hike: Hike) {
   const navigate = useNavigate();
+
+  const token = useAppSelector((state) => state.userConnection.token) as string;
+  const tokenIsExpired = isTokenExpired(token);
+
   return (
     <>
       {' '}
@@ -31,7 +36,8 @@ export default function CardComponent(hike: Hike) {
       >
         <CardOverflow>
           {/* Bookmarks */}
-          <Bookmarks id={hike.id} />
+          {tokenIsExpired ? null : <Bookmarks id={hike.id} />}
+
           {/* Photo */}
           <AspectRatio ratio="1">
             <img src={hike.pictures[0]} loading="lazy" alt="" />

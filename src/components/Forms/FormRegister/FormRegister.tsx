@@ -166,6 +166,14 @@ export default function FormRegister() {
           <button className="form-validation" type="submit">
             S'inscrire
           </button>
+
+          <p
+            className="form-register__cgu"
+            style={{ textAlign: 'center', marginTop: '3rem', color: 'brown' }}
+          >
+            En s’inscrivant, vous acceptez nos CGU et notre politique
+            d'utilisation des données
+          </p>
         </form>
       )}
     </>

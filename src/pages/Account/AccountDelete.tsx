@@ -1,7 +1,7 @@
 import { isTokenExpired } from '../../utils/decodeJwt';
 import { useNavigate } from 'react-router-dom';
 import { tokenLogout } from '../../store/reducers/userConnection';
-import { actionToLogout } from '../../store/reducers/userAccount';
+import { deleteAccount } from '../../store/reducers/userAccount';
 import { useAppDispatch } from '../../hooks/redux';
 
 import './Account.scss';
@@ -30,9 +30,9 @@ export default function AccountDelete(): React.ReactNode {
             <Button
               className="delete-button"
               onClick={() => {
-                dispatch(tokenLogout());
-                dispatch(actionToLogout());
-                localStorage.removeItem('token');
+                dispatch(deleteAccount());
+                navigate('/');
+                // TODO installer js-cookie pour le delete ici
               }}
               variant="contained"
               color="error"

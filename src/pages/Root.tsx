@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { getHikes } from '../store/reducers/hikesAll';
 import { getRandomHikes } from '../store/reducers/hikesRandom';
 import { getBookmarks } from '../store/reducers/bookmarks';
+import { isTokenExpired } from '../utils/decodeJwt';
 import './Root.scss';
 
 // components
@@ -15,13 +16,14 @@ export default function Root() {
   const dispatch: any = useAppDispatch();
   const currentUrl = useLocation();
 
-  const token = useAppSelector((state) => state.userConnection.token);
+  const token = useAppSelector((state) => state.userConnection.token) as string;
+  const tokenIsExpired = isTokenExpired(token);
 
   // on récupère les randos dès que le composant Root est monté pour le premier rendu
   useEffect(() => {
     dispatch(getRandomHikes());
     dispatch(getHikes());
-    token && dispatch(getBookmarks());
+    tokenIsExpired ? null : dispatch(getBookmarks());
   }, []);
 
   // on récupère l'URL pour surveiller lorsqu'elle change
