@@ -9,8 +9,7 @@ const swaggerOptions = {
     info: {
       title: "API de O'rando",
       version: "1.0.0",
-      description:
-        "Ce projet vise à développer un site internet de randonnées, permettant aux utilisateurs de découvrir et de partager des itinéraires de randonnées. La partie backend de ce projet utilise Node.js pour gérer les requêtes et fournir les données nécessaires.",
+      description: "Ce projet vise à développer un site internet de randonnées, permettant aux utilisateurs de découvrir et de partager des itinéraires de randonnées. La partie backend de ce projet utilise Node.js pour gérer les requêtes et fournir les données nécessaires.",
     },
     servers: [
       {
@@ -100,19 +99,18 @@ const swaggerDocs = swaggerJSDoc(swaggerOptions);
  * Middleware pour configurer Swagger
  * @param {Express.Application} app - L'application Express
  */
-
 export const swaggerMiddleware = (app) => {
+  // Serveur de tous les fichiers statiques dans le dossier 'public'
+  app.use(express.static('public'));
+
+  // Configuration et mise en place de Swagger UI
   app.use(
     "/api-docs",
     swaggerUi.serve,
     swaggerUi.setup(swaggerDocs, {
       customCssUrl: "/swaggerCustom.css",
       customSiteTitle: "O'Rando API Documentation",
-      customfavIcon: "/logo-fond-noir.jpg",
+      customfavIcon: "/Favicon-blanc.jpg",
     })
   );
-
-  app.use("/swaggerCustom.css", express.static("public/swaggerCustom.css"));
-  app.use("/logo.jpg", express.static("public/logo.jpg"));
-  app.use("/Favicon-blanc.jpg", express.static("public/Favicon-blanc.jpg"));
 };
