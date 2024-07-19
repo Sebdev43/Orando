@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import { getBookmarks } from '../../store/reducers/bookmarks';
+import { isTokenExpired } from '../../utils/decodeJwt';
 import { Hike } from '../../@types/hike';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import './Hikes.scss';
@@ -6,17 +9,18 @@ import './Hikes.scss';
 import HikeFilters from '../../components/HikesFilters/HikeFilters';
 import SkeletonLoader from '../../components/SkeletonLoader/SkeletonLoader';
 import CardComponent from '../../components/CardComponent/CardComponent';
-import { useEffect } from 'react';
-import { getBookmarks } from '../../store/reducers/bookmarks';
 
 //------------------------------ Le composant actuel est la page Voir les randonnées
 export default function Hikes() {
-  const loading = useAppSelector((state) => state.hikesAll.loading);
-  const hikes = useAppSelector((state) => state.hikesAll.hikesList);
   const dispatch = useAppDispatch();
 
+  const loading = useAppSelector((state) => state.hikesAll.loading);
+  const hikes = useAppSelector((state) => state.hikesAll.hikesList);
+  const token = localStorage.getItem('token') as string;
+  const expiredToken = isTokenExpired(token);
+
   useEffect(() => {
-    dispatch(getBookmarks());
+    expiredToken ? null : dispatch(getBookmarks());
   }, []);
 
   const currentDifficulty = useAppSelector(

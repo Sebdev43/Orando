@@ -58,7 +58,9 @@ const router = createBrowserRouter(
 
 // Réconciliation du DOM react sur le DOM html
 root.render(
-  <Provider store={store}>
-    <RouterProvider router={router} />
-  </Provider>
+  <React.StrictMode>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  </React.StrictMode>
 );

@@ -48,7 +48,7 @@ export default function Bookmarks() {
   });
 
   return expiredToken ? (
-    <p className="bookmarks__not-logged">
+    <p className="bookmarks__not-logged" style={{ textAlign: 'center' }}>
       Vous devez vous <NavLink to="/connexion">connecter</NavLink>
       &nbsp;pour voir vos Favoris
     </p>
@@ -69,7 +69,10 @@ export default function Bookmarks() {
               </section>
               <section className="bookmarks__list">
                 {filteredBookmarks.length === 0 ? (
-                  <p className="bookmarks__not-found">
+                  <p
+                    className="bookmarks__not-found"
+                    style={{ textAlign: 'center' }}
+                  >
                     Vous n'avez pas de favoris
                   </p>
                 ) : (
