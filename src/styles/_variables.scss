@@ -1,21 +1,29 @@
-$color-primary: #d97b29cb;
-$color-primary-hover: #d97b29;
-$color-secondary: #73bfb7a9;
-$color-secondary-hover: #73bfb7;
-$color-font-primary: #282c34;
-$color-background: #f9f9f9;
-
+// Global variables
 $gutter: 1.5rem;
 
+// colors
+$color-primary: #d97b29;
+$color-primary-hover: #d97b29cb;
+$color-secondary: #a5d5d0;
+$color-secondary-hover: #73bfb7;
+
+$color-error: #fe3232;
+$color-error-hover: #f41212;
+$color-success: #c0e430;
+$color-success-hover: #c0e4307b;
+
+$color-background: #f9f9f9;
+$color-background-input: #e9ecef;
+
 // tags
-$tag-color-localisation: #9ba06780;
-$tag-color-localisation-border: #9ba067bd;
+$tag-color-localisation: #9ba067bd;
+$tag-color-localisation-border: #9ba06780;
 
-$tag-color-difficulty: #c0e4307b;
-$tag-color-difficulty-border: #c0e430;
+$tag-color-difficulty: #c0e430;
+$tag-color-difficulty-border: #c0e4307b;
 
-$tag-color-time: #a5d5d080;
-$tag-color-time-border: #a5d5d0;
+$tag-color-time: #a5d5d0;
+$tag-color-time-border: #73bfb7;
 
-$tag-color-distance: #e1975e7f;
-$tag-color-distance-border: #e1975e;
+$tag-color-distance: #d97b29;
+$tag-color-distance-border: #d97b29cb;

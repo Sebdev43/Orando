@@ -1,4 +1,4 @@
-export function formatBreadcrumbs(string) {
+export function formatBreadcrumbs(string: string) {
   // Remove hyphens between words and replace with a space
   const noHyphens =
     string.charAt(0).toUpperCase() + string.slice(1).replace(/-/g, ' ');
@@ -7,13 +7,13 @@ export function formatBreadcrumbs(string) {
   return noHyphens.replace(/\b([Ll])\s(\w)/g, "$1'$2");
 }
 
-export function formatHikeTime(time) {
+export function formatHikeTime(time: number) {
   const hours = Math.floor(time / 60);
   const minutes = time % 60;
   return `${hours} h ${minutes} min`;
 }
 
-export function cutText(text) {
+export function cutText(text: string) {
   // regex pour trouver les 25 premiers mots, utilisés dans CardComponent.
   const regex = /^(\s*\S+\s*){25}/;
 

@@ -1,3 +1,4 @@
+// Une animation qui enfonce l'élément sur lui même comme une touche de clavier
 // utilisé sur les cards
 @keyframes scale-down-center {
   0% {
@@ -8,6 +9,7 @@
   }
 }
 
+// Une animation qui apparait et disparaît en fonction du scroll
 // utilisé sur bouton scrollTopTop
 @keyframes tracking-in-expand-forward-bottom {
   0% {

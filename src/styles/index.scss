@@ -12,13 +12,6 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
-.container__background {
-  width: 90%;
-  padding: 0rem 3rem;
-  margin: auto;
-  background-color: v.$color-background;
-}
-
 #root {
   width: 80%;
   margin: auto;
@@ -27,6 +20,11 @@ body {
   body.not-found-page & {
     background-color: transparent;
   }
+}
+.container__background {
+  width: 90%;
+  padding: 0rem 3rem;
+  margin: auto;
 }
 .content {
   min-height: 110vh;
@@ -39,6 +37,7 @@ body {
   font-size: v.$gutter * 1.1;
 }
 
+// Mode SMARTPHONE
 @media screen and (max-width: 840px) {
   body {
     background-image: none;
