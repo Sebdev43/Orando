@@ -19,34 +19,36 @@ export default function AccountDelete(): React.ReactNode {
 
   return (
     <>
-      (expiredToken ? navigate('/connexion') ) : (
-      <main className="delete__account-wrapper">
-        <h1>Suppression totale du compte</h1>
-        <section className="delete__account-container">
-          <h3>Voulez vous vraiment supprimer votre compte ?</h3>
-          <span>toutes les infos seront définitivement supprimées</span>
-          <Button
-            className="delete-button"
-            onClick={() => {
-              dispatch(tokenLogout());
-              dispatch(actionToLogout());
-              localStorage.removeItem('token');
-            }}
-            variant="contained"
-            color="error"
-            sx={{
-              width: '160px',
-              margin: '0 auto',
-              marginTop: '4rem',
-              marginBottom: '1rem',
-              fontWeight: 'bold',
-            }}
-          >
-            Supprimer mon compte
-          </Button>
-        </section>
-      </main>
-      )
+      {expiredToken ? (
+        navigate('/connexion')
+      ) : (
+        <main className="delete__account-wrapper">
+          <h1>Suppression totale du compte</h1>
+          <section className="delete__account-container">
+            <h3>Voulez vous vraiment supprimer votre compte ?</h3>
+            <span>toutes les infos seront définitivement supprimées</span>
+            <Button
+              className="delete-button"
+              onClick={() => {
+                dispatch(tokenLogout());
+                dispatch(actionToLogout());
+                localStorage.removeItem('token');
+              }}
+              variant="contained"
+              color="error"
+              sx={{
+                width: '160px',
+                margin: '0 auto',
+                marginTop: '4rem',
+                marginBottom: '1rem',
+                fontWeight: 'bold',
+              }}
+            >
+              Supprimer mon compte
+            </Button>
+          </section>
+        </main>
+      )}
     </>
   );
 }

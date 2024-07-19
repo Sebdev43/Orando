@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Hike } from '../../@types/hike';
 import './CardComponent.scss';
 
@@ -16,15 +16,18 @@ import CardOverflow from '@mui/joy/CardOverflow';
 import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';
 import Bookmarks from '../BookmarkActions/BookmarkActions';
+import { CardActionArea } from '@mui/material';
 
 // Le composant actuel
 export default function CardComponent(hike: Hike) {
+  const navigate = useNavigate();
   return (
     <>
+      {' '}
       <Card
         className="card"
         variant="outlined"
-        sx={{ width: 400, height: 640 }}
+        sx={{ width: 400, height: 630 }}
       >
         <CardOverflow>
           {/* Bookmarks */}
@@ -38,7 +41,10 @@ export default function CardComponent(hike: Hike) {
         {/* Le nav link qui permet de voyager vers la page de la randonne */}
         <NavLink to={`/randonnees/${hike.id}`} className="no-decoration">
           {/* Card content */}
-          <CardContent>
+          <CardContent
+            className="card__content"
+            sx={{ maxHeight: 'fit-content' }}
+          >
             <h3 className="card__title">{hike.title}</h3>
             <div className="card__description">
               <Typography level="body-sm">
@@ -60,7 +66,8 @@ export default function CardComponent(hike: Hike) {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              padding: '10px',
+              // padding: '10px',
+              // gap: '1rem 1rem',
               backgroundColor: '#f5f5f5',
               borderRadius: '8px',
               '& .column': {
