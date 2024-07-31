@@ -3,9 +3,12 @@
 Welcome to O'Rando, a hiking visualization website, allowing users to discover hiking routes. </br>
 The site is optimized for viewing on a mobile screen.
 
+### 
+
 ### Functionality
 
 - User authentication and management (CRUD for account)
+- Breadcrumbs to see where you are on the website
 - Consultation of routes available, with search by Difficulty and/or Localisation
 - Interactive map of each hike
 - Favorite routes
