@@ -26,12 +26,12 @@ npm install
 
 ``` 
 ---
-launch server with PNPM 
+launch server on localhost 5173 with PNPM 
 
 ```bash
 pnpm dev
 ```
-launch server with NPM 
+launch server on localhost 5173 with NPM 
 
 ```bash
 npm dev
