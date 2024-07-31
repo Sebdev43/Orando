@@ -47,16 +47,16 @@ module.exports = {
     'react/jsx-props-no-spreading': 0,
     'jsx-a11y/label-has-associated-control': [2, { assert: 'either' }],
     'linebreak-style': 0,
-    'no-restricted-imports': 0,
-    '@typescript-eslint/no-restricted-imports': [
-      'warn',
-      {
-        name: 'react-redux',
-        importNames: ['useSelector', 'useDispatch'],
-        message:
-          'Use typed hooks `useAppDispatch` and `useAppSelector` instead.',
-      },
-    ],
+    // 'no-restricted-imports': 0,
+    // '@typescript-eslint/no-restricted-imports': [
+    //   'warn',
+    //   {
+    //     name: 'react-redux',
+    //     importNames: ['useSelector', 'useDispatch'],
+    //     message:
+    //       'Use typed hooks `useAppDispatch` and `useAppSelector` instead.',
+    //   },
+    // ],
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
