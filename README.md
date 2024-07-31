@@ -1,19 +1,39 @@
 # O'Rando
 
-Welcome to O'Rando, a hiking visualization website, allowing users to discover and share hiking routes. </br>
+Welcome to O'Rando, a hiking visualization website, allowing users to discover hiking routes. </br>
 The site is optimized for viewing on a mobile screen.
 
 ### Functionality
 
-- User authentication and management (Creating an account, Reading the account, Updating the account, Deleting the account)
-- Consultation of routes available, with search by Difficulty and/or Department
+- User authentication and management (CRUD for account)
+- Consultation of routes available, with search by Difficulty and/or Localisation
 - Interactive map of each hike
 - Favorite routes
 
-### Install
+### How to install
 
-- pnpm (i)nstall (ou npm (i)nstall )
-- pnpm dev pour lancer serveur vite (ou npm run dev)
+install dependencies with PNPM
+```bash
+pnpm install
+
+```
+install dependencies with classic NPM
+```bash
+npm install
+
+``` 
+---
+launch server with PNPM 
+
+```bash
+pnpm dev
+```
+launch server with NPM 
+
+```bash
+npm dev
+```
+
 
 ### Resources used (Name and Version)
 
@@ -71,5 +91,3 @@ The site is optimized for viewing on a mobile screen.
 - **Jérôme de Lucia** => [@Je2222](https://github.com/Je2222)
 - **Sébastien Robert** => [@sebdev43](https://github.com/Sebdev43)
 - **Kevin Cannizzaro** => [@CannizzaroKevin](https://github.com/CannizzaroKevin)
-
-- With the support of Tech school : **O'clock** => [@Oclock](https://oclock.io/)
