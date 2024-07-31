@@ -118,6 +118,7 @@ Pour une documentation complète sur les aspects de sécurité de cette applicat
 
 Liste des auteurs du projet:
 
-- **O'clock** _alias_ [@Oclock](https://oclock.io/)
-- **Robert Sébastien** _alias_ [@sebdev43](https://github.com/Sebdev43)
-- **Cannizzaro Kevin** _alias_ [@CannizzaroKevin](https://github.com/CannizzaroKevin)
+- **Matthias Hibon** => [@Heike13](https://github.com/Heike13)
+- **Jérôme de Lucia** => [@Je2222](https://github.com/Je2222)
+- **Sébastien Robert** => [@sebdev43](https://github.com/Sebdev43)
+- **Kevin Cannizzaro** => [@CannizzaroKevin](https://github.com/CannizzaroKevin)
