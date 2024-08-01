@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import {
   actionToLogout,
-  changeEditingField,
+  // changeEditingField,
   clearErrorUserDatas,
   getUserDatas,
   patchUserDatas,
@@ -15,7 +16,6 @@ import locations from '../../../data/departements.json';
 
 // Le typage des données
 import { tokenLogout } from '../../../store/reducers/userConnection';
-import { Button } from '@mui/material';
 
 // ----------------------------------  Le composant actuel
 export default function FormAccount() {
@@ -52,7 +52,6 @@ export default function FormAccount() {
     const data = {
       [`${field}`]: testValue,
     };
-    console.log(data);
     dispatch(patchUserDatas(data));
   };
 
@@ -61,12 +60,8 @@ export default function FormAccount() {
     <main className="form">
       <header>
         <h2>Modifier le compte</h2>
-        <p className="form__message-error">
-          {errorUserDatas ? errorUserDatas : ''}
-        </p>
-        <p className="form__message-success">
-          {fulfiledMessage ? fulfiledMessage : ''}
-        </p>
+        <p className="form__message-error">{errorUserDatas || ''}</p>
+        <p className="form__message-success">{fulfiledMessage || ''}</p>
       </header>
 
       <main className="form__fields-wrapper">
@@ -88,7 +83,7 @@ export default function FormAccount() {
           <input
             type="submit"
             className="form__button-validate button"
-            value={'OK'}
+            value="OK"
           />
         </form>
 
@@ -112,7 +107,7 @@ export default function FormAccount() {
           <input
             type="submit"
             className="form__button-validate button"
-            value={'OK'}
+            value="OK"
           />
         </form>
 
@@ -134,28 +129,28 @@ export default function FormAccount() {
           <input
             type="submit"
             className="form__button-validate button"
-            value={'OK'}
+            value="OK"
           />
         </form>
       </main>
 
       <section className="form__actions-button">
         <button
+          type="button" // Add the type attribute with the value "button"
           className="actions__button-reset"
           onClick={() => {
             navigate('/connexion/reset');
-            // TODO installer js-cookie pour le delete ici
           }}
         >
           Réinitialiser le mot de passe
         </button>
         <button
+          type="button"
           className="actions__button-logout"
           onClick={() => {
             localStorage.removeItem('token');
             dispatch(tokenLogout());
             dispatch(actionToLogout());
-            // TODO installer js-cookie pour le delete ici
 
             navigate('/');
           }}

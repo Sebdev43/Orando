@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 import isTokenExpired from '../../utils/decodeJwt';
-import { deleteAccount } from '../../store/reducers/userAccount';
+import { deleteUser } from '../../store/reducers/userAccount';
 import { useAppDispatch } from '../../hooks/redux';
 
 import './Account.scss';
@@ -15,7 +15,7 @@ export default function AccountDelete(): React.ReactNode {
   const dispatch = useAppDispatch();
 
   const handleClick = () => {
-    dispatch(deleteAccount());
+    dispatch(deleteUser());
     navigate('/');
     // TODO installer js-cookie pour le delete ici
   };

@@ -1,12 +1,12 @@
 import { useForm } from 'react-hook-form';
-import { Errors } from '../../../@types/form';
+import { useEffect } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import {
   clearServerResponse,
   postLoginDatas,
 } from '../../../store/reducers/userConnection';
-import { useEffect } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Errors } from '../../../@types/form';
 import './FormLogin.scss';
 
 // Le typage des données
@@ -42,7 +42,7 @@ export default function FormLogin() {
     if (isLogged) {
       navigate('/randonnees');
     }
-  }, [isLogged]);
+  }, [navigate, isLogged]);
 
   // Nettoyage du state serverResponse
   useEffect(() => {

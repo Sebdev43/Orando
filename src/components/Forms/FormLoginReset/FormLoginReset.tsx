@@ -1,13 +1,9 @@
 import { useForm } from 'react-hook-form';
-import { Errors } from '../../../@types/form';
+// import { Errors } from '../../../@types/form';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { postResetDatas } from '../../../store/reducers/userConnection';
 import './FormLoginReset.scss';
-
-// Le typage des données
-export type FormData = {
-  email: string;
-};
+import { FormResetData } from '../../../@types/form';
 
 // Le composant actuel
 export default function FormLogin() {
@@ -20,10 +16,10 @@ export default function FormLogin() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<FormResetData>();
 
-  const onSubmit = (data: FormData) => {
-    dispatch(postResetDatas(data as any));
+  const onSubmit = (data: FormResetData) => {
+    dispatch(postResetDatas(data));
   };
 
   // Le rendu final du composant
@@ -31,7 +27,7 @@ export default function FormLogin() {
     <>
       <form className="form__login" onSubmit={handleSubmit(onSubmit)}>
         <input
-          type="email"
+          type="text"
           placeholder="Adresse Email"
           {...register('email', {
             required: "L'email est obligatoire",
@@ -42,9 +38,11 @@ export default function FormLogin() {
           })}
         />
 
-        <input className="form-account__favorites" type="submit" />
+        <input className="form-account__favorites" type="submit" value="OK" />
       </form>
-
+      {errors.email && (
+        <p className="form__login__error">{errors.email.message}</p>
+      )}
       {resetMessage && <p className="form__login__message">{resetMessage}</p>}
     </>
   );

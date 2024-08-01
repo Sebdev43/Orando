@@ -82,7 +82,7 @@ export const patchUserDatas = createAsyncThunk(
   }
 );
 
-export const deleteAccount = createAsyncThunk(
+export const deleteUser = createAsyncThunk(
   'USER/DELETE_ACCOUNT',
   async (_, thunkAPI) => {
     try {
@@ -146,7 +146,7 @@ export const userAccountReducer = createReducer(initialState, (builder) => {
       localStorage.removeItem('token');
     })
     // DELETE ACCOUNT
-    .addCase(deleteAccount.fulfilled, (state) => {
+    .addCase(deleteUser.fulfilled, (state) => {
       localStorage.removeItem('token');
       state.credentials.nickname = '';
       state.credentials.localisation = '';

@@ -11,6 +11,10 @@ export type FormReinitData = {
   token: string;
 };
 
+export type FormResetData = {
+  email: string;
+};
+
 export type Credential = {
   nickname: string;
   localisation: string;
