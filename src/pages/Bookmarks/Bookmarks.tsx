@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getBookmarks } from '../../store/reducers/bookmarks';
 import { tokenLogout } from '../../store/reducers/userConnection';
+import { isTokenOk } from '../../utils/decodeJwt';
 import './Bookmarks.scss';
 
 // types
@@ -11,7 +12,6 @@ import { Hike } from '../../@types/hike';
 // components
 import HikeFilters from '../../components/HikesFilters/HikeFilters';
 import CardComponent from '../../components/CardComponent/CardComponent';
-import { isTokenExpired } from '../../utils/decodeJwt';
 
 // ------------------------------- Page component : Bookmarks
 export default function Bookmarks() {
@@ -20,16 +20,16 @@ export default function Bookmarks() {
   const bookmarks = useAppSelector((state) => state.bookmarks.bookmarks);
   const isLoading = useAppSelector((state) => state.bookmarks.isLoading);
   const isLogged = useAppSelector((state) => state.userConnection.isLogged);
-  const token = isTokenExpired(localStorage.getItem('token') as string);
+  const token = isTokenOk(localStorage.getItem('token') as string);
 
   // AXIOS request to get bookmarks when the component is mounted
   useEffect(() => {
     if (isLogged) {
       dispatch(getBookmarks());
     }
-    if (!token) {
-      dispatch(tokenLogout());
-    }
+    // if (token) {
+    //   dispatch(tokenLogout());
+    // }
   }, [dispatch, isLogged, token]);
 
   // We get the properties of the hikesFilters state in hikesFiltersReducer

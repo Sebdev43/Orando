@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { getHikes } from '../store/reducers/hikesAll';
 import { getRandomHikes } from '../store/reducers/hikesRandom';
-import { isTokenExpired } from '../utils/decodeJwt';
+import { isTokenOk } from '../utils/decodeJwt';
 import './Root.scss';
 
 // components
@@ -16,7 +16,7 @@ export default function Root() {
   const currentUrl = useLocation();
 
   const userToken = useAppSelector((state) => state.userConnection.token);
-  const token = isTokenExpired(userToken);
+  const token = isTokenOk(userToken);
 
   // on récupère les randos dès que le composant Root est monté pour le premier rendu
   useEffect(() => {

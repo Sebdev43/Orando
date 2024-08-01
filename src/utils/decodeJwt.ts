@@ -2,10 +2,10 @@ import { jwtDecode } from 'jwt-decode';
 
 /**
  * Check if token is expired and return boolean value accordingly
- * @param token jwt token
- * @returns boolean
+ * @param token string
+ * @returns true if token is good, false if it is expired
  */
-export function isTokenExpired(token: string): boolean {
+export function isTokenOk(token: string): boolean {
   try {
     const decoded = jwtDecode(token) as { exp: number };
     const currentTime = Date.now() / 1000;
@@ -16,9 +16,9 @@ export function isTokenExpired(token: string): boolean {
 }
 
 /**
- * Check if token is valid and return it if it is
+ * Check if token is valid and return it
  * @param token jwt token
- * @returns string
+ * @returns token or error message
  */
 export function isTokenValid(token: string): string {
   const decoded = jwtDecode(token) as { exp: number };

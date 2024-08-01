@@ -36,18 +36,12 @@ export default function FormLogin() {
     dispatch(postLoginDatas(data as any));
   };
 
-  // Redirige l'utilisateur vers la page d'accueil si le state change a true
-  // TODO utiliser un fireEffect pourquoi pas !
+  // TODO utiliser un fireEffect ici
   useEffect(() => {
     if (isLogged) {
       navigate('/randonnees');
     }
   }, [navigate, isLogged]);
-
-  // Nettoyage du state serverResponse
-  useEffect(() => {
-    dispatch(clearServerResponse());
-  }, [dispatch]);
 
   // Le rendu, en fonction de si l'utilisateur est connecté ou non
   return isLogged ? (
@@ -102,7 +96,7 @@ export default function FormLogin() {
         réinitialiser le mot de passe
       </NavLink>
 
-      <input className="form-account__favorites" type="submit" />
+      <input className="form-account__favorites" type="submit" value="OK" />
     </form>
   );
 }

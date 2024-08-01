@@ -6,30 +6,26 @@ import { useAppDispatch } from '../../../hooks/redux';
 import { postReinitDatas } from '../../../store/reducers/userConnection';
 import './FormLoginReinit.scss';
 
-// MUI
+// utils
+import { isTokenOk } from '../../../utils/decodeJwt';
 
-// Le typage des données
+// types
 import { FormReinitData } from '../../../@types/form';
-import { isTokenExpired } from '../../../utils/decodeJwt';
 
-// ------------------------------------------- Le composant actuel
+// ----------------------------------- Actual component
 export default function FormReinit() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  // je récupère le token dans l'URL que je décode pour vérifier l'expiration
   const location = useLocation();
+
   const searchParams = new URLSearchParams(location.search);
   const urlToken = searchParams.get('token') as string;
+  const token = isTokenOk(urlToken);
 
-  // TODO a vérifier si ça marche sur le site
-  // jwt-decode
-  const expired = isTokenExpired(urlToken);
-
-  if (expired) {
-    console.log('Token is expired');
-  } else {
+  if (token) {
     console.log('Token is still valid');
+  } else {
+    console.log('Token is expired');
   }
 
   const {
@@ -38,7 +34,7 @@ export default function FormReinit() {
     formState: { errors },
   } = useForm<FormReinitData>();
 
-  // Etat local pour le formulaire
+  // Local state is used to display an error message if the passwords don't match, its an exception here
   const [passwordError, setPasswordError] = useState<string | null>(null);
 
   const onSubmit = (data: FormReinitData) => {
@@ -51,7 +47,6 @@ export default function FormReinit() {
     }
   };
 
-  // Le rendu final du composant
   return (
     <section className="form-login-reinit">
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -59,7 +54,7 @@ export default function FormReinit() {
         <section className="form-login-reinit__wrapper">
           <label htmlFor="newPassword">Mot de passe :</label>
 
-          {/* 1er input : nouveau mot de passe */}
+          {/* 1rst input : new password */}
           <section className="form-login-reinit__password">
             {errors.newPassword && (
               <span className="error__password">
@@ -89,7 +84,7 @@ export default function FormReinit() {
             />
           </section>
 
-          {/* 2e input : validation du nouveau mot de passe */}
+          {/* 2nd input : validation of new password */}
           <section>
             {errors.confirmPassword && (
               <span className="error__password">

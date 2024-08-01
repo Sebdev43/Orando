@@ -7,6 +7,7 @@ import axios from 'axios';
 
 import { RootState } from '../../@types/root';
 import { Credential, PatchCredential } from '../../@types/form';
+import { isTokenValid } from '../../utils/decodeJwt';
 
 // Le typage des données
 type UserAccountProps = {
@@ -33,32 +34,28 @@ export const changeEditingField = createAction<string | null>(
 );
 
 // Récupérer les données du User identifié avec le token
-export const getUserDatas = createAsyncThunk(
-  'USER/GET_USER',
-  async (_, thunkAPI) => {
-    try {
-      const rootstate = thunkAPI.getState() as RootState;
-      const { token } = rootstate.userConnection;
+export const getUserDatas = createAsyncThunk('USER/GET_USER', async () => {
+  try {
+    const token = isTokenValid(localStorage.getItem('token') as string);
 
-      const { data } = await axios.get('/api/users', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return data;
-    } catch (error) {
-      throw new Error('Une erreur est survenue');
-    }
+    const { data } = await axios.get('/api/users', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return data;
+  } catch (error) {
+    throw new Error('Une erreur est survenue');
   }
-);
+});
 
 // Patch pour modifier les infos du compte
 export const patchUserDatas = createAsyncThunk(
   'USER/PATCH_USER',
-  async (datas: PatchCredential, thunkAPI) => {
+  async (datas: PatchCredential) => {
     try {
-      const rootstate = thunkAPI.getState() as RootState;
-      const { token } = rootstate.userConnection;
+      const token = isTokenValid(localStorage.getItem('token') as string);
+
       const { data } = await axios.patch(
         '/api/users',
         {
@@ -82,24 +79,20 @@ export const patchUserDatas = createAsyncThunk(
   }
 );
 
-export const deleteUser = createAsyncThunk(
-  'USER/DELETE_ACCOUNT',
-  async (_, thunkAPI) => {
-    try {
-      const rootstate = thunkAPI.getState() as RootState;
-      const { token } = rootstate.userConnection;
+export const deleteUser = createAsyncThunk('USER/DELETE_ACCOUNT', async () => {
+  try {
+    const token = isTokenValid(localStorage.getItem('token') as string);
 
-      const { data } = await axios.delete('/api/users', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return data;
-    } catch (error) {
-      throw new Error('Une erreur est survenue');
-    }
+    const { data } = await axios.delete('/api/users', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return data;
+  } catch (error) {
+    throw new Error('Une erreur est survenue');
   }
-);
+});
 
 export const actionToLogout = createAction('USER/LOGOUT');
 export const clearErrorUserDatas = createAction(
@@ -137,7 +130,7 @@ export const userAccountReducer = createReducer(initialState, (builder) => {
     .addCase(changeEditingField, (state, action) => {
       state.editingField = action.payload;
     })
-    // Action pour logout
+    // Actions to logout
     .addCase(actionToLogout, (state) => {
       state.credentials.nickname = '';
       state.credentials.localisation = '';

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
-import { isTokenExpired } from '../../utils/decodeJwt';
+import { isTokenOk } from '../../utils/decodeJwt';
 import { deleteUser } from '../../store/reducers/userAccount';
 import { useAppDispatch } from '../../hooks/redux';
 
@@ -9,7 +9,7 @@ import './Account.scss';
 // Le composant actuel est la page Mon compte
 export default function AccountDelete(): React.ReactNode {
   const token = localStorage.getItem('token') as string;
-  const expiredToken = isTokenExpired(token);
+  const expiredToken = isTokenOk(token);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
