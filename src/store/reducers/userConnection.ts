@@ -6,14 +6,14 @@ import {
 import axios from 'axios';
 import { FormReinitData } from '../../@types/form';
 
-type initialStateProps = {
+type InitialStateProps = {
   token: string | null;
   serverResponse: string;
   isLogged?: boolean;
   resetMessage: string;
 };
 
-const initialState: initialStateProps = {
+const initialState: InitialStateProps = {
   token: '',
   serverResponse: '',
   isLogged: false,
@@ -90,7 +90,7 @@ export const userConnectionReducer = createReducer(initialState, (builder) => {
     .addCase(postResetDatas.rejected, (state, action) => {
       state.resetMessage = action.error.message as string;
     })
-    .addCase(postResetDatas.fulfilled, (state, action) => {
+    .addCase(postResetDatas.fulfilled, (state) => {
       state.resetMessage =
         "Si l'adresse mail existe, un lien vous a été envoyé";
     })

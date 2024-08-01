@@ -1,16 +1,16 @@
-import { Hike } from '../../@types/hike';
+/* eslint-disable react/no-array-index-key */
 import './HikeDetail.scss';
 
 // Components
-import Map from '../Map/Map';
 import Slider from 'react-slick';
 import Zoom from 'react-medium-image-zoom';
+import Map from '../Map/Map';
 import 'react-medium-image-zoom/dist/styles.css';
 
 // utils
 import { formatHikeTime } from '../../utils/regEx';
+import { Hike } from '../../@types/hike';
 
-// Le typage
 type HikeDetailProps = {
   hike: Hike;
 };
@@ -20,8 +20,8 @@ function HikeDetail({ hike }: HikeDetailProps) {
   const geoDatas = hike.gps_coordinate;
 
   // Traitement du texte de l'itinéraire
-  const text = hike.details;
   const regex = /\(\d+\)/g;
+  const text = hike.details;
   const formatedDetails = text.replace(regex, (match) => `\n${match}`);
   const lines = formatedDetails.split('\n');
 
@@ -52,23 +52,22 @@ function HikeDetail({ hike }: HikeDetailProps) {
           aria-label="Photos qui présentent divers points de vue de la randonnée"
         >
           <Slider {...sliderSettings}>
-            {hike.pictures.map((picture, index) => (
-              <section key={index}>
+            {hike.pictures.map((picture) => (
+              <section key={picture}>
                 <Zoom>
                   <figure>
                     <img
-                      loading="lazy"
                       className="slide-image"
                       src={picture}
-                      alt={`Une photo de ${hike.title}`}
+                      alt={hike.title}
                     />
-                    <figcaption hidden={true}>{hike.description}</figcaption>
+                    <figcaption hidden>{hike.description}</figcaption>
                     <meta property="og:title" content={hike.title} />
                     <meta property="og:type" content="photo" />
                     <meta
                       property="og:description"
                       content={hike.description}
-                      hidden={true}
+                      hidden
                     />
                     <meta property="og:site_name" content="O'Rando" />
                   </figure>
@@ -92,7 +91,7 @@ function HikeDetail({ hike }: HikeDetailProps) {
         <section className="hike__map">
           <Map geoDatas={geoDatas} />
         </section>
-        <footer className="hike__footer"></footer>
+        <footer className="hike__footer" />
       </main>
     </>
   );

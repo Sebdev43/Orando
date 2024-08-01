@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getBookmarks } from '../../store/reducers/bookmarks';
-import { NavLink } from 'react-router-dom';
 
 import './Bookmarks.scss';
 
@@ -12,9 +12,9 @@ import { Hike } from '../../@types/hike';
 import HikeFilters from '../../components/HikesFilters/HikeFilters';
 // import SkeletonLoader from '../../components/SkeletonLoader/SkeletonLoader';
 import CardComponent from '../../components/CardComponent/CardComponent';
-import { isTokenExpired } from '../../utils/decodeJwt';
+import isTokenExpired from '../../utils/decodeJwt';
 
-//------------------------------- Le composant actuel est la page Favoris
+// ------------------------------- Le composant actuel est la page Favoris
 export default function Bookmarks() {
   const dispatch = useAppDispatch();
 
@@ -26,8 +26,10 @@ export default function Bookmarks() {
 
   // On actualise la propriété bookmarks du state à chacun de ses changements
   useEffect(() => {
-    expiredToken ? null : dispatch(getBookmarks());
-  }, []);
+    if (!expiredToken) {
+      dispatch(getBookmarks());
+    }
+  }, [dispatch, expiredToken]);
 
   // On récupère les propriétés du state hikesFilters dans hikesFiltersReducer
   const currentDifficulty = useAppSelector(
@@ -73,11 +75,11 @@ export default function Bookmarks() {
                     className="bookmarks__not-found"
                     style={{ textAlign: 'center' }}
                   >
-                    Vous n'avez pas de favoris
+                    Vous n&apos;avez pas de favoris
                   </p>
                 ) : (
-                  filteredBookmarks.map((hike: Hike, index: number) => (
-                    <CardComponent key={index} {...hike} />
+                  filteredBookmarks.map((hike: Hike) => (
+                    <CardComponent key={hike.id} {...hike} />
                   ))
                 )}
               </section>

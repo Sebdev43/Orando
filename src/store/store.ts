@@ -11,7 +11,7 @@ import { userConnectionReducer } from './reducers/userConnection';
 import { hikeCreationReducer } from './reducers/hikeCreation';
 import { userAccountReducer } from './reducers/userAccount';
 import { bookmarksReducer } from './reducers/bookmarks';
-import { menuReducer } from './reducers/menu';
+// import { menuReducer } from './reducers/menu';
 
 const store = configureStore({
   reducer: {
@@ -29,8 +29,5 @@ const store = configureStore({
     // menu: menuReducer,
   },
 });
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
 
 export default store;

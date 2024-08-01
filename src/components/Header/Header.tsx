@@ -1,6 +1,6 @@
-import Nav from '../Nav/Nav';
 import { NavLink } from 'react-router-dom';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import Nav from '../Nav/Nav';
 import { useAppSelector } from '../../hooks/redux';
 import './Header.scss';
 
@@ -9,7 +9,7 @@ import IconBreadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import NavTel from '../Nav/NavTel';
 
 // utils
-import { isTokenExpired } from '../../utils/decodeJwt';
+import isTokenExpired from '../../utils/decodeJwt';
 
 // Le composant actuel
 function Header() {
@@ -18,7 +18,7 @@ function Header() {
 
   // Récupération des états provenants du store que l'on stocke en copie locale
   const widthMediaScreen = useAppSelector(
-    (state: any) => state.websiteSettings.widthMediaScreen
+    (state) => state.websiteSettings.widthMediaScreen
   );
 
   const isMobile = useMediaQuery(`(max-width:${widthMediaScreen}px)`);
@@ -42,7 +42,7 @@ function Header() {
       )}
 
       {/* Logo O'rando */}
-      <NavLink to={'/'}>
+      <NavLink to="/">
         <img
           src="/logo_fond_blanc.webp"
           alt="logo du site o'rando"
@@ -51,7 +51,7 @@ function Header() {
         />
       </NavLink>
 
-      {/* Menu de navigation en fonction de si mobile ou non*/}
+      {/* Menu de navigation en fonction de si mobile ou non */}
       {isMobile ? <NavTel /> : <Nav />}
       <IconBreadcrumbs />
     </header>

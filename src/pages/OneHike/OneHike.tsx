@@ -1,14 +1,14 @@
 import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Hike } from '../../@types/hike';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { getOneHike } from '../../store/reducers/hikeOne';
 import './OneHike.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 // Components
 import HikeDetail from '../../components/HikeDetail/HikeDetail';
-import { useEffect } from 'react';
-import { getOneHike } from '../../store/reducers/hikeOne';
 
 // Le composant actuel est la page Une randonnée
 function OneHike() {
@@ -25,6 +25,7 @@ function OneHike() {
     if (error) {
       return navigation('/error');
     }
+    return undefined;
   }, [id, dispatch, error, navigation]);
 
   const hike = useAppSelector((state) => state.hikeOne.oneHike);

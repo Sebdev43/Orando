@@ -1,6 +1,6 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { RootState } from '../store';
+import { RootState } from '../../@types/root';
 import { Hike } from '../../@types/hike';
 
 // Le typage des données
@@ -10,7 +10,7 @@ type BookmarksProps = {
   isFavorite: boolean;
 };
 
-//------------------------------  Le composant actuel
+// ------------------------------  Le composant actuel
 const initialState: BookmarksProps = {
   bookmarks: [],
   isLoading: false,
@@ -21,8 +21,8 @@ export const getBookmarks = createAsyncThunk(
   'BOOKMARKS/GET_BOOKMARKS',
   async (_, thunkAPI) => {
     try {
-      const rootstate = thunkAPI.getState() as RootState;
-      const token = rootstate.userConnection.token;
+      const rootState = thunkAPI.getState() as RootState;
+      const { token } = rootState.userConnection;
 
       const { data } = await axios.get('/api/bookmarks', {
         headers: {
@@ -41,7 +41,7 @@ export const deleteBookmark = createAsyncThunk(
   async (id: number, thunkAPI) => {
     try {
       const rootState = thunkAPI.getState() as RootState;
-      const token = rootState.userConnection.token;
+      const { token } = rootState.userConnection;
 
       const { data } = await axios.delete('/api/bookmarks', {
         data: { hikeId: id },
@@ -60,8 +60,8 @@ export const addBookmark = createAsyncThunk(
   'BOOKMARK/POST_BOOKMARK',
   async (id: number, thunkAPI) => {
     try {
-      const rootstate = thunkAPI.getState() as RootState;
-      const token = rootstate.userConnection.token;
+      const rootState = thunkAPI.getState() as RootState;
+      const { token } = rootState.userConnection;
 
       const { data } = await axios.post(
         '/api/bookmarks',

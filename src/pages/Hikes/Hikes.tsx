@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { getBookmarks } from '../../store/reducers/bookmarks';
-import { isTokenExpired } from '../../utils/decodeJwt';
+import isTokenExpired from '../../utils/decodeJwt';
 import { Hike } from '../../@types/hike';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import './Hikes.scss';
@@ -10,7 +10,7 @@ import HikeFilters from '../../components/HikesFilters/HikeFilters';
 import SkeletonLoader from '../../components/SkeletonLoader/SkeletonLoader';
 import CardComponent from '../../components/CardComponent/CardComponent';
 
-//------------------------------ Le composant actuel est la page Voir les randonnées
+// ------------------------------ Le composant actuel est la page Voir les randonnées
 export default function Hikes() {
   const dispatch = useAppDispatch();
 
@@ -20,8 +20,10 @@ export default function Hikes() {
   const expiredToken = isTokenExpired(token);
 
   useEffect(() => {
-    expiredToken ? null : dispatch(getBookmarks());
-  }, []);
+    if (!expiredToken) {
+      dispatch(getBookmarks());
+    }
+  }, [dispatch, expiredToken]);
 
   const currentDifficulty = useAppSelector(
     (state) => state.hikesFilters.difficulty
@@ -51,8 +53,8 @@ export default function Hikes() {
           {loading ? (
             <SkeletonLoader skeletonNumber={20} />
           ) : (
-            filteredHikes.map((hike: Hike, index: number) => (
-              <CardComponent key={index} {...hike} />
+            filteredHikes.map((hike: Hike) => (
+              <CardComponent key={hike.id} {...hike} />
             ))
           )}
         </section>

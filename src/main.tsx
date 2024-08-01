@@ -1,16 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import store from './store/store';
-
-import './styles/index.scss';
-
 import {
   Route,
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
+import store from './store/store';
+
+import './styles/index.scss';
 
 // Import des pages
 import Root from './pages/Root';

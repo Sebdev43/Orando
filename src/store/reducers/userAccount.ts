@@ -1,4 +1,3 @@
-import { RootState } from '../store';
 import {
   createAction,
   createAsyncThunk,
@@ -6,8 +5,9 @@ import {
 } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+import { RootState } from '../../@types/root';
 import { Credential, PatchCredential } from '../../@types/form';
-import { Cookie } from '@mui/icons-material';
+
 // Le typage des données
 type UserAccountProps = {
   credentials: Credential;
@@ -38,7 +38,7 @@ export const getUserDatas = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const rootstate = thunkAPI.getState() as RootState;
-      const token = rootstate.userConnection.token;
+      const { token } = rootstate.userConnection;
 
       const { data } = await axios.get('/api/users', {
         headers: {
@@ -58,10 +58,7 @@ export const patchUserDatas = createAsyncThunk(
   async (datas: PatchCredential, thunkAPI) => {
     try {
       const rootstate = thunkAPI.getState() as RootState;
-      const token = rootstate.userConnection.token;
-
-      console.log('dans le try', datas);
-
+      const { token } = rootstate.userConnection;
       const { data } = await axios.patch(
         '/api/users',
         {
@@ -78,8 +75,6 @@ export const patchUserDatas = createAsyncThunk(
         }
       );
 
-      console.log('dans le try', data);
-
       return data;
     } catch (errors: any) {
       throw new Error(errors.response.data.errors[0].msg);
@@ -92,7 +87,7 @@ export const deleteAccount = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const rootstate = thunkAPI.getState() as RootState;
-      const token = rootstate.userConnection.token;
+      const { token } = rootstate.userConnection;
 
       const { data } = await axios.delete('/api/users', {
         headers: {
@@ -101,7 +96,7 @@ export const deleteAccount = createAsyncThunk(
       });
       return data;
     } catch (error) {
-      console.log(error);
+      throw new Error('Une erreur est survenue');
     }
   }
 );
@@ -114,7 +109,7 @@ export const clearErrorUserDatas = createAction(
 export const userAccountReducer = createReducer(initialState, (builder) => {
   builder
     // Get user datas
-    .addCase(getUserDatas.rejected, (state) => {
+    .addCase(getUserDatas.rejected, () => {
       localStorage.removeItem('token');
     })
     .addCase(getUserDatas.fulfilled, (state, action) => {
@@ -127,8 +122,6 @@ export const userAccountReducer = createReducer(initialState, (builder) => {
     // Patch user datas
     .addCase(patchUserDatas.rejected, (state, action) => {
       state.errorUserDatas = action.error.message as string;
-
-      console.log(state.errorUserDatas);
     })
     .addCase(patchUserDatas.fulfilled, (state, action) => {
       state.fulfiledMessage = action.payload.message;

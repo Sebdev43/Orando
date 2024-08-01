@@ -1,18 +1,18 @@
 import { useForm } from 'react-hook-form';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { postReinitDatas } from '../../../store/reducers/userConnection';
-import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Button } from '@mui/joy';
+import { useState } from 'react';
+import { useAppDispatch } from '../../../hooks/redux';
+import { postReinitDatas } from '../../../store/reducers/userConnection';
 import './FormLoginReinit.scss';
 
 // MUI
-import { Button } from '@mui/joy';
 
 // Le typage des données
 import { FormReinitData } from '../../../@types/form';
-import { isTokenExpired } from '../../../utils/decodeJwt';
+import isTokenExpired from '../../../utils/decodeJwt';
 
-//------------------------------------------- Le composant actuel
+// ------------------------------------------- Le composant actuel
 export default function FormReinit() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -44,10 +44,9 @@ export default function FormReinit() {
   const onSubmit = (data: FormReinitData) => {
     if (data.newPassword !== data.confirmPassword) {
       setPasswordError('Les nouveaux mots de passe ne correspondent pas');
-      return;
     } else {
       const dataPack = { token: urlToken, newPassword: data.newPassword };
-      dispatch(postReinitDatas(dataPack as any));
+      dispatch(postReinitDatas(dataPack));
       navigate('/connexion');
     }
   };
@@ -58,9 +57,9 @@ export default function FormReinit() {
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Password */}
         <section className="form-login-reinit__wrapper">
-          <label>Mot de passe :</label>
+          <label htmlFor="newPassword">Mot de passe :</label>
 
-          {/* 1er input : nouveau mot de passe*/}
+          {/* 1er input : nouveau mot de passe */}
           <section className="form-login-reinit__password">
             {errors.newPassword && (
               <span className="error__password">

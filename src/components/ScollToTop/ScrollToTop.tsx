@@ -10,8 +10,6 @@ export default function ScrollToTop() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      const screenHeight = window.innerHeight;
-
       if (scrollPosition > 1250) {
         setShowButton(true);
       } else {

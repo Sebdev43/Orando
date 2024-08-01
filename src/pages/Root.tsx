@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { getHikes } from '../store/reducers/hikesAll';
 import { getRandomHikes } from '../store/reducers/hikesRandom';
 import { getBookmarks } from '../store/reducers/bookmarks';
-import { isTokenExpired } from '../utils/decodeJwt';
+import isTokenExpired from '../utils/decodeJwt';
 import './Root.scss';
 
 // components
@@ -13,7 +13,7 @@ import Footer from '../components/Footer/Footer';
 import ScrollToTop from '../components/ScollToTop/ScrollToTop';
 
 export default function Root() {
-  const dispatch: any = useAppDispatch();
+  const dispatch = useAppDispatch();
   const currentUrl = useLocation();
 
   const token = useAppSelector((state) => state.userConnection.token) as string;
@@ -23,8 +23,10 @@ export default function Root() {
   useEffect(() => {
     dispatch(getRandomHikes());
     dispatch(getHikes());
-    tokenIsExpired ? null : dispatch(getBookmarks());
-  }, []);
+    if (!tokenIsExpired) {
+      dispatch(getBookmarks());
+    }
+  }, [dispatch, tokenIsExpired]);
 
   // on récupère l'URL pour surveiller lorsqu'elle change
   const { pathname } = useLocation();
