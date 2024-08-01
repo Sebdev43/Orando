@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import FormAccount from '../../components/Forms/FormAccount/FormAccount';
-import isTokenExpired from '../../utils/decodeJwt';
+import { isTokenExpired } from '../../utils/decodeJwt';
 
 // Le composant actuel est la page Mon compte
 function Account() {

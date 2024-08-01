@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import './ScrollToTop.scss';
 
 export default function ScrollToTop() {
-  // un état local pour faciliter la lecture
-  //  pas besoin d'utiliser le store global pour ce faire
+  // local state to make it easier to read, its an exception here
   const [show, setShowButton] = useState(false);
 
   // TODO utiliser un fire effect ?
@@ -18,7 +17,7 @@ export default function ScrollToTop() {
     };
     window.addEventListener('scroll', handleScroll);
 
-    // je nettoie (démonte) l’event listener sur le composant
+    // cleanup after unmount
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };

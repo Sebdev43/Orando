@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
-import isTokenExpired from '../../utils/decodeJwt';
+import { isTokenExpired } from '../../utils/decodeJwt';
 import { deleteUser } from '../../store/reducers/userAccount';
 import { useAppDispatch } from '../../hooks/redux';
 

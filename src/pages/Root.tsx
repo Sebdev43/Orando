@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { getHikes } from '../store/reducers/hikesAll';
 import { getRandomHikes } from '../store/reducers/hikesRandom';
-import isTokenExpired from '../utils/decodeJwt';
+import { isTokenExpired } from '../utils/decodeJwt';
 import './Root.scss';
 
 // components

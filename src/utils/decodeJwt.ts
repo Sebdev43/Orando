@@ -1,6 +1,11 @@
 import { jwtDecode } from 'jwt-decode';
 
-function isTokenExpired(token: string): boolean {
+/**
+ * Check if token is expired and return boolean value accordingly
+ * @param token jwt token
+ * @returns boolean
+ */
+export function isTokenExpired(token: string): boolean {
   try {
     const decoded = jwtDecode(token) as { exp: number };
     const currentTime = Date.now() / 1000;
@@ -9,7 +14,13 @@ function isTokenExpired(token: string): boolean {
     return false;
   }
 }
+// export default isTokenExpired;
 
+/**
+ * Check if token is valid and return it if it is
+ * @param token jwt token
+ * @returns string
+ */
 export function isTokenValid(token: string): string {
   const decoded = jwtDecode(token) as { exp: number };
   const currentTime = Date.now() / 1000;
@@ -18,5 +29,3 @@ export function isTokenValid(token: string): string {
   }
   throw new Error('Token expired');
 }
-
-export default isTokenExpired;

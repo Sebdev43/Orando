@@ -10,7 +10,7 @@ import './FormLoginReinit.scss';
 
 // Le typage des données
 import { FormReinitData } from '../../../@types/form';
-import isTokenExpired from '../../../utils/decodeJwt';
+import { isTokenExpired } from '../../../utils/decodeJwt';
 
 // ------------------------------------------- Le composant actuel
 export default function FormReinit() {

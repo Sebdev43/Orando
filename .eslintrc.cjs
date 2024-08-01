@@ -14,6 +14,8 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
+    "project": ["tsconfig.json", "tsconfig.vite.json"]
+  },
     ecmaFeatures: {
       jsx: true,
     },

@@ -5,7 +5,7 @@ import {
 } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { FormReinitData, FormResetData } from '../../@types/form';
-import isTokenExpired from '../../utils/decodeJwt';
+import { isTokenExpired } from '../../utils/decodeJwt';
 
 type InitialStateProps = {
   token: string | null;

@@ -11,7 +11,7 @@ import { Hike } from '../../@types/hike';
 // components
 import HikeFilters from '../../components/HikesFilters/HikeFilters';
 import CardComponent from '../../components/CardComponent/CardComponent';
-import isTokenExpired from '../../utils/decodeJwt';
+import { isTokenExpired } from '../../utils/decodeJwt';
 
 // ------------------------------- Page component : Bookmarks
 export default function Bookmarks() {
