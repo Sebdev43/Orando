@@ -6,8 +6,6 @@ import CardOverflow from '@mui/joy/CardOverflow';
 import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';
 import Bookmarks from '../BookmarkActions/BookmarkActions';
-import { useAppSelector } from '../../hooks/redux';
-import isTokenExpired from '../../utils/decodeJwt';
 import './CardComponent.scss';
 
 // Components
@@ -16,11 +14,11 @@ import RenderDifficulty from '../RenderTagDifficulty/RenderTagDifficultyStyle';
 // Utils
 import { cutText, formatHikeTime } from '../../utils/regEx';
 import { Hike } from '../../@types/hike';
+import { useAppSelector } from '../../hooks/redux';
 
 // Le composant actuel
 export default function CardComponent(hike: Hike) {
-  const token = useAppSelector((state) => state.userConnection.token) as string;
-  const tokenVerified = isTokenExpired(token);
+  const isLogged = useAppSelector((state) => state.userConnection.isLogged);
 
   return (
     <>
@@ -28,7 +26,7 @@ export default function CardComponent(hike: Hike) {
       <Card className="card" variant="outlined" sx={{ width: 400 }}>
         <CardOverflow>
           {/* Bookmark button */}
-          {tokenVerified ? null : <Bookmarks id={hike?.id} />}
+          {isLogged ? <Bookmarks id={hike?.id as number} /> : ''}
 
           {/* Photos */}
           <AspectRatio ratio="1">
@@ -41,14 +39,14 @@ export default function CardComponent(hike: Hike) {
           {/* Card content */}
           <CardContent
             className="card__content"
-            sx={{ maxHeight: 'fit-content' }}
+            // sx={{ maxHeight: 'fit-content' }}
           >
             <h3 className="card__title">{hike?.title}</h3>
             <div className="card__description">
               <Typography
                 level="body-sm"
                 sx={{
-                  minHeight: '6rem',
+                  minHeight: '4.5rem',
                   marginTop: '1rem',
                 }}
               >
@@ -80,20 +78,20 @@ export default function CardComponent(hike: Hike) {
               },
             }}
           >
-            <article className="column">
+            <aside className="column">
               <h4>Localisation :</h4>
               <p>{hike?.localisation}</p>
-            </article>
+            </aside>
 
-            <article className="column">
+            <aside className="column">
               <h4>Marche :</h4>
               <p>{formatHikeTime(hike?.time)}</p>
-            </article>
+            </aside>
 
-            <article className="column special-column">
+            <aside className="column special-column">
               <h4>Difficulté :</h4>
               {RenderDifficulty(hike)}
-            </article>
+            </aside>
           </CardContent>
         </CardOverflow>
       </Card>

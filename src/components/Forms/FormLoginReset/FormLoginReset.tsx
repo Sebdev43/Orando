@@ -26,6 +26,9 @@ export default function FormLogin() {
   return (
     <>
       <form className="form__login" onSubmit={handleSubmit(onSubmit)}>
+        {errors.email && (
+          <p className="form__login__error">{errors.email.message}</p>
+        )}
         <input
           type="text"
           placeholder="Adresse Email"
@@ -40,9 +43,6 @@ export default function FormLogin() {
 
         <input className="form-account__favorites" type="submit" value="OK" />
       </form>
-      {errors.email && (
-        <p className="form__login__error">{errors.email.message}</p>
-      )}
       {resetMessage && <p className="form__login__message">{resetMessage}</p>}
     </>
   );

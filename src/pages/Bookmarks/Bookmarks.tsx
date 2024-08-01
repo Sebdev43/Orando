@@ -13,6 +13,7 @@ import HikeFilters from '../../components/HikesFilters/HikeFilters';
 // import SkeletonLoader from '../../components/SkeletonLoader/SkeletonLoader';
 import CardComponent from '../../components/CardComponent/CardComponent';
 import isTokenExpired from '../../utils/decodeJwt';
+import { tokenLogout } from '../../store/reducers/userConnection';
 
 // ------------------------------- Le composant actuel est la page Favoris
 export default function Bookmarks() {
@@ -20,16 +21,18 @@ export default function Bookmarks() {
 
   const bookmarks = useAppSelector((state) => state.bookmarks.bookmarks);
   const isLoading = useAppSelector((state) => state.bookmarks.isLoading);
-
-  const token = localStorage.getItem('token') as string;
-  const expiredToken = isTokenExpired(token);
+  const isLogged = useAppSelector((state) => state.userConnection.isLogged);
+  const token = isTokenExpired(localStorage.getItem('token') as string);
 
   // On actualise la propriété bookmarks du state à chacun de ses changements
   useEffect(() => {
-    if (!expiredToken) {
+    if (isLogged) {
       dispatch(getBookmarks());
     }
-  }, [dispatch, expiredToken]);
+    if (!token) {
+      dispatch(tokenLogout());
+    }
+  }, [dispatch, isLogged, token]);
 
   // On récupère les propriétés du state hikesFilters dans hikesFiltersReducer
   const currentDifficulty = useAppSelector(
@@ -49,12 +52,7 @@ export default function Bookmarks() {
     return difficultyMatches && locationMatches;
   });
 
-  return expiredToken ? (
-    <p className="bookmarks__not-logged" style={{ textAlign: 'center' }}>
-      Vous devez vous <NavLink to="/connexion">connecter</NavLink>
-      &nbsp;pour voir vos Favoris
-    </p>
-  ) : (
+  return isLogged ? (
     <>
       <header>
         <h1>Favoris</h1>
@@ -88,5 +86,10 @@ export default function Bookmarks() {
         </main>
       )}
     </>
+  ) : (
+    <p className="bookmarks__not-logged" style={{ textAlign: 'center' }}>
+      Vous devez vous <NavLink to="/connexion">connecter</NavLink>
+      &nbsp;pour voir vos Favoris
+    </p>
   );
 }

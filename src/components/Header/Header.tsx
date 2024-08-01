@@ -8,13 +8,9 @@ import './Header.scss';
 import IconBreadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import NavTel from '../Nav/NavTel';
 
-// utils
-import isTokenExpired from '../../utils/decodeJwt';
-
 // Le composant actuel
 function Header() {
-  const token = localStorage.getItem('token');
-  const expiredToken = isTokenExpired(token as string) as boolean;
+  const isLogged = useAppSelector((state) => state.userConnection.isLogged);
 
   // Récupération des états provenants du store que l'on stocke en copie locale
   const widthMediaScreen = useAppSelector(
@@ -22,7 +18,6 @@ function Header() {
   );
 
   const isMobile = useMediaQuery(`(max-width:${widthMediaScreen}px)`);
-
   return (
     <header className="header">
       {isMobile ? (
@@ -34,10 +29,10 @@ function Header() {
               ? 'menu-link menu-link--active header__top-button'
               : 'menu-link header__top-button'
           }
-          to={expiredToken ? '/connexion' : '/mon-compte'}
+          to={isLogged ? '/mon-compte' : '/connexion'}
         >
           {/* Le bouton Se Connecter évolue selon l'état connecté ou non */}
-          {expiredToken ? 'Se connecter' : 'Mon compte'}
+          {isLogged ? 'Mon compte' : 'Se connecter'}
         </NavLink>
       )}
 

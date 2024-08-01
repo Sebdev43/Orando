@@ -1,36 +1,31 @@
 import { Favorite } from '@mui/icons-material';
-import { Button, IconButton } from '@mui/material';
+import { IconButton } from '@mui/material';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { addBookmark, deleteBookmark } from '../../store/reducers/bookmarks';
-
-// MUI
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import { Hike } from '../../@types/hike';
 
 export type BookmarksProps = {
   id: number;
 };
 
-//------------------------------- Le composant actuel
+// ------------------------------- Le composant actuel
 export default function Bookmarks({ id }: BookmarksProps) {
   const dispatch = useAppDispatch();
-
   const bookmarks = useAppSelector((state) => state.bookmarks.bookmarks);
+  const isFavorite = bookmarks.some((bookmark: Hike) => bookmark.id === id);
 
-  function handleClick(id: number, e: React.MouseEvent<HTMLButtonElement>) {
-    // e.stopPropagation();
-
-    if (bookmarks.find((bookmark) => bookmark.id === id)) {
+  function handleClick() {
+    if (bookmarks.find((bookmark: Hike) => bookmark.id === id)) {
       dispatch(deleteBookmark(id));
     } else {
       dispatch(addBookmark(id));
     }
   }
 
-  const isFavorite = bookmarks.some((bookmark) => bookmark.id === id);
-
   return isFavorite ? (
     <IconButton
-      onClick={(e) => handleClick(id, e)}
+      onClick={() => handleClick()}
       aria-label="Like minimal photography"
       size="small"
       sx={{
@@ -51,7 +46,7 @@ export default function Bookmarks({ id }: BookmarksProps) {
     </IconButton>
   ) : (
     <IconButton
-      onClick={(e) => handleClick(id, e)}
+      onClick={() => handleClick()}
       aria-label="Like minimal photography"
       size="small"
       sx={{

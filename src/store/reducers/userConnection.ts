@@ -5,6 +5,7 @@ import {
 } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { FormReinitData, FormResetData } from '../../@types/form';
+import isTokenExpired from '../../utils/decodeJwt';
 
 type InitialStateProps = {
   token: string | null;
@@ -16,7 +17,7 @@ type InitialStateProps = {
 const initialState: InitialStateProps = {
   token: '',
   serverResponse: '',
-  isLogged: false,
+  isLogged: isTokenExpired(localStorage.getItem('token') as string) || false,
   resetMessage: '',
 };
 

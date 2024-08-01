@@ -1,7 +1,7 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { RootState } from '../../@types/root';
 import { Hike } from '../../@types/hike';
+import { isTokenValid } from '../../utils/decodeJwt';
 
 // Le typage des données
 type BookmarksProps = {
@@ -19,10 +19,9 @@ const initialState: BookmarksProps = {
 
 export const getBookmarks = createAsyncThunk(
   'BOOKMARKS/GET_BOOKMARKS',
-  async (_, thunkAPI) => {
+  async () => {
     try {
-      const rootState = thunkAPI.getState() as RootState;
-      const { token } = rootState.userConnection;
+      const token = isTokenValid(localStorage.getItem('token') as string);
 
       const { data } = await axios.get('/api/bookmarks', {
         headers: {
@@ -38,10 +37,9 @@ export const getBookmarks = createAsyncThunk(
 
 export const deleteBookmark = createAsyncThunk(
   'BOOKMARK/DELETE_BOOKMARK',
-  async (id: number, thunkAPI) => {
+  async (id: number) => {
     try {
-      const rootState = thunkAPI.getState() as RootState;
-      const { token } = rootState.userConnection;
+      const token = isTokenValid(localStorage.getItem('token') as string);
 
       const { data } = await axios.delete('/api/bookmarks', {
         data: { hikeId: id },
@@ -58,10 +56,9 @@ export const deleteBookmark = createAsyncThunk(
 
 export const addBookmark = createAsyncThunk(
   'BOOKMARK/POST_BOOKMARK',
-  async (id: number, thunkAPI) => {
+  async (id: number) => {
     try {
-      const rootState = thunkAPI.getState() as RootState;
-      const { token } = rootState.userConnection;
+      const token = isTokenValid(localStorage.getItem('token') as string);
 
       const { data } = await axios.post(
         '/api/bookmarks',

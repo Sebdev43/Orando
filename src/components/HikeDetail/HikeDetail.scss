@@ -4,7 +4,6 @@
   }
   &__header {
     padding: 1rem;
-    background-color: #fff;
   }
   &__subtitle {
     margin-top: 1.5rem;
@@ -92,7 +91,7 @@
     &__tags {
       flex-direction: row;
       align-items: center;
-      
+
       &-localisation {
         padding: 0.2rem;
         font-size: 0.6rem;
@@ -111,7 +110,6 @@
       }
     }
     &__pictures {
-      
       .slide-image {
         width: 100%;
         max-height: 15rem;
@@ -133,10 +131,10 @@
     &__details {
       padding: 0.5rem;
     }
-    &__map{
+    &__map {
       padding: 0.1rem;
       &-wrapper {
-        margin:1rem 0;
+        margin: 1rem 0;
       }
     }
   }

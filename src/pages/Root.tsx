@@ -16,17 +16,17 @@ export default function Root() {
   const dispatch = useAppDispatch();
   const currentUrl = useLocation();
 
-  const token = useAppSelector((state) => state.userConnection.token) as string;
-  const tokenIsExpired = isTokenExpired(token);
+  const userToken = useAppSelector((state) => state.userConnection.token);
+  const token = isTokenExpired(userToken);
 
   // on récupère les randos dès que le composant Root est monté pour le premier rendu
   useEffect(() => {
     dispatch(getRandomHikes());
     dispatch(getHikes());
-    if (!tokenIsExpired) {
-      dispatch(getBookmarks());
-    }
-  }, [dispatch, tokenIsExpired]);
+    // if (token) {
+    //   dispatch(getBookmarks());
+    // }
+  }, [dispatch, token]);
 
   // on récupère l'URL pour surveiller lorsqu'elle change
   const { pathname } = useLocation();

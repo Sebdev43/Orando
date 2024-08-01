@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { getBookmarks } from '../../store/reducers/bookmarks';
-import isTokenExpired from '../../utils/decodeJwt';
 import { Hike } from '../../@types/hike';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import './Hikes.scss';
@@ -16,14 +15,10 @@ export default function Hikes() {
 
   const loading = useAppSelector((state) => state.hikesAll.loading);
   const hikes = useAppSelector((state) => state.hikesAll.hikesList);
-  const token = localStorage.getItem('token') as string;
-  const expiredToken = isTokenExpired(token);
 
   useEffect(() => {
-    if (!expiredToken) {
-      dispatch(getBookmarks());
-    }
-  }, [dispatch, expiredToken]);
+    dispatch(getBookmarks());
+  }, [dispatch]);
 
   const currentDifficulty = useAppSelector(
     (state) => state.hikesFilters.difficulty
