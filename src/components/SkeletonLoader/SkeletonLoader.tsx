@@ -8,7 +8,7 @@ export type SkeletonProps = {
 
 function SkeletonLoader({ skeletonNumber }: SkeletonProps) {
   const skeletons = [];
-  for (let i = 0; i < skeletonNumber; i++) {
+  for (let i = 0; i < skeletonNumber; i + 1) {
     skeletons.push(
       <Box key={i}>
         <Skeleton variant="rectangular" width={480} height={700} />

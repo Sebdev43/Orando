@@ -34,7 +34,7 @@ export const postLoginDatas = createAsyncThunk(
   }
 );
 
-// Faire une demande de reinitialisation du mot de passe
+// Route to ask for reset password
 export const postResetDatas = createAsyncThunk(
   'USER/POST_RESET_DATAS',
   async (datas: FormResetData) => {
@@ -47,7 +47,7 @@ export const postResetDatas = createAsyncThunk(
   }
 );
 
-// la route pour reinitialiser le mot de passe
+// Route to reinit password
 export const postReinitDatas = createAsyncThunk(
   'USER/POST_REINIT_DATAS',
   async (datas: FormReinitData) => {
@@ -75,7 +75,6 @@ export const userConnectionReducer = createReducer(initialState, (builder) => {
     .addCase(postLoginDatas.fulfilled, (state, action) => {
       localStorage.setItem('token', action.payload.token);
       state.token = action.payload.token;
-      // TODO remplacer partout avec le token vérifié
       state.isLogged = true;
     })
     .addCase(clearServerResponse, (state) => {
@@ -87,14 +86,14 @@ export const userConnectionReducer = createReducer(initialState, (builder) => {
       state.isLogged = false;
       localStorage.removeItem('token');
     })
-    // Demande de reset du mot de passe
+    // Ask reset password
     .addCase(postResetDatas.rejected, (state, action) => {
       state.resetMessage = action.error.message as string;
     })
     .addCase(postResetDatas.fulfilled, (state) => {
       state.resetMessage = 'Un lien vous a été envoyé';
     })
-    // Demande de reinitialisation du mot de passe
+    // Reinit password
     .addCase(postReinitDatas.rejected, (state, action) => {
       state.resetMessage = action.error.message as string;
     })

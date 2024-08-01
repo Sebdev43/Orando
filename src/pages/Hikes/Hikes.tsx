@@ -9,7 +9,7 @@ import HikeFilters from '../../components/HikesFilters/HikeFilters';
 import SkeletonLoader from '../../components/SkeletonLoader/SkeletonLoader';
 import CardComponent from '../../components/CardComponent/CardComponent';
 
-// ------------------------------ Le composant actuel est la page Voir les randonnées
+// ------------------------------ Page component : See all hikes
 export default function Hikes() {
   const dispatch = useAppDispatch();
 
@@ -27,7 +27,7 @@ export default function Hikes() {
     (state) => state.hikesFilters.localisation
   );
 
-  // je filtre les randonnées par difficulté et par localisation
+  // filtering hikes by difficulty and location
   const filteredHikes = hikes.filter((hike: Hike) => {
     const difficultyMatches: boolean =
       currentDifficulty === '' || hike.difficulty === currentDifficulty;

@@ -8,11 +8,11 @@ import './Header.scss';
 import IconBreadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import NavTel from '../Nav/NavTel';
 
-// Le composant actuel
+// --------------- Actual Component
 function Header() {
   const isLogged = useAppSelector((state) => state.userConnection.isLogged);
 
-  // Récupération des états provenants du store que l'on stocke en copie locale
+  // Avoid mutation of state by direct interactions : use local copy
   const widthMediaScreen = useAppSelector(
     (state) => state.websiteSettings.widthMediaScreen
   );
@@ -31,7 +31,6 @@ function Header() {
           }
           to={isLogged ? '/mon-compte' : '/connexion'}
         >
-          {/* Le bouton Se Connecter évolue selon l'état connecté ou non */}
           {isLogged ? 'Mon compte' : 'Se connecter'}
         </NavLink>
       )}
@@ -46,7 +45,7 @@ function Header() {
         />
       </NavLink>
 
-      {/* Menu de navigation en fonction de si mobile ou non */}
+      {/* Nav */}
       {isMobile ? <NavTel /> : <Nav />}
       <IconBreadcrumbs />
     </header>

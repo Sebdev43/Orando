@@ -2,20 +2,18 @@ import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getBookmarks } from '../../store/reducers/bookmarks';
-
+import { tokenLogout } from '../../store/reducers/userConnection';
 import './Bookmarks.scss';
 
-// Le typage des données
+// types
 import { Hike } from '../../@types/hike';
 
 // components
 import HikeFilters from '../../components/HikesFilters/HikeFilters';
-// import SkeletonLoader from '../../components/SkeletonLoader/SkeletonLoader';
 import CardComponent from '../../components/CardComponent/CardComponent';
 import isTokenExpired from '../../utils/decodeJwt';
-import { tokenLogout } from '../../store/reducers/userConnection';
 
-// ------------------------------- Le composant actuel est la page Favoris
+// ------------------------------- Page component : Bookmarks
 export default function Bookmarks() {
   const dispatch = useAppDispatch();
 
@@ -24,7 +22,7 @@ export default function Bookmarks() {
   const isLogged = useAppSelector((state) => state.userConnection.isLogged);
   const token = isTokenExpired(localStorage.getItem('token') as string);
 
-  // On actualise la propriété bookmarks du state à chacun de ses changements
+  // AXIOS request to get bookmarks when the component is mounted
   useEffect(() => {
     if (isLogged) {
       dispatch(getBookmarks());
@@ -34,7 +32,7 @@ export default function Bookmarks() {
     }
   }, [dispatch, isLogged, token]);
 
-  // On récupère les propriétés du state hikesFilters dans hikesFiltersReducer
+  // We get the properties of the hikesFilters state in hikesFiltersReducer
   const currentDifficulty = useAppSelector(
     (state) => state.hikesFilters.difficulty
   );
@@ -42,7 +40,7 @@ export default function Bookmarks() {
     (state) => state.hikesFilters.localisation
   );
 
-  // je filtre les favoris par difficulté et par localisation
+  // filtering the favorites by difficulty and location
   const filteredBookmarks = bookmarks?.filter((hike: Hike) => {
     const difficultyMatches: boolean =
       currentDifficulty === '' || hike.difficulty === currentDifficulty;
