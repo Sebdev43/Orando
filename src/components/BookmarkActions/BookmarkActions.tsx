@@ -23,47 +23,41 @@ export default function Bookmarks({ id }: BookmarksProps) {
     }
   }
 
-  return isFavorite ? (
+  const buttonStyles = {
+    position: 'absolute',
+    backgroundColor: 'whitesmoke',
+    zIndex: 2000,
+    borderRadius: '50%',
+    width: '2.5rem',
+    height: '2.5rem',
+    right: '0.4em',
+    top: '0.4em',
+    transform: 'translateY(0%)',
+    color: 'red',
+    '&:hover': { color: '#da7b29' },
+  };
+
+  const favoriteButton = (
     <IconButton
       onClick={() => handleClick()}
       aria-label="Like minimal photography"
       size="small"
-      sx={{
-        position: 'absolute',
-        backgroundColor: 'whitesmoke',
-        zIndex: 2000,
-        borderRadius: '50%',
-        width: '2.5rem',
-        height: '2.5rem',
-        right: '0.4em',
-        top: '0.4em',
-        transform: 'translateY(0%)',
-        color: 'red',
-        '&:hover': { color: '#da7b29' },
-      }}
+      sx={buttonStyles}
     >
       <Favorite />
     </IconButton>
-  ) : (
+  );
+
+  const favoriteBorderButton = (
     <IconButton
       onClick={() => handleClick()}
       aria-label="Like minimal photography"
       size="small"
-      sx={{
-        position: 'absolute',
-        backgroundColor: 'white',
-        zIndex: 2000,
-        borderRadius: '50%',
-        width: '2.5rem',
-        height: '2.5rem',
-        right: '0.4em',
-        top: '0.4em',
-        transform: 'translateY(0%)',
-        color: 'red',
-        '&:hover': { color: '#da7b29', backgroundColor: 'white' },
-      }}
+      sx={{ ...buttonStyles, backgroundColor: 'white' }}
     >
       <FavoriteBorder />
     </IconButton>
   );
+
+  return isFavorite ? favoriteButton : favoriteBorderButton;
 }
