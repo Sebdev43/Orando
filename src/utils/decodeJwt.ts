@@ -14,7 +14,6 @@ export function isTokenExpired(token: string): boolean {
     return false;
   }
 }
-// export default isTokenExpired;
 
 /**
  * Check if token is valid and return it if it is

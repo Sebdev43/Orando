@@ -5,7 +5,7 @@ export default function ScrollToTop() {
   // local state to make it easier to read, its an exception here
   const [show, setShowButton] = useState(false);
 
-  // TODO utiliser un fire effect ?
+  // TODO utiliser un fire effect ici
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;

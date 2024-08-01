@@ -17,7 +17,6 @@ export default function AccountDelete(): React.ReactNode {
   const handleClick = () => {
     dispatch(deleteUser());
     navigate('/');
-    // TODO installer js-cookie pour le delete ici
   };
 
   return expiredToken ? (

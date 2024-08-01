@@ -1,26 +1,23 @@
 import { createReducer, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-//  le typage TS pour une randonnée = Hike
-// Une liste s'exprime par un tableau (en général)
-// ligne 14, le tableau des randonnées est donc un [tableau] de type "Hike" = Hike[]
+// types
 import { Hike } from '../../@types/hike';
 
-//  le typage TS pour tout l'état (le state hikes du store.tsx)
 export type HikesList = {
   randomHikesList: Hike[];
   loading: boolean;
   error: string | undefined | null;
 };
 
-// les propriétés par défaut du state hikes (le state du store.tsx)
+// initial properties for the random hikes state
 const initialState: HikesList = {
   randomHikesList: [],
   loading: false,
   error: null,
 };
 
-// En asynchrone, on utilise la méthode "createasyncThunk" pour récupérer les données d'une API
+// In asynchronous, we use the "createasyncThunk" method to get data from an API
 export const getRandomHikes = createAsyncThunk(
   'HIKES/LOAD_RANDOM_HIKES',
   async () => {
@@ -41,7 +38,6 @@ export const hikesRandomReducer = createReducer(initialState, (builder) => {
     .addCase(getRandomHikes.rejected, (state, action) => {
       state.error = action.error.message;
       state.loading = false;
-      // Gestion des erreurs
     })
     .addCase(getRandomHikes.fulfilled, (state, action) => {
       state.randomHikesList = action.payload;
