@@ -1,4 +1,3 @@
-import { Typography } from '@mui/material';
 import { Hike } from '../../@types/hike';
 
 // Put some color depends of the difficulty
@@ -10,7 +9,7 @@ const difficultyStyles: { [key: string]: { color: string } } = {
 
 function RenderDifficulty({ difficulty }: Hike) {
   const style = difficultyStyles[difficulty] || {};
-  return <Typography style={style}>{difficulty}</Typography>;
+  return <p style={style}>{difficulty}</p>;
 }
 
 export default RenderDifficulty;

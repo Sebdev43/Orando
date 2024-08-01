@@ -80,22 +80,20 @@ export default function CardComponent(hike: Hike) {
               },
             }}
           >
-            <div className="column">
-              <Typography level="body-sm">Localisation :</Typography>
-              <Typography level="body-sm">{hike?.localisation}</Typography>
-            </div>
+            <article className="column">
+              <h4>Localisation :</h4>
+              <p>{hike?.localisation}</p>
+            </article>
 
-            <div className="column">
-              <Typography level="body-sm">Marche :</Typography>
-              <Typography level="body-sm">
-                {formatHikeTime(hike?.time)}
-              </Typography>
-            </div>
+            <article className="column">
+              <h4>Marche :</h4>
+              <p>{formatHikeTime(hike?.time)}</p>
+            </article>
 
-            <div className="column">
-              <Typography level="body-sm">Difficulté :</Typography>
+            <article className="column special-column">
+              <h4>Difficulté :</h4>
               {RenderDifficulty(hike)}
-            </div>
+            </article>
           </CardContent>
         </CardOverflow>
       </Card>

@@ -11,14 +11,7 @@
     line-height: 1.5rem;
     text-align: center;
   }
-  // &__tags {
-  //   display: flex;
-  //   justify-content: space-between;
-  //   align-items: center;
-  //   padding: 10px;
-  //   background-color: #f5f5f5;
-  //   border-radius: 8px;
-  // }
+
   &:hover {
     box-shadow:
       12px 12px 12px rgba(0, 0, 0, 0.1),
@@ -26,11 +19,5 @@
   }
   &:active {
     animation: scale-down-center 0.2s;
-  }
-  @media screen and (max-width: 390px) {
-    width: 90%;
-    max-width: 90%;
-    margin: 0 auto;
-    margin-bottom: 20px;
   }
 }
