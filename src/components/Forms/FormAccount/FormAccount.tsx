@@ -164,7 +164,7 @@ export default function FormAccount() {
         <Button
           className="button-delete"
           onClick={() => {
-            navigate('/validation/delete');
+            navigate('/delete');
           }}
           variant="contained"
           color="error"

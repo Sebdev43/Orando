@@ -3,14 +3,14 @@ import axios from 'axios';
 import { Hike } from '../../@types/hike';
 import { isTokenValid } from '../../utils/decodeJwt';
 
-// Le typage des données
+// types
 type BookmarksProps = {
   bookmarks: Hike[];
   isLoading: boolean;
   isFavorite: boolean;
 };
 
-// ------------------------------  Le composant actuel
+// ------------------------------  Actual Component
 const initialState: BookmarksProps = {
   bookmarks: [],
   isLoading: false,

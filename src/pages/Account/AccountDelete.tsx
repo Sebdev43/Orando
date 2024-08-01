@@ -8,8 +8,7 @@ import './Account.scss';
 
 // Le composant actuel est la page Mon compte
 export default function AccountDelete(): React.ReactNode {
-  const token = localStorage.getItem('token') as string;
-  const expiredToken = isTokenOk(token);
+  const token = isTokenOk(localStorage.getItem('token') as string);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -19,9 +18,7 @@ export default function AccountDelete(): React.ReactNode {
     navigate('/');
   };
 
-  return expiredToken ? (
-    <>{navigate('/connexion')}</>
-  ) : (
+  return token ? (
     <main className="delete__account-wrapper">
       <h1>Suppression totale du compte</h1>
       <section className="delete__account-container">
@@ -46,5 +43,7 @@ export default function AccountDelete(): React.ReactNode {
         </Button>
       </section>
     </main>
+  ) : (
+    <>{navigate('/connexion')}</>
   );
 }
