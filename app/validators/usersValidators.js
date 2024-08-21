@@ -1,7 +1,7 @@
-import { body, validationResult } from "express-validator";
+import { body } from "express-validator";
 import { usersDataMappers } from "../dataMappers/index.dataMappers.js";
 import { verifyPassword } from "../utils/passwordUtils.js";
-
+import { validateRequest } from "../middlewares/validateRequest.js";
 /**
  * Middleware pour valider les champs de la requête de mise à jour d'utilisateur.
  * @module userValidators
@@ -85,24 +85,5 @@ export const userValidators = [
   passwordValidator,
   nicknameValidator,
   emailValidator,
-
-  /**
-   * Middleware pour gérer les erreurs de validation.
-   * @param {Request} req - La requête HTTP
-   * @param {Response} res - La réponse HTTP
-   * @param {Function} next - La fonction middleware suivante
-   * @returns {Response|undefined}
-   */
-
-  (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({
-        status: "error",
-        message: "Données de requête invalides",
-        errors: errors.array(),
-      });
-    }
-    next();
-  },
+  validateRequest,
 ];

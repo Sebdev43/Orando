@@ -1,5 +1,5 @@
 import { body } from 'express-validator';
-
+import { validateRequest } from "../middlewares/validateRequest.js";
 /**
  * Validateur pour les routes liées aux randonnées.
  * Vérifie que les champs requis pour une randonnée sont valides.
@@ -23,4 +23,5 @@ export const hikeValidators = [
   body('localisation')
     .exists().withMessage('La localisation est requise.')
     .isString().withMessage('La localisation doit être une chaîne de caractères.'),
+  validateRequest,
 ];

@@ -1,6 +1,13 @@
 import express from "express";
-import { login, verifyEmail, signup, forgotPassword, resetPassword, logout, refreshToken } from "../controllers/authController.js";
-import { validateRequest } from "../middlewares/validateReqMiddleware.js";
+import {
+  login,
+  verifyEmail,
+  signup,
+  forgotPassword,
+  resetPassword,
+  logout,
+  refreshToken,
+} from "../controllers/authController.js";
 import { hashPasswordMiddleware } from "../middlewares/scryptMiddleware.js";
 import { loginValidator } from "../validators/loginValidator.js";
 import { signupValidator } from "../validators/signupValidator.js";
@@ -16,7 +23,6 @@ const router = express.Router();
  *   - name: Accounts
  *     description: Opérations liées aux comptes utilisateurs
  */
-
 
 /**
  * @swagger
@@ -76,7 +82,7 @@ const router = express.Router();
  *                   example: Erreur interne du serveur
  */
 
-router.post("/login",loginValidator, login);
+router.post("/login", loginValidator, login);
 
 /**
  * @swagger
@@ -141,14 +147,7 @@ router.post("/login",loginValidator, login);
  *                   example: Erreur interne du serveur
  */
 
-router.post(
-  "/signup",
-  signupValidator,
-  hashPasswordMiddleware,
-  signup
-);
-
-
+router.post("/signup", signupValidator, hashPasswordMiddleware, signup);
 
 /**
  * @swagger
@@ -181,7 +180,6 @@ router.post(
 
 router.get("/verify-email", verifyEmail);
 
-
 /**
  * @swagger
  * /accounts/forgot-password:
@@ -213,7 +211,7 @@ router.get("/verify-email", verifyEmail);
  *         $ref: '#/components/responses/BadRequestError'
  */
 
-router.post("/forgot-password",forgotPasswordValidator, forgotPassword);
+router.post("/forgot-password", forgotPasswordValidator, forgotPassword);
 
 /**
  * @swagger
@@ -258,7 +256,7 @@ router.post("/forgot-password",forgotPasswordValidator, forgotPassword);
  *                   example: Token invalide ou expiré.
  */
 
-router.post("/reset-password",resetPasswordValidator, resetPassword)
+router.post("/reset-password", resetPasswordValidator, resetPassword);
 
 /**
  * @swagger
@@ -282,7 +280,7 @@ router.post("/reset-password",resetPasswordValidator, resetPassword)
  *       401:
  *         $ref: '#/components/responses/UnauthorizedError'
  */
-router.post('/logout', authenticateJWT, logout);
+router.post("/logout", authenticateJWT, logout);
 
 /**
  * @swagger
@@ -313,7 +311,5 @@ router.post('/logout', authenticateJWT, logout);
  *         $ref: '#/components/responses/UnauthorizedError'
  */
 router.post("/refresh", refreshToken);
-
-
 
 export default router;

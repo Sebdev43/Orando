@@ -87,6 +87,8 @@ Pour accéder à la documentation Swagger, démarrez l'application et rendez-vou
 
 Voici les programmes/logiciels/ressources que vous nous avons utilisé pour développer notre projet :
 
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white) ![Express-rate-limit](https://img.shields.io/badge/Express--Rate--Limit-000000?style=for-the-badge&logo=express&logoColor=white) ![Express-validator](https://img.shields.io/badge/Express--Validator-000000?style=for-the-badge&logo=express&logoColor=white) ![PG](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white) ![Dotenv](https://img.shields.io/badge/Dotenv-ECD53F?style=for-the-badge&logo=dotenv&logoColor=black) ![File-stream-rotator](https://img.shields.io/badge/File--Stream--Rotator-000000?style=for-the-badge) ![Morgan](https://img.shields.io/badge/Morgan-000000?style=for-the-badge&logo=morgan&logoColor=white) ![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black) ![Js-Doc](https://img.shields.io/badge/Js--Doc-000000?style=for-the-badge&logo=jsdoc&logoColor=white) ![Scrypt](https://img.shields.io/badge/Scrypt-000000?style=for-the-badge&logo=scrypt&logoColor=white) ![Jsonwebtoken](https://img.shields.io/badge/JsonWebToken-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white) ![Helmet](https://img.shields.io/badge/Helmet-000000?style=for-the-badge&logo=helmet&logoColor=white) ![Node-cache](https://img.shields.io/badge/Node--Cache-000000?style=for-the-badge) ![Nodemailer](https://img.shields.io/badge/Nodemailer-000000?style=for-the-badge&logo=nodemailer&logoColor=white) ![CORS](https://img.shields.io/badge/CORS-000000?style=for-the-badge&logo=cors&logoColor=white) ![VS Code](https://img.shields.io/badge/VS_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
+
 - [Express](https://expressjs.com/)
 - [Express-rate-limit](https://www.npmjs.com/package/express-rate-limit)
 - [Express-validator](https://www.npmjs.com/package/express-validator)
@@ -118,7 +120,8 @@ Pour une documentation complète sur les aspects de sécurité de cette applicat
 
 Liste des auteurs du projet:
 
-- **Matthias Hibon** => [@Heike13](https://github.com/Heike13)
-- **Jérôme de Lucia** => [@Je2222](https://github.com/Je2222)
 - **Sébastien Robert** => [@sebdev43](https://github.com/Sebdev43)
 - **Kevin Cannizzaro** => [@CannizzaroKevin](https://github.com/CannizzaroKevin)
+- **Matthias Hibon** => [@Heike13](https://github.com/Heike13)
+- **Jérôme de Lucia** => [@Je2222](https://github.com/Je2222)
+- **O'clock** _alias_ [@Oclock](https://oclock.io/)

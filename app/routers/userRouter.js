@@ -6,7 +6,7 @@ import {
 } from "../controllers/userController.js";
 
 import { userValidators } from "../validators/usersValidators.js";
-import { validateRequest } from "../middlewares/validateReqMiddleware.js";
+
 import { authenticateJWT } from "../middlewares/jwtMiddleware.js";
 
 const router = express.Router();
@@ -96,7 +96,7 @@ router.get("/", authenticateJWT, getUserById);
  *       401:
  *         $ref: '#/components/responses/UnauthorizedError'
  */
-router.patch("/", authenticateJWT, userValidators,  validateRequest, updateUser);
+router.patch("/", authenticateJWT, userValidators, updateUser);
 
 /**
  * @swagger
