@@ -16,7 +16,8 @@ export default function Root() {
   const currentUrl = useLocation();
 
   const userToken = useAppSelector((state) => state.userConnection.token);
-  const token = isTokenOk(userToken);
+  const token = isTokenOk(userToken ?? "");
+
 
   // on récupère les randos dès que le composant Root est monté pour le premier rendu
   useEffect(() => {

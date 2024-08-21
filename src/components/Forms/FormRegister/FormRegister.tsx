@@ -44,7 +44,7 @@ export default function FormRegister() {
     dispatch(postRegisterDatas(data as any));
   };
 
-  const errorMessagesFromApi = messagesResponse.map((message, index) => {
+  const errorMessagesFromApi = messagesResponse.map((message: string, index: number) => {
     return (
       <span key={index}>
         {message}

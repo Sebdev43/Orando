@@ -27,7 +27,8 @@ export default function Map({ geoDatas }: GeoDatasProps) {
         map.on('load', () => {
           try {
             const parsedData = JSON.parse(geoDatas);
-
+    // Log des données GeoJSON dans la console pour vérification
+    console.log('Données GeoJSON:', parsedData);
             map.addSource('route', {
               type: 'geojson',
               data: parsedData,
@@ -48,6 +49,9 @@ export default function Map({ geoDatas }: GeoDatasProps) {
             });
 
             const coordinates = parsedData.coordinates;
+    // Log des coordonnées spécifiques pour analyse
+    console.log('Coordonnées de l\'itinéraire:', coordinates);
+
             const bounds = coordinates.reduce(
               (bounds: any, coord: any) => bounds.extend(coord),
               new maplibregl.LngLatBounds(coordinates[0], coordinates[0])

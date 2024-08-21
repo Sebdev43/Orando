@@ -25,9 +25,13 @@ function HikeFilters() {
   // on reprend les données du store pour les randonnées
   const hikes = useAppSelector((state) => state.hikesAll.hikesList);
   // 1er select : récupérer toutes les localisations
-  const locations = [...new Set(hikes.map((hike) => hike.localisation))];
+  const locations: string[] = Array.from(new Set(hikes.map((hike: { localisation: string }) => hike.localisation)));
+
+
   // 2e select : récupérer toutes les difficultés
-  const difficulties = [...new Set(hikes.map((hike) => hike.difficulty))];
+  const difficulties: string[] = Array.from(new Set(hikes.map((hike: { difficulty: string }) => hike.difficulty)));
+
+
 
   return (
     <>
@@ -49,7 +53,7 @@ function HikeFilters() {
                 TOUTES
               </MenuItem>
 
-              {difficulties?.map((location, index) => (
+              {difficulties?.map((location: string, index) => (
                 <MenuItem key={index} value={location}>
                   {location}
                 </MenuItem>
@@ -77,8 +81,8 @@ function HikeFilters() {
               </MenuItem>
 
               {locations?.map((location, index) => (
-                <MenuItem key={index} value={location as string}>
-                  {location as string}
+                <MenuItem key={index} value={location}>
+                  {location}
                 </MenuItem>
               ))}
             </Select>

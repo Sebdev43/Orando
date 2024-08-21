@@ -3,9 +3,7 @@
 Welcome to O'Rando, a hiking visualization website, allowing users to discover hiking routes. </br>
 The site is optimized for viewing on a mobile screen.
 
-### 
-
-### Functionality
+## Functionality
 
 - User authentication and management (CRUD for account)
 - Breadcrumbs to see where you are on the website
@@ -13,34 +11,37 @@ The site is optimized for viewing on a mobile screen.
 - Interactive map of each hike
 - Favorite routes
 
-### How to install
+## How to install
 
 install dependencies with PNPM
+
 ```bash
 pnpm install
-
 ```
+
 install dependencies with classic NPM
+
 ```bash
 npm install
+```
 
-``` 
 ---
-launch server on localhost 5173 with PNPM 
+
+launch server on localhost 5173 with PNPM
 
 ```bash
 pnpm dev
 ```
-launch server on localhost 5173 with NPM 
+
+launch server on localhost 5173 with NPM
 
 ```bash
 npm dev
 ```
 
+## Resources used (Name and Version)
 
-### Resources used (Name and Version)
-
-#### <u>dependencies</u> :
+### <u>dependencies</u> :
 
 - [React](https://react.dev)
   - v18.2.0
@@ -88,7 +89,7 @@ npm dev
 - [Vs-code](https://code.visualstudio.com/)
 - [GitHub](https://github.com/)
 
-### Autors
+## Autors
 
 - **Matthias Hibon** => [@Heike13](https://github.com/Heike13)
 - **Jérôme de Lucia** => [@Je2222](https://github.com/Je2222)
