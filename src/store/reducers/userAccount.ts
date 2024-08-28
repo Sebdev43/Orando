@@ -1,3 +1,4 @@
+
 import {
   createAction,
   createAsyncThunk,
@@ -9,7 +10,16 @@ import { RootState } from '../../@types/root';
 import { Credential, PatchCredential } from '../../@types/form';
 import { isTokenValid } from '../../utils/decodeJwt';
 
-// Le typage des données
+/**
+ * Types for User Account properties.
+ * 
+ * @typedef {Object} UserAccountProps
+ * @property {Credential} credentials - The credentials of the user, including nickname, location, email, and password.
+ * @property {string | null} editingField - The field currently being edited, or null if no field is being edited.
+ * @property {string} errorUserDatas - Error message related to user data operations.
+ * @property {string} fulfiledMessage - Success message after successful operations.
+ */
+
 type UserAccountProps = {
   credentials: Credential;
   editingField: string | null;
@@ -29,11 +39,27 @@ const initialState: UserAccountProps = {
   editingField: null,
 };
 
+/**
+ * Action to change the currently editing field in the user account form.
+ *
+ * @type {import('@reduxjs/toolkit').ActionCreator<string | null>}
+ */
+
 export const changeEditingField = createAction<string | null>(
   'USER_ACCOUNT/CHANGE_EDITING_FIELD'
 );
 
-// Récupérer les données du User identifié avec le token
+/**
+ * AsyncThunk to fetch user data based on a valid token.
+ * 
+ * This action retrieves the authenticated user's data using their token stored in localStorage.
+ *
+ * @async
+ * @function getUserDatas
+ * @returns {Promise<Object>} The user data retrieved from the API.
+ * @throws Will throw an error if the request fails.
+ */
+
 export const getUserDatas = createAsyncThunk('USER/GET_USER', async () => {
   try {
     const token = isTokenValid(localStorage.getItem('token') as string);
@@ -49,7 +75,18 @@ export const getUserDatas = createAsyncThunk('USER/GET_USER', async () => {
   }
 });
 
-// Patch pour modifier les infos du compte
+/**
+ * AsyncThunk to update user account information.
+ * 
+ * This action patches the user's account data, such as nickname, location, email, and password.
+ *
+ * @async
+ * @function patchUserDatas
+ * @param {PatchCredential} datas - The updated user data to be patched.
+ * @returns {Promise<Object>} The updated user data from the API.
+ * @throws Will throw an error if the request fails, with a message from the server.
+ */
+
 export const patchUserDatas = createAsyncThunk(
   'USER/PATCH_USER',
   async (datas: PatchCredential) => {

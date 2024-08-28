@@ -2,7 +2,15 @@ import { createReducer, createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 import { ErrorResponse } from '../../@types/axiosError';
 
-// Le typage des données
+/**
+ * Types for User Registration state properties.
+ * 
+ * @typedef {Object} UserProps
+ * @property {string[]} messagesResponse - The list of response messages, typically for validation errors.
+ * @property {boolean} isRegistered - Indicates whether the user has successfully registered.
+ * @property {string} successMessage - A message indicating successful registration.
+ */
+
 export type UserProps = {
   messagesResponse: string[];
   isRegistered: boolean;
@@ -16,7 +24,18 @@ const initialState: UserProps = {
   successMessage: '',
 };
 
-// En asynchrone, on utilise la méthode "createasyncThunk" pour récupérer les données d'une API
+/**
+ * AsyncThunk to handle user registration.
+ * 
+ * This action sends user registration data to the server and handles the response.
+ *
+ * @async
+ * @function postRegisterDatas
+ * @param {FormData} datas - The registration form data.
+ * @returns {Promise<Object>} The response data from the server.
+ * @throws Will throw an error if the registration fails.
+ */
+
 export const postRegisterDatas = createAsyncThunk(
   'USER/POST_REGISTER_DATAS',
   async (datas: FormData) => {
@@ -39,6 +58,17 @@ export const postRegisterDatas = createAsyncThunk(
     }
   }
 );
+
+/**
+ * Reducer for handling user registration state.
+ * 
+ * Manages the state for user registration including success and error messages.
+ *
+ * @function userRegistrationReducer
+ * @param {UserProps} state - The initial state for user registration.
+ * @param {import('@reduxjs/toolkit').AnyAction} action - The action dispatched.
+ * @returns {UserProps} The new state after applying the action.
+ */
 
 export const userRegistrationReducer = createReducer(
   initialState,

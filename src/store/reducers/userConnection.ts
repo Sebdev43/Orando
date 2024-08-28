@@ -7,6 +7,16 @@ import axios from 'axios';
 import { FormReinitData, FormResetData } from '../../@types/form';
 import { isTokenOk } from '../../utils/decodeJwt';
 
+/**
+ * Types for the initial state of user connection.
+ * 
+ * @typedef {Object} InitialStateProps
+ * @property {string | null} token - The authentication token of the user.
+ * @property {string} serverResponse - The server response message related to user actions.
+ * @property {boolean} [isLogged] - Indicates whether the user is logged in or not.
+ * @property {string} resetMessage - Message related to password reset operations.
+ */
+
 type InitialStateProps = {
   token: string | null;
   serverResponse: string;
@@ -21,7 +31,18 @@ const initialState: InitialStateProps = {
   resetMessage: '',
 };
 
-// LOGIN
+/**
+ * AsyncThunk to handle user login.
+ * 
+ * This action sends user credentials to the server and returns the authentication token.
+ *
+ * @async
+ * @function postLoginDatas
+ * @param {FormData} datas - The login form data including email and password.
+ * @returns {Promise<Object>} The response data containing the authentication token.
+ * @throws Will throw an error if the login credentials are incorrect.
+ */
+
 export const postLoginDatas = createAsyncThunk(
   'USER/POST_LOGIN_DATAS',
   async (datas: FormData) => {
@@ -34,7 +55,18 @@ export const postLoginDatas = createAsyncThunk(
   }
 );
 
-// Route to ask for reset password
+/**
+ * AsyncThunk to request a password reset.
+ * 
+ * This action sends the user's email to request a password reset link.
+ *
+ * @async
+ * @function postResetDatas
+ * @param {FormResetData} datas - The form data containing the user's email.
+ * @returns {Promise<Object>} The server's response to the reset request.
+ * @throws Will throw an error if the email is incorrect or doesn't exist.
+ */
+
 export const postResetDatas = createAsyncThunk(
   'USER/POST_RESET_DATAS',
   async (datas: FormResetData) => {
@@ -47,7 +79,18 @@ export const postResetDatas = createAsyncThunk(
   }
 );
 
-// Route to reinit password
+/**
+ * AsyncThunk to reset the user's password.
+ * 
+ * This action allows the user to reset their password using a token provided by the server.
+ *
+ * @async
+ * @function postReinitDatas
+ * @param {FormReinitData} datas - The form data containing the new password and the reset token.
+ * @returns {Promise<Object>} The server's response to the password reset.
+ * @throws Will throw an error if the new password is not accepted.
+ */
+
 export const postReinitDatas = createAsyncThunk(
   'USER/POST_REINIT_DATAS',
   async (datas: FormReinitData) => {
@@ -63,8 +106,24 @@ export const postReinitDatas = createAsyncThunk(
   }
 );
 
+
+
 export const tokenLogout = createAction('USER/LOGOUT');
+
+
+
 export const clearServerResponse = createAction('USER/CLEAR_SERVER_RESPONSE');
+
+/**
+ * Reducer for handling user connection states.
+ * 
+ * Manages the states for login, logout, password reset, and server responses.
+ *
+ * @function userConnectionReducer
+ * @param {InitialStateProps} state - The initial state for the user connection.
+ * @param {import('@reduxjs/toolkit').AnyAction} action - The action dispatched.
+ * @returns {InitialStateProps} The new state after applying the action.
+ */
 
 export const userConnectionReducer = createReducer(initialState, (builder) => {
   builder

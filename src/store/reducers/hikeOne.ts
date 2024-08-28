@@ -20,7 +20,18 @@ const initialState: hikeOneProps = {
   error: null,
 };
 
-// En asynchrone, on utilise la méthode "createasyncThunk" pour récupérer les données d'une API
+/**
+ * AsyncThunk to load the details of a single hike.
+ * 
+ * This action fetches the details of a specific hike from the server.
+ *
+ * @async
+ * @function getOneHike
+ * @param {number} id - The ID of the hike to be fetched.
+ * @returns {Promise<Hike>} The details of the hike retrieved from the server.
+ * @throws Will throw an error if the hike cannot be retrieved.
+ */
+
 export const getOneHike = createAsyncThunk(
   'HIKES/LOAD_FROM_API',
   async (id: number) => {

@@ -1,3 +1,16 @@
+/**
+ * Manages the state and actions related to fetching random hikes.
+ *
+ * This module defines the properties and initial state for the random hikes list,
+ * and provides an asynchronous action to fetch random hikes from an API. 
+ * The state includes:
+ * - `randomHikesList`: An array of random hikes.
+ * - `loading`: A boolean indicating whether the data is currently being fetched.
+ * - `error`: An error message if the fetching fails.
+ *
+ * @module hikesRandom
+ */
+
 import { createReducer, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -17,7 +30,15 @@ const initialState: HikesList = {
   error: null,
 };
 
-// In asynchronous, we use the "createasyncThunk" method to get data from an API
+/**
+ * Asynchronous thunk action to fetch random hikes from the API.
+ *
+ * @async
+ * @function
+ * @returns {Promise<Hike[]>} The fetched random hikes data.
+ * @throws Will throw an error if the fetch fails.
+ */
+
 export const getRandomHikes = createAsyncThunk(
   'HIKES/LOAD_RANDOM_HIKES',
   async () => {
@@ -29,6 +50,14 @@ export const getRandomHikes = createAsyncThunk(
     }
   }
 );
+
+/**
+ * Reducer to handle the state of random hikes based on the dispatched actions.
+ *
+ * @function
+ * @param {HikesList} state - The current state of the random hikes list.
+ * @param {object} action - The dispatched action containing the type and payload.
+ */
 
 export const hikesRandomReducer = createReducer(initialState, (builder) => {
   builder
