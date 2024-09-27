@@ -1,0 +1,86 @@
+@use 'reset';
+@use 'fonts';
+@use 'keyframes';
+@use 'variables' as v;
+
+body {
+  margin: 0;
+  font-family: WaukeganHustle-Regular, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url('/home.webp');
+  background-attachment: fixed;
+  background-size: cover;
+}
+#root {
+  width: 80%;
+  margin: auto;
+  background-color: v.$color-background;
+
+  body.not-found-page & {
+    background-color: transparent;
+  }
+}
+.container__background {
+  width: 90%;
+  padding: 0rem 3rem;
+  margin: auto;
+}
+.content {
+  min-height: 110vh;
+  margin: 3rem 0;
+  margin-bottom: 15rem;
+}
+
+.page_title {
+  margin: v.$gutter 0;
+  font-size: v.$gutter * 1.1;
+}
+
+// Mode SMARTPHONE
+@media screen and (max-width: 840px) {
+  body {
+    background-image: none;
+  }
+  #root {
+    width: 100%;
+  }
+  .page_title {
+    font-size: v.$gutter * 0.8;
+  }
+  .header {
+    display: flex;
+  }
+  .breadcrumbs {
+    display: none;
+  }
+  .container__background {
+    padding: 0;
+  }
+  .map-wrapper {
+    width: 20%;
+    height: 10rem;
+  }
+  .hike {
+    margin: 20px;
+
+    &__header {
+      margin-bottom: 20px;
+    }
+    &__tags {
+      margin-top: 10px;
+    }
+
+    &__details {
+      margin-top: 20px;
+    }
+
+    &_map {
+      margin-top: 20px;
+    }
+
+    &__footer {
+      margin-top: 20px;
+    }
+  }
+}
