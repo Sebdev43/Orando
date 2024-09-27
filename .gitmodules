@@ -1,6 +1,0 @@
-[submodule "orando-front"]
-	path = orando-front
-	url = git@github.com:Sebdev43/orando-front.git
-[submodule "orando-back"]
-	path = orando-back
-	url = git@github.com:Sebdev43/orando-back.git
