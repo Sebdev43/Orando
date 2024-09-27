@@ -1,97 +1,62 @@
-# O'Rando
+# O'Rando - Projet d'Apothéose
 
-Welcome to O'Rando, a hiking visualization website, allowing users to discover hiking routes. </br>
-The site is optimized for viewing on a mobile screen.
+Bienvenue sur le dépôt O'Rando, le projet final réalisé dans le cadre de la formation de développeur full-stack chez O'clock. Ce projet a pour objectif de permettre aux utilisateurs de découvrir et suivre des randonnées de manière intuitive et interactive.
 
-## Functionality
+## Présentation du Projet
 
-- User authentication and management (CRUD for account)
-- Breadcrumbs to see where you are on the website
-- Consultation of routes available, with search by Difficulty and/or Localisation
-- Interactive map of each hike
-- Favorite routes
+O'Rando est une application web complète qui offre une expérience utilisateur riche pour les amateurs de randonnée. Le projet se compose de deux principaux modules :
 
-## How to install
+- Frontend : Développé avec React et Redux, l'interface utilisateur permet de visualiser les itinéraires de randonnée sur une carte interactive (utilisant MapLibre), de gérer les comptes utilisateurs, et bien plus encore. Il est optimisé pour une utilisation sur différents appareils, incluant les mobiles.
+- Backend : Propulsé par Node.js et Express, le backend gère les opérations CRUD sur les données, assure l'authentification des utilisateurs via JWT, et intègre une base de données PostgreSQL avec le support de PostGIS pour les données géospatiales.
 
-install dependencies with PNPM
+Vsionnez notre cahier des charges ici :
+[Cahier des charges O'Rando](https://silly-practice-5f9.notion.site/Cahier-des-charges-O-Rando-ee581121c0614dcf9f2000b7eac982ac)
+
+
+## Fonctionnalités Clés
+
+- Gestion des Utilisateurs : Inscription, connexion, récupération de mot de passe et gestion de profil.
+
+- Itinéraires de Randonnée : Création, modification, suppression et visualisation des parcours avec des détails géographiques précis.
+
+- Carte Interactive : Affichage dynamique des itinéraires sur une carte avec zoom et suivi des parcours.
+- Sécurité : Authentification sécurisée avec JWT, protection contre les attaques XSS, et validation des données utilisateur.
+
+## Prérequis
+
+- Node.js
+- PostgreSQL
+- PNPM ou NPM
+- Sqitch
+- Docker (optionnel, pour le développement)
+
+## Installation
+
+1. Cloner le dépôt :
 
 ```bash
-pnpm install
+git clone https://github.com/Sebdev43/Orando-Full.git
 ```
 
-install dependencies with classic NPM
+2. Installer les dépendances pour le frontend et le backend :
 
 ```bash
-npm install
+cd orando-front && pnpm install
+cd ../orando-back && pnpm install
 ```
 
----
+3. Configurer les variables d'environnement : Créer un fichier .env pour le backend avec les informations de connexion à la base de données, les clés JWT, etc.
 
-launch server on localhost 5173 with PNPM
+4. Démarrer les serveurs :
+
+- Frontend :
 
 ```bash
 pnpm dev
 ```
 
-launch server on localhost 5173 with NPM
+- Backend :
 
 ```bash
-npm dev
+npm start
 ```
-
-## Resources used (Name and Version)
-
-### <u>dependencies</u> :
-
-- [React](https://react.dev)
-  - v18.2.0
-    - react-dom v18.2.0
-    - react-hook-form v7.52.1
-    - react-medium-image-zoom V5.2.8
-    - react-redux v9.1.2
-    - react-router-dom v6.24.0
-    - react-slick v0.30.0
-    - slick-carousel v1.8.1
-- [Axios](https://axios-http.com/)
-  - v1.7.2
-- [Reduxjs/toolkit](https://redux.js.org/)
-  - v2.2.5
-- [Typescript](https://www.typescriptlang.org/)
-  - v5.2.2
-  - - @types/geojson v7946.0.14
-  - - @emotion/react v11.11.4
-  - - @emotion/styled v11.11.5
-  - - @fontsource/roboto v5.0.13
-  - - @mui/icons-material v5.15.21
-  - - @mui/joy v5.0.0-beta-36
-  - - @mui/material v5.15.21
-  - - @reduxjs/toolkit v2.2.5
-- [Sass](https://sass-lang.com/)
-  - v1.62.0
-- [Mui component](https://mui.com/material-ui/)
-  - icons-material v5.15.21
-  - joy v5.0.0-beta.36
-- [MapLibre-gl](https://maplibre.org/)
-  - v4.5.0
-- [Vite](https://vitejs.dev/)
-  - v5.2.0
-- [ESLint](https://eslint.org/)
-  - v8.57.0
-  - config-airbnb v19.0.4
-  - config-airbnb-typescript v18.0.0
-  - config-prettier v9.1.0
-  - plugin-import v2.29.1
-  - vplugin-jsx-a11y v6.8.0
-  - plugin-prettier v5.1.3
-  - plugin-react v7.34.1
-  - plugin-react-hooks v4.6.0
-  - plugin-react-refresh v0.4.6
-- [Vs-code](https://code.visualstudio.com/)
-- [GitHub](https://github.com/)
-
-## Autors
-
-- **Matthias Hibon** => [@Heike13](https://github.com/Heike13)
-- **Jérôme de Lucia** => [@Je2222](https://github.com/Je2222)
-- **Sébastien Robert** => [@sebdev43](https://github.com/Sebdev43)
-- **Kevin Cannizzaro** => [@CannizzaroKevin](https://github.com/CannizzaroKevin)
